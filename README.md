@@ -1,2 +1,0 @@
-# agridata_app
-tew
