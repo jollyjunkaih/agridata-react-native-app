@@ -2,7 +2,12 @@ import React from 'react';
 import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
 import {scaleHeight} from '_styles';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
-import {Button} from '_scenes/dashboard/components';
+import {
+  MarketplaceButton,
+  ChatButton,
+  CalendarButton,
+  InvoiceButton,
+} from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export const AccountsDashboard = props => {
@@ -49,9 +54,9 @@ export const AccountsDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <Button text="Chats" top={90}></Button>
-      <Button text="Invoices" top={90}></Button>
-      <Button text="Calendar" top={90}></Button>
+      <ChatButton top={90}></ChatButton>
+      <CalendarButton top={90}></CalendarButton>
+      <InvoiceButton top={90}></InvoiceButton>
     </SafeAreaView>
   );
 };
