@@ -1,17 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
+import {AccountsDashboard} from './scenes';
 
-const App = () => (
-  <View>
-    <Text
-      style={{
-        fontFamily: Typography.FONT_FAMILY_REGULAR,
-        fontSize: 30,
-      }}>
-      Hello World
-    </Text>
-  </View>
-);
+const App = () => {
+  return <AccountsDashboard company="City Grocer"></AccountsDashboard>;
+};
 
 export default App;
