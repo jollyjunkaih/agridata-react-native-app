@@ -18,7 +18,7 @@ export const AccountsDashboard = props => {
         style={{
           position: 'absolute',
           right: Mixins.scaleWidth(30),
-          top: Mixins.scaleHeight(20),
+          top: Mixins.scaleHeight(30),
         }}>
         <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
       </TouchableOpacity>
