@@ -1,5 +1,4 @@
 import {AccountsDashboard} from './dashboard/scenes/accounts';
-import {Marketplace} from './marketplace';
+import {Marketplace, Store} from './marketplace';
 
-export {AccountsDashboard};
-export {Marketplace};
+export {AccountsDashboard, Marketplace, Store};

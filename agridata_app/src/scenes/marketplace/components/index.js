@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput} from 'react-native';
+import {View, TextInput, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -24,5 +24,13 @@ export const Searchbar = props => {
         />
       </View>
     </View>
+  );
+};
+
+export const ChatButton = props => {
+  return (
+    <TouchableOpacity>
+      <Icon name="chatbox-outline" size={props.size}></Icon>
+    </TouchableOpacity>
   );
 };

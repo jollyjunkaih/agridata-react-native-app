@@ -53,7 +53,6 @@ export const Marketplace = props => {
           <Text style={Typography.normal}>Favourites</Text>
         </TouchableOpacity>
       </View>
-
       <View
         style={{
           width: Mixins.scaleWidth(330),

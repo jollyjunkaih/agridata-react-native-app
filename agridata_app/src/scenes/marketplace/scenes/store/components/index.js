@@ -7,10 +7,9 @@ import {
   Image,
   RefreshControl,
 } from 'react-native';
-import {CloseButton} from '_components';
+import {CloseButton, AddButton} from '_components';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
 
@@ -114,7 +113,7 @@ export const ProductPopUp = props => {
       }}>
       <View
         style={{
-          height: Mixins.scaleHeight(385),
+          height: Mixins.scaleHeight(410),
           width: Mixins.scaleWidth(290),
           backgroundColor: 'white',
           borderRadius: 20,
@@ -141,7 +140,6 @@ export const ProductPopUp = props => {
             <ChatButton size={Mixins.scaleWidth(25)}></ChatButton>
           </View>
         </View>
-
         <Image
           style={{
             top: Mixins.scaleHeight(40),
@@ -158,7 +156,7 @@ export const ProductPopUp = props => {
             width: Mixins.scaleWidth(250),
             flexDirection: 'row',
           }}>
-          <TouchableOpacity
+          <View
             onPress={() => console.log('navigate')}
             style={{
               width: Mixins.scaleWidth(145),
@@ -166,23 +164,11 @@ export const ProductPopUp = props => {
               flexWrap: 'wrap',
               height: Mixins.scaleHeight(42),
             }}>
-            <Icon name="rocket-outline" size={Mixins.scaleWidth(20)}></Icon>
-            <Text
-              style={[
-                Typography.normal,
-                {
-                  fontFamily: 'Poppins-SemiBold',
-                  left: Mixins.scaleWidth(10),
-                  width: Mixins.scaleWidth(110),
-                },
-              ]}>
-              Visit {props.farm}
-            </Text>
             <Rating
               imageSize={Mixins.scaleWidth(25)}
               readonly={true}
               startingValue={3.5}></Rating>
-          </TouchableOpacity>
+          </View>
           <View
             style={{
               width: Mixins.scaleWidth(105),
@@ -191,7 +177,7 @@ export const ProductPopUp = props => {
             <Text
               style={[
                 Typography.large,
-                {bottom: Mixins.scaleHeight(-15), color: Colors.PALE_BLUE},
+                {bottom: Mixins.scaleHeight(-3), color: Colors.PALE_BLUE},
               ]}>
               RM 25-18/kg
             </Text>
@@ -200,7 +186,7 @@ export const ProductPopUp = props => {
         <View
           style={{
             position: 'absolute',
-            bottom: Mixins.scaleHeight(20),
+            bottom: Mixins.scaleHeight(50),
             width: Mixins.scaleWidth(245),
             height: Mixins.scaleHeight(155),
             backgroundColor: Colors.GRAY_LIGHT,
@@ -239,6 +225,9 @@ export const ProductPopUp = props => {
               backgroundColor: 'white',
               top: Mixins.scaleHeight(100),
             }}></View>
+        </View>
+        <View style={{position: 'absolute', bottom: Mixins.scaleHeight(10)}}>
+          <AddButton text="Purchase Order" width={150} />
         </View>
       </View>
     </View>
