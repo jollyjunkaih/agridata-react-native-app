@@ -10,6 +10,9 @@ import {
 import {CloseButton} from '_components';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Rating} from 'react-native-ratings';
+import {scaleHeight} from '_styles';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -115,6 +118,7 @@ export const ProductPopUp = props => {
           width: Mixins.scaleWidth(290),
           backgroundColor: 'white',
           borderRadius: 20,
+          alignItems: 'center',
         }}>
         <View
           style={{
@@ -123,6 +127,115 @@ export const ProductPopUp = props => {
             top: Mixins.scaleHeight(-10),
           }}>
           <CloseButton setModal={props.setProductModal}></CloseButton>
+        </View>
+        <Text
+          style={[
+            Typography.header,
+            {
+              left: Mixins.scaleWidth(10),
+              top: Mixins.scaleHeight(10),
+              position: 'absolute',
+            },
+          ]}>
+          {props.productName}Ginger
+        </Text>
+        <Image
+          style={{
+            top: Mixins.scaleHeight(40),
+            height: Mixins.scaleWidth(130),
+            width: Mixins.scaleWidth(130),
+            borderRadius: 100,
+          }}
+          source={{uri: ''}}></Image>
+        <View
+          style={{
+            top: Mixins.scaleHeight(160),
+            left: Mixins.scaleWidth(20),
+            position: 'absolute',
+            width: Mixins.scaleWidth(250),
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity
+            onPress={() => console.log('navigate')}
+            style={{
+              width: Mixins.scaleWidth(145),
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              height: Mixins.scaleHeight(42),
+            }}>
+            <Icon name="rocket-outline" size={Mixins.scaleWidth(20)}></Icon>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  fontFamily: 'Poppins-SemiBold',
+                  left: Mixins.scaleWidth(10),
+                  width: Mixins.scaleWidth(110),
+                },
+              ]}>
+              Visit {props.farm}
+            </Text>
+            <Rating
+              imageSize={Mixins.scaleWidth(25)}
+              readonly={true}
+              startingValue={3.5}></Rating>
+          </TouchableOpacity>
+          <View
+            style={{
+              width: Mixins.scaleWidth(105),
+              right: Mixins.scaleWidth(0),
+            }}>
+            <Text
+              style={[
+                Typography.large,
+                {bottom: Mixins.scaleHeight(-15), color: Colors.PALE_BLUE},
+              ]}>
+              RM 25-18/kg
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: Mixins.scaleHeight(20),
+            width: Mixins.scaleWidth(245),
+            height: Mixins.scaleHeight(155),
+            backgroundColor: Colors.GRAY_LIGHT,
+            borderRadius: 20,
+            alignItems: 'center',
+          }}>
+          <Text
+            style={[
+              Typography.small,
+              {
+                lineHeight: Mixins.scaleHeight(20),
+                top: Mixins.scaleHeight(20),
+                left: Mixins.scaleWidth(20),
+                position: 'absolute',
+              },
+            ]}>
+            Variety:{'\n'}Available:{'\n'}MOQ:{'\n'}Other Details:
+          </Text>
+          <Text
+            style={[
+              Typography.small,
+              {
+                lineHeight: Mixins.scaleHeight(20),
+                top: Mixins.scaleHeight(20),
+                right: Mixins.scaleWidth(20),
+                position: 'absolute',
+                textAlign: 'right',
+              },
+            ]}>
+            Variety:{'\n'}Available:{'\n'}MOQ:
+          </Text>
+          <View
+            style={{
+              width: Mixins.scaleWidth(200),
+              height: Mixins.scaleHeight(40),
+              backgroundColor: 'white',
+              top: Mixins.scaleHeight(100),
+            }}></View>
         </View>
       </View>
     </View>

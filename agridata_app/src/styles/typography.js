@@ -34,7 +34,7 @@ export const normal = {
 };
 
 export const small = {
-  fontSize: scaleFont(9),
+  fontSize: scaleFont(10),
   fontFamily: 'Poppins-Medium',
   color: 'black',
 };
@@ -48,5 +48,11 @@ export const largestSize = {
 export const welcome = {
   fontSize: scaleFont(25),
   fontFamily: 'Poppins-Bold',
+  color: '#444443',
+};
+
+export const large = {
+  fontSize: scaleFont(15),
+  fontFamily: 'Poppins-SemiBold',
   color: '#444443',
 };

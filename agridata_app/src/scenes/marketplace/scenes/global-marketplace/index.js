@@ -14,14 +14,15 @@ export const Marketplace = props => {
         width: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(50)}]}>
-        Marketplace
+      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
+        Global Marketplace
       </Text>
-      <View style={{marginTop: Mixins.scaleHeight(70)}}>
+      <View style={{top: Mixins.scaleHeight(40)}}>
         <Searchbar />
       </View>
       <View
         style={{
+          top: Mixins.scaleHeight(50),
           width: Mixins.scaleWidth(360),
           height: Mixins.scaleWidth(30),
           flexDirection: 'row',
@@ -57,7 +58,7 @@ export const Marketplace = props => {
         style={{
           width: Mixins.scaleWidth(330),
           height: Mixins.scaleHeight(425),
-          marginTop: Mixins.scaleHeight(10),
+          top: Mixins.scaleHeight(70),
         }}>
         <MarketplaceList productList={items} />
       </View>
