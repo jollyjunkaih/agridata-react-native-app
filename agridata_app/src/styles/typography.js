@@ -33,6 +33,12 @@ export const normal = {
   color: 'black',
 };
 
+export const small = {
+  fontSize: scaleFont(9),
+  fontFamily: 'Poppins-Medium',
+  color: 'black',
+};
+
 export const largestSize = {
   fontSize: scaleFont(30),
   fontFamily: 'Poppins-Bold',
