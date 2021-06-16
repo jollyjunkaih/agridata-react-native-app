@@ -6,12 +6,14 @@ import {
   FlatList,
   Image,
   RefreshControl,
+  TextInput,
 } from 'react-native';
 import {CloseButton, AddButton} from '_components';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Modal from 'react-native-modal';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -113,8 +115,8 @@ export const ProductPopUp = props => {
       }}>
       <View
         style={{
-          height: Mixins.scaleHeight(410),
-          width: Mixins.scaleWidth(290),
+          height: Mixins.scaleHeight(480),
+          width: Mixins.scaleWidth(310),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
@@ -185,8 +187,7 @@ export const ProductPopUp = props => {
         </View>
         <View
           style={{
-            position: 'absolute',
-            bottom: Mixins.scaleHeight(50),
+            top: Mixins.scaleHeight(80),
             width: Mixins.scaleWidth(245),
             height: Mixins.scaleHeight(155),
             backgroundColor: Colors.GRAY_LIGHT,
@@ -226,8 +227,55 @@ export const ProductPopUp = props => {
               top: Mixins.scaleHeight(100),
             }}></View>
         </View>
+        <View
+          style={{
+            width: Mixins.scaleWidth(260),
+            top: Mixins.scaleHeight(120),
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Text style={Typography.normal}>Quantity to buy:</Text>
+          <TextInput
+            keyboardType="number-pad"
+            underlineColorAndroid="transparent"
+            style={{
+              left: Mixins.scaleWidth(15),
+              width: Mixins.scaleWidth(80),
+              borderWidth: 1,
+              borderRadius: 20,
+              textAlign: 'center',
+            }}></TextInput>
+        </View>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            width: Mixins.scaleWidth(250),
+            top: Mixins.scaleHeight(75),
+          }}></View>
+
         <View style={{position: 'absolute', bottom: Mixins.scaleHeight(10)}}>
-          <AddButton text="Purchase Order" width={150} />
+          <TouchableOpacity
+            onPress={() => console.log('add to purchase order')}
+            style={{
+              width: Mixins.scaleWidth(150),
+              backgroundColor: Colors.GRAY_LIGHT,
+              borderRadius: 20,
+              alignItems: 'center',
+              flexDirection: 'row',
+              height: Mixins.scaleHeight(25),
+            }}>
+            <View
+              style={{
+                left: Mixins.scaleWidth(5),
+                bottom: Mixins.scaleHeight(1),
+              }}>
+              <Icon name="add-outline" size={Mixins.scaleWidth(20)}></Icon>
+            </View>
+
+            <Text style={[Typography.normal, {left: Mixins.scaleWidth(10)}]}>
+              Purchase Order
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

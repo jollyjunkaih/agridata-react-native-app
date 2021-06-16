@@ -6,4 +6,4 @@ export const SCALE_12 = scaleWidth(12);
 export const SCALE_8 = scaleWidth(8);
 
 export const BackButtonLeft = 20;
-export const BackButtonTop = 20;
+export const BackButtonTop = 30;
