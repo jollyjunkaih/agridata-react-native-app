@@ -1,4 +1,5 @@
-import {AccountsDashboard} from './dashboard/scenes/accounts';
+import {AccountsDashboard} from './dashboard';
 import {Marketplace, Store} from './marketplace';
+import {Inbox, ChatRoom} from './chat';
 
-export {AccountsDashboard, Marketplace, Store};
+export {AccountsDashboard, Marketplace, Store, Inbox, ChatRoom};

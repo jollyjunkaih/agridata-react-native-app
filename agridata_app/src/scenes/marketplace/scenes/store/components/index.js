@@ -108,15 +108,17 @@ export const MarketplaceList = props => {
 export const ProductPopUp = props => {
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'position' : null}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? -120 : null}
+      behavior={Platform.OS === 'ios' ? 'position' : 'position'}
+      keyboardVerticalOffset={
+        Platform.OS === 'ios' ? -120 : -180
+      } /* Keyboard Offset needs to be tested against multiple phones */
       style={{
         height: Mixins.scaleHeight(640),
         width: Mixins.scaleWidth(360),
       }}>
       <View
         style={{
-          height: Mixins.scaleHeight(450),
+          height: Mixins.scaleHeight(460),
           width: Mixins.scaleWidth(310),
           backgroundColor: 'white',
           borderRadius: 20,
@@ -245,10 +247,14 @@ export const ProductPopUp = props => {
             style={{
               left: Mixins.scaleWidth(15),
               width: Mixins.scaleWidth(80),
-              height: Mixins.scaleHeight(20),
+              height:
+                Mixins.scaleHeight(
+                  25,
+                ) /* 20 works for IOS but we need a 25 for android */,
               borderWidth: 1,
               borderRadius: 20,
               textAlign: 'center',
+              textAlignVertical: 'bottom',
             }}></TextInput>
         </View>
         <View
