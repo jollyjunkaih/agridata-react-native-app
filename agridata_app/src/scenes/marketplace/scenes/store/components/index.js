@@ -7,6 +7,8 @@ import {
   Image,
   RefreshControl,
   TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {CloseButton, AddButton} from '_components';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
@@ -105,21 +107,24 @@ export const MarketplaceList = props => {
 
 export const ProductPopUp = props => {
   return (
-    <View
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'position' : null}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? -120 : null}
       style={{
-        right: Mixins.scaleWidth(17.5),
         height: Mixins.scaleHeight(640),
         width: Mixins.scaleWidth(360),
-        justifyContent: 'center',
-        alignItems: 'center',
       }}>
       <View
         style={{
-          height: Mixins.scaleHeight(480),
+          height: Mixins.scaleHeight(450),
           width: Mixins.scaleWidth(310),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
+          left: Mixins.scaleWidth(
+            7.5,
+          ) /* taking into account the margin from Product Card */,
+          top: Mixins.scaleHeight(80),
         }}>
         <View
           style={{
@@ -237,10 +242,10 @@ export const ProductPopUp = props => {
           <Text style={Typography.normal}>Quantity to buy:</Text>
           <TextInput
             keyboardType="number-pad"
-            underlineColorAndroid="transparent"
             style={{
               left: Mixins.scaleWidth(15),
               width: Mixins.scaleWidth(80),
+              height: Mixins.scaleHeight(20),
               borderWidth: 1,
               borderRadius: 20,
               textAlign: 'center',
@@ -278,6 +283,6 @@ export const ProductPopUp = props => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
