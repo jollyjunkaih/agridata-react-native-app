@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {scaleWidth} from '_styles';
+import {scaleHeight} from '_styles';
 
 const ChatBubble = props => {
   const isMyMessage = () => {
@@ -95,7 +96,11 @@ export const MessageInput = props => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Icon name="send-outline" size={Mixins.scaleWidth(25)} />
+        <Icon
+          name="paper-plane-outline"
+          size={Mixins.scaleWidth(25)}
+          color={Colors.LIGHT_BLUE}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -181,7 +186,10 @@ const ChatInfoModal = props => {
           Add Person
         </Text>
       </TouchableOpacity>
-      <Modal isVisible={addPersonModal}>
+      <Modal
+        isVisible={addPersonModal}
+        backdropColor="white"
+        backdropOpacity={0.7}>
         <AddPersonModal setAddPersonModal={setAddPersonModal} />
       </Modal>
     </View>
@@ -279,10 +287,39 @@ const RemovePersonModal = props => {
   return (
     <View
       style={{
-        backgroundColor: 'red',
-        height: Mixins.scaleHeight(100),
-        width: Mixins.scaleWidth(200),
+        backgroundColor: Colors.GRAY_MEDIUM,
+        borderRadius: 20,
+        height: Mixins.scaleHeight(160),
+        width: Mixins.scaleWidth(300),
+        left: Mixins.scaleWidth(10),
       }}>
+      <View style={{alignSelf: 'center', top: Mixins.scaleHeight(10)}}>
+        <Icon
+          name="alert-circle-outline"
+          size={Mixins.scaleWidth(70)}
+          color={Colors.ALERT}
+        />
+      </View>
+      <Text
+        style={[
+          Typography.normal,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Are you sure you want to remove XXX?
+      </Text>
+      <TouchableOpacity
+        onPress={() => props.setRemovePersonModal(false)}
+        style={{
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(80),
+          alignSelf: 'center',
+          borderRadius: 20,
+          height: Mixins.scaleHeight(25),
+          justifyContent: 'center',
+          top: Mixins.scaleHeight(40),
+        }}>
+        <Text style={[Typography.normal, {alignSelf: 'center'}]}>Confirm</Text>
+      </TouchableOpacity>
       <View
         style={{
           position: 'absolute',
@@ -296,5 +333,22 @@ const RemovePersonModal = props => {
 };
 
 const AddPersonModal = props => {
-  return <View></View>;
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(300),
+        width: Mixins.scaleWidth(300),
+        backgroundColor: Colors.GRAY_DARK,
+        left: Mixins.scaleWidth(10),
+        borderRadius: 20,
+      }}>
+      <Text
+        style={[
+          Typography.large,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Who would you like to add?
+      </Text>
+    </View>
+  );
 };

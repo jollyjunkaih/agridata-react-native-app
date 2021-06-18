@@ -5,8 +5,8 @@ export const BLACK = '#000000';
 
 // ACTIONS
 export const SUCCESS = '#3adb76';
-export const FAIL = '#F04646';
-export const ALERT = '#cc4b37';
+export const ALERT = '#F1C40F';
+export const FAIL = '#cc4b37';
 
 // GRAYSCALE
 export const GRAY_LIGHT = '#F1F1F1';
