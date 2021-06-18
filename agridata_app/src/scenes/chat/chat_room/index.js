@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ChatBubbleList, MessageInput} from './components';
+import {ChatBubbleList, MessageInput, ChatInfo} from './components';
 import {NavBar, BackButton} from '_components';
 
 export const ChatRoom = props => {
@@ -39,17 +39,15 @@ export const ChatRoom = props => {
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
           Company Name Chat
         </Text>
-        <TouchableOpacity
+        <View
           style={{
             position: 'absolute',
             top: Mixins.scaleHeight(30),
             right: Mixins.scaleWidth(15),
           }}>
-          <Icon
-            color={Colors.GRAY_DARK}
-            name="information-circle-outline"
-            size={Mixins.scaleWidth(30)}></Icon>
-        </TouchableOpacity>
+          <ChatInfo />
+        </View>
+
         <View
           style={{
             top: Mixins.scaleHeight(30),
@@ -62,11 +60,10 @@ export const ChatRoom = props => {
 
       <KeyboardAvoidingView
         behavior="position"
-        keyboardVerticalOffset={Mixins.scaleHeight(50)}
+        keyboardVerticalOffset={Mixins.scaleHeight(30)}
         style={{
-          top: Mixins.scaleHeight(15),
+          top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
-          height: Mixins.scaleHeight(460),
         }}>
         <View style={{height: Mixins.scaleHeight(440)}}>
           <ChatBubbleList chatList={data}></ChatBubbleList>
@@ -75,6 +72,7 @@ export const ChatRoom = props => {
           <MessageInput></MessageInput>
         </View>
       </KeyboardAvoidingView>
+
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
       </View>
