@@ -9,7 +9,8 @@ export const ALERT = '#F1C40F';
 export const FAIL = '#cc4b37';
 
 // GRAYSCALE
-export const GRAY_LIGHT = '#F1F1F1';
-
+export const GRAY_WHITE = '#F1F1F1';
+export const GRAY_LIGHT = '#ECEFF4';
 export const GRAY_MEDIUM = '#DADADA';
 export const GRAY_DARK = '#B0B0B0';
+export const GRAY_BLACK = '#818181';
