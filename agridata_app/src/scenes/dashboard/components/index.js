@@ -13,7 +13,6 @@ export const MarketplaceButton = props => (
       margin: 10,
       alignItems: 'center',
       borderRadius: 10,
-      elevation: 3,
     }}>
     <Image
       style={{
@@ -42,7 +41,6 @@ export const ChatButton = props => (
       margin: 10,
       alignItems: 'center',
       borderRadius: 10,
-      elevation: 3,
     }}>
     <Image
       style={{
@@ -71,7 +69,6 @@ export const InvoiceButton = props => (
       margin: 10,
       alignItems: 'center',
       borderRadius: 10,
-      elevation: 3,
     }}>
     <Image
       style={{
@@ -89,7 +86,7 @@ export const InvoiceButton = props => (
   </TouchableOpacity>
 );
 
-export const CalendarButton = props => (
+export const ToDoButton = props => (
   <TouchableOpacity
     onPress={() => console.log('calendar')}
     style={{
@@ -100,7 +97,6 @@ export const CalendarButton = props => (
       margin: 10,
       alignItems: 'center',
       borderRadius: 10,
-      elevation: 3,
     }}>
     <Image
       style={{
@@ -113,7 +109,7 @@ export const CalendarButton = props => (
       }}
       source={require('_assets/images/calendar-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      calendar
+      to do
     </Text>
   </TouchableOpacity>
 );

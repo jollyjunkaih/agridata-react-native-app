@@ -12,8 +12,6 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
-import {scaleWidth} from '_styles';
-import {scaleHeight} from '_styles';
 
 const ChatBubble = props => {
   const isMyMessage = () => {
