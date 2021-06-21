@@ -1,5 +1,5 @@
-import {AccountsDashboard,EmployeeDashboard} from './dashboard';
+import {AccountsDashboard, OwnerDashboard,EmployeeDashboard} from './dashboard';
 import {Marketplace, Store} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 
-export {AccountsDashboard, Marketplace, Store, Inbox, ChatRoom,EmployeeDashboard};
+export {AccountsDashboard, OwnerDashboard, Marketplace, Store, Inbox, ChatRoom,EmployeeDashboard};
