@@ -135,7 +135,7 @@ export const DataAnalyticsButton = props => (
         borderRadius: 10,
         opacity: 0.4,
       }}
-      source={require('_assets/images/calendar-resized.png')}></Image>
+      source={require('_assets/images/data-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
       Data Analytics
     </Text>
