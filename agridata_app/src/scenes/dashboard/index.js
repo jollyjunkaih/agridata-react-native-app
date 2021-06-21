@@ -1,3 +1,3 @@
 import {AccountsDashboard} from './scenes/accounts';
-
-export {AccountsDashboard};
+import { EmployeeDashboard } from './scenes/retail-employee';
+export {AccountsDashboard, EmployeeDashboard};

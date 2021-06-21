@@ -1,13 +1,12 @@
 import React from 'react';
 import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
-import {scaleHeight} from '_styles';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
   ToDoButton 
 } from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export const AccountsDashboard = props => {
+export const EmployeeDashboard = props => {
   return (
     <SafeAreaView
       style={{
