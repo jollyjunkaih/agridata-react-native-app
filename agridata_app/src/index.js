@@ -7,11 +7,13 @@ import {
   Store,
   Inbox,
   ChatRoom,
+  EmployeeDashboard,
+  OwnerDashboard,
   Orders,
 } from './scenes';
 
 const App = () => {
-  return <Inbox></Inbox>;
+  return <Store></Store>;
 };
 
 export default App;

@@ -1,6 +1,7 @@
 export const PALE_GREEN = '#E5EBD5';
 export const PALE_BLUE = '#788EAF';
 export const LIGHT_BLUE = '#EAF2FE';
+export const LIME_GREEN = '#8EAB3D';
 export const BLACK = '#000000';
 
 // ACTIONS

@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {SafeAreaView, Text, View, KeyboardAvoidingView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {ChatBubbleList, MessageInput, ChatInfo} from './components';
@@ -20,12 +14,13 @@ export const ChatRoom = props => {
         width: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
+      {/* This is the Immovable chat name */}
       <View
         style={{
           zIndex: 2,
-          height: Mixins.scaleHeight(63),
+          height: Mixins.scaleHeight(65),
           width: Mixins.scaleWidth(360),
-          backgroundColor: 'white',
+          backgroundColor: 'red',
           alignItems: 'center',
         }}>
         <View
@@ -33,11 +28,12 @@ export const ChatRoom = props => {
             position: 'absolute',
             left: Mixins.scaleWidth(Spacing.BackButtonLeft),
             top: Mixins.scaleHeight(Spacing.BackButtonTop),
+            backgroundColor: 'blue',
           }}>
           <BackButton />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-          Company Name Chat
+          Name of chat
         </Text>
         <View
           style={{
@@ -57,7 +53,6 @@ export const ChatRoom = props => {
             borderColor: Colors.GRAY_MEDIUM,
           }}></View>
       </View>
-
       <KeyboardAvoidingView
         behavior="position"
         keyboardVerticalOffset={Mixins.scaleHeight(30)}

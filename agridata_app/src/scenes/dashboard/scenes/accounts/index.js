@@ -5,7 +5,7 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
   MarketplaceButton,
   ChatButton,
-  CalendarButton,
+  ToDoButton,
   InvoiceButton,
 } from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -49,13 +49,13 @@ export const AccountsDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.company}!
+        Company Name!
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
       <ChatButton top={90}></ChatButton>
-      <CalendarButton top={90}></CalendarButton>
+      <ToDoButton top={90}></ToDoButton>
       <InvoiceButton top={90}></InvoiceButton>
     </SafeAreaView>
   );
