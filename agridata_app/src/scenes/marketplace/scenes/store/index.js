@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, View, TouchableOpacity,StyleSheet} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
-import {MarketplaceList} from './components';
+import {MarketplaceList,PurchaseOrderButton} from './components';
 import {NavBar, BackButton} from '_components';
+
 
 export const Store = props => {
   return (
@@ -37,6 +38,8 @@ export const Store = props => {
         }}>
         <MarketplaceList productList={items} />
       </View>
+      <View style={{position: 'absolute', right:Mixins.scaleWidth(20), bottom:Mixins.scaleHeight(80)}}><PurchaseOrderButton/></View>
+      
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
       </View>
@@ -45,6 +48,10 @@ export const Store = props => {
 };
 
 const items = [
+  {produce: 'Ginger', quantity: '10'},
+  {produce: 'Ginger', quantity: '10'},
+  {produce: 'Ginger', quantity: '10'},
+  {produce: 'Ginger', quantity: '10'},
   {produce: 'Ginger', quantity: '10'},
   {produce: 'Ginger', quantity: '10'},
 ];

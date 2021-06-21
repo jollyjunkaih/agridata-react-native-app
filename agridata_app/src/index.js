@@ -4,7 +4,7 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {AccountsDashboard, Marketplace, Store, Inbox, ChatRoom,EmployeeDashboard} from './scenes';
 
 const App = () => {
-  return <EmployeeDashboard></EmployeeDashboard>;
+  return <Store></Store>;
 };
 
 export default App;

@@ -16,8 +16,9 @@ import Modal from 'react-native-modal';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {LIME_GREEN} from '_styles';
 
-export const ProductCard = props => {
+const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
   return (
     <TouchableOpacity
@@ -105,7 +106,7 @@ export const MarketplaceList = props => {
   );
 };
 
-export const ProductPopUp = props => {
+const ProductPopUp = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
@@ -292,3 +293,86 @@ export const ProductPopUp = props => {
     </KeyboardAvoidingView>
   );
 };
+
+export const PurchaseOrderButton = props => {
+  const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
+  return (
+    <TouchableOpacity
+      style={{
+        height: Mixins.scaleHeight(40),
+        width: Mixins.scaleWidth(130),
+        backgroundColor: Colors.PALE_BLUE,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}
+      onPress={() => setPurchaseOrderModal(true)}>
+      <Text style={[Typography.normal]}>Purchase Order</Text>
+      <Modal isVisible={purchaseOrderModal}>
+        <PurchaseOrder
+          setPurchaseOrderModal={setPurchaseOrderModal}></PurchaseOrder>
+      </Modal>
+    </TouchableOpacity>
+  );
+};
+
+const PurchaseOrder = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(385),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderRadius: 10,
+        left: Mixins.scaleWidth(15),
+        alignItems: 'center',
+      }}>
+      <View style={{alignItems: 'center'}}>
+        <Text
+          style={[
+            Typography.large,
+            {
+              fontFamily: 'Poppins-SemiBold',
+              top: Mixins.scaleHeight(15),
+            },
+          ]}>
+          Purchase Order For
+        </Text>
+        <Text
+          style={[
+            Typography.header,
+            {
+              fontFamily: 'Poppins-Bold',
+              color: Colors.LIME_GREEN,
+              top: Mixins.scaleHeight(10),
+            },
+          ]}>
+          Hinsou Wholesale
+        </Text>
+      </View>
+      <TouchableOpacity
+        style={{
+          top: Mixins.scaleHeight(250),
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(200),
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: Mixins.scaleHeight(35),
+          borderRadius: 10,
+          elevation: 3,
+        }}
+        onPress={() => console.log('Button')}>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={[Typography.normal]}>Send P.O. To Supplier</Text>
+          <View style={{right: Mixins.scaleWidth(-10)}}>
+            <Icon
+              name="paper-plane-outline"
+              size={Mixins.scaleWidth(20)}></Icon>
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const PurchaseOrderProductList = props => {};
