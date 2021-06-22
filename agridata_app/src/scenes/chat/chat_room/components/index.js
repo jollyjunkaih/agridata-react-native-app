@@ -120,6 +120,152 @@ export const ChatInfo = props => {
   );
 };
 
+export const ProductInquiry = props => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderWidth: Mixins.scaleWidth(3),
+        borderColor: Colors.GRAY_MEDIUM,
+        width: Mixins.scaleWidth(230),
+        height: Mixins.scaleHeight(100),
+      }}>
+      <Image
+        style={{
+          width: Mixins.scaleWidth(80),
+          marginRight: Mixins.scaleWidth(10),
+          resizeMode: 'contain',
+        }}
+        source={require('_assets/images/agridata.png')}></Image>
+      <View>
+        <Text
+          style={[
+            Typography.large,
+            {
+              margin: Mixins.scaleWidth(5),
+              marginBottom: Mixins.scaleHeight(1),
+              marginTop: Mixins.scaleHeight(-20),
+            },
+          ]}>
+          Product
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              margin: Mixins.scaleWidth(5),
+              marginTop: Mixins.scaleHeight(-3),
+            },
+          ]}>
+          Price: <Text style={{color: 'red'}}> RM5-8/kg</Text> {'\n'}
+          MOQ: 50 {'\n'}
+          Available: 1000
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              alignSelf: 'flex-end',
+              marginRight: Mixins.scaleWidth(5),
+              marginBottom: Mixins.scaleHeight(-30),
+            },
+          ]}>
+          16.50 - Read
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+export const PurchaseOrder = props => {
+  return (
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.GRAY_DARK,
+        width: Mixins.scaleWidth(165),
+        height: Mixins.scaleHeight(65),
+        borderRadius: 10,
+      }}>
+      <Text style={[Typography.large]}>Purchase Order</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <TouchableOpacity>
+          <Text style={[Typography.small]}>Inspect</Text>
+        </TouchableOpacity>
+        <Text style={[Typography.small]}>
+          {'\t'}|{'\t'}
+        </Text>
+        <TouchableOpacity>
+          <Text style={[Typography.small]}>Download</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={[
+          Typography.small,
+          {
+            alignSelf: 'flex-end',
+          },
+        ]}>
+        16.50 - Read
+      </Text>
+    </View>
+  );
+};
+
+export const OrderQuotation = props => {
+  const [orderQuotationModal, setOrderQuotationModal] = useState(false);
+  return (
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.GRAY_LIGHT,
+        width: Mixins.scaleWidth(165),
+        height: Mixins.scaleHeight(70),
+        borderRadius: 10,
+      }}>
+      <Modal isVisible={orderQuotationModal}>
+        <OrderQuotationModal setOrderQuotationModal={setOrderQuotationModal} />
+      </Modal>
+      <Text style={[Typography.large]}>Order Quotation</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <TouchableOpacity onPress={() => setOrderQuotationModal(true)}>
+          <Text style={[Typography.small]}>Inspect</Text>
+        </TouchableOpacity>
+        <Text style={[Typography.small]}>
+          {'\t'}|{'\t'}
+        </Text>
+        <TouchableOpacity>
+          <Text style={[Typography.small]}>Download</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={[
+          Typography.small,
+          {
+            left: Mixins.scaleWidth(-50),
+          },
+        ]}>
+        09:45
+      </Text>
+    </View>
+  );
+};
+
 const ChatInfoModal = props => {
   const [addPersonModal, setAddPersonModal] = useState(false);
   const [removePersonModal, setRemovePersonModal] = useState(false);
@@ -191,6 +337,189 @@ const ChatInfoModal = props => {
         backdropOpacity={0.7}>
         <AddPersonModal setAddPersonModal={setAddPersonModal} />
       </Modal>
+    </View>
+  );
+};
+
+const OrderQuotationModal = props => {
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        left: Mixins.scaleWidth(5),
+        width: Mixins.scaleWidth(310),
+        height: Mixins.scaleHeight(510),
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderRadius: 15,
+        alignItems: 'center',
+      }}>
+      <View
+        style={{
+          position: 'absolute',
+          top: Mixins.scaleHeight(35),
+          alignItems: 'center',
+        }}>
+        <Text style={[Typography.large]}>Order Quotation From</Text>
+        <Text style={[Typography.header, {marginTop: Mixins.scaleHeight(-10)}]}>
+          <Text style={{color: '#8EAB3D'}}>Hinsou WholeSale</Text>
+        </Text>
+        <Text style={[Typography.small, {marginTop: Mixins.scaleHeight(-5)}]}>
+          #PQ12345678T
+        </Text>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-8),
+          top: Mixins.scaleHeight(-8),
+        }}>
+        <CloseButton setModal={props.setOrderQuotationModal} />
+      </View>
+      <View
+        style={{
+          top: Mixins.scaleHeight(125),
+          alignItems: 'center',
+          position: 'absolute',
+        }}>
+        <OrderList></OrderList>
+      </View>
+      <View
+        style={{
+          top: Mixins.scaleHeight(305),
+          alignItems: 'center',
+          height: Mixins.scaleHeight(95),
+          width: Mixins.scaleWidth(250),
+          backgroundColor: 'white',
+          position: 'absolute',
+          borderRadius: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}>
+        <Text style={[Typography.small, {right: Mixins.scaleWidth(20)}]}>
+          Total Cost:{'\n'}Delivery Date:{'\n'}Delivery Method:{'\n'}Payment
+          Method:
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              textAlign: 'right',
+              left: Mixins.scaleWidth(20),
+            },
+          ]}>
+          RM 6,400{'\n'}June 30,2021{'\n'}Supplier's Fleet{'\n'}Cash On Pick-Up
+        </Text>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          top: Mixins.scaleHeight(435),
+        }}>
+        <TouchableOpacity
+          style={{
+            marginRight: Mixins.scaleWidth(30),
+            backgroundColor: Colors.LIGHT_BLUE,
+            elevation: 3,
+            paddingVertical: Mixins.scaleHeight(5),
+            paddingHorizontal: Mixins.scaleWidth(10),
+          }}>
+          <Text style={[Typography.small]}>Accept</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: Colors.LIGHT_BLUE,
+            elevation: 3,
+            paddingVertical: Mixins.scaleHeight(5),
+            paddingHorizontal: Mixins.scaleWidth(10),
+          }}>
+          <Text style={[Typography.small]}>Decline</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const OrderList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: Mixins.scaleWidth(260),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return <OrderCard name={item.name} />;
+        }}></FlatList>
+    </View>
+  );
+};
+
+const OrderCard = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(35),
+        width: Mixins.scaleWidth(260),
+        marginBottom: Mixins.scaleHeight(1),
+        marginTop: Mixins.scaleHeight(1),
+        borderBottomColor: Colors.GRAY_DARK,
+        borderBottomWidth: Mixins.scaleWidth(1),
+        justifyContent: 'center',
+      }}>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            left: Mixins.scaleWidth(10),
+            position: 'absolute',
+          },
+        ]}>
+        Bananas
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            left: Mixins.scaleWidth(80),
+            position: 'absolute',
+          },
+        ]}>
+        | 300kg
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            left: Mixins.scaleWidth(120),
+            position: 'absolute',
+          },
+        ]}>
+        @ RM 8/kg
+      </Text>
+
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'right',
+            position: 'absolute',
+            left: Mixins.scaleWidth(220),
+          },
+        ]}>
+        RM1600
+      </Text>
     </View>
   );
 };
