@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   TextInput,
@@ -12,6 +12,7 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const ChatBubble = props => {
   const isMyMessage = () => {
@@ -676,6 +677,9 @@ const AddPersonModal = props => {
         ]}>
         Who would you like to add?
       </Text>
+      <View style={{top: Mixins.scaleHeight(50)}}>
+        <DropDownPicker />
+      </View>
     </View>
   );
 };
