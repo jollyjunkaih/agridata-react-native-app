@@ -13,7 +13,7 @@ import {
 } from './scenes';
 
 const App = () => {
-  return <Store></Store>;
+  return <AccountsDashboard></AccountsDashboard>;
 };
 
 export default App;
