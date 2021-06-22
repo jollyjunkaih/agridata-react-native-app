@@ -10,10 +10,11 @@ import {
   EmployeeDashboard,
   OwnerDashboard,
   Orders,
+  SupplierStore,
 } from './scenes';
 
 const App = () => {
-  return <Store></Store>;
+  return <SupplierStore></SupplierStore>;
 };
 
 export default App;
