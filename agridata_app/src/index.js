@@ -10,14 +10,11 @@ import {
   EmployeeDashboard,
   OwnerDashboard,
   Orders,
+  Tasks,
 } from './scenes';
 
 const App = () => {
-<<<<<<< HEAD
-  return <ChatRoom></ChatRoom>;
-=======
-  return <AccountsDashboard></AccountsDashboard>;
->>>>>>> f625b3a217998aab55c1288577f4008705600f6a
+  return <Tasks></Tasks>;
 };
 
 export default App;
