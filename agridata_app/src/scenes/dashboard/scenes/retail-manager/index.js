@@ -7,6 +7,7 @@ import {
   ChatButton,
   ToDoButton,
   InvoiceButton,
+  MenuButton,
 } from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -15,8 +16,7 @@ export const RetailManagerDashboard = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        flex: 1,
         alignItems: 'center',
       }}>
       <TouchableOpacity
@@ -27,6 +27,15 @@ export const RetailManagerDashboard = props => {
         }}>
         <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
       </TouchableOpacity>
+
+      <View
+        style={{
+          position: 'absolute',
+          top: Mixins.scaleHeight(30),
+          left: Mixins.scaleWidth(30),
+        }}>
+        <MenuButton></MenuButton>
+      </View>
 
       <Image
         style={{

@@ -3,6 +3,7 @@ import {View, Text, SafeAreaView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
   AccountsDashboard,
+  RetailManagerDashboard,
   Marketplace,
   Store,
   Inbox,
@@ -10,11 +11,12 @@ import {
   EmployeeDashboard,
   OwnerDashboard,
   Orders,
+  SupplierStore,
   Tasks,
 } from './scenes';
 
 const App = () => {
-  return <Tasks></Tasks>;
+  return <EmployeeDashboard></EmployeeDashboard>;
 };
 
 export default App;

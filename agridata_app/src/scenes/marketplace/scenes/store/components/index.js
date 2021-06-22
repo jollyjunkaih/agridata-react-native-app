@@ -350,16 +350,29 @@ const PurchaseOrder = props => {
           Hinsou Wholesale
         </Text>
       </View>
+      <View
+        style={{
+          backgroundColor: Colors.GRAY_WHITE,
+          height: Mixins.scaleHeight(220),
+          top: Mixins.scaleHeight(30),
+          borderRadius: 10,
+        }}>
+        <PurchaseOrderList></PurchaseOrderList>
+      </View>
       <TouchableOpacity
         style={{
-          top: Mixins.scaleHeight(250),
+          bottom: Mixins.scaleHeight(15),
           backgroundColor: Colors.LIGHT_BLUE,
           width: Mixins.scaleWidth(200),
           alignItems: 'center',
           justifyContent: 'center',
           height: Mixins.scaleHeight(35),
           borderRadius: 10,
-          elevation: 3,
+          shadowColor: 'grey',
+          shadowOffset: {width: 0, height: 3},
+          shadowOpacity: 3,
+          shadowRadius: 5,
+          position: 'absolute',
         }}
         onPress={() => console.log('Button')}>
         <View style={{flexDirection: 'row'}}>
@@ -371,8 +384,98 @@ const PurchaseOrder = props => {
           </View>
         </View>
       </TouchableOpacity>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-10),
+          top: Mixins.scaleHeight(-10),
+        }}>
+        <CloseButton setModal={props.setPurchaseOrderModal} />
+      </View>
     </View>
   );
 };
+const PurchaseOrderList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          borderBottomWidth: 1,
+          width: Mixins.scaleWidth(200),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+    );
+  };
+  return (
+    <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={props.refreshing}
+          onRefresh={props.onRefresh}
+        />
+      }
+      keyExtractor={item => item.id}
+      data={DATA}
+      numColumns={1}
+      ItemSeparatorComponent={Seperator}
+      ListEmptyComponent={
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(420),
+            top: Mixins.scaleHeight(30),
+            alignItems: 'center',
+          }}></View>
+      }
+      renderItem={({item}) => {
+        return (
+          <PurchaseOrderComponent
+            productName={item.produce}
+            availableQuantity={item.quantity}
+          />
+        );
+      }}
+    />
+  );
+};
 
-const PurchaseOrderProductList = props => {};
+const PurchaseOrderComponent = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(30),
+        justifyContent: 'center',
+        backgroundColor: Colors.GRAY_WHITE,
+      }}>
+      <View style={{flexDirection: 'row'}}>
+        <View>
+          <Text
+            style={[
+              Typography.small,
+              {position: 'absolute', left: Mixins.scaleWidth(5)},
+            ]}>
+            Product
+          </Text>
+        </View>
+        <View>
+          <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
+            {' '}
+            |{'\t'}300kg
+          </Text>
+        </View>
+        <TouchableOpacity style={{left: Mixins.scaleWidth(85)}}>
+          <Icon name="create-outline" size={Mixins.scaleWidth(15)} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{left: Mixins.scaleWidth(100)}}>
+          <Icon
+            name="trash-outline"
+            size={Mixins.scaleWidth(15)}
+            color={Colors.FAIL}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+const DATA = [{}, {}, {}, {}];
