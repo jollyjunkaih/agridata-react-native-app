@@ -2,7 +2,14 @@ import React, {useState} from 'react';
 import {SafeAreaView, Text, View, KeyboardAvoidingView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ChatBubbleList, MessageInput, ChatInfo} from './components';
+import {
+  ChatBubbleList,
+  MessageInput,
+  ChatInfo,
+  ProductInquiry,
+  PurchaseOrder,
+  OrderQuotation,
+} from './components';
 import {NavBar, BackButton} from '_components';
 
 export const ChatRoom = props => {
@@ -10,8 +17,7 @@ export const ChatRoom = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        flex: 1,
         alignItems: 'center',
       }}>
       {/* This is the Immovable chat name */}
@@ -20,7 +26,7 @@ export const ChatRoom = props => {
           zIndex: 2,
           height: Mixins.scaleHeight(65),
           width: Mixins.scaleWidth(360),
-          backgroundColor: 'red',
+          backgroundColor: 'white',
           alignItems: 'center',
         }}>
         <View
@@ -28,7 +34,7 @@ export const ChatRoom = props => {
             position: 'absolute',
             left: Mixins.scaleWidth(Spacing.BackButtonLeft),
             top: Mixins.scaleHeight(Spacing.BackButtonTop),
-            backgroundColor: 'blue',
+            backgroundColor: 'white',
           }}>
           <BackButton />
         </View>
@@ -60,11 +66,20 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View style={{height: Mixins.scaleHeight(440)}}>
-          <ChatBubbleList chatList={data}></ChatBubbleList>
+        {/* <View style={{height: Mixins.scaleHeight(440)}}>
+          <ChatBubbleList chatList={data}/>
+        </View> 
+        <View>
+          <ProductInquiry></ProductInquiry>
+        </View>
+        <View>
+          <PurchaseOrder></PurchaseOrder>
         </View>
         <View style={{top: Mixins.scaleHeight(10)}}>
           <MessageInput></MessageInput>
+        </View>*/}
+        <View>
+          <OrderQuotation></OrderQuotation>
         </View>
       </KeyboardAvoidingView>
 

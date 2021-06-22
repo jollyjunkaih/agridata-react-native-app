@@ -4,7 +4,7 @@ import {
   EmployeeDashboard,
   RetailManagerDashboard,
 } from './dashboard';
-import {Marketplace, Store} from './marketplace';
+import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 
@@ -18,4 +18,5 @@ export {
   ChatRoom,
   EmployeeDashboard,
   Orders,
+  SupplierStore,
 };
