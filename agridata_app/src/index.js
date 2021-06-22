@@ -15,7 +15,7 @@ import {
 } from './scenes';
 
 const App = () => {
-  return <SupplierStore></SupplierStore>;
+  return <EmployeeDashboard></EmployeeDashboard>;
 };
 
 export default App;

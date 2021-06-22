@@ -313,7 +313,7 @@ export const ProductEditButtonModal = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? -120 : -180
+        Platform.OS === 'ios' ? Mixins.scaleHeight(-230) : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
       style={{
         height: Mixins.scaleHeight(640),
