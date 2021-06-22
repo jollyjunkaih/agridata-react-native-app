@@ -2,7 +2,11 @@ import React from 'react';
 import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
 import {scaleHeight} from '_styles';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
-import {InvoiceButton, DataAnalyticsButton} from '_scenes/dashboard/components';
+import {
+  InvoiceButton,
+  DataAnalyticsButton,
+  MenuButton,
+} from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export const OwnerDashboard = props => {
@@ -22,7 +26,14 @@ export const OwnerDashboard = props => {
         }}>
         <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
       </TouchableOpacity>
-
+      <View
+        style={{
+          position: 'absolute',
+          top: Mixins.scaleHeight(30),
+          left: Mixins.scaleWidth(30),
+        }}>
+        <MenuButton></MenuButton>
+      </View>
       <Image
         style={{
           top: Mixins.scaleHeight(40),

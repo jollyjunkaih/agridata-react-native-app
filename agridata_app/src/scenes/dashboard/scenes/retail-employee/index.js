@@ -2,7 +2,9 @@ import React from 'react';
 import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
-  ToDoButton 
+  ToDoButton,
+  MenuButton,
+  ProductEditButton,
 } from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -23,7 +25,14 @@ export const EmployeeDashboard = props => {
         }}>
         <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
       </TouchableOpacity>
-
+      <View
+        style={{
+          position: 'absolute',
+          top: Mixins.scaleHeight(30),
+          left: Mixins.scaleWidth(30),
+        }}>
+        <MenuButton></MenuButton>
+      </View>
       <Image
         style={{
           top: Mixins.scaleHeight(40),
@@ -51,6 +60,9 @@ export const EmployeeDashboard = props => {
         What would you like to do today
       </Text>
       <ToDoButton top={90}></ToDoButton>
+      <View style={{top: Mixins.scaleHeight(200)}}>
+        <ProductEditButton></ProductEditButton>
+      </View>
     </SafeAreaView>
   );
 };
