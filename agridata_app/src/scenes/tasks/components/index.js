@@ -13,26 +13,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 
-export const TaskList = props => {
+export const SendTaskList = props => {
   return (
     <View>
       <FlatList
         keyExtractor={item => item.id}
-        data={props.TaskList}
+        data={props.SendTaskList}
         numColumns={1}
         renderItem={item => {
-          return <Task user={item.name} />;
+          return <SendTask user={item.name} />;
         }}
       />
     </View>
   );
 };
 
-const Task = props => {
-  const [taskModal, setTaskModal] = useState(false);
+const SendTask = props => {
+  const [sendTaskModal, setSendTaskModal] = useState(false);
   return (
     <TouchableOpacity
-      onPress={() => setTaskModal(true)}
+      onPress={() => setSendTaskModal(true)}
       style={{
         marginBottom: 10,
         width: Mixins.scaleWidth(305),
@@ -117,8 +117,10 @@ const Task = props => {
           30 June,2021
         </Text>
       </View>
-      <Modal isVisible={taskModal}>
-        <TaskModal setTaskModal={setTaskModal} taskList={props}></TaskModal>
+      <Modal isVisible={sendTaskModal}>
+        <SendTaskModal
+          setSendTaskModal={setSendTaskModal}
+          sendTaskList={props}></SendTaskModal>
       </Modal>
     </TouchableOpacity>
   );
@@ -212,7 +214,7 @@ export const SortModal = props => {
   );
 };
 
-const TaskModal = props => {
+const SendTaskModal = props => {
   const Seperator = () => {
     return (
       <View
@@ -238,7 +240,7 @@ const TaskModal = props => {
           right: Mixins.scaleWidth(-10),
           top: Mixins.scaleHeight(-10),
         }}>
-        <CloseButton setModal={props.setTaskModal} />
+        <CloseButton setModal={props.setSendTaskModal} />
       </View>
       <Text
         style={[
@@ -356,6 +358,7 @@ const TaskModal = props => {
           elevation: 5,
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
+          borderRadius: 10,
         }}>
         <Text style={[Typography.normal, {textAlign: 'center'}]}>
           Create Invoice
@@ -430,6 +433,313 @@ const Product = props => {
         ]}>
         @ RM 8/kg
       </Text>
+    </View>
+  );
+};
+
+export const ReceivePaymentTaskList = props => {
+  return (
+    <View>
+      <FlatList
+        keyExtractor={item => item.id}
+        data={props.ReceiveTaskList}
+        numColumns={1}
+        renderItem={item => {
+          return <ReceivePaymentTask user={item.name} />;
+        }}
+      />
+    </View>
+  );
+};
+
+const ReceivePaymentTask = props => {
+  const [receiveTaskModal, setReceiveTaskModal] = useState(false);
+  return (
+    <TouchableOpacity
+      onPress={() => setReceiveTaskModal(true)}
+      style={{
+        marginBottom: 10,
+        width: Mixins.scaleWidth(305),
+        height: Mixins.scaleHeight(80),
+      }}>
+      <View
+        style={{
+          backgroundColor: Colors.GRAY_LIGHT,
+          borderRadius: 10,
+          flexDirection: 'row',
+          width: Mixins.scaleWidth(300),
+          height: Mixins.scaleHeight(80),
+          elevation: 5,
+        }}>
+        <View
+          style={{
+            backgroundColor: Colors.GRAY_BLACK,
+            height: Mixins.scaleHeight(80),
+            width: Mixins.scaleWidth(16),
+            borderRadius: 10,
+          }}></View>
+        <View
+          style={{
+            backgroundColor: Colors.GRAY_LIGHT,
+            height: Mixins.scaleHeight(80),
+            width: Mixins.scaleWidth(80),
+            right: Mixins.scaleWidth(8),
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View style={{bottom: Mixins.scaleHeight(3)}}>
+            <Icon name="cash-outline" size={Mixins.scaleWidth(40)} />
+          </View>
+        </View>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              color: Colors.LIME_GREEN,
+              top: Mixins.scaleHeight(20),
+              left: Mixins.scaleWidth(90),
+              position: 'absolute',
+            },
+          ]}>
+          City Grocer
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              color: 'grey',
+              top: Mixins.scaleHeight(45),
+              left: Mixins.scaleWidth(90),
+              position: 'absolute',
+            },
+          ]}>
+          4 items
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              color: 'grey',
+              top: Mixins.scaleHeight(40),
+              right: Mixins.scaleWidth(10),
+              position: 'absolute',
+            },
+          ]}>
+          Date Created:
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              color: 'grey',
+              top: Mixins.scaleHeight(50),
+              right: Mixins.scaleWidth(10),
+              position: 'absolute',
+              fontStyle: 'italic',
+            },
+          ]}>
+          30 June,2021
+        </Text>
+      </View>
+      <Modal isVisible={receiveTaskModal}>
+        <ReceivePaymentModal
+          setReceiveTaskModal={setReceiveTaskModal}
+          receiveTaskList={props}></ReceivePaymentModal>
+      </Modal>
+    </TouchableOpacity>
+  );
+};
+
+const ReceivePaymentModal = props => {
+  return (
+    <View
+      style={{
+        width: Mixins.scaleWidth(320),
+        height: Mixins.scaleHeight(520),
+        backgroundColor: Colors.GRAY_WHITE,
+        borderRadius: 10,
+      }}>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-10),
+          top: Mixins.scaleHeight(-10),
+        }}>
+        <CloseButton setModal={props.setReceiveTaskModal} />
+      </View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(45),
+            right: Mixins.scaleWidth(20),
+          },
+        ]}>
+        11:00 AM
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            right: Mixins.scaleWidth(20),
+            top: Mixins.scaleHeight(65),
+            fontStyle: 'italic',
+          },
+        ]}>
+        22 July, 2021
+      </Text>
+      <Text
+        style={[
+          Typography.welcome,
+          {
+            position: 'absolute',
+            fontFamily: 'Poppins-SemiBold',
+            top: Mixins.scaleHeight(35),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Payment Alert
+      </Text>
+      <View
+        style={{
+          borderBottomWidth: 2,
+          width: Mixins.scaleWidth(280),
+          alignSelf: 'center',
+          top: Mixins.scaleHeight(115),
+          borderColor: Colors.GRAY_MEDIUM,
+          position: 'absolute',
+        }}></View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(150),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Payment From:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(150),
+            left: Mixins.scaleWidth(150),
+          },
+        ]}>
+        CITY GROCER
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(180),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Order #:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(180),
+            left: Mixins.scaleWidth(150),
+          },
+        ]}>
+        #12345
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(210),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Date of Payment:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(210),
+            left: Mixins.scaleWidth(150),
+          },
+        ]}>
+        22 July, 2021
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(240),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Bank:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(240),
+            left: Mixins.scaleWidth(150),
+          },
+        ]}>
+        MayBank
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(270),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Reference #:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(270),
+            left: Mixins.scaleWidth(150),
+          },
+        ]}>
+        9065 7756 8989
+      </Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(120),
+          height: Mixins.scaleHeight(40),
+          alignSelf: 'center',
+          justifyContent: 'center',
+          elevation: 5,
+          position: 'absolute',
+          bottom: Mixins.scaleHeight(50),
+          borderRadius: 10,
+        }}>
+        <Text style={[Typography.normal, {textAlign: 'center'}]}>
+          Received{'\t\t'}
+          <Icon
+            name="checkmark-circle-outline"
+            size={Mixins.scaleWidth(20)}></Icon>
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -12,11 +12,12 @@ import {
   OwnerDashboard,
   Orders,
   SupplierStore,
-  Tasks,
+  SupplierTasks,
+  RetailerTasks,
 } from './scenes';
 
 const App = () => {
-  return <EmployeeDashboard></EmployeeDashboard>;
+  return <RetailerTasks></RetailerTasks>;
 };
 
 export default App;
