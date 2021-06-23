@@ -13,10 +13,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {LIGHT_BLUE} from '_styles';
 
 export const MarketplaceButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('marketplace')}
+    onPress={() => props.navigation.navigate('marketplace')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -44,7 +45,7 @@ export const MarketplaceButton = props => (
 
 export const ChatButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('chat')}
+    onPress={() => props.navigation.navigate('inbox')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -72,7 +73,7 @@ export const ChatButton = props => (
 
 export const InvoiceButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('invoice')}
+    onPress={() => props.navigation.navigate('orders')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -100,7 +101,7 @@ export const InvoiceButton = props => (
 
 export const ToDoButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('calendar')}
+    onPress={() => props.navigation.navigate('tasks')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -128,7 +129,7 @@ export const ToDoButton = props => (
 
 export const DataAnalyticsButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('data')}
+    onPress={() => props.navigation.navigate('dataanalytics')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleHeight(280),
@@ -272,189 +273,5 @@ export const MenuButtonModal = props => {
         </View>
       </TouchableOpacity>
     </View>
-  );
-};
-
-export const ProductEditButton = props => {
-  const [productEditButtonModal, setProductEditButtonModal] = useState(false);
-  return (
-    <TouchableOpacity onPress={() => setProductEditButtonModal(true)}>
-      <Icon
-        color={Colors.GRAY_DARK}
-        name="car-sport-outline"
-        size={Mixins.scaleWidth(30)}
-      />
-      <Modal
-        animationIn="fadeInLeft"
-        animationOut="fadeOutLeft"
-        isVisible={productEditButtonModal}>
-        <ProductEditButtonModal
-          setProductEditButtonModal={setProductEditButtonModal}
-        />
-      </Modal>
-    </TouchableOpacity>
-  );
-};
-
-export const ProductEditButtonModal = props => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'kg', value: 'kg'},
-    {label: 'units', value: 'units'},
-  ]);
-  const [open2, setOpen2] = useState(false);
-  const [value2, setValue2] = useState(null);
-  const [items2, setItems2] = useState([
-    {label: 'kg', value: 'kg'},
-    {label: 'units', value: 'units'},
-  ]);
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(-230) : -180
-      } /* Keyboard Offset needs to be tested against multiple phones */
-      style={{
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
-      }}>
-      <View
-        style={{
-          height: Mixins.scaleHeight(460),
-          width: Mixins.scaleWidth(310),
-          backgroundColor: 'white',
-          borderRadius: 20,
-          alignItems: 'center',
-          left: Mixins.scaleWidth(
-            7.5,
-          ) /* taking into account the margin from Product Card */,
-          top: Mixins.scaleHeight(80),
-        }}>
-        <View
-          style={{
-            position: 'absolute',
-            right: Mixins.scaleWidth(-10),
-            top: Mixins.scaleHeight(-10),
-          }}>
-          <CloseButton setModal={props.setProductEditButtonModal}></CloseButton>
-        </View>
-        <View
-          style={{top: Mixins.scaleHeight(25), right: Mixins.scaleWidth(75)}}>
-          <Text style={[Typography.normal]}>Product Name</Text>
-        </View>
-        <View style={{top: Mixins.scaleHeight(-20)}}>
-          <Image
-            source={require('_assets/images/produce.png')}
-            style={{resizeMode: 'contain', width: Mixins.scaleWidth(150)}}
-          />
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(-80),
-            backgroundColor: Colors.GRAY_LIGHT,
-            borderRadius: 15,
-            width: Mixins.scaleWidth(270),
-            height: Mixins.scaleHeight(130),
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View
-            style={{
-              alignItems: 'flex-start',
-              justifyContent: 'center',
-              margin: Mixins.scaleWidth(5),
-              left: Mixins.scaleWidth(7),
-            }}>
-            <View style={{margin: Mixins.scaleWidth(5)}}>
-              <Text>Enter Product Details</Text>
-            </View>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: Mixins.scaleWidth(195),
-                height: Mixins.scaleHeight(20),
-                margin: Mixins.scaleWidth(5),
-                justifyContent: 'center',
-                borderRadius: 5,
-              }}>
-              <TextInput
-                style={{left: Mixins.scaleWidth(10)}}
-                placeholder="RM 5"></TextInput>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: Mixins.scaleWidth(220),
-              }}>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  width: Mixins.scaleWidth(100),
-                  height: Mixins.scaleHeight(20),
-                  margin: Mixins.scaleWidth(5),
-                  justifyContent: 'center',
-                  borderRadius: 5,
-                }}>
-                <TextInput
-                  style={{left: Mixins.scaleWidth(10)}}
-                  placeholder="1000kg"></TextInput>
-              </View>
-              <DropDownPicker
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                defaultValue="kg"
-                style={{
-                  width: Mixins.scaleWidth(90),
-                  height: Mixins.scaleHeight(25),
-                }}
-                containerStyle={{width: Mixins.scaleWidth(90), zIndex: 1000}}
-                placeholder="Select"
-              />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: Mixins.scaleWidth(220),
-              }}>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  width: Mixins.scaleWidth(100),
-                  height: Mixins.scaleHeight(20),
-                  margin: Mixins.scaleWidth(5),
-                  justifyContent: 'center',
-                  borderRadius: 5,
-                }}>
-                <TextInput
-                  style={{left: Mixins.scaleWidth(10)}}
-                  placeholder="1000kg"></TextInput>
-              </View>
-              <DropDownPicker
-                open={open2}
-                value={value2}
-                items={items2}
-                setOpen={setOpen2}
-                setValue={setValue2}
-                setItems={setItems2}
-                defaultValue="kg"
-                style={{
-                  width: Mixins.scaleWidth(90),
-                  height: Mixins.scaleHeight(25),
-                }}
-                containerStyle={{width: Mixins.scaleWidth(90)}}
-                placeholder="Select"
-              />
-            </View>
-          </View>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
   );
 };

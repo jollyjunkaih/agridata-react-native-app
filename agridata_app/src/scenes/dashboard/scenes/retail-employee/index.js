@@ -13,18 +13,9 @@ export const EmployeeDashboard = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        flex: 1,
         alignItems: 'center',
       }}>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(30),
-          top: Mixins.scaleHeight(30),
-        }}>
-        <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
-      </TouchableOpacity>
       <View
         style={{
           position: 'absolute',
@@ -60,9 +51,6 @@ export const EmployeeDashboard = props => {
         What would you like to do today
       </Text>
       <ToDoButton top={90}></ToDoButton>
-      <View style={{top: Mixins.scaleHeight(200)}}>
-        <ProductEditButton></ProductEditButton>
-      </View>
     </SafeAreaView>
   );
 };

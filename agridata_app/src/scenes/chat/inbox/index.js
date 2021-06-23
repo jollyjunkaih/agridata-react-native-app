@@ -41,7 +41,7 @@ export const Inbox = props => {
           width: Mixins.scaleWidth(340),
           top: Mixins.scaleHeight(60),
         }}>
-        <ChatList chatList={items} />
+        <ChatList chatList={items} navigation={props.navigation} />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />

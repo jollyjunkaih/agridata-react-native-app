@@ -19,15 +19,6 @@ export const RetailManagerDashboard = props => {
         flex: 1,
         alignItems: 'center',
       }}>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(30),
-          top: Mixins.scaleHeight(30),
-        }}>
-        <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
-      </TouchableOpacity>
-
       <View
         style={{
           position: 'absolute',
@@ -63,9 +54,11 @@ export const RetailManagerDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <ChatButton top={90}></ChatButton>
-      <ToDoButton top={90}></ToDoButton>
-      <MarketplaceButton top={90}></MarketplaceButton>
+      <ChatButton top={90} navigation={props.navigation}></ChatButton>
+      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
+      <MarketplaceButton
+        top={90}
+        navigation={props.navigation}></MarketplaceButton>
     </SafeAreaView>
   );
 };
