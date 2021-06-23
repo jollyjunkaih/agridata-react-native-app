@@ -50,14 +50,7 @@ export const EmployeeDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-<<<<<<< HEAD
-      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
-      <View style={{top: Mixins.scaleHeight(200)}}>
-        <ProductEditButton></ProductEditButton>
-      </View>
-=======
       <ToDoButton top={90}></ToDoButton>
->>>>>>> 1352b5604b9c5500e55035e2939d6eb1823f3b4c
     </SafeAreaView>
   );
 };
