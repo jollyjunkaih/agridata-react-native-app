@@ -36,7 +36,7 @@ export const ChatRoom = props => {
             top: Mixins.scaleHeight(Spacing.BackButtonTop),
             backgroundColor: 'white',
           }}>
-          <BackButton />
+          <BackButton navigation={props.navigation} />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
           Name of chat

@@ -107,6 +107,7 @@ export const ChatList = props => {
             moq={item.moq}
             farmerID={item.farmerID}
             id={item.id}
+            navigation={props.navigation}
           />
         );
       }}
@@ -117,6 +118,7 @@ export const ChatList = props => {
 const ChatRoom = props => {
   return (
     <TouchableOpacity
+      onPress={() => props.navigation.navigate('chatroom')}
       style={{
         height: Mixins.scaleHeight(60),
         width: Mixins.scaleWidth(340),
