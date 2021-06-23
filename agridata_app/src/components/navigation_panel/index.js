@@ -29,7 +29,7 @@ export const NavBar = props => {
 export const CalendarButton = props => {
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('calendar')}
+      onPress={() => props.navigation.navigate('tasks')}
       style={{top: Mixins.scaleHeight(heightfromtop)}}>
       <Icon name="calendar-outline" size={Mixins.scaleWidth(IconSize)}></Icon>
     </TouchableOpacity>

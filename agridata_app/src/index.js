@@ -50,6 +50,9 @@ const AppNavigator = props => {
         <AppStack.Screen name="orders">
           {screenProps => <Orders {...screenProps} />}
         </AppStack.Screen>
+        <AppStack.Screen name="tasks">
+          {screenProps => <Tasks {...screenProps} />}
+        </AppStack.Screen>
       </AppStack.Navigator>
     );
   }
