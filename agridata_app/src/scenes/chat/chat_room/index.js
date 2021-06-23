@@ -16,11 +16,21 @@ export const ChatRoom = props => {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: 'white',
         flex: 1,
+        backgroundColor: 'white',
         alignItems: 'center',
       }}>
       {/* This is the Immovable chat name */}
+      <View // This is for status bar on ios chat
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          top: Mixins.scaleHeight(-5),
+          height: Mixins.scaleHeight(40),
+          width: Mixins.scaleWidth(360),
+          zIndex: 5,
+        }}></View>
+
       <View
         style={{
           zIndex: 2,
@@ -52,7 +62,7 @@ export const ChatRoom = props => {
 
         <View
           style={{
-            top: Mixins.scaleHeight(30),
+            top: Mixins.scaleHeight(35),
             width: Mixins.scaleWidth(360),
             borderBottomWidth: 1,
             height: 0,
@@ -66,23 +76,14 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        {/* <View style={{height: Mixins.scaleHeight(440)}}>
-          <ChatBubbleList chatList={data}/>
-        </View> 
-        <View>
-          <ProductInquiry></ProductInquiry>
+        <View style={{height: Mixins.scaleHeight(400)}}>
+          <ChatBubbleList chatList={data} />
         </View>
-        <View>
-          <PurchaseOrder></PurchaseOrder>
-        </View>
+
         <View style={{top: Mixins.scaleHeight(10)}}>
           <MessageInput></MessageInput>
-        </View>*/}
-        <View>
-          <OrderQuotation></OrderQuotation>
         </View>
       </KeyboardAvoidingView>
-
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
       </View>
