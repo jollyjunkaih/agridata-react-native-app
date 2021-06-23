@@ -63,9 +63,11 @@ export const RetailManagerDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <ChatButton top={90}></ChatButton>
-      <ToDoButton top={90}></ToDoButton>
-      <MarketplaceButton top={90}></MarketplaceButton>
+      <ChatButton top={90} navigation={props.navigation}></ChatButton>
+      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
+      <MarketplaceButton
+        top={90}
+        navigation={props.navigation}></MarketplaceButton>
     </SafeAreaView>
   );
 };

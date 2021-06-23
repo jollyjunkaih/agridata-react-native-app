@@ -16,7 +16,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export const MarketplaceButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('marketplace')}
+    onPress={() => props.navigation.navigate('marketplace')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -44,7 +44,7 @@ export const MarketplaceButton = props => (
 
 export const ChatButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('chat')}
+    onPress={() => props.navigation.navigate('inbox')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -72,7 +72,7 @@ export const ChatButton = props => (
 
 export const InvoiceButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('invoice')}
+    onPress={() => props.navigation.navigate('orders')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -100,7 +100,7 @@ export const InvoiceButton = props => (
 
 export const ToDoButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('calendar')}
+    onPress={() => props.navigation.navigate('tasks')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),
@@ -128,7 +128,7 @@ export const ToDoButton = props => (
 
 export const DataAnalyticsButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('data')}
+    onPress={() => props.navigation.navigate('dataanalytics')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleHeight(280),
