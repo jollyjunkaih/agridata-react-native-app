@@ -16,7 +16,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export const MarketplaceButton = props => (
   <TouchableOpacity
-    onPress={() => console.log('marketplace')}
+    onPress={() => props.navigation.navigate('marketplace')}
     style={{
       top: Mixins.scaleHeight(props.top),
       width: Mixins.scaleWidth(280),

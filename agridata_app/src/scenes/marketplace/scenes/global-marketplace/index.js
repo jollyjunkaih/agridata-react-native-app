@@ -3,6 +3,7 @@ import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
+import {NavBar} from '_components';
 import {MarketplaceList} from './components';
 
 export const Marketplace = props => {
@@ -60,6 +61,9 @@ export const Marketplace = props => {
           top: Mixins.scaleHeight(70),
         }}>
         <MarketplaceList productList={items} />
+      </View>
+      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-20)}}>
+        <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>
   );

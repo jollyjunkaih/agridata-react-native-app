@@ -39,7 +39,7 @@ export const CalendarButton = props => {
 export const InvoiceButton = props => {
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('invoice')}
+      onPress={() => props.navigation.navigate('orders')}
       style={{top: Mixins.scaleHeight(heightfromtop)}}>
       <Icon name="clipboard-outline" size={Mixins.scaleWidth(IconSize)}></Icon>
     </TouchableOpacity>
@@ -49,7 +49,7 @@ export const InvoiceButton = props => {
 export const ChatButton = props => {
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('chat')}
+      onPress={() => props.navigation.navigate('inbox')}
       style={{top: Mixins.scaleHeight(heightfromtop)}}>
       <Icon
         name="chatbubbles-outline"

@@ -11,14 +11,21 @@
     "multiple-ios-mac-mini": "react-native run-ios --udid 0119210E-C743-4540-AFE1-B0F3C349DB02 && react-native run-ios --udid 28A7105B-2DD8-421C-AFA2-C2364596DA5D && react-native run-ios --udid 7EF25731-2B5E-4A1C-90FB-AB6E12A207C8 && react-native run-ios --udid 1138AB12-C0E6-4C96-8877-B97D3E54E803"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.2.4",
+    "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.5",
     "babel-plugin-module-resolver": "^4.1.0",
     "dayjs": "^1.10.5",
     "ionicons": "^5.5.1",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-dropdown-picker": "^5.1.21",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-modal": "^11.10.0",
     "react-native-ratings": "^8.1.0",
+    "react-native-reanimated": "^2.0.0",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.4.0",
     "react-native-vector-icons": "^8.1.0"
   },
   "devDependencies": {
