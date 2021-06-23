@@ -9,6 +9,7 @@ export const BEIGE = '#EBF1DA';
 export const SUCCESS = '#3adb76';
 export const ALERT = '#F1C40F';
 export const FAIL = '#cc4b37';
+export const LIGHT_RED = '#FF9D97';
 
 // GRAYSCALE
 export const GRAY_WHITE = '#F1F1F1';
