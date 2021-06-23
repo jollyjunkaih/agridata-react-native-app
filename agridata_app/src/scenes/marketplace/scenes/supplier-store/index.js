@@ -9,7 +9,7 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
-import {ProductPopUp, AddItemsButton} from './components';
+import {ProductPopUp, AddItemsButton, SupplierplaceList} from './components';
 import {NavBar, BackButton} from '_components';
 
 export const SupplierStore = props => {
@@ -35,7 +35,22 @@ export const SupplierStore = props => {
       <View style={{top: Mixins.scaleHeight(40)}}>
         <Searchbar />
       </View>
-
+      <View
+        style={{
+          width: Mixins.scaleWidth(330),
+          height: Mixins.scaleHeight(425),
+          top: Mixins.scaleHeight(70),
+        }}>
+        <SupplierplaceList productList={items} />
+      </View>
+      <View
+        style={{
+          width: Mixins.scaleWidth(330),
+          height: Mixins.scaleHeight(425),
+          top: Mixins.scaleHeight(70),
+        }}>
+        <SupplierplaceList productList={items} />
+      </View>
       <View
         style={{
           position: 'absolute',

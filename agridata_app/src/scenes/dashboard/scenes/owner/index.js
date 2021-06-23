@@ -18,14 +18,6 @@ export const OwnerDashboard = props => {
         weight: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(30),
-          top: Mixins.scaleHeight(30),
-        }}>
-        <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
-      </TouchableOpacity>
       <View
         style={{
           position: 'absolute',
