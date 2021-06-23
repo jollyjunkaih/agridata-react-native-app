@@ -52,7 +52,7 @@ const AppNavigator = props => {
           {screenProps => <Orders {...screenProps} />}
         </AppStack.Screen>
         <AppStack.Screen name="tasks">
-          {screenProps => <Tasks {...screenProps} />}
+          {screenProps => <RetailerTasks {...screenProps} />}
         </AppStack.Screen>
       </AppStack.Navigator>
     );
@@ -188,15 +188,11 @@ const AppNavigator = props => {
 };
 
 const App = () => {
-<<<<<<< HEAD
-  return <SupplierStore></SupplierStore>;
-=======
   return (
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
   );
->>>>>>> 08c1414a26a5744f0c1ebfefc2a61276954610fb
 };
 
 export default App;
