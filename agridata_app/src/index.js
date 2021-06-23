@@ -14,6 +14,7 @@ import {
   OwnerDashboard,
   Orders,
   SupplierStore,
+  Tasks,
 } from './scenes';
 
 const AuthenticationStack = createStackNavigator();

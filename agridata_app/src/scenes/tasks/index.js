@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {OrderList, SortModal} from './components';
+import {TaskList, SortModal} from './components';
 import {NavBar} from '_components';
 import Modal from 'react-native-modal';
 
-export const Orders = props => {
+export const Tasks = props => {
   const [sortModal, setSortModal] = useState(false);
   return (
     <SafeAreaView
@@ -22,15 +22,28 @@ export const Orders = props => {
         alignItems: 'center',
       }}>
       <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-        Orders
+        Tasks
       </Text>
-      <Text
-        style={[
-          Typography.normal,
-          {color: Colors.GRAY_DARK, top: Mixins.scaleHeight(25)},
-        ]}>
-        Digital Invoices
-      </Text>
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity
+          style={{
+            marginHorizontal: Mixins.scaleWidth(60),
+            top: Mixins.scaleHeight(25),
+          }}>
+          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
+            Send
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            top: Mixins.scaleHeight(25),
+            marginHorizontal: Mixins.scaleWidth(60),
+          }}>
+          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
+            Claim
+          </Text>
+        </TouchableOpacity>
+      </View>
       <View
         style={{
           top: Mixins.scaleHeight(30),
@@ -60,7 +73,7 @@ export const Orders = props => {
           top: Mixins.scaleHeight(40),
           height: Mixins.scaleHeight(440),
         }}>
-        <OrderList OrderList={[{}, {}, {}, {}, {}, {}]} />
+        <TaskList TaskList={[{}, {}, {}, {}, {}, {}]} />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
