@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {SendTaskList, SortModal} from '../components';
+import {SendTaskList, ReceivePaymentTaskList, SortModal} from '../components';
 import {NavBar} from '_components';
 import Modal from 'react-native-modal';
 
@@ -71,9 +71,16 @@ export const SupplierTasks = props => {
       <View
         style={{
           top: Mixins.scaleHeight(40),
-          height: Mixins.scaleHeight(440),
+          height: Mixins.scaleHeight(175),
         }}>
-        <SendTaskList SendTaskList={[{}, {}, {}, {}, {}, {}]} />
+        <SendTaskList SendTaskList={[{}, {}]} />
+      </View>
+      <View
+        style={{
+          top: Mixins.scaleHeight(65),
+          height: Mixins.scaleHeight(200),
+        }}>
+        <ReceivePaymentTaskList ReceiveTaskList={[{}, {}]} />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />

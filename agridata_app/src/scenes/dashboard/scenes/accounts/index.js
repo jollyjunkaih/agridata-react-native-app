@@ -62,9 +62,9 @@ export const AccountsDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <ChatButton top={90}></ChatButton>
-      <ToDoButton top={90}></ToDoButton>
-      <InvoiceButton top={90}></InvoiceButton>
+      <ChatButton top={90} navigation={props.navigation}></ChatButton>
+      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
+      <InvoiceButton top={90} navigation={props.navigation}></InvoiceButton>
     </SafeAreaView>
   );
 };
