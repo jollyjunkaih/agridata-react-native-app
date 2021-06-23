@@ -7,7 +7,7 @@ import {
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
-import {Tasks} from './tasks';
+import {SupplierTasks, RetailerTasks} from './tasks';
 
 export {
   RetailManagerDashboard,
@@ -20,5 +20,6 @@ export {
   EmployeeDashboard,
   Orders,
   SupplierStore,
-  Tasks,
+  SupplierTasks,
+  RetailerTasks,
 };

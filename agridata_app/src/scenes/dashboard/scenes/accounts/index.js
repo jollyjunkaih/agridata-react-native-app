@@ -20,14 +20,6 @@ export const AccountsDashboard = props => {
         width: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(30),
-          top: Mixins.scaleHeight(30),
-        }}>
-        <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
-      </TouchableOpacity>
       <View
         style={{
           position: 'absolute',
@@ -62,9 +54,9 @@ export const AccountsDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <ChatButton top={90}></ChatButton>
-      <ToDoButton top={90}></ToDoButton>
-      <InvoiceButton top={90}></InvoiceButton>
+      <ChatButton top={90} navigation={props.navigation}></ChatButton>
+      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
+      <InvoiceButton top={90} navigation={props.navigation}></InvoiceButton>
     </SafeAreaView>
   );
 };
