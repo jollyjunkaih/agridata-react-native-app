@@ -167,7 +167,8 @@ export const MenuButton = props => {
       <Modal
         animationIn="fadeInLeft"
         animationOut="fadeOutLeft"
-        isVisible={menuButtonModal}>
+        isVisible={menuButtonModal}
+        onBackdropPress={() => setMenuButtonModal(false)}>
         <MenuButtonModal setMenuButtonModal={setMenuButtonModal} />
       </Modal>
     </TouchableOpacity>

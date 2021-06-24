@@ -13,6 +13,7 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
+import {min} from 'react-native-reanimated';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -131,13 +132,20 @@ export const ProductPopUp = props => {
         <View
           style={{
             left: Mixins.scaleWidth(10),
-            top: Mixins.scaleHeight(10),
+            top: Mixins.scaleHeight(15),
             position: 'absolute',
             width: Mixins.scaleWidth(270),
             flexDirection: 'row',
           }}>
-          <Text style={[Typography.header]}>{props.productName}Ginger</Text>
-          <View style={{position: 'absolute', right: Mixins.scaleWidth(10)}}>
+          <Text style={[Typography.header, {left: Mixins.scaleWidth(15)}]}>
+            {props.productName}Ginger
+          </Text>
+          <View
+            style={{
+              position: 'absolute',
+              left: Mixins.scaleWidth(110),
+              top: Mixins.scaleHeight(6),
+            }}>
             <ChatButton size={Mixins.scaleWidth(25)}></ChatButton>
           </View>
         </View>
@@ -149,7 +157,7 @@ export const ProductPopUp = props => {
             width: Mixins.scaleWidth(130),
             borderRadius: 100,
           }}
-          source={{uri: ''}}></Image>
+          source={require('_assets/images/agridata.png')}></Image>
         <View
           style={{
             top: Mixins.scaleHeight(160),
@@ -165,6 +173,7 @@ export const ProductPopUp = props => {
               flexDirection: 'row',
               flexWrap: 'wrap',
               height: Mixins.scaleHeight(42),
+              left: Mixins.scaleWidth(10),
             }}>
             <Icon name="rocket-outline" size={Mixins.scaleWidth(20)}></Icon>
             <Text
@@ -179,7 +188,7 @@ export const ProductPopUp = props => {
               Visit {props.farm}
             </Text>
             <Rating
-              imageSize={Mixins.scaleWidth(25)}
+              imageSize={Mixins.scaleWidth(22)}
               readonly={true}
               startingValue={3.5}></Rating>
           </TouchableOpacity>
@@ -190,7 +199,7 @@ export const ProductPopUp = props => {
             }}>
             <Text
               style={[
-                Typography.large,
+                Typography.normal,
                 {bottom: Mixins.scaleHeight(-15), color: Colors.PALE_BLUE},
               ]}>
               RM 25-18/kg
@@ -219,19 +228,7 @@ export const ProductPopUp = props => {
             ]}>
             Variety:{'\n'}Available:{'\n'}MOQ:{'\n'}Other Details:
           </Text>
-          <Text
-            style={[
-              Typography.small,
-              {
-                lineHeight: Mixins.scaleHeight(20),
-                top: Mixins.scaleHeight(20),
-                right: Mixins.scaleWidth(20),
-                position: 'absolute',
-                textAlign: 'right',
-              },
-            ]}>
-            Variety:{'\n'}Available:{'\n'}MOQ:
-          </Text>
+
           <View
             style={{
               width: Mixins.scaleWidth(200),

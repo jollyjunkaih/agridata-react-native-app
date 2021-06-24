@@ -239,7 +239,7 @@ const InvoiceModal = props => {
           {
             position: 'absolute',
             right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(35),
+            top: Mixins.scaleHeight(55),
           },
         ]}>
         DD-MM-YY

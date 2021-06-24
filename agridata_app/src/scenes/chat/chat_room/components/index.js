@@ -67,13 +67,13 @@ export const ChatBubbleList = props => {
 
 export const MessageInput = props => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
       <View
         style={{
           height: Mixins.scaleHeight(40),
           borderRadius: 40,
-
           backgroundColor: Colors.GRAY_LIGHT,
+          top: Mixins.scaleHeight(5),
         }}>
         <TextInput
           placeholder={'Type a message'}
@@ -83,6 +83,7 @@ export const MessageInput = props => {
             width: Mixins.scaleWidth(260),
             height: Mixins.scaleHeight(40),
             marginHorizontal: Mixins.scaleWidth(10),
+            top: Mixins.scaleHeight(10),
           }}></TextInput>
       </View>
       <TouchableOpacity
@@ -90,6 +91,7 @@ export const MessageInput = props => {
           height: Mixins.scaleWidth(40),
           width: Mixins.scaleWidth(40),
           borderRadius: 100,
+          top: Mixins.scaleHeight(8),
           left: Mixins.scaleWidth(10),
           backgroundColor: Colors.PALE_BLUE,
           justifyContent: 'center',

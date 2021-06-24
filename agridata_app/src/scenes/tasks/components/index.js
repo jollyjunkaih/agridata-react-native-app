@@ -14,7 +14,6 @@ import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import DatePicker from 'react-native-datepicker';
 import dayjs from 'dayjs';
-import {set} from 'react-native-reanimated';
 
 const now = () => {
   const now = dayjs().format('DD-MM-YYYY');
@@ -661,7 +660,6 @@ const Product = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(10),
             position: 'absolute',
           },
         ]}>
@@ -672,7 +670,7 @@ const Product = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(80),
+            left: Mixins.scaleWidth(65),
             position: 'absolute',
           },
         ]}>
@@ -1140,7 +1138,7 @@ const ReceiveModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(100),
+          width: Mixins.scaleWidth(150),
           height: Mixins.scaleHeight(30),
           alignSelf: 'center',
           justifyContent: 'center',
@@ -1148,6 +1146,14 @@ const ReceiveModal = props => {
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
           borderRadius: 10,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.22,
+          shadowRadius: 2.22,
+          elevation: 3,
         }}>
         <Text style={[Typography.normal, {textAlign: 'center'}]}>
           Receive{'\t\t'}
@@ -1296,7 +1302,7 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(45),
+            top: Mixins.scaleHeight(70),
             right: Mixins.scaleWidth(20),
           },
         ]}>
@@ -1308,7 +1314,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(65),
+            top: Mixins.scaleHeight(85),
             fontStyle: 'italic',
           },
         ]}>
@@ -1448,18 +1454,39 @@ const UploadReceiptModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(120),
-          height: Mixins.scaleHeight(40),
+          width: Mixins.scaleWidth(180),
+          height: Mixins.scaleHeight(30),
           alignSelf: 'center',
           justifyContent: 'center',
           elevation: 5,
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
           borderRadius: 10,
+          flexDirection: 'row',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
-        <Text style={[Typography.normal, {textAlign: 'center'}]}>
-          Upload Receipt
-        </Text>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            flexDirection: 'row',
+          }}>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>
+            Upload Receipt
+          </Text>
+          <Icon
+            name="receipt-outline"
+            size={Mixins.scaleWidth(20)}
+            style={{left: Mixins.scaleWidth(20)}}
+          />
+        </View>
       </TouchableOpacity>
     </View>
   );
