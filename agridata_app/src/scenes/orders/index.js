@@ -73,15 +73,7 @@ export const Orders = props => {
         backdropOpacity={0.4}
         isVisible={sortModal}
         onBackdropPress={() => setSortModal(false)}>
-        <SafeAreaView
-          style={{
-            width: Mixins.scaleWidth(360),
-            height: Mixins.scaleHeight(620),
-            position: 'absolute',
-            right: Mixins.scaleWidth(-20),
-          }}>
-          <SortModal />
-        </SafeAreaView>
+        <SortModal />
       </Modal>
     </SafeAreaView>
   );
