@@ -17,13 +17,18 @@ import {
   OrderQuotation,
 } from './components';
 import {NavBar, BackButton} from '_components';
+import BackgroundTimer from 'react-native-background-timer';
+import BackgroundTask from 'react-native-background-task';
 
 export const ChatRoom = props => {
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
-
+  BackgroundTask.define(() => {
+    console.log('Hello from a background task');
+    BackgroundTask.finish();
+  });
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -32,9 +37,8 @@ export const ChatRoom = props => {
   }, []);
   useEffect(() => {
     console.log(appState);
-    setTimeout(function () {
-      console.log('Hi from 10 seconds later');
-    }, 1000);
+    if (appState != 'active') {
+    }
   });
   return (
     <SafeAreaView

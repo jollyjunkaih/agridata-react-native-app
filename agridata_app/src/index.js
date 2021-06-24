@@ -106,16 +106,16 @@ const AppNavigator = props => {
   }
 };
 
-/*const App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
   );
-};*/
-
-const App = () => {
-  return <SupplierStore></SupplierStore>;
 };
+
+/*const App = () => {
+  return <SupplierStore></SupplierStore>;
+};*/
 
 export default App;
