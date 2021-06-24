@@ -188,11 +188,7 @@ const AppNavigator = props => {
 };
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
-  );
+  return <SupplierStore></SupplierStore>;
 };
 
 export default App;
