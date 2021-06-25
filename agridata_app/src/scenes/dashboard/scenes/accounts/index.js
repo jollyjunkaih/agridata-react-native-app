@@ -1,14 +1,21 @@
 import React from 'react';
-import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
-import {scaleHeight} from '_styles';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
   MarketplaceButton,
   ChatButton,
   ToDoButton,
   InvoiceButton,
+  MenuButton,
 } from '_scenes/dashboard/components';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Strings from '_utils';
 
 export const AccountsDashboard = props => {
   return (
@@ -19,15 +26,14 @@ export const AccountsDashboard = props => {
         width: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
-      <TouchableOpacity
+      <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(30),
           top: Mixins.scaleHeight(30),
+          left: Mixins.scaleWidth(30),
         }}>
-        <Icon name="settings-outline" size={Mixins.scaleWidth(25)}></Icon>
-      </TouchableOpacity>
-
+        <MenuButton></MenuButton>
+      </View>
       <Image
         style={{
           top: Mixins.scaleHeight(40),
@@ -37,9 +43,11 @@ export const AccountsDashboard = props => {
         }}
         source={require('_assets/images/agridata.png')}
       />
+
       <Text style={[Typography.welcome, {top: Mixins.scaleHeight(60)}]}>
-        Welcome Back,
+        {Strings.welcome}
       </Text>
+
       <Text
         style={[
           Typography.largestSize,
@@ -52,11 +60,11 @@ export const AccountsDashboard = props => {
         Company Name!
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
-        What would you like to do today
+        {Strings.whatToDo}
       </Text>
-      <ChatButton top={90}></ChatButton>
-      <ToDoButton top={90}></ToDoButton>
-      <InvoiceButton top={90}></InvoiceButton>
+      <ChatButton top={90} navigation={props.navigation}></ChatButton>
+      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
+      <InvoiceButton top={90} navigation={props.navigation}></InvoiceButton>
     </SafeAreaView>
   );
 };

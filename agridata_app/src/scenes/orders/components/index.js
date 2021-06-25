@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {InvoiceButton} from '_components';
+import Share from 'react-native-share';
 
 export const OrderList = props => {
   return (
@@ -238,7 +239,7 @@ const InvoiceModal = props => {
           {
             position: 'absolute',
             right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(35),
+            top: Mixins.scaleHeight(55),
           },
         ]}>
         DD-MM-YY
@@ -303,7 +304,8 @@ const InvoiceModal = props => {
           borderRadius: 10,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+        onPress={onShare}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           PDF
         </Text>
@@ -378,4 +380,16 @@ const InvoiceItem = props => {
       </Text>
     </View>
   );
+};
+
+const onShare = async () => {
+  const shareOptions = {
+    message: 'Share PDF Test',
+  };
+
+  try {
+    const ShareResponse = await Share.open(shareOptions);
+  } catch (error) {
+    console.log('Error: ', error);
+  }
 };

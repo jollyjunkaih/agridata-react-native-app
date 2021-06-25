@@ -1,26 +1,73 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Text, View, KeyboardAvoidingView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  AppState,
+} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ChatBubbleList, MessageInput, ChatInfo} from './components';
+import {
+  ChatBubbleList,
+  MessageInput,
+  ChatInfo,
+  ProductInquiry,
+  PurchaseOrder,
+  OrderQuotation,
+} from './components';
 import {NavBar, BackButton} from '_components';
+import BackgroundTimer from 'react-native-background-timer';
+import BackgroundTask from 'react-native-background-task';
+import {back} from 'react-native/Libraries/Animated/Easing';
+import {cos} from 'react-native-reanimated';
 
 export const ChatRoom = props => {
+  const [appState, setAppState] = useState(AppState.currentState);
+  const handleAppStateChange = state => {
+    setAppState(state);
+  };
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+  useEffect(() => {
+    console.log(appState);
+    if (appState == 'inactive') {
+      BackgroundTimer.runBackgroundTimer(() => {
+        console.log('3 seconds');
+      }, 3000);
+      setTimeout(() => {
+        BackgroundTimer.stopBackgroundTimer();
+      }, 4000);
+    }
+  });
   return (
     <SafeAreaView
       style={{
+        flex: 1,
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
         alignItems: 'center',
       }}>
       {/* This is the Immovable chat name */}
+      <View // This is for status bar on ios chat
+        style={{
+          position: 'absolute',
+          backgroundColor: 'white',
+          top: Mixins.scaleHeight(-5),
+          height: Mixins.scaleHeight(40),
+          width: Mixins.scaleWidth(360),
+          zIndex: 5,
+        }}></View>
+
       <View
         style={{
           zIndex: 2,
           height: Mixins.scaleHeight(65),
           width: Mixins.scaleWidth(360),
-          backgroundColor: 'red',
+          backgroundColor: 'white',
           alignItems: 'center',
         }}>
         <View
@@ -28,9 +75,9 @@ export const ChatRoom = props => {
             position: 'absolute',
             left: Mixins.scaleWidth(Spacing.BackButtonLeft),
             top: Mixins.scaleHeight(Spacing.BackButtonTop),
-            backgroundColor: 'blue',
+            backgroundColor: 'white',
           }}>
-          <BackButton />
+          <BackButton navigation={props.navigation} />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
           Name of chat
@@ -46,7 +93,7 @@ export const ChatRoom = props => {
 
         <View
           style={{
-            top: Mixins.scaleHeight(30),
+            top: Mixins.scaleHeight(35),
             width: Mixins.scaleWidth(360),
             borderBottomWidth: 1,
             height: 0,
@@ -60,17 +107,14 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View style={{height: Mixins.scaleHeight(440)}}>
-          <ChatBubbleList chatList={data}></ChatBubbleList>
+        <View style={{height: Mixins.scaleHeight(460)}}>
+          <ChatBubbleList chatList={data} />
         </View>
+
         <View style={{top: Mixins.scaleHeight(10)}}>
           <MessageInput></MessageInput>
         </View>
       </KeyboardAvoidingView>
-
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
-        <NavBar navigation={props.navigation} />
-      </View>
     </SafeAreaView>
   );
 };
