@@ -38,6 +38,7 @@ export const SendTaskList = props => {
 // Supplier create invoice
 const SendTask = props => {
   const [sendTaskModal, setSendTaskModal] = useState(false);
+  const [invoiceModal, setInvoiceModal] = useState(false);
   return (
     <TouchableOpacity
       onPress={() => setSendTaskModal(true)}
@@ -127,8 +128,14 @@ const SendTask = props => {
       </View>
       <Modal isVisible={sendTaskModal}>
         <SendTaskModal
+          setInvoiceModal={setInvoiceModal}
           setSendTaskModal={setSendTaskModal}
           sendTaskList={props}></SendTaskModal>
+      </Modal>
+      <Modal isVisible={invoiceModal}>
+        <InvoiceModal
+          setInvoiceModal={setInvoiceModal}
+          invoiceList={props}></InvoiceModal>
       </Modal>
     </TouchableOpacity>
   );
@@ -223,16 +230,16 @@ export const SortModal = props => {
 };
 
 const SendTaskModal = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          borderBottomWidth: 1,
-          width: Mixins.scaleWidth(340),
-          borderColor: Colors.GRAY_MEDIUM,
-        }}></View>
-    );
+  const [deliverydate, setDate] = useState(false);
+  const [confirmedDate, setConfirmedDate] = useState(false);
+
+  const Switch = () => {
+    props.setInvoiceModal(true);
+    console.log('before 3 sec');
+    setTimeout(function () {
+      props.setSendTaskModal(false);
+      console.log('after 3 sec');
+    }, 300);
   };
   return (
     <View
@@ -323,50 +330,79 @@ const SendTaskModal = props => {
         ]}>
         Delivery Date:
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: Mixins.scaleHeight(252),
-            left: Mixins.scaleWidth(130),
-          },
-        ]}>
-        1:30 PM Fri, 4 July
-        <DatePicker
-          style={{
-            backgroundColor: 'white',
-            borderColor: 'black',
-            borderRadius: 20,
-            width: Mixins.scaleWidth(140),
-            height: Mixins.scaleHeight(40),
-            top: Mixins.scaleHeight(-5),
-            elevation: 2,
-            left: Mixins.scaleWidth(33),
-            justifyContent: 'center',
-          }}
-          customStyles={{
-            dateInput: {
+      {confirmedDate ? (
+        <View>
+          <Text
+            style={[
+              Typography.small,
+              {
+                position: 'absolute',
+                top: Mixins.scaleHeight(250),
+                left: Mixins.scaleWidth(130),
+              },
+            ]}>
+            {deliverydate}
+          </Text>
+          <TouchableOpacity
+            style={{
               position: 'absolute',
-              right: Mixins.scaleWidth(20),
-              textAlignVertical: 'center',
-              borderColor: 'transparent',
-            },
-            dateIcon: {
+              top: Mixins.scaleHeight(250),
+              left: Mixins.scaleWidth(200),
+              elevation: 5,
+            }}
+            onPress={item => setConfirmedDate(false)}>
+            <Icon name="pencil-outline" size={Mixins.scaleWidth(15)} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View>
+          <DatePicker
+            style={{
+              backgroundColor: Colors.GRAY_WHITE,
+              borderColor: 'black',
+              borderRadius: 20,
+              width: Mixins.scaleWidth(140),
+              height: Mixins.scaleHeight(40),
+              elevation: 2,
               position: 'absolute',
-              left: Mixins.scaleWidth(10),
-              height: Mixins.scaleHeight(25),
-              width: Mixins.scaleHeight(25),
-            },
-            dateText: {fontSize: Mixins.scaleFont(14)},
-          }}
-          format="DD-MM-YYYY"
-          showIcon={true}
-          minDate={now()}
-          date={deliverydate}
-          onDateChange={item => setDate(item)}
-          androidMode="spinner"></DatePicker>
-      </Text>
+              top: Mixins.scaleHeight(240),
+              left: Mixins.scaleWidth(130),
+              justifyContent: 'center',
+            }}
+            customStyles={{
+              dateInput: {
+                position: 'absolute',
+                right: Mixins.scaleWidth(20),
+                textAlignVertical: 'center',
+                borderColor: 'transparent',
+              },
+              dateIcon: {
+                position: 'absolute',
+                left: Mixins.scaleWidth(10),
+                height: Mixins.scaleHeight(25),
+                width: Mixins.scaleHeight(25),
+              },
+              dateText: {fontSize: Mixins.scaleFont(14)},
+            }}
+            format="DD-MM-YYYY"
+            placeholder="Pick a date"
+            showIcon={true}
+            minDate={now()}
+            date={deliverydate}
+            onDateChange={item => setDate(item)}
+            androidMode="spinner"></DatePicker>
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              top: Mixins.scaleHeight(250),
+              left: Mixins.scaleWidth(280),
+              elevation: 5,
+            }}
+            onPress={item => setConfirmedDate(item)}>
+            <Icon name="checkmark-outline" size={Mixins.scaleWidth(20)} />
+          </TouchableOpacity>
+        </View>
+      )}
       <Text
         style={[
           Typography.placeholder,
@@ -400,11 +436,189 @@ const SendTaskModal = props => {
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
           borderRadius: 10,
+        }}
+        onPress={() => {
+          Switch();
         }}>
         <Text style={[Typography.normal, {textAlign: 'center'}]}>
           Create Invoice
         </Text>
       </TouchableOpacity>
+    </View>
+  );
+};
+
+const InvoiceModal = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          borderBottomWidth: 1,
+          width: Mixins.scaleWidth(340),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+    );
+  };
+  return (
+    <View
+      style={{
+        width: Mixins.scaleWidth(320),
+        height: Mixins.scaleHeight(520),
+        backgroundColor: Colors.GRAY_WHITE,
+        borderRadius: 10,
+      }}>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-10),
+          top: Mixins.scaleHeight(-10),
+        }}>
+        <CloseButton setModal={props.setInvoiceModal} />
+      </View>
+      <Text
+        style={[
+          Typography.header,
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(30),
+            left: Mixins.scaleWidth(20),
+          },
+        ]}>
+        Invoice NUMXXXX
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            right: Mixins.scaleWidth(20),
+            top: Mixins.scaleHeight(35),
+          },
+        ]}>
+        DD-MM-YY
+      </Text>
+      <Text
+        style={
+          ([Typography.normal],
+          {
+            position: 'absolute',
+            top: Mixins.scaleHeight(55),
+            left: Mixins.scaleWidth(20),
+          })
+        }>
+        Company Name
+      </Text>
+      <View
+        style={{
+          borderBottomWidth: 2,
+          width: Mixins.scaleWidth(250),
+          alignSelf: 'center',
+          top: Mixins.scaleHeight(80),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+      <View style={{top: Mixins.scaleHeight(90)}}>
+        <View
+          style={{
+            width: Mixins.scaleWidth(320),
+            maxHeight: Mixins.scaleHeight(320),
+          }}>
+          <FlatList
+            keyExtractor={item => item.id}
+            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+            numColumns={1}
+            ItemSeparatorComponent={Seperator}
+            renderItem={item => {
+              return <InvoiceItem user={item.name} />;
+            }}
+          />
+        </View>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              fontFamily: 'Poppins-SemiBold',
+              left: Mixins.scaleWidth(200),
+              marginTop: Mixins.scaleHeight(10),
+            },
+          ]}>
+          TOTAL: RM XXX
+        </Text>
+      </View>
+
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(120),
+          height: Mixins.scaleHeight(30),
+          bottom: Mixins.scaleHeight(30),
+          right: Mixins.scaleHeight(20),
+          elevation: 3,
+          borderRadius: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
+        <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
+          Create Invoice
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const InvoiceItem = props => {
+  const [number, onChangeNumber] = React.useState(null);
+  return (
+    <View
+      style={{
+        width: Mixins.scaleWidth(300),
+        height: Mixins.scaleHeight(35),
+        alignSelf: 'center',
+        justifyContent: 'center',
+      }}>
+      <Text
+        style={[
+          Typography.small,
+          {position: 'absolute', left: Mixins.scaleWidth(10)},
+        ]}>
+        Product Name
+      </Text>
+      <TextInput
+        style={[
+          Typography.small,
+          {position: 'absolute', left: Mixins.scaleWidth(110)},
+        ]}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="100"
+        keyboardType="numeric"
+      />
+      <Text
+        style={[
+          Typography.small,
+          {position: 'absolute', left: Mixins.scaleWidth(150)},
+        ]}>
+        kg
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {position: 'absolute', left: Mixins.scaleWidth(170)},
+        ]}>
+        @ RM8/kg
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            right: Mixins.scaleWidth(10),
+            fontFamily: 'Poppins-SemiBold',
+          },
+        ]}>
+        RM XXX
+      </Text>
     </View>
   );
 };
