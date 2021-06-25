@@ -10,7 +10,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {CloseButton, AddButton} from '_components';
+import {
+  CloseButton,
+  AddButton,
+  SuccessfulModal,
+  UnsuccessfulModal,
+} from '_components';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Modal from 'react-native-modal';
 import {Rating} from 'react-native-ratings';
@@ -459,6 +464,7 @@ export const ProductModal = props => {
     {label: 'units', value: 'units'},
   ]);
   const [successfulModal, setSuccessfulModal] = useState(false);
+  const [unsuccessfulModal, setUnsuccessfulModal] = useState(false);
   return (
     <View>
       <KeyboardAvoidingView
@@ -655,8 +661,14 @@ export const ProductModal = props => {
                 style={{left: Mixins.scaleWidth(10)}}></Icon>
             </View>
           </TouchableOpacity>
+          <Modal
+            isVisible={successfulModal}
+            onBackdropPress={() => setSuccessfulModal(false)}>
+            <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
+          </Modal>
 
           <TouchableOpacity
+            onPress={() => setUnsuccessfulModal(true)}
             style={{
               backgroundColor: Colors.LIGHT_RED,
               width: Mixins.scaleWidth(150),
@@ -686,13 +698,13 @@ export const ProductModal = props => {
                 style={{left: Mixins.scaleWidth(10)}}></Icon>
             </View>
           </TouchableOpacity>
+          <Modal
+            isVisible={unsuccessfulModal}
+            onBackdropPress={() => setUnsuccessfulModal(false)}>
+            <UnsuccessfulModal setUnsuccessfulModal={setUnsuccessfulModal} />
+          </Modal>
         </View>
       </KeyboardAvoidingView>
-      <Modal
-        isVisible={successfulModal}
-        onBackdropPress={() => setSuccessfulModal(false)}>
-        <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
-      </Modal>
     </View>
   );
 };
@@ -782,54 +794,5 @@ export const SupplierplaceList = props => {
         );
       }}
     />
-  );
-};
-
-export const SuccessfulModal = props => {
-  return (
-    <View
-      style={{
-        height: Mixins.scaleHeight(330),
-        width: Mixins.scaleWidth(290),
-        backgroundColor: Colors.PALE_GREEN,
-        borderRadius: 20,
-        alignItems: 'center',
-        alignSelf: 'center',
-      }}>
-      <View style={{top: Mixins.scaleWidth(30)}}>
-        <Image
-          source={require('_assets/images/produce.png')}
-          style={{
-            resizeMode: 'contain',
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
-          }}
-        />
-      </View>
-      <View style={{top: Mixins.scaleHeight(15)}}>
-        <Text style={[Typography.header]}>SUCCESS!</Text>
-      </View>
-      <View
-        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(25)}}>
-        <Text
-          style={[
-            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
-            Typography.small,
-          ]}>
-          You have successfully added your crops! We'll send you a notification
-          as soon as retailers buy your produce!
-        </Text>
-      </View>
-      <View
-        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(50)}}>
-        <Text
-          style={[
-            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
-            Typography.small,
-          ]}>
-          Keep adding for more!
-        </Text>
-      </View>
-    </View>
   );
 };
