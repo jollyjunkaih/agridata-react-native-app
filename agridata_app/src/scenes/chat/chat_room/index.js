@@ -34,6 +34,7 @@ export const ChatRoom = props => {
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
+  let a = 0;
   useEffect(() => {
     console.log(appState);
     if (appState == 'inactive') {
