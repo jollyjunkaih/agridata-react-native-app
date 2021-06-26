@@ -5,6 +5,7 @@ import {
   View,
   KeyboardAvoidingView,
   AppState,
+  SliderComponent,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,15 +19,15 @@ import {
 } from './components';
 import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
-import BackgroundTask from 'react-native-background-task';
 import {back} from 'react-native/Libraries/Animated/Easing';
-import {cos} from 'react-native-reanimated';
+import {cos, set} from 'react-native-reanimated';
 
 export const ChatRoom = props => {
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
+
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -41,14 +42,22 @@ export const ChatRoom = props => {
       }, 3000);
       setTimeout(() => {
         BackgroundTimer.stopBackgroundTimer();
+        console.log('stop');
       }, 4000);
+    } else if (a == 0) {
+      if (appState == 'background') {
+        BackgroundTimer.runBackgroundTimer(() => {
+          if (a == 0) {
+            console.log('3seconds');
+          }
+        }, 3000);
+        if (a == 1) {
+          BackgroundTimer.stopBackgroundTimer();
+          console.log('stop');
+        }
+      }
     }
-    if (appState != 'active') {
-      setTimeout(() => {
-        console.log('3 seconds');
-      }, 3000);
-    }
-  });
+  }, [appState]);
   return (
     <SafeAreaView
       style={{
