@@ -14,6 +14,7 @@ import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {InvoiceButton} from '_components';
 import Share from 'react-native-share';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 export const OrderList = props => {
   return (
@@ -325,7 +326,8 @@ const InvoiceModal = props => {
           borderRadius: 10,
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+        onPress={createPDF}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           CSV
         </Text>
@@ -386,10 +388,21 @@ const onShare = async () => {
   const shareOptions = {
     message: 'Share PDF Test',
   };
-
   try {
     const ShareResponse = await Share.open(shareOptions);
   } catch (error) {
     console.log('Error: ', error);
   }
+};
+
+const createPDF = async () => {
+  let options = {
+    html: '<h1>PDF TEST</h1>',
+    fileName: 'test',
+    directory: 'Downloads',
+  };
+
+  let file = await RNHTMLtoPDF.convert(options);
+  // console.log(file.filePath);
+  alert(file.filePath);
 };
