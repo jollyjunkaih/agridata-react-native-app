@@ -22,7 +22,7 @@ const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
 
 const AppNavigator = props => {
-  const type = 'retailer-manager';
+  const type = 'accounts';
   //Verified Retailer
   if (type == 'retailer-manager') {
     console.log('Retail Manager \n');
@@ -114,8 +114,9 @@ const App = () => {
   );
 };
 
-/*const App = () => {
+/*
+const App = () => {
   return <SupplierStore></SupplierStore>;
-};*/
-
+};
+*/
 export default App;
