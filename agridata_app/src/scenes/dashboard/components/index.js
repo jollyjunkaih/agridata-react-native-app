@@ -169,7 +169,10 @@ export const MenuButton = props => {
         animationOut="fadeOutLeft"
         isVisible={menuButtonModal}
         onBackdropPress={() => setMenuButtonModal(false)}>
-        <MenuButtonModal setMenuButtonModal={setMenuButtonModal} />
+        <MenuButtonModal
+          setMenuButtonModal={setMenuButtonModal}
+          navigation={props.navigation}
+        />
       </Modal>
     </TouchableOpacity>
   );
@@ -198,10 +201,10 @@ export const MenuButtonModal = props => {
       <View>
         <Image
           style={{
-            left: Mixins.scaleWidth(150),
+            left: Mixins.scaleWidth(155),
             top: Mixins.scaleHeight(75),
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(95),
+            width: Mixins.scaleWidth(110),
             height: Mixins.scaleHeight(85),
           }}
           source={require('_assets/images/agridata.png')}
@@ -215,8 +218,75 @@ export const MenuButtonModal = props => {
         }}
       />
       <TouchableOpacity
+        onPress={() => [
+          props.setMenuButtonModal(false),
+          props.navigation.navigate('companyprofile'),
+        ]}
         style={{
-          top: Mixins.scaleHeight(90),
+          top: Mixins.scaleHeight(100),
+          left: Mixins.scaleWidth(150),
+          zIndex: 3,
+          width: Mixins.scaleWidth(150),
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Icon name="briefcase-outline" size={Mixins.scaleWidth(25)} />
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              left: Mixins.scaleWidth(10),
+            }}>
+            <Text style={[Typography.placeholder]}>Company Profile</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          top: Mixins.scaleHeight(120),
+          left: Mixins.scaleWidth(150),
+          zIndex: 3,
+          width: Mixins.scaleWidth(160),
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              left: Mixins.scaleWidth(10),
+            }}>
+            <Text style={[Typography.placeholder]}>Personal Profile</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => [
+          props.setMenuButtonModal(false),
+          props.navigation.navigate('humanresource'),
+        ]}
+        style={{
+          top: Mixins.scaleHeight(140),
+          left: Mixins.scaleWidth(150),
+          zIndex: 3,
+          width: Mixins.scaleWidth(160),
+        }}>
+        <View style={{flexDirection: 'row'}}>
+          <Icon name="people-outline" size={Mixins.scaleWidth(25)} />
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              left: Mixins.scaleWidth(10),
+            }}>
+            <Text style={[Typography.placeholder]}>Human Resource</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          top: Mixins.scaleHeight(160),
           left: Mixins.scaleWidth(150),
           zIndex: 3,
           width: Mixins.scaleWidth(150),
@@ -229,47 +299,7 @@ export const MenuButtonModal = props => {
               justifyContent: 'center',
               left: Mixins.scaleWidth(10),
             }}>
-            <Text style={[Typography.normal]}>Logout</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{
-          top: Mixins.scaleHeight(100),
-          left: Mixins.scaleWidth(150),
-          zIndex: 3,
-          width: Mixins.scaleWidth(160),
-        }}>
-        <View style={{flexDirection: 'row'}}>
-          <Icon name="briefcase-outline" size={Mixins.scaleWidth(25)} />
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              left: Mixins.scaleWidth(10),
-            }}>
-            <Text style={[Typography.normal]}>Company Profile</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{
-          top: Mixins.scaleHeight(110),
-          left: Mixins.scaleWidth(150),
-          zIndex: 3,
-          width: Mixins.scaleWidth(150),
-        }}>
-        <View style={{flexDirection: 'row'}}>
-          <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              left: Mixins.scaleWidth(10),
-            }}>
-            <Text style={[Typography.normal]}>Personal Profile</Text>
+            <Text style={[Typography.placeholder]}>Logout</Text>
           </View>
         </View>
       </TouchableOpacity>

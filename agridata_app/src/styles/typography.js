@@ -27,6 +27,12 @@ export const placeholder = {
   color: 'grey',
 };
 
+export const placeholderSmall = {
+  fontSize: scaleFont(8),
+  fontFamily: 'Poppins-Medium',
+  color: 'grey',
+};
+
 export const normal = {
   fontSize: scaleFont(12),
   fontFamily: 'Poppins-Medium',

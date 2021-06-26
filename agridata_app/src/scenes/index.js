@@ -3,6 +3,9 @@ import {
   OwnerDashboard,
   EmployeeDashboard,
   RetailManagerDashboard,
+  CompanyProfile,
+  EditProfile,
+  HumanResource,
 } from './dashboard';
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
@@ -22,4 +25,7 @@ export {
   SupplierStore,
   SupplierTasks,
   RetailerTasks,
+  CompanyProfile,
+  EditProfile,
+  HumanResource,
 };
