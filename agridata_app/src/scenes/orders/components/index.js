@@ -14,7 +14,8 @@ import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {InvoiceButton} from '_components';
 import Share from 'react-native-share';
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import PDFLib, {PDFDocument, PDFPage} from 'react-native-pdf-lib';
+import RNFetchBlob from 'rn-fetch-blob';
 
 export const OrderList = props => {
   return (
@@ -327,7 +328,7 @@ const InvoiceModal = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}
-        onPress={createPDF}>
+        onPress={() => fetch()}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           CSV
         </Text>
@@ -396,13 +397,75 @@ const onShare = async () => {
 };
 
 const createPDF = async () => {
-  let options = {
+  const page1 = PDFPage.create()
+    .setMediaBox(200, 200)
+    .drawText('You can add text and rectangles to the PDF!', {
+      x: 5,
+      y: 235,
+      color: '#007386',
+      fontName: 'Poppins-Regular',
+    })
+    .drawRectangle({
+      x: 25,
+      y: 25,
+      width: 150,
+      height: 150,
+      color: '#FF99CC',
+    })
+    .drawRectangle({
+      x: 75,
+      y: 75,
+      width: 50,
+      height: 50,
+      color: '#99FFCC',
+    });
+  const docsDir = await PDFLib.getDocumentsDirectory();
+
+  const pdfPath = `${docsDir}/sample.pdf`;
+  PDFDocument.create(pdfPath)
+    .addPages(page1)
+    .write() // Returns a promise that resolves with the PDF's path
+    .then(path => {
+      console.log('PDF created at: ' + path);
+    });
+};
+
+const fetch = () => {
+  RNFetchBlob.fetch('GET', 'http://google.com', {
+    Authorization: 'Bearer access-token...',
+    // more headers  ..
+  })
+    .then(res => {
+      let status = res.info().status;
+
+      if (status == 200) {
+        // the conversion is done in native code
+        let base64Str = res.base64();
+        // the following conversions are done in js, it's SYNC
+        let text = res.text();
+        let json = res.json();
+        console.log(base64Str, text, json);
+      } else {
+        // handle other status codes
+        console.log('here');
+      }
+    })
+    // Something went wrong:
+    .catch((errorMessage, statusCode) => {
+      console.log(errorMessage);
+    });
+};
+
+/*
+let options = {
     html: '<h1>PDF TEST</h1>',
     fileName: 'test',
-    directory: 'Downloads',
+    directory: 'Documents',
+    base64: true,
   };
 
   let file = await RNHTMLtoPDF.convert(options);
+  file.filePath = '/storage/emulated/0/Downloads';
   // console.log(file.filePath);
   alert(file.filePath);
-};
+   */
