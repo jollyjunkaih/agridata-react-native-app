@@ -32,7 +32,7 @@ export const AccountsDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton></MenuButton>
+        <MenuButton navigation={props.navigation}></MenuButton>
       </View>
       <Image
         style={{
