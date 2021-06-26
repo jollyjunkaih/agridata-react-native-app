@@ -10,6 +10,7 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {AddEmployeeButton} from './add-member';
 
 export const HumanResource = props => {
   return (
@@ -55,52 +56,35 @@ export const HumanResource = props => {
           <Text style={[Typography.placeholderSmall]}>Team</Text>
         </View>
         <ParticipantList />
+        <AddEmployeeButton />
         <TouchableOpacity
           style={{
-            alignItems: 'flex-start',
+            top: Mixins.scaleHeight(40),
+            width: Mixins.scaleWidth(140),
+            height: Mixins.scaleHeight(30),
+            backgroundColor: Colors.LIGHT_BLUE,
             alignItems: 'center',
+            justifyContent: 'center',
             flexDirection: 'row',
-            width: Mixins.scaleWidth(250),
-            left: Mixins.scaleWidth(20),
-            bottom: Mixins.scaleHeight(20),
+            borderRadius: 10,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+            alignSelf: 'center',
+            elevation: 4,
           }}>
-          <Icon name="add-circle-outline" size={Mixins.scaleWidth(20)} />
-          <Text
-            style={[
-              Typography.normal,
-              {left: Mixins.scaleWidth(10), color: Colors.LIME_GREEN},
-            ]}>
-            Add New Team Member
-          </Text>
+          <Text>Save Changes</Text>
+          <Icon
+            name="checkmark-circle-outline"
+            size={Mixins.scaleWidth(20)}
+            style={{left: Mixins.scaleWidth(10)}}
+          />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={{
-          top: Mixins.scaleHeight(40),
-          width: Mixins.scaleWidth(140),
-          height: Mixins.scaleHeight(30),
-          backgroundColor: Colors.LIGHT_BLUE,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-          borderRadius: 10,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.23,
-          shadowRadius: 2.62,
-
-          elevation: 4,
-        }}>
-        <Text>Save Changes</Text>
-        <Icon
-          name="checkmark-circle-outline"
-          size={Mixins.scaleWidth(20)}
-          style={{left: Mixins.scaleWidth(10)}}
-        />
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
