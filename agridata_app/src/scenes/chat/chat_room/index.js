@@ -33,15 +33,31 @@ export const ChatRoom = props => {
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
+  let a = 0;
   useEffect(() => {
     console.log(appState);
+
     if (appState == 'inactive') {
       BackgroundTimer.runBackgroundTimer(() => {
         console.log('3 seconds');
+        a += 1;
       }, 3000);
       setTimeout(() => {
         BackgroundTimer.stopBackgroundTimer();
       }, 4000);
+    } else if (a == 0) {
+      if (appState == 'background') {
+        BackgroundTimer.runBackgroundTimer(() => {
+          if (a == 0) {
+            console.log('3 seconds');
+          }
+          a = 1;
+        }, 3000);
+        if (a == 1) {
+          BackgroundTimer.stopBackgroundTimer();
+          console.log('stop');
+        }
+      }
     }
   });
   return (
