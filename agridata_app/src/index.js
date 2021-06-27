@@ -19,6 +19,7 @@ import {
   CompanyProfile,
   EditProfile,
   HumanResource,
+  DataAnalytics,
 } from './scenes';
 
 const AuthenticationStack = createStackNavigator();
@@ -118,6 +119,7 @@ const AppNavigator = props => {
   }
 };
 
+/*
 const App = () => {
   return (
     <NavigationContainer>
@@ -125,9 +127,9 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
-/*const App = () => {
-  return <CompanyProfile></CompanyProfile>;
-};*/
+*/
+const App = () => {
+  return <DataAnalytics></DataAnalytics>;
+};
 
 export default App;
