@@ -56,6 +56,55 @@ const AppNavigator = props => {
         </AppStack.Screen>
       </AppStack.Navigator>
     );
+
+  } else if (type == 'accounts') {
+    console.log('Accounts \n');
+    return (
+      <AppStack.Navigator headerMode="none">
+        <AppStack.Screen name="dashboard">
+          {screenProps => <AccountsDashboard {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="inbox">
+          {screenProps => <Inbox {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="chatroom">
+          {screenProps => (
+            <ChatRoom {...screenProps} userAttributes={props.userAttributes} />
+          )}
+        </AppStack.Screen>
+        <AppStack.Screen name="tasks">
+          {screenProps => <SupplierTasks {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="orders">
+          {screenProps => <Orders {...screenProps} />}
+        </AppStack.Screen>
+      </AppStack.Navigator>
+    );
+  } else if (type == 'owner') {
+    console.log('Owner \n');
+    return (
+      <AppStack.Navigator headerMode="none">
+        <AppStack.Screen name="dashboard">
+          {screenProps => <OwnerDashboard {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="orders">
+          {screenProps => <Orders {...screenProps} />}
+        </AppStack.Screen>
+      </AppStack.Navigator>
+    );
+  } else if (type == 'retailer-employee') {
+    console.log('Retailer Employee \n');
+    return (
+      <AppStack.Navigator headerMode="none">
+        <AppStack.Screen name="dashboard">
+          {screenProps => <EmployeeDashboard {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="tasks">
+          {screenProps => <RetailerTasks {...screenProps} />}
+        </AppStack.Screen>
+      </AppStack.Navigator>
+    );
+
   }
 };
 const App = () => {
@@ -65,5 +114,9 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
+/*const App = () => {
+  return <SupplierStore></SupplierStore>;
+};*/
 
 export default App;

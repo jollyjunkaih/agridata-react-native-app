@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {SafeAreaView, Text, View, KeyboardAvoidingView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  AppState,
+} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -11,8 +17,33 @@ import {
   OrderQuotation,
 } from './components';
 import {NavBar, BackButton} from '_components';
+import BackgroundTimer from 'react-native-background-timer';
+import BackgroundTask from 'react-native-background-task';
+import {back} from 'react-native/Libraries/Animated/Easing';
+import {cos} from 'react-native-reanimated';
 
 export const ChatRoom = props => {
+  const [appState, setAppState] = useState(AppState.currentState);
+  const handleAppStateChange = state => {
+    setAppState(state);
+  };
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+  useEffect(() => {
+    console.log(appState);
+    if (appState == 'inactive') {
+      BackgroundTimer.runBackgroundTimer(() => {
+        console.log('3 seconds');
+      }, 3000);
+      setTimeout(() => {
+        BackgroundTimer.stopBackgroundTimer();
+      }, 4000);
+    }
+  });
   return (
     <SafeAreaView
       style={{
@@ -76,7 +107,7 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View style={{height: Mixins.scaleHeight(400)}}>
+        <View style={{height: Mixins.scaleHeight(460)}}>
           <ChatBubbleList chatList={data} />
         </View>
 
@@ -84,9 +115,6 @@ export const ChatRoom = props => {
           <MessageInput></MessageInput>
         </View>
       </KeyboardAvoidingView>
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
-        <NavBar navigation={props.navigation} />
-      </View>
     </SafeAreaView>
   );
 };

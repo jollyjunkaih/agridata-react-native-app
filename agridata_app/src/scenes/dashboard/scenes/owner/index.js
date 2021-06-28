@@ -52,8 +52,10 @@ export const OwnerDashboard = props => {
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <InvoiceButton top={90}></InvoiceButton>
-      <DataAnalyticsButton top={90}></DataAnalyticsButton>
+      <InvoiceButton top={90} navigation={props.navigation}></InvoiceButton>
+      <DataAnalyticsButton
+        top={90}
+        navigation={props.navigation}></DataAnalyticsButton>
     </SafeAreaView>
   );
 };
