@@ -1,8 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, Text, SafeAreaView} from 'react-native';
-import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
   AccountsDashboard,
   RetailManagerDashboard,
@@ -22,8 +20,33 @@ import {
   DataAnalytics,
 } from './scenes';
 
+Amplify.configure(config);
+
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
+
+const AuthenticationNavigator = props => {
+  return (
+    <AuthenticationStack.Navigator headerMode="none">
+      <AuthenticationStack.Screen name="landing" component={Landing} />
+      <AuthenticationStack.Screen name="signin">
+        {screenProps => (
+          <SignIn
+            {...screenProps}
+            updateAuthState={props.updateAuthState}
+            updateUserAttributes={props.updateUserAttributes}
+            updateUserToken={props.updateUserToken}
+          />
+        )}
+      </AuthenticationStack.Screen>
+      <AuthenticationStack.Screen name="signup" component={SignUp} />
+      <AuthenticationStack.Screen
+        name="confirmsignup"
+        component={ConfirmSignUp}
+      />
+    </AuthenticationStack.Navigator>
+  );
+};
 
 const AppNavigator = props => {
   const type = 'accounts';
@@ -119,7 +142,6 @@ const AppNavigator = props => {
   }
 };
 
-/*
 const App = () => {
   return (
     <NavigationContainer>
@@ -127,9 +149,9 @@ const App = () => {
     </NavigationContainer>
   );
 };
-*/
+/*
 const App = () => {
   return <DataAnalytics></DataAnalytics>;
 };
-
+*/
 export default App;
