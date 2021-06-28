@@ -16,13 +16,16 @@ import {
   SupplierStore,
   SupplierTasks,
   RetailerTasks,
+  CompanyProfile,
+  EditProfile,
+  HumanResource,
 } from './scenes';
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
 
 const AppNavigator = props => {
-  const type = 'retailer-manager';
+  const type = 'accounts';
   //Verified Retailer
   if (type == 'retailer-manager') {
     console.log('Retail Manager \n');
@@ -78,6 +81,15 @@ const AppNavigator = props => {
         <AppStack.Screen name="orders">
           {screenProps => <Orders {...screenProps} />}
         </AppStack.Screen>
+        <AppStack.Screen name="companyprofile">
+          {screenProps => <CompanyProfile {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="editprofile">
+          {screenProps => <EditProfile {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="humanresource">
+          {screenProps => <HumanResource {...screenProps} />}
+        </AppStack.Screen>
       </AppStack.Navigator>
     );
   } else if (type == 'owner') {
@@ -116,7 +128,7 @@ const App = () => {
 };
 
 /*const App = () => {
-  return <SupplierStore></SupplierStore>;
+  return <CompanyProfile></CompanyProfile>;
 };*/
 
 export default App;
