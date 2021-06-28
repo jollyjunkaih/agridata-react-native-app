@@ -11,6 +11,7 @@ import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 import {SupplierTasks, RetailerTasks} from './tasks';
+import {Registration, Login} from './authentication';
 
 export {
   RetailManagerDashboard,
@@ -28,4 +29,6 @@ export {
   CompanyProfile,
   EditProfile,
   HumanResource,
+  Registration,
+  Login,
 };

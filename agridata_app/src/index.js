@@ -19,7 +19,9 @@ import {
   CompanyProfile,
   EditProfile,
   HumanResource,
+  Registration,
 } from './scenes';
+import {Login} from '_scenes';
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -59,7 +61,6 @@ const AppNavigator = props => {
         </AppStack.Screen>
       </AppStack.Navigator>
     );
-
   } else if (type == 'accounts') {
     console.log('Accounts \n');
     return (
@@ -116,15 +117,10 @@ const AppNavigator = props => {
         </AppStack.Screen>
       </AppStack.Navigator>
     );
-
   }
 };
 const App = () => {
-  return (
-    <NavigationContainer>
-      <AppNavigator></AppNavigator>
-    </NavigationContainer>
-  );
+  return <Login></Login>;
 };
 
 /*const App = () => {

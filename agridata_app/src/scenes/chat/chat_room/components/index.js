@@ -112,13 +112,13 @@ export const ChatInfo = props => {
   const [addPersonModal, setAddPersonModal] = useState(false);
   const [removePersonModal, setRemovePersonModal] = useState(false);
   return (
-    <TouchableOpacity onPress={() => setRemovePersonModal(true)}>
+    <TouchableOpacity onPress={() => setChatInfoModal(true)}>
       <Icon
         color={Colors.GRAY_DARK}
         name="information-circle-outline"
         size={Mixins.scaleWidth(30)}></Icon>
       <Modal
-        isVisible={removePersonModal}
+        isVisible={chatInfoModal}
         onBackdropPress={() => setChatInfoModal(false)}>
         <ChatInfoModal
           setChatInfoModal={setChatInfoModal}
