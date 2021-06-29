@@ -6,6 +6,7 @@ import {
   CompanyProfile,
   EditCompany,
   HumanResource,
+  SupplierDashboard,
   PersonalProfile,
   EditPersonal,
 } from './dashboard';
@@ -38,4 +39,5 @@ export {
   Registration,
   Login,
   CreateCompany,
+  SupplierDashboard,
 };

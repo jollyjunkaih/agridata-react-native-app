@@ -1,0 +1,179 @@
+type User @model
+ @key(name: "usersByRetailerCompany", fields: ["retailerCompanyID"])
+ @key(name: "usersBySupplierCompany", fields: ["supplierCompanyID"]){
+  id:ID
+  name: String
+  role: String
+  retailerCompanyID: ID
+  supplierCompanyID: ID
+  chatGroup: [ChatGroupUsers] @connection(keyName:"gettingChatGroupsByUser", fields:["id"])
+  contactNumber: String
+  retailerCompany: RetailerCompany @connection(fields:["retailerCompanyID"])
+  supplierCompany: SupplierCompany @connection(fields:["supplierCompanyID"])
+}
+
+type RetailerCompany @model{
+  id:ID
+  name: String
+  employees: [User] @connection(keyName: "usersByRetailerCompany", fields: ["id"])
+  type: String
+  address: Address
+  rating: Rating
+  registrationNumber: Int
+  favouriteStores: [Favourites]
+  goodsTask: [GoodsTask] @connection(keyName: "goodsTasksByRetailer", fields: ["id"])
+  paymentTask: [PaymentTask] @connection(keyName: "paymentTasksByRetailer", fields: ["id"])
+  invoice: [Invoice] @connection(keyName: "invoiceByRetailer", fields: ["id"])
+}
+
+type Favourites{
+  id: ID "Same as company ID"
+  name: String
+}
+
+
+type SupplierCompany @model{
+  id:ID
+  name: String
+  employees: [User] @connection(keyName: "usersBySupplierCompany", fields: ["id"])
+  type: String
+  address: Address
+  rating: Rating
+  bankAccount: BankDetails
+  registrationNumber: Int
+  listings: [ProductListing]  @connection(keyName: "listingsBySupplier", fields: ["id"])
+  goodsTask: [GoodsTask] @connection(keyName: "goodsTasksBySupplier", fields: ["id"])
+  paymentTask: [PaymentTask] @connection(keyName: "paymentTasksBySupplier", fields: ["id"])
+  invoice: [Invoice] @connection(keyName: "invoiceBySupplier", fields: ["id"])
+}
+
+
+type Rating {
+  numberOfRatings: Int
+  CurrentRating: Float 
+}
+
+type Address {
+  street: String
+  town: String
+  postcode: Int
+}
+
+type BankDetails {
+  bankName: String
+  accountNumber: Int
+}
+
+type ChatGroup @model{
+  id:ID
+  name: String
+  chatParticipants: [ChatGroupUsers] @connection(keyName:"gettingChatParticipantsByChatGroup", fields:["id"])
+  messages: [Message]  @connection(keyName: "byChatGroup", fields: ["id"])
+  updatedAt: String
+  mostRecentMessage: String
+  mostRecentMessageSender: String
+} 
+
+type Message @model 
+@key(name: "byChatGroup", fields: ["chatGroupID","createdAt"]){
+  id:ID
+  chatGroupID: ID 
+  type: String "Text, Product Inquiry, PO, Quotation"
+  content: String
+  senderID: ID
+  uniqueContentID: ID
+  sender: String
+  createdAt: String
+}
+
+type ChatGroupUsers @model
+@key(name:"gettingChatParticipantsByChatGroup", fields:["chatGroupID", "userID"])
+@key(name:"gettingChatGroupsByUser", fields:["userID", "chatGroupID"]){
+  id: ID
+  userID: ID
+  chatGroupID: ID
+  lastOnline: String
+  chatGroup: ChatGroup @connection(fields:["chatGroupID"])
+  user: User @connection(fields:["userID"])
+}
+
+type ProductListing @model
+@key(name: "listingsBySupplier", fields: ["supplierID","productName"]){
+  id:ID
+  supplier: SupplierCompany @connection(fields:["supplierID"])
+  supplierID: ID
+  productName: String
+  variety: String
+  quantityAvailable: Int
+  lowPrice:Float
+  highPrice:Float
+  minimumQuantity:Int
+  productPicture: String 
+}
+
+type PurchaseOrder @model{
+  id:ID "companyX+companyY"
+  items: [Products]
+  createdAt: String
+}
+
+type Products{
+  name: String
+  quantity: Int
+}
+
+type OrderQuotation @model{
+  id: ID "companyX+companyY"
+  items: [QuotedProducts]
+  createdAt: String
+}
+
+type QuotedProducts{
+  name: String
+  quantity: Int
+  price: Int
+}
+
+type GoodsTask @model
+@key(name: "goodsTasksByRetailer", fields: ["retailerID","createdAt"])
+@key(name: "goodsTasksBySupplier", fields: ["supplierID","createdAt"]){
+  id: ID
+  retailer: RetailerCompany @connection(fields:["retailerID"])
+  retailerID: ID
+  supplier: SupplierCompany @connection(fields:["supplierID"])
+  supplierID: ID
+  items: [QuotedProducts]
+  createdAt: String
+  deliveryDate: String
+}
+
+type PaymentTask @model
+@key(name: "paymentTasksByRetailer", fields: ["retailerID","createdAt"])
+@key(name: "paymentTasksBySupplier", fields: ["supplierID","createdAt"]){
+  id: ID
+  retailer: RetailerCompany @connection(fields:["retailerID"])
+  retailerID: ID
+  supplier: SupplierCompany @connection(fields:["supplierID"])
+  supplierID: ID
+  paid: Boolean
+  amount: Float
+  payBefore: String
+  receipt: String
+  createdAt: String
+  invoiceID: ID
+  invoice: Invoice
+}
+
+type Invoice @model
+@key(name: "invoiceByRetailer", fields: ["retailerID","createdAt"])
+@key(name: "invoiceBySupplier", fields: ["supplierID","createdAt"]){
+  id: ID "PaymentTask + Invoice"
+  retailer: RetailerCompany @connection(fields:["retailerID"])
+  retailerID: ID
+  supplier: SupplierCompany @connection(fields:["supplierID"])
+  supplierID: ID
+  items: [QuotedProducts]
+  createdAt: String
+  paid: Boolean
+  receivedBy: String
+}
