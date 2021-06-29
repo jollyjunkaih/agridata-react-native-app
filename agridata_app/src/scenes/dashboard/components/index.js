@@ -242,6 +242,10 @@ export const MenuButtonModal = props => {
       </TouchableOpacity>
 
       <TouchableOpacity
+        onPress={() => [
+          props.setMenuButtonModal(false),
+          props.navigation.navigate('personalprofile'),
+        ]}
         style={{
           top: Mixins.scaleHeight(120),
           left: Mixins.scaleWidth(150),

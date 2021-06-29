@@ -7,6 +7,7 @@ import {NavBar} from '_components';
 import {MarketplaceList} from './components';
 
 export const Marketplace = props => {
+  const [choice, setChoice] = useState('product');
   return (
     <SafeAreaView
       style={{
@@ -30,14 +31,34 @@ export const Marketplace = props => {
           borderBottomWidth: 1,
           borderColor: Colors.GRAY_LIGHT,
         }}>
-        <TouchableOpacity
-          style={{
-            width: Mixins.scaleWidth(179),
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={Typography.normal}>Product</Text>
-        </TouchableOpacity>
+        {choice == 'product' ? (
+          <View
+            style={{
+              marginHorizontal: Mixins.scaleWidth(60),
+              top: Mixins.scaleHeight(4),
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              Product
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setChoice('product')}
+            style={{
+              marginHorizontal: Mixins.scaleWidth(60),
+              top: Mixins.scaleHeight(4),
+            }}>
+            <Text style={Typography.normal}>Product</Text>
+          </TouchableOpacity>
+        )}
         <View
           style={{
             height: Mixins.scaleHeight(15),
@@ -45,14 +66,36 @@ export const Marketplace = props => {
             borderColor: Colors.GRAY_LIGHT,
             borderWidth: Mixins.scaleWidth(1),
           }}></View>
-        <TouchableOpacity
-          style={{
-            width: Mixins.scaleWidth(179),
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text style={Typography.normal}>Favourites</Text>
-        </TouchableOpacity>
+        {choice == 'favorites' ? (
+          <View
+            style={{
+              width: Mixins.scaleWidth(179),
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              Favourites
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setChoice('favorites')}
+            style={{
+              width: Mixins.scaleWidth(179),
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text style={Typography.normal}>Favourites</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <View
         style={{

@@ -6,28 +6,46 @@ import {
   KeyboardAvoidingView,
   AppState,
   SliderComponent,
+  Platform,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {
-  ChatBubbleList,
-  MessageInput,
-  ChatInfo,
-  ProductInquiry,
-  PurchaseOrder,
-  OrderQuotation,
-} from './components';
+import {ChatBubbleList, MessageInput, ChatInfo} from './components';
 import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
-import {back} from 'react-native/Libraries/Animated/Easing';
-import {cos, set} from 'react-native-reanimated';
+import {listMessagesInChat} from '../../../graphql/queries';
+
+import {API} from 'aws-amplify';
 
 export const ChatRoom = props => {
+  const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
+
+  const {itemID} = props.route.params; //chatgroupid
+  const [messages, setMessages] = useState(null);
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
-
+  const fetchMessages = async () => {
+    try {
+      const message = await API.graphql({
+        query: listMessagesInChat,
+        variables: {
+          filter: {chatGroupID: {eq: itemID}},
+          sortDirection: 'ASC',
+        },
+      });
+      if (message.data) {
+        setMessages(message.data.listMessages.items);
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("there's a problem");
+    }
+  };
+  useEffect(() => {
+    fetchMessages();
+  }, []);
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -37,24 +55,30 @@ export const ChatRoom = props => {
   let a = 0;
   useEffect(() => {
     console.log(appState);
-    if (appState == 'inactive') {
-      BackgroundTimer.runBackgroundTimer(() => {
-        console.log('3 seconds');
-      }, 3000);
-      setTimeout(() => {
-        BackgroundTimer.stopBackgroundTimer();
-        console.log('stop');
-      }, 4000);
-    } else if (a == 0) {
-      if (appState == 'background') {
+    if (Platform.OS === 'ios') {
+      if (appState == 'inactive') {
         BackgroundTimer.runBackgroundTimer(() => {
-          if (a == 0) {
-            console.log('3seconds');
-          }
+          console.log('3 seconds');
         }, 3000);
-        if (a == 1) {
+        setTimeout(() => {
           BackgroundTimer.stopBackgroundTimer();
           console.log('stop');
+        }, 4000);
+      }
+    }
+    if (Platform.OS === 'android') {
+      if (a == 0) {
+        if (appState == 'background') {
+          BackgroundTimer.runBackgroundTimer(() => {
+            if (a == 0) {
+              console.log('3seconds');
+            }
+            a = 1;
+          }, 3000);
+          if (a == 1) {
+            BackgroundTimer.stopBackgroundTimer();
+            console.log('stop');
+          }
         }
       }
     }
@@ -116,18 +140,30 @@ export const ChatRoom = props => {
           }}></View>
       </View>
       <KeyboardAvoidingView
-        behavior="position"
-        keyboardVerticalOffset={Mixins.scaleHeight(30)}
+        behavior={Platform.OS === 'ios' ? 'position' : 'position'}
+        keyboardVerticalOffset={
+          Platform.OS === 'ios'
+            ? Mixins.scaleHeight(10)
+            : Mixins.scaleHeight(40)
+        } /* Keyboard Offset needs to be tested against multiple phones */
         style={{
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View style={{height: Mixins.scaleHeight(460)}}>
-          <ChatBubbleList chatList={data} />
+        <View
+          style={{
+            height: Mixins.scaleHeight(460),
+          }}>
+          <ChatBubbleList data={[{}, {}]} userID={userID} />
         </View>
 
-        <View style={{top: Mixins.scaleHeight(10)}}>
-          <MessageInput></MessageInput>
+        <View style={{top: Mixins.scaleHeight(0)}}>
+          <MessageInput
+            userID={userID}
+            chatGroupID={itemID}
+            user={'user'}
+            setMessages={setMessages}
+            messages={messages}></MessageInput>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -135,6 +171,10 @@ export const ChatRoom = props => {
 };
 
 const data = [
+  {name: '1'},
+  {name: '1'},
+  {name: '1'},
+  {name: '1'},
   {name: '1'},
   {name: '1'},
   {name: '1'},
