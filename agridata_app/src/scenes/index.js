@@ -4,15 +4,17 @@ import {
   EmployeeDashboard,
   RetailManagerDashboard,
   CompanyProfile,
-  EditProfile,
+  EditCompany,
   HumanResource,
   SupplierDashboard,
+  PersonalProfile,
+  EditPersonal,
 } from './dashboard';
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 import {SupplierTasks, RetailerTasks} from './tasks';
-import {DataAnalytics} from './data_analytics';
+import {DataAnalytics} from './data-analytics';
 import {Registration, Login} from './authentication';
 
 export {
@@ -29,8 +31,10 @@ export {
   SupplierTasks,
   RetailerTasks,
   CompanyProfile,
-  EditProfile,
+  EditCompany,
   HumanResource,
+  PersonalProfile,
+  EditPersonal,
   DataAnalytics,
   Registration,
   Login,

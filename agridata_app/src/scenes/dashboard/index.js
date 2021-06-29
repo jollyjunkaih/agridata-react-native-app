@@ -3,16 +3,21 @@ import {OwnerDashboard} from './scenes/owner';
 import {EmployeeDashboard} from './scenes/retail-employee';
 import {RetailManagerDashboard} from './scenes/retail-manager';
 import {CompanyProfile} from './scenes/company-profile';
-import {EditProfile} from './scenes/company-profile/edit-company';
+import {EditCompany} from './scenes/company-profile/edit-company';
 import {HumanResource} from './scenes/human-resource';
 import {SupplierDashboard} from './scenes/supplier';
+import {PersonalProfile} from './scenes/personal-profile';
+import {EditPersonal} from './scenes/personal-profile/edit-personal';
+
 export {
   AccountsDashboard,
   OwnerDashboard,
   EmployeeDashboard,
   RetailManagerDashboard,
   CompanyProfile,
-  EditProfile,
+  EditCompany,
   HumanResource,
   SupplierDashboard,
+  PersonalProfile,
+  EditPersonal,
 };
