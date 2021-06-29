@@ -39,8 +39,7 @@ const ChatBubble = props => {
           </Text>
         )}
         <Text style={[Typography.normal, {margin: Mixins.scaleWidth(5)}]}>
-          helloasdffffadsfsdsfsddddddddddddddddddddddddddddd dfasdgsadfdsv
-          sadfdsasdf
+          Hello, how is u
         </Text>
         <Text style={[Typography.small, {alignSelf: 'flex-end'}]}>
           {'{moment(props.createdAt).fromNow()}'}

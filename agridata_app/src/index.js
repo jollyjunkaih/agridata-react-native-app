@@ -129,16 +129,16 @@ const AppNavigator = props => {
   }
 };
 
-/*const App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
   );
-};*/
-
-const App = () => {
-  return <DataAnalytics></DataAnalytics>;
 };
+
+/*const App = () => {
+  return <DataAnalytics></DataAnalytics>;
+};*/
 
 export default App;
