@@ -24,12 +24,13 @@ import {
   SupplierDashboard,
   Login,
 } from './scenes';
-import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
+import {Login, CreateCompany} from '_scenes';
+/*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
 import {signIn} from './utils/api/auth';
 
-Amplify.configure(config);
+Amplify.configure(config);*/
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -213,7 +214,7 @@ const AppNavigator = props => {
   }
 };
 
-const Initializing = () => {
+/*const Initializing = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <ActivityIndicator size="large" color="green" />
@@ -223,7 +224,7 @@ const Initializing = () => {
 const App = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState('loggedIn');
   signIn('junkaih@test.com', 'test1234');
-  /*useEffect(() => {
+  useEffect(() => {
     checkAuthState();
   }, []);
   async function checkAuthState() {
@@ -281,7 +282,7 @@ const App = () => {
   function updateUserToken(userdetail) {
     setUserToken(userdetail);
   }
-  */
+  
   return (
     <NavigationContainer>
       {isUserLoggedIn === 'initializing' && <Initializing />}
@@ -299,14 +300,18 @@ const App = () => {
       )}
     </NavigationContainer>
   );
-};
+};*/
 
-/*const App = () => {
+const App = () => {
   return (
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
   );
+};
+
+/*const App = () => {
+  return <DataAnalytics></DataAnalytics>;
 };*/
 
 export default App;
