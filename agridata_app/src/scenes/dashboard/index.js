@@ -5,6 +5,7 @@ import {RetailManagerDashboard} from './scenes/retail-manager';
 import {CompanyProfile} from './scenes/company-profile';
 import {EditCompany} from './scenes/company-profile/edit-company';
 import {HumanResource} from './scenes/human-resource';
+import {SupplierDashboard} from './scenes/supplier';
 import {PersonalProfile} from './scenes/personal-profile';
 import {EditPersonal} from './scenes/personal-profile/edit-personal';
 
@@ -16,6 +17,7 @@ export {
   CompanyProfile,
   EditCompany,
   HumanResource,
+  SupplierDashboard,
   PersonalProfile,
   EditPersonal,
 };

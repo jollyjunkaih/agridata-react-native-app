@@ -1,11 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {ChatList} from './components';
 import {Searchbar} from './components';
 import {NavBar, BackButton} from '_components';
+import {listChatsContainingUser} from '../../../graphql/queries';
+import {API} from 'aws-amplify';
 
 export const Inbox = props => {
+  const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
+  const [chatRooms, setChatRooms] = useState(null);
+  const fetchChats = async () => {
+    try {
+      console.log(userID);
+      const products = await API.graphql({
+        query: listChatsContainingUser,
+        variables: {
+          filter: {userID: {eq: userID}},
+          sortDirection: 'DESC',
+        },
+      });
+      console.log(products.data.listChatGroupUserss.items);
+      if (products.data) {
+        setChatRooms(products.data.listChatGroupUserss.items);
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("there's a problem");
+    }
+  };
+  useEffect(() => {
+    fetchChats();
+  }, []);
+
   return (
     <SafeAreaView
       style={{
@@ -41,7 +68,7 @@ export const Inbox = props => {
           width: Mixins.scaleWidth(340),
           top: Mixins.scaleHeight(60),
         }}>
-        <ChatList chatList={items} navigation={props.navigation} />
+        <ChatList data={chatRooms} navigation={props.navigation} />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
@@ -49,14 +76,3 @@ export const Inbox = props => {
     </SafeAreaView>
   );
 };
-
-const items = [
-  {name: 'test'},
-  {name: 'test2'},
-  {name: 'test'},
-  {name: 'test2'},
-  {name: 'test'},
-  {name: 'test2'},
-  {name: 'test'},
-  {name: 'test2'},
-];

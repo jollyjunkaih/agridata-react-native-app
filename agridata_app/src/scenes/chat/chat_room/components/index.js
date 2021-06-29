@@ -12,41 +12,61 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {API} from 'aws-amplify';
+import {createMessage} from '../../../../graphql/mutations';
+import dayjs from 'dayjs';
 
 const ChatBubble = props => {
+  const createdAt = dayjs(props.createdAt).format('HH:mm D/M');
   const isMyMessage = () => {
-    return true;
+    if (props.userID == props.senderID) return true;
+    else return false;
   };
-  return (
-    <View style={{margin: 5}}>
-      <View
-        style={{
-          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_LIGHT,
-          marginLeft: isMyMessage() ? 50 : 0,
-          marginRight: isMyMessage() ? 0 : 50,
-          borderRadius: 15,
-        }}>
-        {!isMyMessage() && (
-          <Text
-            style={{
-              color: Colors.GRAY_DARK,
-              fontWeight: 'bold',
-              marginBottom: Mixins.scaleHeight(5),
-              marginLeft: Mixins.scaleWidth(5),
-            }}>
-            UserName
+  if (props.contentType == 'text') {
+    return (
+      <View style={{margin: Mixins.scaleWidth(5)}}>
+        <View
+          style={{
+            backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_LIGHT,
+            marginLeft: isMyMessage() ? Mixins.scaleWidth(50) : 0,
+            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(50),
+            borderRadius: 15,
+          }}>
+          {!isMyMessage() && (
+            <Text
+              style={{
+                color: Colors.GRAY_DARK,
+                fontWeight: 'bold',
+                marginBottom: Mixins.scaleHeight(5),
+                marginLeft: Mixins.scaleWidth(5),
+              }}>
+              {props.sender}
+            </Text>
+          )}
+          <Text style={[Typography.normal, {margin: Mixins.scaleWidth(5)}]}>
+            {props.content}
           </Text>
-        )}
-        <Text style={[Typography.normal, {margin: Mixins.scaleWidth(5)}]}>
-          Hello, how is u
-        </Text>
-        <Text style={[Typography.small, {alignSelf: 'flex-end'}]}>
-          {'{moment(props.createdAt).fromNow()}'}
-        </Text>
+          <Text
+            style={[
+              Typography.small,
+              {alignSelf: 'flex-end', right: Mixins.scaleWidth(10)},
+            ]}>
+            {createdAt}
+          </Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else if (props.contentType == 'inquiry') {
+    return (
+      <ProductInquiry
+        sender={props.sender}
+        senderID={props.senderID}
+        contentID={props.contentID}
+        createdAt={createdAt}
+        userID={props.userID}
+      />
+    );
+  }
 };
 
 export const ChatBubbleList = props => {
@@ -54,10 +74,21 @@ export const ChatBubbleList = props => {
     <View>
       <FlatList
         keyExtractor={item => item.id}
-        data={props.chatList}
+        data={props.data}
         numColumns={1}
         renderItem={item => {
-          return <ChatBubble user={item.name} />;
+          console.log(item);
+          return (
+            <ChatBubble
+              sender={item.item.sender}
+              content={item.item.content}
+              senderID={item.item.senderID}
+              createdAt={item.item.createdAt}
+              userID={props.userID}
+              contentType={item.item.type}
+              contentID={item.item.uniqueContentID}
+            />
+          );
         }}
       />
     </View>
@@ -65,6 +96,26 @@ export const ChatBubbleList = props => {
 };
 
 export const MessageInput = props => {
+  const [message, setMessage] = useState(null);
+  const createNewMessage = async () => {
+    try {
+      const newMessage = await API.graphql({
+        query: createMessage,
+        variables: {
+          input: {
+            senderID: props.userID,
+            chatGroupID: props.chatGroupID,
+            sender: props.user,
+            type: 'text',
+            content: message,
+          },
+        },
+      });
+      return newMessage;
+    } catch {
+      e => console.log(e);
+    }
+  };
   return (
     <View style={{flexDirection: 'row', justifyContent: 'center'}}>
       <View
@@ -76,16 +127,27 @@ export const MessageInput = props => {
         }}>
         <TextInput
           placeholder={'Type a message'}
-          underlineColorAndroid={Colors.GRAY_LIGHT}
+          underlineColorAndroid={'transparent'}
           multiline={true}
+          onChangeText={text => setMessage(text)}
           style={{
             width: Mixins.scaleWidth(260),
             height: Mixins.scaleHeight(40),
             marginHorizontal: Mixins.scaleWidth(10),
             top: Mixins.scaleHeight(10),
-          }}></TextInput>
+          }}
+        />
       </View>
       <TouchableOpacity
+        onPress={async () => {
+          if (message) {
+            const newMessage = await createNewMessage();
+            const messages = props.messages;
+            console.log(messages);
+            console.log(newMessage.data.createNewMessage);
+          } else {
+          }
+        }}
         style={{
           height: Mixins.scaleWidth(40),
           width: Mixins.scaleWidth(40),
@@ -130,7 +192,7 @@ export const ChatInfo = props => {
   );
 };
 
-export const ProductInquiry = props => {
+export const ProductInquiry2 = props => {
   return (
     <View
       style={{
@@ -186,6 +248,54 @@ export const ProductInquiry = props => {
           16.50 - Read
         </Text>
       </View>
+    </View>
+  );
+};
+
+const ProductInquiry = props => {
+  const isMyMessage = () => {
+    if (props.userID == props.senderID) return true;
+    else return false;
+  };
+  return (
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_DARK,
+        width: Mixins.scaleWidth(220),
+        height: Mixins.scaleHeight(80),
+        marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
+        marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+        borderRadius: 15,
+      }}>
+      <Text style={[Typography.large]}>Product Inquiry</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <TouchableOpacity>
+          <Text style={[Typography.small]}>Inspect</Text>
+        </TouchableOpacity>
+        <Text style={[Typography.small]}>
+          {'\t'}|{'\t'}
+        </Text>
+        <TouchableOpacity>
+          <Text style={[Typography.small]}>Download</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={[
+          Typography.small,
+          {
+            alignSelf: 'flex-end',
+            right: Mixins.scaleWidth(10),
+          },
+        ]}>
+        {props.createdAt}
+      </Text>
     </View>
   );
 };
