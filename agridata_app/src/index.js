@@ -22,7 +22,9 @@ import {
   PersonalProfile,
   EditPersonal,
   DataAnalytics,
+  Registration,
 } from './scenes';
+import {Login} from '_scenes';
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();

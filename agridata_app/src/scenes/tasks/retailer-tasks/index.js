@@ -14,6 +14,7 @@ import Modal from 'react-native-modal';
 
 export const RetailerTasks = props => {
   const [sortModal, setSortModal] = useState(false);
+  const [task, setTask] = useState('receive');
   return (
     <SafeAreaView
       style={{
@@ -21,28 +22,66 @@ export const RetailerTasks = props => {
         flex: 1,
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
+      <Text style={[Typography.header, {top: Mixins.scaleHeight(25)}]}>
         Tasks
       </Text>
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          style={{
-            marginHorizontal: Mixins.scaleWidth(60),
-            top: Mixins.scaleHeight(25),
-          }}>
-          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            To Receive
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            top: Mixins.scaleHeight(25),
-            marginHorizontal: Mixins.scaleWidth(60),
-          }}>
-          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            To Pay
-          </Text>
-        </TouchableOpacity>
+        {task == 'receive' ? (
+          <View
+            style={{
+              marginHorizontal: Mixins.scaleWidth(60),
+              top: Mixins.scaleHeight(25),
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              To Receive
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setTask('receive')}
+            style={{
+              marginHorizontal: Mixins.scaleWidth(60),
+              top: Mixins.scaleHeight(25),
+            }}>
+            <Text style={[Typography.normal]}>To Receive</Text>
+          </TouchableOpacity>
+        )}
+        {task == 'pay' ? (
+          <View
+            style={{
+              marginHorizontal: Mixins.scaleWidth(60),
+              top: Mixins.scaleHeight(25),
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              To Pay
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setTask('pay')}
+            style={{
+              top: Mixins.scaleHeight(25),
+              marginHorizontal: Mixins.scaleWidth(60),
+            }}>
+            <Text style={[Typography.normal]}>To Pay</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <View
         style={{
