@@ -591,10 +591,14 @@ SPEC CHECKSUMS:
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
 <<<<<<< HEAD
+  FBReactNativeSpec: add0bc71a893a63fa8be29613c0134d6852fcd57
+=======
+<<<<<<< HEAD
   FBReactNativeSpec: 5ca81bdaacf6c1c50cd9597d3de0632a94817b89
 =======
   FBReactNativeSpec: 4a99d8c3e76f12dff698a7dabbd88486ab3d7bb0
 >>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
+>>>>>>> c946c6ebcf4ae5cf5e0d36d32aa8209f31c490c9
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
