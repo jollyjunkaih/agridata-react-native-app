@@ -71,6 +71,7 @@ type ChatGroup @model{
   messages: [Message]  @connection(keyName: "byChatGroup", fields: ["id"])
   updatedAt: String
   mostRecentMessage: String
+  mostRecentMessageSender: String
 } 
 
 type Message @model 

@@ -42,7 +42,7 @@ export const listPaymentTasksByRetailer = /* GraphQL */ `
   }
 `;
 //list receiving tasks by supplier
-export const getSupplierCompany = /* GraphQL */ `
+export const listSendingTasksBySupplier = /* GraphQL */ `
   query GetSupplierCompany($id: ID!) {
     getSupplierCompany(id: $id) {
       id
@@ -61,7 +61,7 @@ export const getSupplierCompany = /* GraphQL */ `
   }
 `;
 //list payment tasks by supplier
-export const getSupplierCompany = /* GraphQL */ `
+export const listPaymentTasksBySupplier = /* GraphQL */ `
   query GetSupplierCompany($id: ID!) {
     getSupplierCompany(id: $id) {
       id

@@ -6,12 +6,14 @@ import {
   CompanyProfile,
   EditProfile,
   HumanResource,
+  SupplierDashboard,
 } from './dashboard';
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 import {SupplierTasks, RetailerTasks} from './tasks';
 import {DataAnalytics} from './data_analytics';
+import {Registration, Login} from './authentication';
 
 export {
   RetailManagerDashboard,
@@ -30,4 +32,7 @@ export {
   EditProfile,
   HumanResource,
   DataAnalytics,
+  Registration,
+  Login,
+  SupplierDashboard,
 };

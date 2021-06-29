@@ -1,6 +1,50 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+//List Chat Groups by updatedAt, able to check the user's last online or can use get users (should be a more effiecient query) {need to raise this question to AWS Support}
+export const listChatsContainingUser = /* GraphQL */ `
+  query ListChatGroupUserss(
+    $filter: ModelChatGroupUsersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChatGroupUserss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        chatGroupID
+        lastOnline
+        chatGroup {
+          name
+          updatedAt
+          mostRecentMessage
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
+//List Messages in Chat Room by createdAt
+export const listMessagesInChat = /* GraphQL */ `
+  query ListMessages(
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type
+        content
+        senderID
+        uniqueContentID
+        sender
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {

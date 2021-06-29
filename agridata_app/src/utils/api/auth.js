@@ -32,7 +32,7 @@ export const changePassword = async (phone, code, password) => {
     });
 };
 
-export const signUp = (email, phone_number, password) => {
+export const signUp = async (email, phone_number, password) => {
   try {
     const user = await Auth.signUp({
       username: phone_number,
@@ -49,7 +49,7 @@ export const signUp = (email, phone_number, password) => {
   }
 };
 
-export const signOut = () => {
+export const signOut = async () => {
   try {
     await Auth.signOut();
     updateAuthState('loggedOut');

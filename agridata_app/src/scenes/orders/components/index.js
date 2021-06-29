@@ -15,7 +15,6 @@ import {CloseButton} from '_components';
 import {InvoiceButton} from '_components';
 import Share from 'react-native-share';
 import PDFLib, {PDFDocument, PDFPage} from 'react-native-pdf-lib';
-import RNFetchBlob from 'rn-fetch-blob';
 
 export const OrderList = props => {
   return (

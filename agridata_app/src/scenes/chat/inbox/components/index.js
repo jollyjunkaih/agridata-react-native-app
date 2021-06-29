@@ -10,6 +10,17 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import dayjs from 'dayjs';
+
+var customParseFormat = require('dayjs/plugin/customParseFormat');
+dayjs.extend(customParseFormat);
+var relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+
+const now = () => {
+  const now = dayjs().format('YYYY-MM-DD');
+  return now;
+};
 
 export const Searchbar = props => {
   return (
@@ -62,8 +73,8 @@ export const ChatList = props => {
           onRefresh={props.onRefresh}
         />
       }
-      keyExtractor={item => item.id}
-      data={props.chatList}
+      keyExtractor={item => item.chatGroupID}
+      data={props.data}
       numColumns={1}
       ItemSeparatorComponent={Seperator}
       ListFooterComponent={Footer}
@@ -94,19 +105,10 @@ export const ChatList = props => {
       renderItem={({item}) => {
         return (
           <ChatRoom
-            productName={item.produce}
-            type={item.variety}
-            availableQuantity={item.quantity}
-            date={item.updatedAt}
-            image={item.image}
-            priceMin={item.listedPrice}
-            priceMax={item.listedPrice}
-            farmName={item.farmName} //need to add
-            farmLocation={item.farmLocation} //need to add
-            availdate={item.delivery} //need to add
-            moq={item.moq}
-            farmerID={item.farmerID}
-            id={item.id}
+            chatName={item.name}
+            mostRecentMessage={item.mostRecentMessage}
+            updatedAt={item.updatedAt}
+            chatGroupID={item.chatGroupID}
             navigation={props.navigation}
           />
         );
@@ -116,9 +118,13 @@ export const ChatList = props => {
 };
 
 const ChatRoom = props => {
+  const lastOnline = dayjs(props.lastOnline);
+  const lastUpdated = dayjs(props.updatedAt);
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate('chatroom')}
+      onPress={() => {
+        props.navigation.navigate('chatroom', {itemID: props.chatGroupID});
+      }}
       style={{
         height: Mixins.scaleHeight(60),
         width: Mixins.scaleWidth(340),
@@ -145,8 +151,8 @@ const ChatRoom = props => {
         />
       </View>
       <View style={{left: Mixins.scaleWidth(25), top: Mixins.scaleHeight(10)}}>
-        <Text style={Typography.normal}>Company Name</Text>
-        <Text style={Typography.small}>Last Message</Text>
+        <Text style={Typography.normal}>{props.chatName}</Text>
+        <Text style={Typography.small}>{props.mostRecentMessage}</Text>
       </View>
       <View
         style={{
@@ -154,10 +160,35 @@ const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           right: Mixins.scaleWidth(20),
         }}>
-        <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
-          Message sent time
-        </Text>
+        {lastUpdated.fromNow().includes('day') ||
+        lastUpdated.fromNow().includes('days') ||
+        lastUpdated.fromNow().includes('month') ||
+        lastUpdated.fromNow().includes('months') ||
+        lastUpdated.fromNow().includes('year') ||
+        lastUpdated.fromNow().includes('years') ? (
+          <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
+            {dayjs(props.updatedAt.slice(0, 10)).format('DD-MM-YYYY')}
+          </Text>
+        ) : (
+          <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
+            {lastUpdated.fromNow()}
+          </Text>
+        )}
       </View>
+      {lastUpdated.from(lastOnline).includes('ago') ? (
+        <View
+          style={{
+            position: 'absolute',
+            width: Mixins.scaleWidth(20),
+            height: Mixins.scaleWidth(20),
+            backgroundColor: Colors.PALE_GREEN,
+            borderRadius: 100,
+            right: Mixins.scaleWidth(30),
+            top: Mixins.scaleHeight(30),
+          }}></View>
+      ) : (
+        <View></View>
+      )}
     </TouchableOpacity>
   );
 };
