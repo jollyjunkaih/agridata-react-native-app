@@ -17,8 +17,11 @@ import {
   SupplierTasks,
   RetailerTasks,
   CompanyProfile,
-  EditProfile,
+  EditCompany,
   HumanResource,
+  PersonalProfile,
+  EditPersonal,
+  DataAnalytics,
   Registration,
 } from './scenes';
 import {Login} from '_scenes';
@@ -85,11 +88,17 @@ const AppNavigator = props => {
         <AppStack.Screen name="companyprofile">
           {screenProps => <CompanyProfile {...screenProps} />}
         </AppStack.Screen>
-        <AppStack.Screen name="editprofile">
-          {screenProps => <EditProfile {...screenProps} />}
+        <AppStack.Screen name="editcompany">
+          {screenProps => <EditCompany {...screenProps} />}
         </AppStack.Screen>
         <AppStack.Screen name="humanresource">
           {screenProps => <HumanResource {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="personalprofile">
+          {screenProps => <PersonalProfile {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="editpersonal">
+          {screenProps => <EditPersonal {...screenProps} />}
         </AppStack.Screen>
       </AppStack.Navigator>
     );
@@ -119,12 +128,17 @@ const AppNavigator = props => {
     );
   }
 };
-const App = () => {
-  return <Login></Login>;
-};
 
 /*const App = () => {
-  return <CompanyProfile></CompanyProfile>;
+  return (
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
+  );
 };*/
+
+const App = () => {
+  return <DataAnalytics></DataAnalytics>;
+};
 
 export default App;
