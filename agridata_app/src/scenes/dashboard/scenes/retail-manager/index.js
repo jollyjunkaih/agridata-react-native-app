@@ -40,6 +40,7 @@ export const RetailManagerDashboard = props => {
       <Text style={[Typography.welcome, {top: Mixins.scaleHeight(60)}]}>
         Welcome Back,
       </Text>
+
       <Text
         style={[
           Typography.largestSize,

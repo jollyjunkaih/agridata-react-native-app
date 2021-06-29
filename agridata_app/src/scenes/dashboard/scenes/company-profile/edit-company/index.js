@@ -15,9 +15,12 @@ import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {SuccesfulChangesModal} from '_components/modals';
+import Modal from 'react-native-modal';
 
-export const EditProfile = props => {
+export const EditCompany = props => {
   const [imageSource, setImageSource] = useState(null);
+  const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
 
   function selectImage() {
     let options = {
@@ -44,7 +47,12 @@ export const EditProfile = props => {
     });
   }
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'position' : 'position'}
+      keyboardVerticalOffset={
+        Platform.OS === 'ios' ? Mixins.scaleHeight(10) : -180
+      } /* Keyboard Offset needs to be tested against multiple phones */
+    >
       <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
         <View
           style={{
@@ -52,12 +60,13 @@ export const EditProfile = props => {
             top: Mixins.scaleHeight(20),
             alignItems: 'center',
             justifyContent: 'center',
+            width: Mixins.scaleWidth(360),
           }}>
-          <View style={{right: Mixins.scaleWidth(120)}}>
+          <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
             <BackButton navigation={props.navigation} />
           </View>
-          <View style={{right: Mixins.scaleWidth(13)}}>
-            <Text style={[Typography.header]}>Edit</Text>
+          <View>
+            <Text style={[Typography.header]}>Edit Company Profile</Text>
           </View>
         </View>
         <View
@@ -65,7 +74,6 @@ export const EditProfile = props => {
             top: Mixins.scaleHeight(20),
             alignItems: 'center',
             justifyContent: 'center',
-
             width: Mixins.scaleWidth(200),
             height: Mixins.scaleHeight(150),
           }}>
@@ -109,6 +117,7 @@ export const EditProfile = props => {
               top: Mixins.scaleHeight(20),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Company Name</Text>
             <TextInput
@@ -123,6 +132,7 @@ export const EditProfile = props => {
               top: Mixins.scaleHeight(35),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>
               Company Registration No.
@@ -139,6 +149,7 @@ export const EditProfile = props => {
               top: Mixins.scaleHeight(50),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Company Address </Text>
             <TextInput
@@ -153,6 +164,7 @@ export const EditProfile = props => {
               top: Mixins.scaleHeight(65),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
             <TextInput
@@ -167,6 +179,7 @@ export const EditProfile = props => {
               top: Mixins.scaleHeight(80),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Email Address </Text>
             <TextInput
@@ -179,6 +192,7 @@ export const EditProfile = props => {
         </View>
 
         <TouchableOpacity
+          onPress={() => setSuccesfulChangesModal(true)}
           style={{
             top: Mixins.scaleHeight(100),
             width: Mixins.scaleWidth(140),
@@ -205,6 +219,14 @@ export const EditProfile = props => {
             style={{left: Mixins.scaleWidth(10)}}
           />
         </TouchableOpacity>
+        <Modal
+          isVisible={succesfulChangesModal}
+          onBackdropPress={() => setSuccesfulChangesModal(false)}>
+          <SuccesfulChangesModal
+            setSuccesfulChangesModal={setSuccesfulChangesModal}
+            navigation={props.navigation}
+          />
+        </Modal>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

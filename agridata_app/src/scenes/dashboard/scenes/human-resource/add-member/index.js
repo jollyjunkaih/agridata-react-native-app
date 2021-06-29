@@ -23,9 +23,12 @@ import {ChatButton} from '../../../components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {launchImageLibrary} from 'react-native-image-picker';
-
+import {SuccesfulChangesModal} from '_components/modals';
+//modal issues
 export const AddEmployeeButton = props => {
   const [addEmployeeButtonModal, setAddEmployeeButtonModal] = useState(false);
+  const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
+
   return (
     <TouchableOpacity
       onPress={() => setAddEmployeeButtonModal(true)}
@@ -53,11 +56,21 @@ export const AddEmployeeButton = props => {
         <AddEmployeeButtonModal
           setAddEmployeeButtonModal={setAddEmployeeButtonModal}
           navigation={props.navigation}
+          setSuccesfulChangesModal={setSuccesfulChangesModal}
+        />
+      </Modal>
+      <Modal
+        isVisible={succesfulChangesModal}
+        onBackdropPress={() => setSuccesfulChangesModal(false)}>
+        <SuccesfulChangesModal
+          setSuccesfulChangesModal={setSuccesfulChangesModal}
+          navigation={props.navigation}
         />
       </Modal>
     </TouchableOpacity>
   );
 };
+
 export const AddEmployeeButtonModal = props => {
   const [imageSource, setImageSource] = useState(null);
 
@@ -89,12 +102,12 @@ export const AddEmployeeButtonModal = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(-60) : -180
+        Platform.OS === 'ios' ? Mixins.scaleHeight(-35) : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <View
         style={{
-          height: Mixins.scaleHeight(470),
+          height: Mixins.scaleHeight(480),
           width: Mixins.scaleWidth(290),
           backgroundColor: 'white',
           top: Mixins.scaleHeight(8),
@@ -109,7 +122,7 @@ export const AddEmployeeButtonModal = props => {
           }}>
           <CloseButton setModal={props.setAddEmployeeButtonModal} />
         </View>
-        <View style={{top: Mixins.scaleHeight(0), alignItems: 'center'}}>
+        <View style={{top: Mixins.scaleHeight(-10), alignItems: 'center'}}>
           <Text style={[Typography.header]}>Add New Member</Text>
           <View
             style={{
@@ -121,7 +134,7 @@ export const AddEmployeeButtonModal = props => {
               borderStyle: 'dashed',
               borderWidth: Mixins.scaleWidth(1),
               backgroundColor: Colors.GRAY_LIGHT,
-              top: Mixins.scaleHeight(20),
+              top: Mixins.scaleHeight(10),
             }}>
             {imageSource === null ? (
               <TouchableOpacity
@@ -175,11 +188,11 @@ export const AddEmployeeButtonModal = props => {
               </View>
             )}
           </View>
-          <Text style={{top: Mixins.scaleHeight(30)}}>Add Photo</Text>
+          <Text style={{top: Mixins.scaleHeight(20)}}>Add Photo</Text>
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(30),
+            top: Mixins.scaleHeight(10),
             width: Mixins.scaleWidth(290),
             height: Mixins.scaleHeight(250),
             borderRadius: 10,
@@ -196,6 +209,7 @@ export const AddEmployeeButtonModal = props => {
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(0.5),
                 width: Mixins.scaleWidth(250),
+                height: Mixins.scaleHeight(30),
               }}></TextInput>
           </View>
           <View
@@ -210,6 +224,7 @@ export const AddEmployeeButtonModal = props => {
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(0.5),
                 width: Mixins.scaleWidth(250),
+                height: Mixins.scaleHeight(30),
               }}></TextInput>
           </View>
           <View
@@ -224,6 +239,7 @@ export const AddEmployeeButtonModal = props => {
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(0.5),
                 width: Mixins.scaleWidth(250),
+                height: Mixins.scaleHeight(30),
               }}></TextInput>
           </View>
           <View
@@ -238,13 +254,20 @@ export const AddEmployeeButtonModal = props => {
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(0.5),
                 width: Mixins.scaleWidth(250),
+                height: Mixins.scaleHeight(30),
               }}></TextInput>
           </View>
         </View>
 
         <TouchableOpacity
+          onPress={() => [
+            props.setSuccesfulChangesModal(true),
+            setTimeout(() => {
+              props.setAddEmployeeButtonModal(false);
+            }, 400),
+          ]}
           style={{
-            top: Mixins.scaleHeight(0),
+            top: Mixins.scaleHeight(25),
             width: Mixins.scaleWidth(100),
             height: Mixins.scaleHeight(30),
             backgroundColor: Colors.LIGHT_BLUE,

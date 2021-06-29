@@ -4,6 +4,7 @@ export const LIGHT_BLUE = '#EAF2FE';
 export const LIME_GREEN = '#8EAB3D';
 export const BLACK = '#000000';
 export const BEIGE = '#EBF1DA';
+export const LIGHT_BEIGE = '#E5E5E5';
 
 // ACTIONS
 export const SUCCESS = '#3adb76';
