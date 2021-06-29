@@ -7,7 +7,7 @@ import {NavBar} from '_components';
 import {MarketplaceList} from './components';
 
 export const Marketplace = props => {
-  const [task, setTask] = useState('product');
+  const [choice, setChoice] = useState('product');
   return (
     <SafeAreaView
       style={{
@@ -31,7 +31,7 @@ export const Marketplace = props => {
           borderBottomWidth: 1,
           borderColor: Colors.GRAY_LIGHT,
         }}>
-        {task == 'product' ? (
+        {choice == 'product' ? (
           <View
             style={{
               marginHorizontal: Mixins.scaleWidth(60),
@@ -51,7 +51,7 @@ export const Marketplace = props => {
           </View>
         ) : (
           <TouchableOpacity
-            onPress={() => setTask('product')}
+            onPress={() => setChoice('product')}
             style={{
               marginHorizontal: Mixins.scaleWidth(60),
               top: Mixins.scaleHeight(4),
@@ -66,7 +66,7 @@ export const Marketplace = props => {
             borderColor: Colors.GRAY_LIGHT,
             borderWidth: Mixins.scaleWidth(1),
           }}></View>
-        {task == 'favorites' ? (
+        {choice == 'favorites' ? (
           <View
             style={{
               width: Mixins.scaleWidth(179),
@@ -87,7 +87,7 @@ export const Marketplace = props => {
           </View>
         ) : (
           <TouchableOpacity
-            onPress={() => setTask('favorites')}
+            onPress={() => setChoice('favorites')}
             style={{
               width: Mixins.scaleWidth(179),
               alignItems: 'center',

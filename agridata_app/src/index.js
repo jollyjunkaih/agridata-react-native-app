@@ -24,7 +24,7 @@ import {
   DataAnalytics,
   Registration,
 } from './scenes';
-import {Login} from '_scenes';
+import {Login, CreateCompany} from '_scenes';
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -138,7 +138,7 @@ const AppNavigator = props => {
 };*/
 
 const App = () => {
-  return <DataAnalytics></DataAnalytics>;
+  return <CreateCompany></CreateCompany>;
 };
 
 export default App;
