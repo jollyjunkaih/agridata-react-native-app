@@ -1,4 +1,4 @@
 import {Registration} from './registration';
 import {Login} from './login';
-
-export {Registration, Login};
+import {CreateCompany} from './create-company';
+export {Registration, Login, CreateCompany};

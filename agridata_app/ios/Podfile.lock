@@ -338,8 +338,13 @@ PODS:
     - React-Core
   - RNAWSCognito (5.0.3):
     - React-Core
+<<<<<<< HEAD
+  - RNBackgroundFetch (2.0.8):
+    - React
+=======
   - RNCAsyncStorage (1.15.5):
     - React-Core
+>>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
   - RNCMaskedView (0.2.5):
     - React-Core
   - RNGestureHandler (1.10.3):
@@ -446,8 +451,13 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
+<<<<<<< HEAD
+  - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+=======
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+>>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -543,10 +553,17 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeLocalization:
     :path: "../node_modules/react-native-localization"
+<<<<<<< HEAD
+  rn-fetch-blob:
+    :path: "../node_modules/rn-fetch-blob"
+  RNBackgroundFetch:
+    :path: "../node_modules/react-native-background-fetch"
+=======
   RNAWSCognito:
     :path: "../node_modules/amazon-cognito-identity-js"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+>>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
   RNCMaskedView:
     :path: "../node_modules/@react-native-masked-view/masked-view"
   RNGestureHandler:
@@ -573,7 +590,15 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
+<<<<<<< HEAD
   FBReactNativeSpec: add0bc71a893a63fa8be29613c0134d6852fcd57
+=======
+<<<<<<< HEAD
+  FBReactNativeSpec: 5ca81bdaacf6c1c50cd9597d3de0632a94817b89
+=======
+  FBReactNativeSpec: 4a99d8c3e76f12dff698a7dabbd88486ab3d7bb0
+>>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
+>>>>>>> c946c6ebcf4ae5cf5e0d36d32aa8209f31c490c9
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -614,8 +639,13 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   ReactNativeLocalization: 90a1181b7672309701dd7e5364fbf587319d41c6
+<<<<<<< HEAD
+  rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
+  RNBackgroundFetch: 71dd37d69a0f0a173b4aafd65e7169e7dd96946a
+=======
   RNAWSCognito: a89946398b7fe2a387ad6af326fb69d82203f6db
   RNCAsyncStorage: 56a3355a10b5d660c48c6e37325ac85ebfd09885
+>>>>>>> ac559ce48323773882ac376d2ed702a7106b1c07
   RNCMaskedView: b7a3b119b1d738734a9d761e4220c6850bb248a3
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNPermissions: c46788f4cd402287425983e04a4c9bb4356036eb
