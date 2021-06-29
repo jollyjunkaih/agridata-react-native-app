@@ -4,26 +4,27 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {ChatList} from './components';
 import {Searchbar} from './components';
 import {NavBar, BackButton} from '_components';
-import {listChatsContainingUser} from '../../../graphql/queries';
+import {getChatGroupsContainingRetailersByUpdatedAt} from '../../../graphql/queries';
 import {API} from 'aws-amplify';
 
 export const Inbox = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
+  const companyID = '8ccd83c6-c59c-4248-ab14-2b13adad55a9';
   const [chatRooms, setChatRooms] = useState(null);
   const fetchChats = async () => {
     try {
       console.log(userID);
-      const products = await API.graphql({
-        query: listChatsContainingUser,
+      const chats = await API.graphql({
+        query: getChatGroupsContainingRetailersByUpdatedAt,
         variables: {
-          filter: {userID: {eq: userID}},
-          sortDirection: 'DESC',
+          retailerID: companyID,
+          sortDirection: 'ASC',
         },
       });
-      console.log(products.data.listChatGroupUserss.items);
-      if (products.data) {
-        setChatRooms(products.data.listChatGroupUserss.items);
-      }
+      console.log(chats.data.getChatGroupsContainingRetailersByUpdatedAt.items);
+      setChatRooms(
+        chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+      );
     } catch (e) {
       console.log(e);
       console.log("there's a problem");
@@ -68,7 +69,7 @@ export const Inbox = props => {
           width: Mixins.scaleWidth(340),
           top: Mixins.scaleHeight(60),
         }}>
-        <ChatList data={[{}, {}]} navigation={props.navigation} />
+        <ChatList data={chatRooms} navigation={props.navigation} />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />

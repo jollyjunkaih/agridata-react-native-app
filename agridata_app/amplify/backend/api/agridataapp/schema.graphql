@@ -24,6 +24,7 @@ type RetailerCompany @model{
   goodsTask: [GoodsTask] @connection(keyName: "goodsTasksByRetailer", fields: ["id"])
   paymentTask: [PaymentTask] @connection(keyName: "paymentTasksByRetailer", fields: ["id"])
   invoice: [Invoice] @connection(keyName: "invoiceByRetailer", fields: ["id"])
+  chatGroups: [ChatGroup] @connection(keyName: "chatGroupbyRetailer", fields: ["id"])
 }
 
 type Favourites{
@@ -45,6 +46,7 @@ type SupplierCompany @model{
   goodsTask: [GoodsTask] @connection(keyName: "goodsTasksBySupplier", fields: ["id"])
   paymentTask: [PaymentTask] @connection(keyName: "paymentTasksBySupplier", fields: ["id"])
   invoice: [Invoice] @connection(keyName: "invoiceBySupplier", fields: ["id"])
+  chatGroups: [ChatGroup] @connection(keyName: "chatGroupbySupplier", fields: ["id"])
 }
 
 
@@ -64,26 +66,32 @@ type BankDetails {
   accountNumber: Int
 }
 
-type ChatGroup @model{
-  id:ID
-  name: String
+type ChatGroup @model
+@key(name: "chatGroupbyRetailer", fields: ["retailerID","updatedAt"], queryField: "getChatGroupsContainingRetailersByUpdatedAt")
+@key(name: "chatGroupbySupplier", fields: ["supplierID","updatedAt"], queryField: "getChatGroupsContainingSuppliersByUpdatedAt"){
+  id:ID! "CompanyX+CompanyY"
+  name: String!
+  retailerID: ID!
+  retailerCompany: RetailerCompany
+  supplierID: ID!
+  supplierCompany: SupplierCompany
   chatParticipants: [ChatGroupUsers] @connection(keyName:"gettingChatParticipantsByChatGroup", fields:["id"])
   messages: [Message]  @connection(keyName: "byChatGroup", fields: ["id"])
   updatedAt: String
-  mostRecentMessage: String
-  mostRecentMessageSender: String
+  mostRecentMessage: String!
+  mostRecentMessageSender: String!
 } 
 
 type Message @model 
-@key(name: "byChatGroup", fields: ["chatGroupID","createdAt"]){
-  id:ID
-  chatGroupID: ID 
-  type: String "Text, Product Inquiry, PO, Quotation"
-  content: String
-  senderID: ID
-  uniqueContentID: ID
-  sender: String
-  createdAt: String
+@key(name: "byChatGroup", fields: ["chatGroupID","createdAt"], queryField: "messagesInChatByDate"){
+  id:ID!
+  chatGroupID: ID!
+  type: String! "Text, Product Inquiry, PO, Quotation"
+  content: String!
+  senderID: ID!
+  uniqueContentID: ID!
+  sender: String!
+  createdAt: String!
 }
 
 type ChatGroupUsers @model
@@ -98,7 +106,7 @@ type ChatGroupUsers @model
 }
 
 type ProductListing @model
-@key(name: "listingsBySupplier", fields: ["supplierID","productName"]){
+@key(name: "listingsBySupplier", fields: ["supplierID","productName","lowPrice"], queryField:"productListingByNameStartingWithLowestPrice"){
   id:ID
   supplier: SupplierCompany @connection(fields:["supplierID"])
   supplierID: ID
@@ -135,8 +143,8 @@ type QuotedProducts{
 }
 
 type GoodsTask @model
-@key(name: "goodsTasksByRetailer", fields: ["retailerID","createdAt"])
-@key(name: "goodsTasksBySupplier", fields: ["supplierID","createdAt"]){
+@key(name: "goodsTasksByRetailer", fields: ["retailerID","createdAt"],queryField: "goodsTaskForRetailerByDate")
+@key(name: "goodsTasksBySupplier", fields: ["supplierID","createdAt"],queryField: "goodsTaskForSupplierByDate"){
   id: ID
   retailer: RetailerCompany @connection(fields:["retailerID"])
   retailerID: ID
@@ -148,8 +156,8 @@ type GoodsTask @model
 }
 
 type PaymentTask @model
-@key(name: "paymentTasksByRetailer", fields: ["retailerID","createdAt"])
-@key(name: "paymentTasksBySupplier", fields: ["supplierID","createdAt"]){
+@key(name: "paymentTasksByRetailer", fields: ["retailerID","createdAt"],queryField: "paymentsTaskForRetailerByDate")
+@key(name: "paymentTasksBySupplier", fields: ["supplierID","createdAt"],queryField: "paymentsTaskForSupplierByDate"){
   id: ID
   retailer: RetailerCompany @connection(fields:["retailerID"])
   retailerID: ID
@@ -165,8 +173,8 @@ type PaymentTask @model
 }
 
 type Invoice @model
-@key(name: "invoiceByRetailer", fields: ["retailerID","createdAt"])
-@key(name: "invoiceBySupplier", fields: ["supplierID","createdAt"]){
+@key(name: "invoiceByRetailer", fields: ["retailerID","createdAt"], queryField: "invoiceForRetailerByDate")
+@key(name: "invoiceBySupplier", fields: ["supplierID","createdAt"], queryField: "invoiceForSupplierByDate"){
   id: ID "PaymentTask + Invoice"
   retailer: RetailerCompany @connection(fields:["retailerID"])
   retailerID: ID

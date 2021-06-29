@@ -15,6 +15,212 @@ export const onCreateUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -25,6 +231,102 @@ export const onCreateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -43,12 +345,419 @@ export const onCreateUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -58,6 +767,102 @@ export const onCreateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -76,15 +881,474 @@ export const onCreateUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -109,6 +1373,212 @@ export const onUpdateUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -119,6 +1589,102 @@ export const onUpdateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -137,12 +1703,419 @@ export const onUpdateUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -152,6 +2125,102 @@ export const onUpdateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -170,15 +2239,474 @@ export const onUpdateUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -203,6 +2731,212 @@ export const onDeleteUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -213,6 +2947,102 @@ export const onDeleteUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -231,12 +3061,419 @@ export const onDeleteUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -246,6 +3483,102 @@ export const onDeleteUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -264,15 +3597,474 @@ export const onDeleteUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -295,7 +4087,224 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -319,8 +4328,199 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -330,7 +4530,193 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -338,6 +4724,95 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -345,12 +4820,447 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -371,7 +5281,224 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -395,8 +5522,199 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -406,7 +5724,193 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -414,6 +5918,95 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -421,12 +6014,447 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -447,7 +6475,224 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -471,8 +6716,199 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -482,7 +6918,193 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -490,6 +7112,95 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -497,12 +7208,447 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -523,7 +7669,224 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -547,6 +7910,107 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -563,8 +8027,199 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -574,7 +8229,193 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -582,6 +8423,95 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -589,12 +8519,447 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -615,7 +8980,224 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -639,6 +9221,107 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -655,8 +9338,199 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -666,7 +9540,193 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -674,6 +9734,95 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -681,12 +9830,447 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -707,7 +10291,224 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -731,6 +10532,107 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -747,8 +10649,199 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -758,7 +10851,193 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -766,6 +11045,95 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -773,12 +11141,447 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+          }
           createdAt
           paid
           receivedBy
           updatedAt
+        }
+        nextToken
+      }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          retailerCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            registrationNumber
+            favouriteStores {
+              id
+              name
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          supplierID
+          supplierCompany {
+            id
+            name
+            employees {
+              items {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            type
+            address {
+              street
+              town
+              postcode
+            }
+            rating {
+              numberOfRatings
+              CurrentRating
+            }
+            bankAccount {
+              bankName
+              accountNumber
+            }
+            registrationNumber
+            listings {
+              items {
+                id
+                supplierID
+                productName
+                variety
+                quantityAvailable
+                lowPrice
+                highPrice
+                minimumQuantity
+                productPicture
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            goodsTask {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                deliveryDate
+                updatedAt
+              }
+              nextToken
+            }
+            paymentTask {
+              items {
+                id
+                retailerID
+                supplierID
+                paid
+                amount
+                payBefore
+                receipt
+                createdAt
+                invoiceID
+                updatedAt
+              }
+              nextToken
+            }
+            invoice {
+              items {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              nextToken
+            }
+            chatGroups {
+              items {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            items {
+              id
+              userID
+              chatGroupID
+              lastOnline
+              chatGroup {
+                id
+                name
+                retailerID
+                supplierID
+                updatedAt
+                mostRecentMessage
+                mostRecentMessageSender
+                createdAt
+              }
+              user {
+                id
+                name
+                role
+                retailerCompanyID
+                supplierCompanyID
+                contactNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          messages {
+            items {
+              id
+              chatGroupID
+              type
+              content
+              senderID
+              uniqueContentID
+              sender
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
         }
         nextToken
       }
@@ -792,12 +11595,1347 @@ export const onCreateChatGroup = /* GraphQL */ `
     onCreateChatGroup {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -819,6 +12957,7 @@ export const onCreateChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -828,12 +12967,1347 @@ export const onUpdateChatGroup = /* GraphQL */ `
     onUpdateChatGroup {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -855,6 +14329,7 @@ export const onUpdateChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -864,12 +14339,1347 @@ export const onDeleteChatGroup = /* GraphQL */ `
     onDeleteChatGroup {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        type
+        address {
+          street
+          town
+          postcode
+        }
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
+          nextToken
+        }
+        paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
+          nextToken
+        }
+        invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -891,6 +15701,7 @@ export const onDeleteChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -950,14 +15761,507 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
+          registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            uniqueContentID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -967,22 +16271,485 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         supplierCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1004,14 +16771,507 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
+          registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            uniqueContentID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -1021,22 +17281,485 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         supplierCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1058,14 +17781,507 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
+          registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            uniqueContentID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -1075,22 +18291,485 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            chatGroup {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            user {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         supplierCompany {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1110,6 +18789,102 @@ export const onCreateProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1128,15 +18903,474 @@ export const onCreateProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1163,6 +19397,102 @@ export const onUpdateProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1181,15 +19511,474 @@ export const onUpdateProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1216,6 +20005,102 @@ export const onDeleteProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1234,15 +20119,474 @@ export const onDeleteProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1350,6 +20694,102 @@ export const onCreateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1368,12 +20808,419 @@ export const onCreateGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1384,6 +21231,102 @@ export const onCreateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1402,15 +21345,474 @@ export const onCreateGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1436,6 +21838,102 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1454,12 +21952,419 @@ export const onUpdateGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1470,6 +22375,102 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1488,15 +22489,474 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1522,6 +22982,102 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1540,12 +23096,419 @@ export const onDeleteGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1556,6 +23519,102 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1574,15 +23633,474 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1608,6 +24126,102 @@ export const onCreatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1626,12 +24240,419 @@ export const onCreatePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1642,6 +24663,102 @@ export const onCreatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1660,15 +24777,474 @@ export const onCreatePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1686,8 +25262,193 @@ export const onCreatePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1695,8 +25456,217 @@ export const onCreatePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1723,6 +25693,102 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1741,12 +25807,419 @@ export const onUpdatePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1757,6 +26230,102 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1775,15 +26344,474 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1801,8 +26829,193 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1810,8 +27023,217 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1838,6 +27260,102 @@ export const onDeletePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1856,12 +27374,419 @@ export const onDeletePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1872,6 +27797,102 @@ export const onDeletePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1890,15 +27911,474 @@ export const onDeletePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1916,8 +28396,193 @@ export const onDeletePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1925,8 +28590,217 @@ export const onDeletePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            items {
+              id
+              name
+              role
+              retailerCompanyID
+              supplierCompanyID
+              chatGroup {
+                nextToken
+              }
+              contactNumber
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           type
+          address {
+            street
+            town
+            postcode
+          }
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            items {
+              id
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              productName
+              variety
+              quantityAvailable
+              lowPrice
+              highPrice
+              minimumQuantity
+              productPicture
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          goodsTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              deliveryDate
+              updatedAt
+            }
+            nextToken
+          }
+          paymentTask {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              paid
+              amount
+              payBefore
+              receipt
+              createdAt
+              invoiceID
+              invoice {
+                id
+                retailerID
+                supplierID
+                createdAt
+                paid
+                receivedBy
+                updatedAt
+              }
+              updatedAt
+            }
+            nextToken
+          }
+          invoice {
+            items {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            nextToken
+          }
+          chatGroups {
+            items {
+              id
+              name
+              retailerID
+              retailerCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              supplierCompany {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              chatParticipants {
+                nextToken
+              }
+              messages {
+                nextToken
+              }
+              updatedAt
+              mostRecentMessage
+              mostRecentMessageSender
+              createdAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1953,6 +28827,102 @@ export const onCreateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1971,12 +28941,419 @@ export const onCreateInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -1987,6 +29364,102 @@ export const onCreateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2005,15 +29478,474 @@ export const onCreateInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -2040,6 +29972,102 @@ export const onUpdateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2058,12 +30086,419 @@ export const onUpdateInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -2074,6 +30509,102 @@ export const onUpdateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2092,15 +30623,474 @@ export const onUpdateInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -2127,6 +31117,102 @@ export const onDeleteInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2145,12 +31231,419 @@ export const onDeleteInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
@@ -2161,6 +31654,102 @@ export const onDeleteInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            chatGroup {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            contactNumber
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2179,15 +31768,474 @@ export const onDeleteInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            invoice {
+              id
+              retailer {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              retailerID
+              supplier {
+                id
+                name
+                type
+                registrationNumber
+                createdAt
+                updatedAt
+              }
+              supplierID
+              items {
+                name
+                quantity
+                price
+              }
+              createdAt
+              paid
+              receivedBy
+              updatedAt
+            }
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailer {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            retailerID
+            supplier {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            items {
+              name
+              quantity
+              price
+            }
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
+          nextToken
+        }
+        chatGroups {
+          items {
+            id
+            name
+            retailerID
+            retailerCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              registrationNumber
+              favouriteStores {
+                id
+                name
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            supplierID
+            supplierCompany {
+              id
+              name
+              employees {
+                nextToken
+              }
+              type
+              address {
+                street
+                town
+                postcode
+              }
+              rating {
+                numberOfRatings
+                CurrentRating
+              }
+              bankAccount {
+                bankName
+                accountNumber
+              }
+              registrationNumber
+              listings {
+                nextToken
+              }
+              goodsTask {
+                nextToken
+              }
+              paymentTask {
+                nextToken
+              }
+              invoice {
+                nextToken
+              }
+              chatGroups {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            chatParticipants {
+              items {
+                id
+                userID
+                chatGroupID
+                lastOnline
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            messages {
+              items {
+                id
+                chatGroupID
+                type
+                content
+                senderID
+                uniqueContentID
+                sender
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         createdAt
