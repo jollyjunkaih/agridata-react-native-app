@@ -45,6 +45,25 @@ export const listMessagesInChat = /* GraphQL */ `
   }
 `;
 
+//list users in chat room
+export const listUsersInChat = /* GraphQL */ `
+  query ListChatGroupUserss(
+    $filter: ModelChatGroupUsersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listChatGroupUserss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        user {
+          id
+          name
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {

@@ -127,7 +127,7 @@ export const ChatRoom = props => {
             top: Mixins.scaleHeight(30),
             right: Mixins.scaleWidth(15),
           }}>
-          <ChatInfo />
+          <ChatInfo chatGroupID={itemID} />
         </View>
 
         <View

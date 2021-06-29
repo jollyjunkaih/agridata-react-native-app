@@ -13,7 +13,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {API} from 'aws-amplify';
-import {createMessage} from '../../../../graphql/mutations';
+import {
+  createMessage,
+  deleteChatGroupUsers,
+} from '../../../../graphql/mutations';
+import {listUsersInChat} from '../../../../graphql/queries';
 import dayjs from 'dayjs';
 
 const ChatBubble = props => {
@@ -96,7 +100,7 @@ export const ChatBubbleList = props => {
 };
 
 export const MessageInput = props => {
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState('');
   const createNewMessage = async () => {
     try {
       const newMessage = await API.graphql({
@@ -130,6 +134,7 @@ export const MessageInput = props => {
           underlineColorAndroid={'transparent'}
           multiline={true}
           onChangeText={text => setMessage(text)}
+          value={message}
           style={{
             width: Mixins.scaleWidth(260),
             height: Mixins.scaleHeight(40),
@@ -140,11 +145,13 @@ export const MessageInput = props => {
       </View>
       <TouchableOpacity
         onPress={async () => {
-          if (message) {
+          if (message.length > 0) {
             const newMessage = await createNewMessage();
             const messages = props.messages;
+            messages.push(newMessage.data.createMessage);
             console.log(messages);
-            console.log(newMessage.data.createNewMessage);
+            props.setMessages(messages);
+            setMessage('');
           } else {
           }
         }}
@@ -170,10 +177,31 @@ export const MessageInput = props => {
 
 export const ChatInfo = props => {
   const [chatInfoModal, setChatInfoModal] = useState(false);
-  const [addPersonModal, setAddPersonModal] = useState(false);
-  const [removePersonModal, setRemovePersonModal] = useState(false);
+  const [chatParticipants, setChatParticipants] = useState(null);
+  const fetchChatParticipants = async () => {
+    try {
+      console.log(props.chatGroupID);
+      const products = await API.graphql({
+        query: listUsersInChat,
+        variables: {
+          filter: {chatGroupID: {eq: props.chatGroupID}},
+        },
+      });
+      console.log(products.data.listChatGroupUserss.items);
+      if (products.data) {
+        setChatParticipants(products.data.listChatGroupUserss.items);
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("there's a problem");
+    }
+  };
   return (
-    <TouchableOpacity onPress={() => setChatInfoModal(true)}>
+    <TouchableOpacity
+      onPress={async () => {
+        await fetchChatParticipants();
+        setChatInfoModal(true);
+      }}>
       <Icon
         color={Colors.GRAY_DARK}
         name="information-circle-outline"
@@ -183,12 +211,314 @@ export const ChatInfo = props => {
         onBackdropPress={() => setChatInfoModal(false)}>
         <ChatInfoModal
           setChatInfoModal={setChatInfoModal}
-          setAddPersonModal={setAddPersonModal}
-          setRemovePersonModal={setRemovePersonModal}
-          addPersonModal={addPersonModal}
+          chatParticipants={chatParticipants}
+          setChatParticipants={setChatParticipants}
+          chatGroupID={props.chatGroupID}
         />
       </Modal>
     </TouchableOpacity>
+  );
+};
+
+const ChatInfoModal = props => {
+  const [addPersonModal, setAddPersonModal] = useState(false);
+
+  return (
+    <View
+      style={{
+        left: Mixins.scaleWidth(100),
+        width: Mixins.scaleWidth(250),
+        height: Mixins.scaleHeight(650),
+        backgroundColor: Colors.PALE_GREEN,
+        borderRadius: 20,
+        top: Mixins.scaleHeight(0),
+      }}>
+      <View style={{top: Mixins.scaleHeight(20), alignItems: 'center'}}>
+        <Image
+          source={require('_assets/images/agridata.png')}
+          style={{width: Mixins.scaleWidth(130), resizeMode: 'contain'}}
+        />
+      </View>
+
+      <Text
+        style={[
+          Typography.normal,
+          {alignSelf: 'center', top: Mixins.scaleHeight(0)},
+        ]}>
+        GINGER TEAM
+      </Text>
+
+      <View
+        style={{
+          borderBottomWidth: 1,
+          borderBottomColor: Colors.GRAY_MEDIUM,
+          top: Mixins.scaleHeight(10),
+        }}></View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {top: Mixins.scaleHeight(30), left: Mixins.scaleWidth(20)},
+        ]}>
+        Participants (No)
+      </Text>
+      <View
+        style={{
+          alignSelf: 'center',
+          top: Mixins.scaleHeight(30),
+        }}>
+        <View
+          style={{
+            maxHeight: Mixins.scaleHeight(180),
+            width: Mixins.scaleWidth(240),
+          }}>
+          <ChatParticipantList
+            data={props.chatParticipants}
+            chatGroupID={props.chatGroupID}
+            setChatParticipants={props.setChatParticipants}
+            chatParticipants={props.chatParticipants}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() => [
+            setAddPersonModal(true),
+            console.log('addperson: ', addPersonModal),
+          ]}
+          style={{
+            backgroundColor: Colors.GRAY_MEDIUM,
+            height: Mixins.scaleHeight(30),
+            width: Mixins.scaleWidth(160),
+            top: Mixins.scaleHeight(10),
+            flexDirection: 'row',
+            borderRadius: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 2,
+            left: Mixins.scaleWidth(50),
+          }}>
+          <Icon name="add" size={Mixins.scaleWidth(25)} />
+          <Text
+            style={[
+              Typography.normal,
+              {
+                marginRight: Mixins.scaleWidth(10),
+                top: Mixins.scaleHeight(1),
+                color: Colors.LIME_GREEN,
+                left: Mixins.scaleWidth(10),
+              },
+            ]}>
+            Add Participants
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          bottom: Mixins.scaleHeight(140),
+          width: Mixins.scaleWidth(200),
+          position: 'absolute',
+        }}>
+        <Text
+          style={[
+            Typography.placeholder,
+            {top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(20)},
+          ]}>
+          Attachments
+        </Text>
+        <View
+          style={{
+            top: Mixins.scaleHeight(90),
+            left: Mixins.scaleWidth(-15),
+            maxHeight: Mixins.scaleHeight(120),
+          }}>
+          <InvoiceList></InvoiceList>
+        </View>
+      </View>
+
+      <Modal
+        isVisible={addPersonModal}
+        onBackdropPress={() => setAddPersonModal(false)}>
+        <AddPersonModal
+          setAddPersonModal={setAddPersonModal}
+          addPersonModal={addPersonModal}
+        />
+      </Modal>
+    </View>
+  );
+};
+
+const ChatParticipantList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: Mixins.scaleWidth(250),
+          marginVertical: Mixins.scaleHeight(1),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        keyExtractor={item => item.user.id}
+        data={props.data}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return (
+            <ChatParticipantCard
+              setChatParticipants={props.setChatParticipants}
+              chatParticipants={props.chatParticipants}
+              user={item.user.name}
+              userID={item.user.id}
+              chatGroupID={props.chatGroupID}
+            />
+          );
+        }}
+      />
+    </View>
+  );
+};
+
+const ChatParticipantCard = props => {
+  const [removePersonModal, setRemovePersonModal] = useState(false);
+  return (
+    <View
+      style={{
+        alignSelf: 'center',
+        height: Mixins.scaleHeight(30),
+        width: Mixins.scaleWidth(240),
+        borderRadius: 30,
+      }}>
+      <View
+        style={{
+          left: Mixins.scaleWidth(20),
+          height: Mixins.scaleHeight(40),
+          justifyContent: 'center',
+        }}>
+        <Text style={Typography.normal}>{props.user}</Text>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => setRemovePersonModal(true)}
+        style={{
+          height: Mixins.scaleHeight(40),
+          position: 'absolute',
+          right: Mixins.scaleWidth(20),
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Icon
+          name="person-remove-outline"
+          size={Mixins.scaleWidth(20)}
+          color="black"
+        />
+      </TouchableOpacity>
+      <Modal
+        isVisible={removePersonModal}
+        onBackdropPress={() => setRemovePersonModal(false)}>
+        <RemovePersonModal
+          setRemovePersonModal={setRemovePersonModal}
+          setChatParticipants={props.setChatParticipants}
+          chatParticipants={props.chatParticipants}
+          name={props.user}
+          id={props.id}
+          chatGroupID={props.chatGroupID}
+        />
+      </Modal>
+    </View>
+  );
+};
+
+const RemovePersonModal = props => {
+  const removePerson = async () => {
+    try {
+      const uniqueID = 'chat' + props.chatGroupID + props.id;
+      const removedPerson = await API.graphql({
+        query: deleteChatGroupUsers,
+        variables: {input: {id: uniqueID}},
+      });
+      chatParticipants = props.chatParticipants;
+      for (let [i, chatParticipants] of chatParticipants.entries()) {
+        if (chatParticipants.id == props.id) {
+          chatParticipants.splice(i, 1);
+        }
+      }
+      props.setChatParticipants(chatParticipants);
+      props.setRemovePersonModal(false);
+    } catch {
+      e => console.log(e);
+    }
+  };
+  return (
+    <View
+      style={{
+        backgroundColor: Colors.GRAY_MEDIUM,
+        borderRadius: 20,
+        height: Mixins.scaleHeight(190),
+        width: Mixins.scaleWidth(300),
+        left: Mixins.scaleWidth(10),
+      }}>
+      <View style={{alignSelf: 'center', top: Mixins.scaleHeight(10)}}>
+        <Icon
+          name="alert-circle-outline"
+          size={Mixins.scaleWidth(70)}
+          color={Colors.ALERT}
+        />
+      </View>
+      <Text
+        style={[
+          Typography.normal,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Are you sure you want to remove {props.name}?
+      </Text>
+      <TouchableOpacity
+        onPress={() => removePerson}
+        style={{
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(80),
+          alignSelf: 'center',
+          borderRadius: 20,
+          height: Mixins.scaleHeight(25),
+          justifyContent: 'center',
+          top: Mixins.scaleHeight(40),
+        }}>
+        <Text style={[Typography.normal, {alignSelf: 'center'}]}>Confirm</Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-8),
+          top: Mixins.scaleHeight(-8),
+        }}>
+        <CloseButton setModal={props.setRemovePersonModal} />
+      </View>
+    </View>
+  );
+};
+
+const AddPersonModal = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(300),
+        width: Mixins.scaleWidth(300),
+        backgroundColor: Colors.GRAY_DARK,
+        left: Mixins.scaleWidth(10),
+        borderRadius: 20,
+      }}>
+      <Text
+        style={[
+          Typography.large,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Who would you like to add?
+      </Text>
+      <View style={{top: Mixins.scaleHeight(50)}}></View>
+    </View>
   );
 };
 
@@ -382,116 +712,6 @@ export const OrderQuotation = props => {
         ]}>
         09:45
       </Text>
-    </View>
-  );
-};
-
-const ChatInfoModal = props => {
-  return (
-    <View
-      style={{
-        left: Mixins.scaleWidth(100),
-        width: Mixins.scaleWidth(250),
-        height: Mixins.scaleHeight(650),
-        backgroundColor: Colors.PALE_GREEN,
-        borderRadius: 20,
-        top: Mixins.scaleHeight(0),
-      }}>
-      <View style={{top: Mixins.scaleHeight(60), alignItems: 'center'}}>
-        <Image source={require('_assets/images/agridata.png')} />
-      </View>
-      <View>
-        <Text
-          style={[
-            Typography.normal,
-            {alignSelf: 'center', top: Mixins.scaleHeight(50)},
-          ]}>
-          GINGER TEAM
-        </Text>
-      </View>
-      <View
-        style={{
-          borderBottomWidth: 1,
-          borderBottomColor: Colors.GRAY_MEDIUM,
-          top: Mixins.scaleHeight(70),
-        }}></View>
-      <View>
-        <Text
-          style={[
-            Typography.placeholder,
-            {top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(20)},
-          ]}>
-          Participants (No)
-        </Text>
-      </View>
-      <View
-        style={{
-          height: Mixins.scaleHeight(290),
-          width: Mixins.scaleWidth(300),
-          alignSelf: 'center',
-          top: Mixins.scaleHeight(110),
-        }}>
-        <ChatParticipantList
-          setRemovePersonModal={props.setRemovePersonModal}
-        />
-      </View>
-
-      <View
-        style={{
-          height: Mixins.scaleHeight(30),
-          width: Mixins.scaleWidth(140),
-          alignSelf: 'center',
-          top: Mixins.scaleHeight(-205),
-          flexDirection: 'row',
-          borderRadius: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-          elevation: 2,
-          left: Mixins.scaleWidth(-30),
-        }}>
-        <TouchableOpacity
-          onPress={() => [
-            props.setAddPersonModal(true),
-            console.log('addperson: ', props.addPersonModal),
-          ]}
-          style={{
-            marginRight: Mixins.scaleWidth(5),
-            backgroundColor: Colors.GRAY_MEDIUM,
-            borderRadius: 30,
-          }}>
-          <Icon name="add" size={Mixins.scaleWidth(25)} />
-        </TouchableOpacity>
-        <Text
-          style={[
-            Typography.normal,
-            {
-              marginRight: Mixins.scaleWidth(10),
-              top: Mixins.scaleHeight(1),
-              color: Colors.LIME_GREEN,
-              left: Mixins.scaleWidth(10),
-            },
-          ]}>
-          Add Participants
-        </Text>
-      </View>
-      <View>
-        <View>
-          <Text
-            style={[
-              Typography.placeholder,
-              {top: Mixins.scaleHeight(-60), left: Mixins.scaleWidth(20)},
-            ]}>
-            Attachments
-          </Text>
-          <View
-            style={{
-              top: Mixins.scaleHeight(-40),
-              left: Mixins.scaleWidth(-15),
-            }}>
-            <InvoiceList></InvoiceList>
-          </View>
-        </View>
-      </View>
     </View>
   );
 };
@@ -692,36 +912,6 @@ const InvoiceList = props => {
   );
 };
 
-const ChatParticipantList = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          alignSelf: 'center',
-          width: Mixins.scaleWidth(250),
-          marginVertical: Mixins.scaleHeight(1),
-        }}></View>
-    );
-  };
-  return (
-    <View>
-      <FlatList
-        numColumns={1}
-        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
-        ItemSeparatorComponent={Seperator}
-        renderItem={({item}) => {
-          return (
-            <ChatParticipantCard
-              name={item.name}
-              setRemovePersonModal={props.setRemovePersonModal}
-            />
-          );
-        }}
-      />
-    </View>
-  );
-};
 const InvoiceCard = props => {
   return (
     <TouchableOpacity
@@ -742,113 +932,5 @@ const InvoiceCard = props => {
         Invoice
       </Text>
     </TouchableOpacity>
-  );
-};
-
-const ChatParticipantCard = props => {
-  return (
-    <View
-      style={{
-        alignSelf: 'center',
-        height: Mixins.scaleHeight(30),
-        width: Mixins.scaleWidth(240),
-        borderRadius: 30,
-      }}>
-      <View
-        style={{
-          left: Mixins.scaleWidth(20),
-          height: Mixins.scaleHeight(40),
-          justifyContent: 'center',
-        }}>
-        <Text style={Typography.normal}>Name</Text>
-      </View>
-
-      <TouchableOpacity
-        onPress={() => props.setRemovePersonModal(true)}
-        style={{
-          height: Mixins.scaleHeight(40),
-          position: 'absolute',
-          right: Mixins.scaleWidth(20),
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Icon
-          name="person-remove-outline"
-          size={Mixins.scaleWidth(20)}
-          color="black"
-        />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const RemovePersonModal = props => {
-  return (
-    <View
-      style={{
-        backgroundColor: Colors.GRAY_MEDIUM,
-        borderRadius: 20,
-        height: Mixins.scaleHeight(160),
-        width: Mixins.scaleWidth(300),
-        left: Mixins.scaleWidth(10),
-      }}>
-      <View style={{alignSelf: 'center', top: Mixins.scaleHeight(10)}}>
-        <Icon
-          name="alert-circle-outline"
-          size={Mixins.scaleWidth(70)}
-          color={Colors.ALERT}
-        />
-      </View>
-      <Text
-        style={[
-          Typography.normal,
-          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
-        ]}>
-        Are you sure you want to remove XXX?
-      </Text>
-      <TouchableOpacity
-        onPress={() => props.setRemovePersonModal(false)}
-        style={{
-          backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(80),
-          alignSelf: 'center',
-          borderRadius: 20,
-          height: Mixins.scaleHeight(25),
-          justifyContent: 'center',
-          top: Mixins.scaleHeight(40),
-        }}>
-        <Text style={[Typography.normal, {alignSelf: 'center'}]}>Confirm</Text>
-      </TouchableOpacity>
-      <View
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(-8),
-          top: Mixins.scaleHeight(-8),
-        }}>
-        <CloseButton setModal={props.setRemovePersonModal} />
-      </View>
-    </View>
-  );
-};
-
-const AddPersonModal = props => {
-  return (
-    <View
-      style={{
-        height: Mixins.scaleHeight(300),
-        width: Mixins.scaleWidth(300),
-        backgroundColor: Colors.GRAY_DARK,
-        left: Mixins.scaleWidth(10),
-        borderRadius: 20,
-      }}>
-      <Text
-        style={[
-          Typography.large,
-          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
-        ]}>
-        Who would you like to add?
-      </Text>
-      <View style={{top: Mixins.scaleHeight(50)}}></View>
-    </View>
   );
 };

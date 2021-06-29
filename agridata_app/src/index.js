@@ -309,8 +309,4 @@ const App = () => {
   );
 };*/
 
-const App = () => {
-  return <DataAnalytics></DataAnalytics>;
-};
-
 export default App;
