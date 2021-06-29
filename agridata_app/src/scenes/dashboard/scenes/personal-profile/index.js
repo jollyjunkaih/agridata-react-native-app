@@ -1,10 +1,17 @@
 import React from 'react';
-import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export const CompanyProfile = props => {
+export const PersonalProfile = props => {
   return (
     <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
       <View
@@ -19,7 +26,7 @@ export const CompanyProfile = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <View>
-          <Text style={[Typography.header]}>Company Profile</Text>
+          <Text style={[Typography.header]}>Personal Profile</Text>
         </View>
         <TouchableOpacity
           style={{
@@ -29,7 +36,7 @@ export const CompanyProfile = props => {
           <Icon
             name="create-outline"
             size={Mixins.scaleWidth(25)}
-            onPress={() => props.navigation.navigate('editcompany')}
+            onPress={() => props.navigation.navigate('editpersonal')}
           />
         </TouchableOpacity>
       </View>
@@ -50,7 +57,7 @@ export const CompanyProfile = props => {
           }}
         />
         <Text style={[Typography.header, {top: Mixins.scaleHeight(10)}]}>
-          City Grocer
+          NAME
         </Text>
       </View>
       <View
@@ -67,11 +74,9 @@ export const CompanyProfile = props => {
             left: Mixins.scaleWidth(20),
             width: Mixins.scaleWidth(300),
           }}>
-          <Text style={[Typography.placeholderSmall]}>
-            Company Registration No.
-          </Text>
+          <Text style={[Typography.placeholderSmall]}>Company Role</Text>
           <View style={{top: Mixins.scaleHeight(5)}}>
-            <Text style={[Typography.normal]}>1010100101010101R</Text>
+            <Text style={[Typography.normal]}>General Manager</Text>
           </View>
         </View>
         <View
@@ -80,16 +85,25 @@ export const CompanyProfile = props => {
             left: Mixins.scaleWidth(20),
             width: Mixins.scaleWidth(300),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Company Address </Text>
+          <Text style={[Typography.placeholderSmall]}>Address </Text>
           <View style={{top: Mixins.scaleHeight(5)}}>
-            <Text style={[Typography.normal]}>
-              T1 Bundusan, Jalan Bundusan, Penampang, Sabah
-            </Text>
+            <Text style={[Typography.normal]}>STREET, CITY, STATE</Text>
           </View>
         </View>
         <View
           style={{
             top: Mixins.scaleHeight(55),
+            left: Mixins.scaleWidth(20),
+            width: Mixins.scaleWidth(300),
+          }}>
+          <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+          <View style={{top: Mixins.scaleHeight(5)}}>
+            <Text style={[Typography.normal]}>email@gmail.com</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            top: Mixins.scaleHeight(70),
             left: Mixins.scaleWidth(20),
             width: Mixins.scaleWidth(300),
           }}>
@@ -100,13 +114,13 @@ export const CompanyProfile = props => {
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(70),
+            top: Mixins.scaleHeight(85),
             left: Mixins.scaleWidth(20),
             width: Mixins.scaleWidth(300),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+          <Text style={[Typography.placeholderSmall]}>Password</Text>
           <View style={{top: Mixins.scaleHeight(5)}}>
-            <Text style={[Typography.normal]}>citygrocerkk@gmail.com</Text>
+            <Text style={[Typography.normal]}>•••••••••••••••••</Text>
           </View>
         </View>
       </View>

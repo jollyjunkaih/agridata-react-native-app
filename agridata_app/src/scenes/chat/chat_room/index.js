@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   AppState,
   SliderComponent,
+  Platform,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -37,24 +38,30 @@ export const ChatRoom = props => {
   let a = 0;
   useEffect(() => {
     console.log(appState);
-    if (appState == 'inactive') {
-      BackgroundTimer.runBackgroundTimer(() => {
-        console.log('3 seconds');
-      }, 3000);
-      setTimeout(() => {
-        BackgroundTimer.stopBackgroundTimer();
-        console.log('stop');
-      }, 4000);
-    } else if (a == 0) {
-      if (appState == 'background') {
+    if (Platform.OS === 'ios') {
+      if (appState == 'inactive') {
         BackgroundTimer.runBackgroundTimer(() => {
-          if (a == 0) {
-            console.log('3seconds');
-          }
+          console.log('3 seconds');
         }, 3000);
-        if (a == 1) {
+        setTimeout(() => {
           BackgroundTimer.stopBackgroundTimer();
           console.log('stop');
+        }, 4000);
+      }
+    }
+    if (Platform.OS === 'android') {
+      if (a == 0) {
+        if (appState == 'background') {
+          BackgroundTimer.runBackgroundTimer(() => {
+            if (a == 0) {
+              console.log('3seconds');
+            }
+            a = 1;
+          }, 3000);
+          if (a == 1) {
+            BackgroundTimer.stopBackgroundTimer();
+            console.log('stop');
+          }
         }
       }
     }

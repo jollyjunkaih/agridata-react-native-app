@@ -17,8 +17,11 @@ import {
   SupplierTasks,
   RetailerTasks,
   CompanyProfile,
-  EditProfile,
+  EditCompany,
   HumanResource,
+  PersonalProfile,
+  EditPersonal,
+  DataAnalytics,
 } from './scenes';
 
 const AuthenticationStack = createStackNavigator();
@@ -83,11 +86,17 @@ const AppNavigator = props => {
         <AppStack.Screen name="companyprofile">
           {screenProps => <CompanyProfile {...screenProps} />}
         </AppStack.Screen>
-        <AppStack.Screen name="editprofile">
-          {screenProps => <EditProfile {...screenProps} />}
+        <AppStack.Screen name="editcompany">
+          {screenProps => <EditCompany {...screenProps} />}
         </AppStack.Screen>
         <AppStack.Screen name="humanresource">
           {screenProps => <HumanResource {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="personalprofile">
+          {screenProps => <PersonalProfile {...screenProps} />}
+        </AppStack.Screen>
+        <AppStack.Screen name="editpersonal">
+          {screenProps => <EditPersonal {...screenProps} />}
         </AppStack.Screen>
       </AppStack.Navigator>
     );
@@ -118,16 +127,16 @@ const AppNavigator = props => {
   }
 };
 
-const App = () => {
+/*const App = () => {
   return (
     <NavigationContainer>
       <AppNavigator />
     </NavigationContainer>
   );
-};
-
-/*const App = () => {
-  return <CompanyProfile></CompanyProfile>;
 };*/
+
+const App = () => {
+  return <DataAnalytics></DataAnalytics>;
+};
 
 export default App;

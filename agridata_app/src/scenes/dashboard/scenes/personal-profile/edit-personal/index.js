@@ -15,10 +15,10 @@ import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {SuccesfulChangesModal} from '_components/modals';
 import Modal from 'react-native-modal';
+import {SuccesfulChangesModal} from '_components/modals';
 
-export const EditCompany = props => {
+export const EditPersonal = props => {
   const [imageSource, setImageSource] = useState(null);
   const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
 
@@ -50,7 +50,7 @@ export const EditCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(10) : -180
+        Platform.OS === 'ios' ? Mixins.scaleHeight(25) : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -66,7 +66,7 @@ export const EditCompany = props => {
             <BackButton navigation={props.navigation} />
           </View>
           <View>
-            <Text style={[Typography.header]}>Edit Company Profile</Text>
+            <Text style={[Typography.header]}>Edit Personal Profile</Text>
           </View>
         </View>
         <View
@@ -74,6 +74,7 @@ export const EditCompany = props => {
             top: Mixins.scaleHeight(20),
             alignItems: 'center',
             justifyContent: 'center',
+
             width: Mixins.scaleWidth(200),
             height: Mixins.scaleHeight(150),
           }}>
@@ -85,7 +86,10 @@ export const EditCompany = props => {
                   selectImage();
                 }}>
                 <Text
-                  style={{textAlign: 'center', top: Mixins.scaleHeight(10)}}>
+                  style={[
+                    Typography.normal,
+                    {textAlign: 'center', top: Mixins.scaleHeight(10)},
+                  ]}>
                   Change Image
                 </Text>
               </TouchableOpacity>
@@ -109,7 +113,7 @@ export const EditCompany = props => {
             top: Mixins.scaleHeight(60),
             backgroundColor: Colors.GRAY_MEDIUM,
             width: Mixins.scaleWidth(300),
-            height: Mixins.scaleHeight(250),
+            height: Mixins.scaleHeight(280),
             borderRadius: 10,
           }}>
           <View
@@ -117,32 +121,25 @@ export const EditCompany = props => {
               top: Mixins.scaleHeight(20),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Company Name</Text>
-            <TextInput
+            <View
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
+                top: Mixins.scaleHeight(5),
+              }}>
+              <Text style={[Typography.normal]}>Cory Beck</Text>
+            </View>
           </View>
           <View
             style={{
               top: Mixins.scaleHeight(35),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
             }}>
-            <Text style={[Typography.placeholderSmall]}>
-              Company Registration No.
-            </Text>
-            <TextInput
-              style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
+            <Text style={[Typography.placeholderSmall]}>Company Position</Text>
+            <View style={{top: Mixins.scaleHeight(5)}}>
+              <Text style={[Typography.normal]}>General Manager</Text>
+            </View>
           </View>
           <View
             style={{
@@ -153,10 +150,12 @@ export const EditCompany = props => {
             }}>
             <Text style={[Typography.placeholderSmall]}>Company Address </Text>
             <TextInput
+              placeholder="STREET, CITY, STATE"
               style={{
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(1),
                 width: Mixins.scaleWidth(260),
+                top: Mixins.scaleHeight(5),
               }}></TextInput>
           </View>
           <View
@@ -168,10 +167,12 @@ export const EditCompany = props => {
             }}>
             <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
             <TextInput
+              placeholder="email@gmail.com"
               style={{
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(1),
                 width: Mixins.scaleWidth(260),
+                top: Mixins.scaleHeight(5),
               }}></TextInput>
           </View>
           <View
@@ -183,18 +184,40 @@ export const EditCompany = props => {
             }}>
             <Text style={[Typography.placeholderSmall]}>Email Address </Text>
             <TextInput
+              placeholder="+60 11 6569 1999 "
               style={{
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(1),
                 width: Mixins.scaleWidth(260),
+                top: Mixins.scaleHeight(5),
               }}></TextInput>
+          </View>
+          <View
+            style={{
+              top: Mixins.scaleHeight(95),
+              left: Mixins.scaleWidth(20),
+              width: Mixins.scaleWidth(300),
+              height: Mixins.scaleHeight(30),
+            }}>
+            <Text style={[Typography.placeholderSmall]}>Password</Text>
+            <TextInput
+              placeholder="•••••••••••••••••"
+              style={[
+                Typography.placeholderSmall,
+                {
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: Mixins.scaleWidth(1),
+                  width: Mixins.scaleWidth(260),
+                  top: Mixins.scaleHeight(5),
+                },
+              ]}></TextInput>
           </View>
         </View>
 
         <TouchableOpacity
           onPress={() => setSuccesfulChangesModal(true)}
           style={{
-            top: Mixins.scaleHeight(100),
+            top: Mixins.scaleHeight(90),
             width: Mixins.scaleWidth(140),
             height: Mixins.scaleHeight(30),
             backgroundColor: Colors.LIGHT_BLUE,

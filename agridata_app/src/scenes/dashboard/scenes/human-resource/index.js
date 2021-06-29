@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -11,8 +11,12 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AddEmployeeButton} from './add-member';
+import Modal from 'react-native-modal';
+import {ceil} from 'react-native-reanimated';
+import {SuccesfulChangesModal} from '_components/modals';
 
 export const HumanResource = props => {
+  const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
   return (
     <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
       <View
@@ -58,6 +62,7 @@ export const HumanResource = props => {
         <ParticipantList />
         <AddEmployeeButton />
         <TouchableOpacity
+          onPress={() => setSuccesfulChangesModal(true)}
           style={{
             top: Mixins.scaleHeight(40),
             width: Mixins.scaleWidth(140),
@@ -84,12 +89,21 @@ export const HumanResource = props => {
             style={{left: Mixins.scaleWidth(10)}}
           />
         </TouchableOpacity>
+        <Modal
+          isVisible={succesfulChangesModal}
+          onBackdropPress={() => setSuccesfulChangesModal(false)}>
+          <SuccesfulChangesModal
+            setSuccesfulChangesModal={setSuccesfulChangesModal}
+            navigation={props.navigation}
+          />
+        </Modal>
       </View>
     </SafeAreaView>
   );
 };
 
 const Participant = props => {
+  const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
   return (
     <View
       style={{
@@ -107,6 +121,7 @@ const Participant = props => {
         </Text>
       </View>
       <TouchableOpacity
+        onPress={() => setConfirmRemoveModal(true)}
         style={{
           left: Mixins.scaleWidth(270),
           bottom: Mixins.scaleHeight(25),
@@ -114,11 +129,77 @@ const Participant = props => {
         }}>
         <Icon name="trash-outline" size={Mixins.scaleWidth(20)} />
       </TouchableOpacity>
+      <Modal
+        isVisible={confirmRemoveModal}
+        onBackdropPress={() => setConfirmRemoveModal(false)}>
+        <ConfirmRemoveModal setConfirmRemoveModal={setConfirmRemoveModal} />
+      </Modal>
+    </View>
+  );
+};
+
+const ConfirmRemoveModal = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(300),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.LIGHT_RED,
+        borderRadius: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+      }}>
+      <View style={{top: Mixins.scaleWidth(30)}}>
+        <Image
+          source={require('_assets/images/Good-Vege.png')}
+          style={{
+            resizeMode: 'contain',
+            width: Mixins.scaleWidth(200),
+            height: Mixins.scaleHeight(150),
+          }}
+        />
+      </View>
+      <View
+        style={{
+          top: Mixins.scaleHeight(15),
+        }}>
+        <Text style={[Typography.large, {textAlign: 'center'}]}>
+          Are you sure you want to
+        </Text>
+        <Text
+          style={[
+            Typography.large,
+            {fontFamily: 'Poppins-Bold', textAlign: 'center'},
+          ]}>
+          REMOVE A MEMBER?
+        </Text>
+      </View>
+
+      <TouchableOpacity
+        style={{
+          top: Mixins.scaleHeight(50),
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(80),
+          height: Mixins.scaleHeight(25),
+          justifyContent: 'center',
+          borderRadius: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+        <Text style={[Typography.small, {textAlign: 'center'}]}>Confirm</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const ParticipantList = props => {
+  const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
   const Seperator = () => {
     return (
       <View
