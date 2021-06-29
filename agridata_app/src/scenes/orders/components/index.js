@@ -15,7 +15,11 @@ import {CloseButton} from '_components';
 import {InvoiceButton} from '_components';
 import Share from 'react-native-share';
 import PDFLib, {PDFDocument, PDFPage} from 'react-native-pdf-lib';
-import RNFetchBlob from 'rn-fetch-blob';
+import * as RNFS from 'react-native-fs';
+import logo from '_assets/images/agridata.png';
+//import {PDFDocument} from 'pdf-lib';
+
+const logoUri = Image.resolveAssetSource(logo).uri;
 
 export const OrderList = props => {
   return (
@@ -307,7 +311,7 @@ const InvoiceModal = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}
-        onPress={onShare}>
+        onPress={() => createPDF()}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           PDF
         </Text>
@@ -328,7 +332,7 @@ const InvoiceModal = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}
-        onPress={() => fetch()}>
+        onPress={() => onShare()}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           CSV
         </Text>
@@ -388,6 +392,7 @@ const InvoiceItem = props => {
 const onShare = async () => {
   const shareOptions = {
     message: 'Share PDF Test',
+    url: 'file:///storage/emulated/0/Download/test15.pdf',
   };
   try {
     const ShareResponse = await Share.open(shareOptions);
@@ -396,76 +401,506 @@ const onShare = async () => {
   }
 };
 
-const createPDF = async () => {
-  const page1 = PDFPage.create()
-    .setMediaBox(200, 200)
-    .drawText('You can add text and rectangles to the PDF!', {
-      x: 5,
-      y: 235,
-      color: '#007386',
-      fontName: 'Poppins-Regular',
-    })
-    .drawRectangle({
-      x: 25,
-      y: 25,
-      width: 150,
-      height: 150,
-      color: '#FF99CC',
-    })
-    .drawRectangle({
-      x: 75,
-      y: 75,
-      width: 50,
-      height: 50,
-      color: '#99FFCC',
-    });
-  const docsDir = await PDFLib.getDocumentsDirectory();
-
-  const pdfPath = `${docsDir}/sample.pdf`;
-  PDFDocument.create(pdfPath)
-    .addPages(page1)
-    .write() // Returns a promise that resolves with the PDF's path
-    .then(path => {
-      console.log('PDF created at: ' + path);
-    });
-};
-
-const fetch = () => {
-  RNFetchBlob.fetch('GET', 'http://google.com', {
-    Authorization: 'Bearer access-token...',
-    // more headers  ..
-  })
-    .then(res => {
-      let status = res.info().status;
-
-      if (status == 200) {
-        // the conversion is done in native code
-        let base64Str = res.base64();
-        // the following conversions are done in js, it's SYNC
-        let text = res.text();
-        let json = res.json();
-        console.log(base64Str, text, json);
-      } else {
-        // handle other status codes
-        console.log('here');
-      }
-    })
-    // Something went wrong:
-    .catch((errorMessage, statusCode) => {
-      console.log(errorMessage);
-    });
-};
-
 /*
-let options = {
-    html: '<h1>PDF TEST</h1>',
-    fileName: 'test',
-    directory: 'Documents',
-    base64: true,
-  };
+const createPDF = async () => {
+  const listOfProducts = [
+    {name: 'walnut', price: '10', quantity: '150'},
+    {name: 'pinkwalnut', price: '10', quantity: '120'},
+  ];
+  var noProduct = listOfProducts.length;
+  var positionY = 2000;
+  var positionY2 = 3100;
+  var total = 0;
+  const page1 = PDFPage.create().setMediaBox(2480, 3508);
+  const page2 = PDFPage.create().setMediaBox(2480, 3508);
+  page1
+    .drawText('Thanks For Your Order!', {
+      x: 100,
+      y: 3100,
+      color: Colors.LIME_GREEN,
+      fontName: 'Poppins-Regular',
+      fontSize: 150,
+    })
+    .drawText('Invoice#: 1234567', {
+      x: 100,
+      y: 2900,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Date : 22-07-2021', {
+      x: 1500,
+      y: 2900,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Customer Name: City Grocer', {
+      x: 100,
+      y: 2800,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Supplier Name: City Grocer', {
+      x: 100,
+      y: 2700,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawRectangle({
+      x: 200,
+      y: 2400,
+      width: 2100,
+      height: 0,
+    })
+    .drawRectangle({
+      x: 200,
+      y: 2250,
+      width: 2100,
+      height: 0,
+    })
+    .drawText('PRODUCT', {
+      x: 200,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('QTY.', {
+      x: 1000,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('UNIT PRICE', {
+      x: 1400,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('AMOUNT', {
+      x: 2000,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    });
+  for (let i = 0; i < noProduct; i++) {
+    if (i < 6) {
+      page1
+        .drawText(listOfProducts[i].name, {
+          x: 200,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(listOfProducts[i].quantity + ' kg', {
+          x: 1000,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText('RM ' + listOfProducts[i].price + '/kg', {
+          x: 1400,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(
+          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
+          {
+            x: 2000,
+            y: positionY,
+            fontName: 'Poppins-Regular',
+            fontSize: 70,
+          },
+        )
+        .drawRectangle({
+          x: 200,
+          y: positionY - 80,
+          width: 2100,
+          height: 0,
+          color: Colors.GRAY_MEDIUM,
+        });
+      positionY -= 200;
+      total += listOfProducts[i].price * listOfProducts[i].quantity;
+    } else {
+      page2
+        .drawText(listOfProducts[i].name, {
+          x: 200,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(listOfProducts[i].quantity + ' kg', {
+          x: 1000,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText('RM ' + listOfProducts[i].price + '/kg', {
+          x: 1400,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(
+          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
+          {
+            x: 2000,
+            y: positionY2,
+            fontName: 'Poppins-Regular',
+            fontSize: 70,
+          },
+        )
+        .drawRectangle({
+          x: 200,
+          y: positionY2 - 80,
+          width: 2100,
+          height: 0,
+          color: Colors.GRAY_MEDIUM,
+        });
+      positionY2 -= 200;
+      total += listOfProducts[i].price * listOfProducts[i].quantity;
+    }
+  }
+  if (noProduct <= 6) {
+    page1
+      .drawText('Total Cost:', {
+        x: 1400,
+        y: positionY - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawText('RM ' + total, {
+        x: 2000,
+        y: positionY - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+        color: Colors.LIME_GREEN,
+      })
+      .drawText('Received By:', {
+        x: 2000,
+        y: 500,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawRectangle({
+        x: 2000,
+        y: 200,
+        width: 400,
+        height: 0,
+      });
+  } else {
+    page2
+      .drawText('Total Cost:', {
+        x: 1400,
+        y: positionY2 - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawText('RM ' + total, {
+        x: 2000,
+        y: positionY2 - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+        color: Colors.LIME_GREEN,
+      })
+      .drawText('Received By:', {
+        x: 2000,
+        y: 500,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawRectangle({
+        x: 2000,
+        y: 200,
+        width: 400,
+        height: 0,
+      });
+  }
 
-  let file = await RNHTMLtoPDF.convert(options);
-  file.filePath = '/storage/emulated/0/Downloads';
-  // console.log(file.filePath);
-  alert(file.filePath);
-   */
+  //const docsDir = await PDFLib.getDocumentsDirectory();
+  //const pdfPath = `${docsDir}/sample.pdf`;
+  var filePath = RNFS.DownloadDirectoryPath + '/test15.pdf';
+  if (noProduct <= 6) {
+    PDFDocument.create(filePath)
+      .addPages(page1)
+      .write() // Returns a promise that resolves with the PDF's path
+      .then(path => {
+        console.log('PDF created at: ' + path);
+        alert('PDF created');
+      });
+  } else {
+    PDFDocument.create(filePath)
+      .addPages(page1, page2)
+      .write() // Returns a promise that resolves with the PDF's path
+      .then(path => {
+        console.log('PDF created at: ' + path);
+        alert('PDF created');
+      });
+  }
+};
+*/
+/*
+const writepdf = () => {
+  var path = RNFS.DownloadDirectoryPath + '/test14.pdf';
+  const pdfPath = '/data/data/com.agridata_app/files/sample.pdf';
+  RNFS.moveFile(pdfPath, path)
+    .then(success => {
+      console.log('File move', path);
+      alert('File moved');
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+*/
+const createPDF = async () => {
+  const listOfProducts = [
+    {name: 'walnut', price: '10', quantity: '150'},
+    {name: 'pinkwalnut', price: '10', quantity: '120'},
+  ];
+  var noProduct = listOfProducts.length;
+  var positionY = 2000;
+  var positionY2 = 3100;
+  var total = 0;
+  const page1 = PDFPage.create().setMediaBox(2480, 3508);
+  const page2 = PDFPage.create().setMediaBox(2480, 3508);
+  page1
+    .drawText('Thanks For Your Order!', {
+      x: 100,
+      y: 3100,
+      color: Colors.LIME_GREEN,
+      fontName: 'Poppins-Regular',
+      fontSize: 150,
+    })
+    .drawText('Invoice#: 1234567', {
+      x: 100,
+      y: 2900,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Date : 22-07-2021', {
+      x: 1500,
+      y: 2900,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Customer Name: City Grocer', {
+      x: 100,
+      y: 2800,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawText('Supplier Name: City Grocer', {
+      x: 100,
+      y: 2700,
+      fontName: 'Poppins-Regular',
+      fontSize: 80,
+    })
+    .drawRectangle({
+      x: 200,
+      y: 2400,
+      width: 2100,
+      height: 0,
+    })
+    .drawRectangle({
+      x: 200,
+      y: 2250,
+      width: 2100,
+      height: 0,
+    })
+    .drawText('PRODUCT', {
+      x: 200,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('QTY.', {
+      x: 1000,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('UNIT PRICE', {
+      x: 1400,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    })
+    .drawText('AMOUNT', {
+      x: 2000,
+      y: 2300,
+      fontName: 'Poppins-Regular',
+      fontSize: 70,
+      color: Colors.GRAY_DARK,
+    });
+  for (let i = 0; i < noProduct; i++) {
+    if (i < 6) {
+      page1
+        .drawText(listOfProducts[i].name, {
+          x: 200,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(listOfProducts[i].quantity + ' kg', {
+          x: 1000,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText('RM ' + listOfProducts[i].price + '/kg', {
+          x: 1400,
+          y: positionY,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(
+          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
+          {
+            x: 2000,
+            y: positionY,
+            fontName: 'Poppins-Regular',
+            fontSize: 70,
+          },
+        )
+        .drawRectangle({
+          x: 200,
+          y: positionY - 80,
+          width: 2100,
+          height: 0,
+          color: Colors.GRAY_MEDIUM,
+        });
+      positionY -= 200;
+      total += listOfProducts[i].price * listOfProducts[i].quantity;
+    } else {
+      page2
+        .drawText(listOfProducts[i].name, {
+          x: 200,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(listOfProducts[i].quantity + ' kg', {
+          x: 1000,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText('RM ' + listOfProducts[i].price + '/kg', {
+          x: 1400,
+          y: positionY2,
+          fontName: 'Poppins-Regular',
+          fontSize: 70,
+        })
+        .drawText(
+          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
+          {
+            x: 2000,
+            y: positionY2,
+            fontName: 'Poppins-Regular',
+            fontSize: 70,
+          },
+        )
+        .drawRectangle({
+          x: 200,
+          y: positionY2 - 80,
+          width: 2100,
+          height: 0,
+          color: Colors.GRAY_MEDIUM,
+        });
+      positionY2 -= 200;
+      total += listOfProducts[i].price * listOfProducts[i].quantity;
+    }
+  }
+  if (noProduct <= 6) {
+    page1
+      .drawText('Total Cost:', {
+        x: 1400,
+        y: positionY - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawText('RM ' + total, {
+        x: 2000,
+        y: positionY - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+        color: Colors.LIME_GREEN,
+      })
+      .drawText('Received By:', {
+        x: 2000,
+        y: 500,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawRectangle({
+        x: 2000,
+        y: 200,
+        width: 400,
+        height: 0,
+      });
+  } else {
+    page2
+      .drawText('Total Cost:', {
+        x: 1400,
+        y: positionY2 - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawText('RM ' + total, {
+        x: 2000,
+        y: positionY2 - 100,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+        color: Colors.LIME_GREEN,
+      })
+      .drawText('Received By:', {
+        x: 2000,
+        y: 500,
+        fontName: 'Poppins-Regular',
+        fontSize: 70,
+      })
+      .drawRectangle({
+        x: 2000,
+        y: 200,
+        width: 400,
+        height: 0,
+      });
+  }
+
+  //const docsDir = await PDFLib.getDocumentsDirectory();
+  //const pdfPath = `${docsDir}/sample.pdf`;
+  var filePath = RNFS.DownloadDirectoryPath + '/test16.pdf';
+  if (noProduct <= 6) {
+    PDFDocument.create(filePath)
+      .addPages(page1)
+      .write() // Returns a promise that resolves with the PDF's path
+      .then(path => {
+        console.log('PDF created at: ' + path);
+        alert('PDF created');
+      });
+  } else {
+    PDFDocument.create(filePath)
+      .addPages(page1, page2)
+      .write() // Returns a promise that resolves with the PDF's path
+      .then(path => {
+        console.log('PDF created at: ' + path);
+        alert('PDF created');
+      });
+  }
+  const shareOptions = {
+    message: 'Share PDF Test',
+    url: 'file:///storage/emulated/0/Download/test15.pdf',
+  };
+  try {
+    const ShareResponse = await Share.open(shareOptions);
+  } catch (error) {
+    console.log('Error: ', error);
+  }
+};

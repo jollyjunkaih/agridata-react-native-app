@@ -196,6 +196,7 @@ export const AddEmployeeButtonModal = props => {
                 borderColor: Colors.GRAY_DARK,
                 borderBottomWidth: Mixins.scaleWidth(0.5),
                 width: Mixins.scaleWidth(250),
+                height: Mixins.scaleHeight(30),
               }}></TextInput>
           </View>
           <View
