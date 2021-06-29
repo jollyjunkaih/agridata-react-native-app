@@ -143,18 +143,21 @@ export const ChatRoom = props => {
         behavior={Platform.OS === 'ios' ? 'position' : 'position'}
         keyboardVerticalOffset={
           Platform.OS === 'ios'
-            ? Mixins.scaleHeight(-60)
+            ? Mixins.scaleHeight(10)
             : Mixins.scaleHeight(40)
         } /* Keyboard Offset needs to be tested against multiple phones */
         style={{
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View style={{height: Mixins.scaleHeight(460)}}>
-          <ChatBubbleList data={messages} userID={userID} />
+        <View
+          style={{
+            height: Mixins.scaleHeight(460),
+          }}>
+          <ChatBubbleList data={[{}, {}]} userID={userID} />
         </View>
 
-        <View style={{top: Mixins.scaleHeight(10)}}>
+        <View style={{top: Mixins.scaleHeight(0)}}>
           <MessageInput
             userID={userID}
             chatGroupID={itemID}
