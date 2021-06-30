@@ -17,6 +17,7 @@ import Share from 'react-native-share';
 import PDFLib, {PDFDocument, PDFPage} from 'react-native-pdf-lib';
 import * as RNFS from 'react-native-fs';
 import logo from '_assets/images/agridata.png';
+import XLSX from 'xlsx';
 //import {PDFDocument} from 'pdf-lib';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
@@ -332,7 +333,7 @@ const InvoiceModal = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}
-        onPress={() => onShare()}>
+        onPress={() => createCSV()}>
         <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
           CSV
         </Text>
@@ -401,247 +402,6 @@ const onShare = async () => {
   }
 };
 
-/*
-const createPDF = async () => {
-  const listOfProducts = [
-    {name: 'walnut', price: '10', quantity: '150'},
-    {name: 'pinkwalnut', price: '10', quantity: '120'},
-  ];
-  var noProduct = listOfProducts.length;
-  var positionY = 2000;
-  var positionY2 = 3100;
-  var total = 0;
-  const page1 = PDFPage.create().setMediaBox(2480, 3508);
-  const page2 = PDFPage.create().setMediaBox(2480, 3508);
-  page1
-    .drawText('Thanks For Your Order!', {
-      x: 100,
-      y: 3100,
-      color: Colors.LIME_GREEN,
-      fontName: 'Poppins-Regular',
-      fontSize: 150,
-    })
-    .drawText('Invoice#: 1234567', {
-      x: 100,
-      y: 2900,
-      fontName: 'Poppins-Regular',
-      fontSize: 80,
-    })
-    .drawText('Date : 22-07-2021', {
-      x: 1500,
-      y: 2900,
-      fontName: 'Poppins-Regular',
-      fontSize: 80,
-    })
-    .drawText('Customer Name: City Grocer', {
-      x: 100,
-      y: 2800,
-      fontName: 'Poppins-Regular',
-      fontSize: 80,
-    })
-    .drawText('Supplier Name: City Grocer', {
-      x: 100,
-      y: 2700,
-      fontName: 'Poppins-Regular',
-      fontSize: 80,
-    })
-    .drawRectangle({
-      x: 200,
-      y: 2400,
-      width: 2100,
-      height: 0,
-    })
-    .drawRectangle({
-      x: 200,
-      y: 2250,
-      width: 2100,
-      height: 0,
-    })
-    .drawText('PRODUCT', {
-      x: 200,
-      y: 2300,
-      fontName: 'Poppins-Regular',
-      fontSize: 70,
-      color: Colors.GRAY_DARK,
-    })
-    .drawText('QTY.', {
-      x: 1000,
-      y: 2300,
-      fontName: 'Poppins-Regular',
-      fontSize: 70,
-      color: Colors.GRAY_DARK,
-    })
-    .drawText('UNIT PRICE', {
-      x: 1400,
-      y: 2300,
-      fontName: 'Poppins-Regular',
-      fontSize: 70,
-      color: Colors.GRAY_DARK,
-    })
-    .drawText('AMOUNT', {
-      x: 2000,
-      y: 2300,
-      fontName: 'Poppins-Regular',
-      fontSize: 70,
-      color: Colors.GRAY_DARK,
-    });
-  for (let i = 0; i < noProduct; i++) {
-    if (i < 6) {
-      page1
-        .drawText(listOfProducts[i].name, {
-          x: 200,
-          y: positionY,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText(listOfProducts[i].quantity + ' kg', {
-          x: 1000,
-          y: positionY,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText('RM ' + listOfProducts[i].price + '/kg', {
-          x: 1400,
-          y: positionY,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText(
-          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
-          {
-            x: 2000,
-            y: positionY,
-            fontName: 'Poppins-Regular',
-            fontSize: 70,
-          },
-        )
-        .drawRectangle({
-          x: 200,
-          y: positionY - 80,
-          width: 2100,
-          height: 0,
-          color: Colors.GRAY_MEDIUM,
-        });
-      positionY -= 200;
-      total += listOfProducts[i].price * listOfProducts[i].quantity;
-    } else {
-      page2
-        .drawText(listOfProducts[i].name, {
-          x: 200,
-          y: positionY2,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText(listOfProducts[i].quantity + ' kg', {
-          x: 1000,
-          y: positionY2,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText('RM ' + listOfProducts[i].price + '/kg', {
-          x: 1400,
-          y: positionY2,
-          fontName: 'Poppins-Regular',
-          fontSize: 70,
-        })
-        .drawText(
-          'RM ' + listOfProducts[i].price * listOfProducts[i].quantity,
-          {
-            x: 2000,
-            y: positionY2,
-            fontName: 'Poppins-Regular',
-            fontSize: 70,
-          },
-        )
-        .drawRectangle({
-          x: 200,
-          y: positionY2 - 80,
-          width: 2100,
-          height: 0,
-          color: Colors.GRAY_MEDIUM,
-        });
-      positionY2 -= 200;
-      total += listOfProducts[i].price * listOfProducts[i].quantity;
-    }
-  }
-  if (noProduct <= 6) {
-    page1
-      .drawText('Total Cost:', {
-        x: 1400,
-        y: positionY - 100,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-      })
-      .drawText('RM ' + total, {
-        x: 2000,
-        y: positionY - 100,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-        color: Colors.LIME_GREEN,
-      })
-      .drawText('Received By:', {
-        x: 2000,
-        y: 500,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-      })
-      .drawRectangle({
-        x: 2000,
-        y: 200,
-        width: 400,
-        height: 0,
-      });
-  } else {
-    page2
-      .drawText('Total Cost:', {
-        x: 1400,
-        y: positionY2 - 100,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-      })
-      .drawText('RM ' + total, {
-        x: 2000,
-        y: positionY2 - 100,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-        color: Colors.LIME_GREEN,
-      })
-      .drawText('Received By:', {
-        x: 2000,
-        y: 500,
-        fontName: 'Poppins-Regular',
-        fontSize: 70,
-      })
-      .drawRectangle({
-        x: 2000,
-        y: 200,
-        width: 400,
-        height: 0,
-      });
-  }
-
-  //const docsDir = await PDFLib.getDocumentsDirectory();
-  //const pdfPath = `${docsDir}/sample.pdf`;
-  var filePath = RNFS.DownloadDirectoryPath + '/test15.pdf';
-  if (noProduct <= 6) {
-    PDFDocument.create(filePath)
-      .addPages(page1)
-      .write() // Returns a promise that resolves with the PDF's path
-      .then(path => {
-        console.log('PDF created at: ' + path);
-        alert('PDF created');
-      });
-  } else {
-    PDFDocument.create(filePath)
-      .addPages(page1, page2)
-      .write() // Returns a promise that resolves with the PDF's path
-      .then(path => {
-        console.log('PDF created at: ' + path);
-        alert('PDF created');
-      });
-  }
-};
-*/
 /*
 const writepdf = () => {
   var path = RNFS.DownloadDirectoryPath + '/test14.pdf';
@@ -876,7 +636,7 @@ const createPDF = async () => {
 
   //const docsDir = await PDFLib.getDocumentsDirectory();
   //const pdfPath = `${docsDir}/sample.pdf`;
-  var filePath = RNFS.DownloadDirectoryPath + '/test16.pdf';
+  var filePath = RNFS.DocumentDirectoryPath + '/test16.pdf';
   if (noProduct <= 6) {
     PDFDocument.create(filePath)
       .addPages(page1)
@@ -884,6 +644,9 @@ const createPDF = async () => {
       .then(path => {
         console.log('PDF created at: ' + path);
         alert('PDF created');
+      })
+      .catch(e => {
+        alert('PDF fail to create');
       });
   } else {
     PDFDocument.create(filePath)
@@ -892,15 +655,55 @@ const createPDF = async () => {
       .then(path => {
         console.log('PDF created at: ' + path);
         alert('PDF created');
+      })
+      .catch(e => {
+        alert('PDF fail to create');
       });
   }
   const shareOptions = {
     message: 'Share PDF Test',
-    url: 'file:///storage/emulated/0/Download/test15.pdf',
+    url: 'file:///data/user/0/com.agridata_app/files/test16.pdf',
   };
   try {
     const ShareResponse = await Share.open(shareOptions);
+    RNFS.unlink(filePath);
   } catch (error) {
     console.log('Error: ', error);
+    RNFS.unlink(filePath);
+  }
+};
+
+const createCSV = async () => {
+  var data = [
+    {name: 'walnut', quantity: '100', price: '10', total: '1000'},
+    {name: 'pink walnut', quantity: '100', price: '12', total: '1200'},
+  ];
+  var ws = XLSX.utils.json_to_sheet(data);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Products');
+  const wbout = XLSX.write(wb, {
+    type: 'binary',
+    bookType: 'xlsx',
+  });
+  var file = RNFS.DocumentDirectoryPath + '/test.xlsx';
+  RNFS.writeFile(file, wbout, 'ascii')
+    .then(r => {
+      console.log('CSV created at: ' + file);
+      alert('CSV created');
+    })
+    .catch(e => {
+      alert('CSV failed to create');
+    });
+  const shareOptions = {
+    message: 'Share CSV Test',
+    url: 'file:///data/user/0/com.agridata_app/files/test.xlsx',
+  };
+  try {
+    const ShareResponse = await Share.open(shareOptions);
+    console.log(ShareResponse);
+    RNFS.unlink(file);
+  } catch (error) {
+    console.log('Error1: ', error);
+    RNFS.unlink(file);
   }
 };
