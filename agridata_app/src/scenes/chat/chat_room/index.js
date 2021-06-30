@@ -5,7 +5,6 @@ import {
   View,
   KeyboardAvoidingView,
   AppState,
-  SliderComponent,
   Platform,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';

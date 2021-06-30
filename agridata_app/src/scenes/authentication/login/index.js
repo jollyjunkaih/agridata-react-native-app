@@ -13,131 +13,178 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {BackButton} from '_components';
+import {Auth} from 'aws-amplify';
 export const Login = props => {
   const [secure, setSecure] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const signIn = async () => {
+    try {
+      const user = await Auth.signIn(email, password);
+      console.log('Successful sign in');
+      props.updateUserID(user.attributes.sub);
+      props.updateAuthState('loggedIn');
+    } catch (error) {
+      console.log('Error signing in...', error);
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
         Platform.OS === 'ios' ? Mixins.scaleHeight(200) : -180
       }>
-      <SafeAreaView style={{backgroundColor: 'white'}}>
-        <View>
-          <TouchableOpacity
-            style={{left: Mixins.scaleWidth(30), top: Mixins.scaleHeight(20)}}>
-            <Icon name="arrow-back-outline" size={40} />
-          </TouchableOpacity>
-          <Image
-            source={require('_assets/images/fruits.png')}
-            style={{
-              position: 'absolute',
-              right: 0,
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(170),
-              resizeMode: 'cover',
-            }}
-          />
-        </View>
-        <View>
-          <Text
-            style={[
-              Typography.largestSize,
-              {
-                width: Mixins.scaleWidth(300),
-                left: Mixins.scaleWidth(30),
-                top: Mixins.scaleHeight(50),
-              },
-            ]}>
-            WELCOME
-          </Text>
-          <Text
-            style={[
-              Typography.largestSize,
-              {
-                width: Mixins.scaleWidth(300),
-                left: Mixins.scaleWidth(30),
-                top: Mixins.scaleHeight(40),
-              },
-            ]}>
-            BACK!
-          </Text>
-        </View>
+      <SafeAreaView
+        style={{
+          backgroundColor: 'white',
+          height: Mixins.scaleHeight(640),
+          width: Mixins.scaleWidth(360),
+        }}>
         <View
-          style={{top: Mixins.scaleHeight(40), left: Mixins.scaleWidth(30)}}>
-          <Text style={[Typography.large]}>Begin your journey with us!</Text>
+          style={{
+            position: 'absolute',
+            top: Spacing.BackButtonTop,
+            left: Spacing.BackButtonLeft,
+          }}>
+          <BackButton navigation={props.navigation} />
+        </View>
+        <Image
+          source={require('_assets/images/fruits.png')}
+          style={{
+            position: 'absolute',
+            right: 0,
+            width: Mixins.scaleWidth(160),
+            height: Mixins.scaleHeight(180),
+            resizeMode: 'cover',
+          }}
+        />
+        <View style={{top: Mixins.scaleHeight(30)}}>
+          <View>
+            <Text
+              style={[
+                Typography.largestSize,
+                {
+                  width: Mixins.scaleWidth(300),
+                  left: Mixins.scaleWidth(30),
+                  top: Mixins.scaleHeight(30),
+                },
+              ]}>
+              Welcome
+            </Text>
+            <Text
+              style={[
+                Typography.largestSize,
+                {
+                  width: Mixins.scaleWidth(300),
+                  left: Mixins.scaleWidth(30),
+                  top: Mixins.scaleHeight(10),
+                },
+              ]}>
+              Back
+            </Text>
+          </View>
+          <View
+            style={{top: Mixins.scaleHeight(10), left: Mixins.scaleWidth(30)}}>
+            <Text style={[Typography.large]}>Login to your account now!</Text>
+          </View>
         </View>
         <View>
           <View
-            style={{top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(30)}}>
-            <Text style={[Typography.placeholder]}>
-              Username/ Email Address
-            </Text>
+            style={{
+              top: Mixins.scaleHeight(80),
+              left: Mixins.scaleWidth(30),
+            }}>
+            <Text style={[Typography.placeholder]}>Phone Number / Email</Text>
             <TextInput
               keyboardType="default"
-              placeholder=""
+              placeholder="+60123456 or example@example.com"
+              underlineColorAndroid="transparent"
+              onChangeText={item => setEmail(item)}
+              value={email}
               style={{
-                marginTop: 8,
-                borderBottomWidth: 0.5,
-                borderBottomColor: 'grey',
                 width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(20),
+                height: Mixins.scaleHeight(40),
+                right: Mixins.scaleWidth(5),
+                borderBottomColor: 'transparent',
               }}></TextInput>
-          </View>
-          <View
-            style={{top: Mixins.scaleHeight(100), left: Mixins.scaleWidth(30)}}>
-            <Text style={[Typography.placeholder]}> Password</Text>
-            <View style={{flexDirection: 'row', right: Mixins.scaleWidth(20)}}>
-              <TouchableOpacity
-                onPress={() => {
-                  if (secure) {
-                    setSecure(false);
-                  } else {
-                    setSecure(true);
-                  }
-                }}
-                style={{left: Mixins.scaleWidth(270)}}>
-                <Icon name="eye-outline" size={25}></Icon>
-              </TouchableOpacity>
-
-              <TextInput
-                secureTextEntry={secure}
-                keyboardType="default"
-                placeholder=""
-                style={{
-                  marginTop: 8,
-                  borderBottomWidth: 0.5,
-                  borderBottomColor: 'grey',
-                  width: Mixins.scaleWidth(220),
-                  height: Mixins.scaleHeight(20),
-                }}></TextInput>
-              <View
-                style={{
-                  marginTop: 8,
-                  borderBottomWidth: 0.3,
-                  borderBottomColor: 'black',
-                  width: Mixins.scaleWidth(60),
-                  height: Mixins.scaleHeight(20),
-                }}></View>
-            </View>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(10),
+                width: Mixins.scaleWidth(290),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+              }}></View>
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(110),
-              left: Mixins.scaleWidth(210),
+              top: Mixins.scaleHeight(80),
+              left: Mixins.scaleWidth(30),
+              height: Mixins.scaleWidth(70),
             }}>
-            <TouchableOpacity>
-              <Text style={[Typography.welcome, {fontSize: 12}]}>
-                Forgot Password?
-              </Text>
+            <Text style={[Typography.placeholder]}>Password</Text>
+            <TextInput
+              secureTextEntry={secure}
+              keyboardType="default"
+              underlineColorAndroid="transparent"
+              onChangeText={item => setPassword(item)}
+              value={password}
+              style={{
+                width: Mixins.scaleWidth(280),
+                height: Mixins.scaleHeight(40),
+                right: Mixins.scaleWidth(5),
+                borderBottomColor: 'transparent',
+              }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(10),
+                width: Mixins.scaleWidth(290),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+              }}></View>
+            <TouchableOpacity
+              onPress={() => {
+                if (secure) {
+                  setSecure(false);
+                } else {
+                  setSecure(true);
+                }
+              }}
+              style={{
+                left: Mixins.scaleWidth(270),
+                position: 'absolute',
+                bottom: Mixins.scaleWidth(20),
+              }}>
+              <Icon name="eye-outline" size={25}></Icon>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+            style={{top: Mixins.scaleHeight(70), left: Mixins.scaleWidth(210)}}>
+            <Text
+              style={[
+                Typography.welcome,
+                {
+                  fontSize: 12,
+                },
+              ]}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
         </View>
         <View
           style={{
             alignItems: 'center',
-            top: Mixins.scaleHeight(140),
+            top: Mixins.scaleHeight(100),
           }}>
           <TouchableOpacity
+            onPress={async () => {
+              if (password == '' || email == '') {
+                console.log('empty input');
+              } else {
+                const user = await signIn();
+              }
+            }}
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
               width: Mixins.scaleWidth(140),
@@ -160,32 +207,36 @@ export const Login = props => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{alignItems: 'center', top: Mixins.scaleHeight(170)}}>
-          <TouchableOpacity>
-            <View
-              style={{
-                alignItems: 'center',
-                marginBottom: Mixins.scaleHeight(10),
-              }}>
-              <Icon name="finger-print-outline" size={40} />
-            </View>
-            <View
-              style={{
-                borderBottomWidth: 1,
-                borderBottomColor: 'black',
-                width: Mixins.scaleWidth(180),
-              }}>
-              <Text style={[Typography.normal]}>Log In Using Fingerprint</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={{alignItems: 'center', top: Mixins.scaleHeight(220)}}>
-          <TouchableOpacity>
-            <Text style={[Typography.welcome, {fontSize: 12}]}>
-              Having any trouble?
-            </Text>
-          </TouchableOpacity>
-        </View>
+
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: Mixins.scaleHeight(70),
+            alignSelf: 'center',
+          }}>
+          <View
+            style={{
+              alignItems: 'center',
+              marginBottom: Mixins.scaleHeight(10),
+            }}>
+            <Icon name="finger-print-outline" size={40} />
+          </View>
+
+          <Text style={[Typography.normal]}>Log In Using Fingerprint</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            position: 'absolute',
+            bottom: Mixins.scaleHeight(35),
+            alignSelf: 'center',
+          }}>
+          <Text style={[Typography.welcome, {fontSize: 12}]}>
+            Having any trouble?
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

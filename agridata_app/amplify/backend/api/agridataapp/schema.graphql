@@ -17,7 +17,7 @@ type RetailerCompany @model{
   name: String
   employees: [User] @connection(keyName: "usersByRetailerCompany", fields: ["id"])
   type: String
-  address: Address
+  address: String
   rating: Rating
   registrationNumber: Int
   favouriteStores: [Favourites]
@@ -25,6 +25,7 @@ type RetailerCompany @model{
   paymentTask: [PaymentTask] @connection(keyName: "paymentTasksByRetailer", fields: ["id"])
   invoice: [Invoice] @connection(keyName: "invoiceByRetailer", fields: ["id"])
   chatGroups: [ChatGroup] @connection(keyName: "chatGroupbyRetailer", fields: ["id"])
+  verified: Boolean
 }
 
 type Favourites{
@@ -38,7 +39,7 @@ type SupplierCompany @model{
   name: String
   employees: [User] @connection(keyName: "usersBySupplierCompany", fields: ["id"])
   type: String
-  address: Address
+  address: String
   rating: Rating
   bankAccount: BankDetails
   registrationNumber: Int
@@ -47,6 +48,7 @@ type SupplierCompany @model{
   paymentTask: [PaymentTask] @connection(keyName: "paymentTasksBySupplier", fields: ["id"])
   invoice: [Invoice] @connection(keyName: "invoiceBySupplier", fields: ["id"])
   chatGroups: [ChatGroup] @connection(keyName: "chatGroupbySupplier", fields: ["id"])
+  verified: Boolean
 }
 
 

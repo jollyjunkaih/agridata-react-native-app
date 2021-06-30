@@ -25,7 +25,9 @@ export const RetailManagerDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton></MenuButton>
+        <MenuButton
+          updateAuthState={props.updateAuthState}
+          navigation={props.navigation}></MenuButton>
       </View>
 
       <Image

@@ -36,7 +36,7 @@ export const PersonalProfile = props => {
           <Icon
             name="create-outline"
             size={Mixins.scaleWidth(25)}
-            onPress={() => props.navigation.navigate('editpersonal')}
+            onPress={() => props.navigation.navigate('editprofile')}
           />
         </TouchableOpacity>
       </View>
@@ -110,17 +110,6 @@ export const PersonalProfile = props => {
           <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
           <View style={{top: Mixins.scaleHeight(5)}}>
             <Text style={[Typography.normal]}>+60 11 6569 1999 </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(85),
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(300),
-          }}>
-          <Text style={[Typography.placeholderSmall]}>Password</Text>
-          <View style={{top: Mixins.scaleHeight(5)}}>
-            <Text style={[Typography.normal]}>•••••••••••••••••</Text>
           </View>
         </View>
       </View>

@@ -24,7 +24,7 @@ export const OwnerDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton></MenuButton>
+        <MenuButton userType={props.userType}></MenuButton>
       </View>
       <Image
         style={{

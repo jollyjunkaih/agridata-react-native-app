@@ -32,14 +32,14 @@ export const changePassword = async (phone, code, password) => {
     });
 };
 
-export const signUp = async (email, phone_number, password) => {
+export const signUp = async (email, phone, password) => {
   try {
     const user = await Auth.signUp({
-      username: phone_number,
+      username: phone,
       password,
       attributes: {
         email,
-        phone_number,
+        phone_number: phone,
       },
     });
     setSuccessModalVisible(true);
