@@ -16,6 +16,7 @@ import {API} from 'aws-amplify';
 import {createMessage} from '../../../../graphql/mutations';
 import dayjs from 'dayjs';
 import {abs} from 'react-native-reanimated';
+import {DismissKeyboardView} from '_components';
 
 const ChatBubble = props => {
   const createdAt = dayjs(props.createdAt).format('HH:mm D/M');
@@ -174,18 +175,20 @@ export const MessageInput = props => {
           backgroundColor: Colors.GRAY_LIGHT,
           top: Mixins.scaleHeight(5),
         }}>
-        <TextInput
-          placeholder={'Type a message'}
-          underlineColorAndroid={'transparent'}
-          multiline={true}
-          onChangeText={text => setMessage(text)}
-          style={{
-            width: Mixins.scaleWidth(260),
-            height: Mixins.scaleHeight(40),
-            marginHorizontal: Mixins.scaleWidth(10),
-            top: Mixins.scaleHeight(10),
-          }}
-        />
+        <DismissKeyboardView>
+          <TextInput
+            placeholder={'Type a message'}
+            underlineColorAndroid={'transparent'}
+            multiline={true}
+            onChangeText={text => setMessage(text)}
+            style={{
+              width: Mixins.scaleWidth(260),
+              height: Mixins.scaleHeight(40),
+              marginHorizontal: Mixins.scaleWidth(10),
+              top: Mixins.scaleHeight(10),
+            }}
+          />
+        </DismissKeyboardView>
       </View>
       <TouchableOpacity
         onPress={async () => {

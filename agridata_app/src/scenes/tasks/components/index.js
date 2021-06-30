@@ -14,6 +14,7 @@ import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import DatePicker from 'react-native-datepicker';
 import dayjs from 'dayjs';
+import {DismissKeyboard} from '_components';
 
 const now = () => {
   const now = dayjs().format('DD-MM-YYYY');
@@ -428,10 +429,17 @@ const SendTaskModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(100),
+          width: Mixins.scaleWidth(150),
           height: Mixins.scaleHeight(30),
           alignSelf: 'center',
           justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
           elevation: 5,
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
@@ -570,56 +578,59 @@ const InvoiceModal = props => {
 const InvoiceItem = props => {
   const [number, onChangeNumber] = React.useState(null);
   return (
-    <View
-      style={{
-        width: Mixins.scaleWidth(300),
-        height: Mixins.scaleHeight(35),
-        alignSelf: 'center',
-        justifyContent: 'center',
-      }}>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(10)},
-        ]}>
-        Product Name
-      </Text>
-      <TextInput
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(110)},
-        ]}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="100"
-        keyboardType="numeric"
-      />
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(150)},
-        ]}>
-        kg
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(170)},
-        ]}>
-        @ RM8/kg
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            right: Mixins.scaleWidth(10),
-            fontFamily: 'Poppins-SemiBold',
-          },
-        ]}>
-        RM XXX
-      </Text>
-    </View>
+    <DismissKeyboard>
+      <View
+        style={{
+          width: Mixins.scaleWidth(300),
+          height: Mixins.scaleHeight(35),
+          alignSelf: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.small,
+            {position: 'absolute', left: Mixins.scaleWidth(10)},
+          ]}>
+          Product Name
+        </Text>
+
+        <TextInput
+          style={[
+            Typography.small,
+            {position: 'absolute', left: Mixins.scaleWidth(110)},
+          ]}
+          onChangeText={onChangeNumber}
+          value={number}
+          placeholder="100"
+          keyboardType="numeric"
+        />
+        <Text
+          style={[
+            Typography.small,
+            {position: 'absolute', left: Mixins.scaleWidth(150)},
+          ]}>
+          kg
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {position: 'absolute', left: Mixins.scaleWidth(170)},
+          ]}>
+          @ RM8/kg
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              position: 'absolute',
+              right: Mixins.scaleWidth(10),
+              fontFamily: 'Poppins-SemiBold',
+            },
+          ]}>
+          RM XXX
+        </Text>
+      </View>
+    </DismissKeyboard>
   );
 };
 
@@ -828,7 +839,7 @@ const ReceivePaymentModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(45),
+            top: Mixins.scaleHeight(70),
             right: Mixins.scaleWidth(20),
           },
         ]}>
@@ -840,7 +851,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(65),
+            top: Mixins.scaleHeight(85),
             fontStyle: 'italic',
           },
         ]}>
@@ -980,14 +991,21 @@ const ReceivePaymentModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(120),
+          width: Mixins.scaleWidth(150),
           height: Mixins.scaleHeight(40),
           alignSelf: 'center',
           justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
           elevation: 5,
           position: 'absolute',
           bottom: Mixins.scaleHeight(50),
-          borderRadius: 10,
+          borderRadius: 15,
         }}>
         <Text style={[Typography.normal, {textAlign: 'center'}]}>
           Received{'\t\t'}

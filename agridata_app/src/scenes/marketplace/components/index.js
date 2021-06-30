@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {DismissKeyboardView} from '_components';
 
 export const Searchbar = props => {
   return (
@@ -14,15 +15,17 @@ export const Searchbar = props => {
         elevation: 2,
         justifyContent: 'center',
       }}>
-      {/* Add searchable dropdown */}
-      <TextInput></TextInput>
-      <View style={{position: 'absolute', left: Mixins.scaleWidth(10)}}>
-        <Icon
-          name="search"
-          size={Mixins.scaleWidth(25)}
-          color={Colors.GRAY_DARK}
-        />
-      </View>
+      <DismissKeyboardView>
+        {/* Add searchable dropdown */}
+        <TextInput></TextInput>
+        <View style={{position: 'absolute', left: Mixins.scaleWidth(10)}}>
+          <Icon
+            name="search"
+            size={Mixins.scaleWidth(25)}
+            color={Colors.GRAY_DARK}
+          />
+        </View>
+      </DismissKeyboardView>
     </View>
   );
 };

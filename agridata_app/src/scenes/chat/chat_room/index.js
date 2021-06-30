@@ -14,6 +14,7 @@ import {ChatBubbleList, MessageInput, ChatInfo} from './components';
 import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
 import {listMessagesInChat} from '../../../graphql/queries';
+import {DismissKeyboardView} from '_components';
 
 import {API} from 'aws-amplify';
 
@@ -150,21 +151,23 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <View
-          style={{
-            height: Mixins.scaleHeight(460),
-          }}>
-          <ChatBubbleList data={[{}, {}]} userID={userID} />
-        </View>
+        <DismissKeyboardView>
+          <View
+            style={{
+              height: Mixins.scaleHeight(460),
+            }}>
+            <ChatBubbleList data={[{}, {}]} userID={userID} />
+          </View>
 
-        <View style={{top: Mixins.scaleHeight(0)}}>
-          <MessageInput
-            userID={userID}
-            chatGroupID={itemID}
-            user={'user'}
-            setMessages={setMessages}
-            messages={messages}></MessageInput>
-        </View>
+          <View style={{top: Mixins.scaleHeight(0)}}>
+            <MessageInput
+              userID={userID}
+              chatGroupID={itemID}
+              user={'user'}
+              setMessages={setMessages}
+              messages={messages}></MessageInput>
+          </View>
+        </DismissKeyboardView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
