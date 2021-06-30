@@ -23,14 +23,15 @@ import {
   Registration,
   SupplierDashboard,
   Login,
+  CreateCompany,
 } from './scenes';
-/*import {Login, CreateCompany} from '_scenes';
-import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
+
+/*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
 import {signIn} from './utils/api/auth';
 
-Amplify.configure(config);
+Amplify.configure(config);*/
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -55,7 +56,7 @@ const AuthenticationNavigator = props => {
       />
     </AuthenticationStack.Navigator>
   );
-};*/
+};
 
 const AppNavigator = props => {
   const type = 'accounts';
