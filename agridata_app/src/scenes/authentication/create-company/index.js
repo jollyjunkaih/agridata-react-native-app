@@ -14,7 +14,7 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Modal from 'react-native-modal';
+
 export const CreateCompany = props => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -23,7 +23,7 @@ export const CreateCompany = props => {
     {label: 'Supermarket', value: 'supermarket'},
     {label: 'Farm', value: 'farm'},
   ]);
-  const [createAccountButton, setCreateAccountButton] = useState(false);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
@@ -179,20 +179,12 @@ export const CreateCompany = props => {
               shadowOpacity: 2,
               shadowRadius: 3,
               shadowColor: 'grey',
-            }}
-            onPress={() => setCreateAccountButton(true)}>
+            }}>
             <View style={{flexDirection: 'row', left: Mixins.scaleWidth(10)}}>
               <Text style={[Typography.normal, {fontSize: 17}]}>
                 CREATE ACCOUNT
               </Text>
-              <View>
-                <Modal isVisible={createAccountButton}>
-                  <CreateAccountPopUp
-                    setCreateAccountButton={
-                      setCreateAccountButton
-                    }></CreateAccountPopUp>
-                </Modal>
-              </View>
+
               <View style={{marginLeft: Mixins.scaleWidth(20)}}>
                 <Icon name="arrow-forward-outline" size={25} />
               </View>

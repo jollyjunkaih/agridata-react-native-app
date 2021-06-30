@@ -23,8 +23,10 @@ import {
   Registration,
   SupplierDashboard,
   Login,
+  CreateCompany,
+  Verification,
 } from './scenes';
-import {Login, CreateCompany} from '_scenes';
+
 /*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
@@ -303,11 +305,7 @@ const App = () => {
 };*/
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
-  );
+  return <Verification></Verification>;
 };
 
 /*const App = () => {

@@ -1,4 +1,17 @@
 export default {
   welcome: 'Selamat Kembali',
-  whatToDo: 'Hari ini mahu buat apa?',
+  whatToDo: 'Apa yang anda ingin lakukan hari ini?',
+  chats: 'Perbualan',
+  todo: 'Tugas',
+  invoices: 'Invois',
+  companyProfile: 'Profil Syarikat',
+  personalProfile: 'Butiran Akaun',
+  humanResource: 'Sumber Manusia',
+  logOut: 'Log Keluar',
+  team: 'Pasukan',
+  owner: 'Pemilik',
+  addNewTeamMember: 'Tambah Ahli Pasukan Baru',
+  saveChanges: 'Menyimpan Perubahan',
+  yes: 'Simpan',
+  no: 'Batal',
 };
