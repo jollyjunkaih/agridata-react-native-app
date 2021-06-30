@@ -25,7 +25,6 @@ import {
   Login,
   CreateCompany,
 } from './scenes';
-
 /*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
