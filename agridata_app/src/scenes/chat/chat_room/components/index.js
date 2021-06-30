@@ -20,10 +20,10 @@ import {abs} from 'react-native-reanimated';
 const ChatBubble = props => {
   const createdAt = dayjs(props.createdAt).format('HH:mm D/M');
   const isMyMessage = () => {
-    if (props.userID == props.senderID) return true;
-    else return false;
+    if (props.userID == props.senderID) return false;
+    else return true;
   };
-  const contentType = 'purchase';
+  const contentType = 'order';
   if (contentType == 'text') {
     return (
       <View style={{margin: Mixins.scaleWidth(5)}}>
@@ -40,6 +40,15 @@ const ChatBubble = props => {
               borderRadius: 100,
               justifyContent: 'center',
               backgroundColor: Colors.GRAY_WHITE,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
             }}>
             <Text
               style={{
@@ -87,7 +96,17 @@ const ChatBubble = props => {
     );
   } else if (contentType == 'purchase') {
     return (
-      <ProductInquiry
+      <PurchaseOrder
+        sender={props.sender}
+        senderID={props.senderID}
+        contentID={props.contentID}
+        createdAt={createdAt}
+        userID={props.userID}
+      />
+    );
+  } else if (contentType == 'order') {
+    return (
+      <OrderQuotation
         sender={props.sender}
         senderID={props.senderID}
         contentID={props.contentID}
@@ -294,7 +313,7 @@ const ProductInquiry = props => {
           <View
             style={{
               left: Mixins.scaleWidth(5),
-              top: Mixins.scaleHeight(70),
+              top: Mixins.scaleHeight(60),
               borderColor: 'white',
               borderWidth: Mixins.scaleWidth(0.2),
               width: Mixins.scaleWidth(28),
@@ -303,6 +322,15 @@ const ProductInquiry = props => {
               borderRadius: 100,
               justifyContent: 'center',
               backgroundColor: Colors.GRAY_WHITE,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
             }}>
             <Text
               style={{
@@ -319,7 +347,7 @@ const ProductInquiry = props => {
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_DARK,
+          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
           width: Mixins.scaleWidth(180),
           height: Mixins.scaleHeight(80),
           marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
@@ -332,23 +360,24 @@ const ProductInquiry = props => {
 
         <TouchableOpacity
           style={{
-            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
+            borderRadius: 10,
+            backgroundColor: Colors.LIGHT_BLUE,
+            width: Mixins.scaleWidth(120),
+            height: Mixins.scaleHeight(20),
+            top: Mixins.scaleHeight(5),
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
           }}>
-          <Text
-            style={[
-              Typography.small,
-              {
-                top: Mixins.scaleHeight(5),
-                backgroundColor: Colors.LIGHT_BLUE,
-                textAlign: 'center',
-                width: Mixins.scaleWidth(120),
-                height: Mixins.scaleHeight(20),
-              },
-            ]}>
-            |{'\t'} Inspect {'\t'}|
-          </Text>
+          <Text style={[Typography.small]}>Inspect</Text>
         </TouchableOpacity>
 
         <Text
@@ -368,87 +397,249 @@ const ProductInquiry = props => {
 };
 
 export const PurchaseOrder = props => {
+  const isMyMessage = () => {
+    if (props.userID == props.senderID) return true;
+    else return false;
+  };
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.GRAY_DARK,
-        width: Mixins.scaleWidth(165),
-        height: Mixins.scaleHeight(65),
-        borderRadius: 10,
-      }}>
-      <Text style={[Typography.large]}>Purchase Order</Text>
+    <View>
+      <View>
+        {!isMyMessage() && (
+          <View
+            style={{
+              left: Mixins.scaleWidth(5),
+              top: Mixins.scaleHeight(50),
+              borderColor: 'white',
+              borderWidth: Mixins.scaleWidth(0.2),
+              width: Mixins.scaleWidth(28),
+              height: Mixins.scaleWidth(28),
+              position: 'absolute',
+              borderRadius: 100,
+              justifyContent: 'center',
+              backgroundColor: Colors.GRAY_WHITE,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text
+              style={{
+                color: Colors.GRAY_DARK,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {props.sender}JK
+            </Text>
+          </View>
+        )}
+      </View>
       <View
         style={{
-          flexDirection: 'row',
+          marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
+          marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+          width: Mixins.scaleWidth(165),
+          height: Mixins.scaleHeight(65),
+          borderRadius: 10,
+          left: isMyMessage() ? 0 : Mixins.scaleWidth(50),
+          marginTop: Mixins.scaleHeight(15),
         }}>
-        <TouchableOpacity>
-          <Text style={[Typography.small]}>Inspect</Text>
-        </TouchableOpacity>
-        <Text style={[Typography.small]}>
-          {'\t'}|{'\t'}
+        <Text style={[Typography.large]}>Purchase Order</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(60),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              right: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(70),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              left: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Download</Text>
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={[
+            Typography.small,
+            {
+              alignSelf: 'flex-end',
+              top: Mixins.scaleHeight(5),
+              right: Mixins.scaleWidth(10),
+            },
+          ]}>
+          {props.createdAt}
         </Text>
-        <TouchableOpacity>
-          <Text style={[Typography.small]}>Download</Text>
-        </TouchableOpacity>
       </View>
-      <Text
-        style={[
-          Typography.small,
-          {
-            alignSelf: 'flex-end',
-          },
-        ]}>
-        16.50 - Read
-      </Text>
     </View>
   );
 };
 
 export const OrderQuotation = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);
+  const isMyMessage = () => {
+    if (props.userID == props.senderID) return true;
+    else return false;
+  };
   return (
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.GRAY_LIGHT,
-        width: Mixins.scaleWidth(165),
-        height: Mixins.scaleHeight(70),
-        borderRadius: 10,
-      }}>
+    <View>
+      <View>
+        {!isMyMessage() && (
+          <View
+            style={{
+              left: Mixins.scaleWidth(5),
+              top: Mixins.scaleHeight(50),
+              borderColor: 'white',
+              borderWidth: Mixins.scaleWidth(0.2),
+              width: Mixins.scaleWidth(28),
+              height: Mixins.scaleWidth(28),
+              position: 'absolute',
+              borderRadius: 100,
+              justifyContent: 'center',
+              backgroundColor: Colors.GRAY_WHITE,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text
+              style={{
+                color: Colors.GRAY_DARK,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {props.sender}JK
+            </Text>
+          </View>
+        )}
+      </View>
+      <View
+        style={{
+          marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
+          marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+          width: Mixins.scaleWidth(170),
+          height: Mixins.scaleHeight(65),
+          borderRadius: 10,
+          left: isMyMessage() ? 0 : Mixins.scaleWidth(50),
+          marginTop: Mixins.scaleHeight(15),
+          height: Mixins.scaleHeight(70),
+        }}>
+        <Text style={[Typography.large, {top: Mixins.scaleHeight(-8)}]}>
+          Order Quotation
+        </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            top: Mixins.scaleHeight(-5),
+          }}>
+          <TouchableOpacity
+            onPress={() => setOrderQuotationModal(true)}
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(60),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              right: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(70),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              left: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Download</Text>
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={[
+            Typography.small,
+            {
+              alignSelf: 'flex-end',
+              top: Mixins.scaleHeight(5),
+              right: Mixins.scaleWidth(10),
+            },
+          ]}>
+          {props.createdAt}
+        </Text>
+      </View>
+
       <Modal isVisible={orderQuotationModal}>
         <OrderQuotationModal setOrderQuotationModal={setOrderQuotationModal} />
       </Modal>
-      <Text style={[Typography.large]}>Order Quotation</Text>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity onPress={() => setOrderQuotationModal(true)}>
-          <Text style={[Typography.small]}>Inspect</Text>
-        </TouchableOpacity>
-        <Text style={[Typography.small]}>
-          {'\t'}|{'\t'}
-        </Text>
-        <TouchableOpacity>
-          <Text style={[Typography.small]}>Download</Text>
-        </TouchableOpacity>
-      </View>
-      <Text
-        style={[
-          Typography.small,
-          {
-            left: Mixins.scaleWidth(-50),
-          },
-        ]}>
-        09:45
-      </Text>
     </View>
   );
 };
@@ -577,17 +768,16 @@ const OrderQuotationModal = props => {
       }}>
       <View
         style={{
-          position: 'absolute',
-          top: Mixins.scaleHeight(35),
+          top: Mixins.scaleHeight(25),
           alignItems: 'center',
         }}>
-        <Text style={[Typography.large]}>Order Quotation From</Text>
-        <Text style={[Typography.header, {marginTop: Mixins.scaleHeight(-10)}]}>
+        <Text style={[Typography.large, {top: Mixins.scaleHeight(5)}]}>
+          Order Quotation From
+        </Text>
+        <Text style={[Typography.header]}>
           <Text style={{color: '#8EAB3D'}}>Hinsou WholeSale</Text>
         </Text>
-        <Text style={[Typography.small, {marginTop: Mixins.scaleHeight(-5)}]}>
-          #PQ12345678T
-        </Text>
+        <Text style={[Typography.small]}>#PQ12345678T</Text>
       </View>
       <View
         style={{
@@ -607,12 +797,11 @@ const OrderQuotationModal = props => {
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(305),
+          top: Mixins.scaleHeight(230),
           alignItems: 'center',
           height: Mixins.scaleHeight(95),
-          width: Mixins.scaleWidth(250),
+          width: Mixins.scaleWidth(270),
           backgroundColor: 'white',
-          position: 'absolute',
           borderRadius: 10,
           flexDirection: 'row',
           justifyContent: 'center',
@@ -635,24 +824,47 @@ const OrderQuotationModal = props => {
       <View
         style={{
           flexDirection: 'row',
-          top: Mixins.scaleHeight(435),
+          top: Mixins.scaleHeight(280),
         }}>
         <TouchableOpacity
           style={{
-            marginRight: Mixins.scaleWidth(30),
             backgroundColor: Colors.LIGHT_BLUE,
-            elevation: 3,
-            paddingVertical: Mixins.scaleHeight(5),
-            paddingHorizontal: Mixins.scaleWidth(10),
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
+            right: Mixins.scaleWidth(20),
+            width: Mixins.scaleWidth(90),
+            height: Mixins.scaleHeight(20),
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 10,
           }}>
           <Text style={[Typography.small]}>Accept</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
             backgroundColor: Colors.LIGHT_BLUE,
-            elevation: 3,
-            paddingVertical: Mixins.scaleHeight(5),
-            paddingHorizontal: Mixins.scaleWidth(10),
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
+            left: Mixins.scaleWidth(20),
+            width: Mixins.scaleWidth(90),
+            height: Mixins.scaleHeight(20),
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 10,
           }}>
           <Text style={[Typography.small]}>Decline</Text>
         </TouchableOpacity>
@@ -696,13 +908,15 @@ const OrderCard = props => {
         borderBottomColor: Colors.GRAY_DARK,
         borderBottomWidth: Mixins.scaleWidth(1),
         justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
       }}>
       <Text
         style={[
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(10),
+            left: Mixins.scaleWidth(5),
             position: 'absolute',
           },
         ]}>
@@ -713,7 +927,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(80),
+            left: Mixins.scaleWidth(70),
             position: 'absolute',
           },
         ]}>
@@ -724,11 +938,22 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(120),
+            right: Mixins.scaleWidth(125),
             position: 'absolute',
           },
         ]}>
-        @ RM 8/kg
+        @
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            right: Mixins.scaleWidth(70),
+            position: 'absolute',
+          },
+        ]}>
+        RM 8/kg
       </Text>
 
       <Text
@@ -736,8 +961,8 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'right',
+            right: Mixins.scaleWidth(5),
             position: 'absolute',
-            left: Mixins.scaleWidth(220),
           },
         ]}>
         RM1600
