@@ -11,14 +11,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
 import {MarketplaceList, PurchaseOrderButton} from './components';
 import {NavBar, BackButton} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Store = props => {
   return (
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('103%'),
+        width: wp('100%'),
         alignItems: 'center',
       }}>
       <View
@@ -29,30 +33,30 @@ export const Store = props => {
         }}>
         <BackButton navigation={props.navigation} />
       </View>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
+      <Text style={[Typography.header, {top: hp('4%')}]}>
         {props.name}Jane's Farm
       </Text>
-      <View style={{top: Mixins.scaleHeight(40)}}>
+      <View style={{top: hp('6%')}}>
         <Searchbar />
       </View>
       <View
         style={{
-          width: Mixins.scaleWidth(330),
-          height: Mixins.scaleHeight(425),
-          top: Mixins.scaleHeight(70),
+          width: wp('93%'),
+          height: hp('90%'),
+          top: hp('10%'),
         }}>
         <MarketplaceList productList={items} />
       </View>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(20),
-          bottom: Mixins.scaleHeight(80),
+          right: wp('5%'),
+          bottom: hp('13%'),
         }}>
         <PurchaseOrderButton />
       </View>
 
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
+      <View style={{position: 'absolute', bottom: hp('-2%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

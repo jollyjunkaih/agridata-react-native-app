@@ -18,6 +18,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {DismissKeyboard} from '_components';
 
 const now = () => {
   const now = dayjs().format('DD-MM-YYYY');
@@ -428,6 +429,13 @@ const SendTaskModal = props => {
           height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
           elevation: 5,
           position: 'absolute',
           bottom: hp('8%'),
@@ -1002,6 +1010,13 @@ const ReceivePaymentModal = props => {
           height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
           elevation: 5,
           position: 'absolute',
           bottom: hp('10%'),

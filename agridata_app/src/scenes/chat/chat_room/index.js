@@ -12,8 +12,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {ChatBubbleList, MessageInput, ChatInfo} from './components';
 import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
+import {listMessagesInChat} from '../../../graphql/queries';
+import {DismissKeyboardView} from '_components';
 import {messagesInChatByDate} from '../../../graphql/queries';
 import {onCreateMessage} from '../../../graphql/subscriptions';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import {API, graphqlOperation} from 'aws-amplify';
 

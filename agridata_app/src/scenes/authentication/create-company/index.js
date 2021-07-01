@@ -16,12 +16,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {BackButton} from '_components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
+import {DismissKeyboardView} from '_components';
 import {API, graphqlOperation} from 'aws-amplify';
 import {
   createRetailerCompany,
   createSupplierCompany,
   updateUser,
 } from '../../../graphql/mutations';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const CreateCompany = props => {
   const [open, setOpen] = useState(false);
@@ -102,15 +107,13 @@ export const CreateCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios'
-          ? Mixins.scaleHeight(200)
-          : Mixins.scaleHeight(-150)
+        Platform.OS === 'ios' ? hp('-20%') : Mixins.scaleHeight(-150)
       }>
       <SafeAreaView
         style={{
           backgroundColor: 'white',
-          height: Mixins.scaleHeight(640),
-          width: Mixins.scaleWidth(360),
+          height: hp('100%'),
+          width: wp('100%'),
         }}>
         <View
           style={{
@@ -124,21 +127,21 @@ export const CreateCompany = props => {
           source={require('_assets/images/fruits.png')}
           style={{
             position: 'absolute',
-            right: 0,
-            width: Mixins.scaleWidth(160),
-            height: Mixins.scaleHeight(180),
+
+            width: wp('50%'),
+            height: hp('30%'),
             resizeMode: 'cover',
           }}
         />
-        <View style={{top: Mixins.scaleHeight(30)}}>
+        <View style={{top: hp('5%')}}>
           <View>
             <Text
               style={[
                 Typography.largestSize,
                 {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(30),
+                  width: wp('40%'),
+                  left: wp('8%'),
+                  top: hp('4%'),
                 },
               ]}>
               REGISTER
@@ -147,9 +150,9 @@ export const CreateCompany = props => {
               style={[
                 Typography.largestSize,
                 {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(10),
+                  width: wp('50%'),
+                  left: wp('8%'),
+                  top: hp('2%'),
                 },
               ]}>
               COMPANY
@@ -160,8 +163,8 @@ export const CreateCompany = props => {
         <View>
           <View
             style={{
-              top: Mixins.scaleHeight(50),
-              left: Mixins.scaleWidth(30),
+              top: hp('7%'),
+              left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>Company Name</Text>
             <TextInput
@@ -171,15 +174,12 @@ export const CreateCompany = props => {
               onChangeText={item => setCompanyName(item)}
               value={companyName}
               style={{
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(40),
-                right: Mixins.scaleWidth(5),
-                borderBottomColor: 'transparent',
+                width: wp('50%'),
+                height: hp('7%'),
               }}></TextInput>
             <View
               style={{
-                bottom: Mixins.scaleHeight(10),
-                width: Mixins.scaleWidth(290),
+                width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
                 color: 'black',
@@ -189,29 +189,25 @@ export const CreateCompany = props => {
         <View>
           <View
             style={{
-              top: Mixins.scaleHeight(50),
-              left: Mixins.scaleWidth(30),
+              top: hp('8%'),
+              left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>
               Company Registration Number
             </Text>
             <TextInput
               keyboardType="default"
-              placeholder=""
+              placeholder="######"
               underlineColorAndroid="transparent"
               onChangeText={item => setCompanyRegistrationNum(item)}
               value={companyRegistrationNum}
               style={{
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(40),
-                right: Mixins.scaleWidth(5),
-                borderBottomColor: 'transparent',
-                color: 'black',
+                width: wp('50%'),
+                height: hp('7%'),
               }}></TextInput>
             <View
               style={{
-                bottom: Mixins.scaleHeight(10),
-                width: Mixins.scaleWidth(290),
+                width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
               }}></View>
@@ -220,8 +216,8 @@ export const CreateCompany = props => {
         <View>
           <View
             style={{
-              top: Mixins.scaleHeight(50),
-              left: Mixins.scaleWidth(30),
+              top: hp('9%'),
+              left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>Company Address</Text>
             <TextInput
@@ -231,16 +227,13 @@ export const CreateCompany = props => {
               onChangeText={item => setCompanyAddress(item)}
               value={companyAddress}
               style={{
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(40),
-                right: Mixins.scaleWidth(5),
-                borderBottomColor: 'transparent',
+                width: wp('50%'),
+                height: hp('7%'),
                 color: 'black',
               }}></TextInput>
             <View
               style={{
-                bottom: Mixins.scaleHeight(10),
-                width: Mixins.scaleWidth(290),
+                width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
               }}></View>
@@ -248,20 +241,19 @@ export const CreateCompany = props => {
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(50),
-            left: Mixins.scaleWidth(30),
-            width: Mixins.scaleWidth(280),
+            top: hp('10%'),
+            left: wp('8%'),
           }}>
-          <View style={{marginTop: 5}}>
+          <View>
             <Text style={[Typography.placeholder, {fontSize: 12}]}>
               What type of company are you running?
             </Text>
           </View>
           <View
             style={{
-              width: Mixins.scaleWidth(200),
               zIndex: 1000,
-              height: Mixins.scaleHeight(120),
+              top: hp('1%'),
+              left: wp('-1%'),
             }}>
             <DropDownPicker
               open={open}
@@ -273,29 +265,31 @@ export const CreateCompany = props => {
               dropDownDirection="BOTTOM"
               listItemContainerStyle={{height: Mixins.scaleHeight(30)}}
               style={{
-                width: Mixins.scaleWidth(275),
-                height: Mixins.scaleHeight(30),
+                width: wp('80%'),
+                height: hp('5%'),
                 borderColor: 'white',
                 borderRadius: 3,
+                backgroundColor: Colors.GRAY_LIGHT,
               }}
               containerStyle={{}}
               dropDownContainerStyle={{
                 borderWidth: 0,
-                width: Mixins.scaleWidth(275),
-                height: Mixins.scaleHeight(90),
+                width: wp('80%'),
+                height: hp('15%'),
+                backgroundColor: Colors.GRAY_LIGHT,
               }}></DropDownPicker>
           </View>
         </View>
         <View
           style={{
             alignItems: 'center',
-            top: Mixins.scaleHeight(80),
+            top: hp('30%'),
           }}>
           <TouchableOpacity
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(150),
-              height: Mixins.scaleWidth(40),
+              width: wp('45%'),
+              height: hp('7%'),
               justifyContent: 'center',
               borderRadius: 20,
               shadowOffset: {
@@ -341,52 +335,54 @@ export const CreateCompany = props => {
 
 export const CreateAccountPopUp = props => {
   return (
-    <View
-      style={{
-        backgroundColor: Colors.GRAY_WHITE,
-        width: Mixins.scaleWidth(300),
-        height: Mixins.scaleHeight(400),
-        alignItems: 'center',
-        left: Mixins.scaleWidth(15),
-        borderRadius: 10,
-      }}>
-      <View>
-        <View style={{top: Mixins.scaleHeight(20)}}>
-          <Image
-            source={require('_assets/images/verifycard.png')}
-            style={{
-              resizeMode: 'contain',
-              width: Mixins.scaleWidth(170),
-              height: Mixins.scaleHeight(120),
-            }}
-          />
+    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View
+        style={{
+          backgroundColor: Colors.GRAY_WHITE,
+          width: wp('80%'),
+          height: hp('60%'),
+          top: hp('15%'),
+          borderRadius: 10,
+          alignItems: 'center',
+        }}>
+        <View>
+          <View style={{top: hp('3%'), alignItems: 'center'}}>
+            <Image
+              source={require('_assets/images/verifycard.png')}
+              style={{
+                resizeMode: 'contain',
+                width: wp('50%'),
+                height: hp('20%'),
+              }}
+            />
+          </View>
         </View>
-      </View>
-      <Text
-        style={[
-          Typography.welcome,
-          {
-            width: Mixins.scaleWidth(240),
-            alignSelf: 'center',
-            textAlign: 'center',
-            top: Mixins.scaleHeight(40),
-          },
-        ]}>
-        YOUR ACCOUNT IS BEING VERIFIED
-      </Text>
+        <Text
+          style={[
+            Typography.welcome,
+            {
+              width: wp('70%'),
+              alignSelf: 'center',
+              textAlign: 'center',
+              top: hp('5%'),
+            },
+          ]}>
+          YOUR ACCOUNT IS BEING VERIFIED
+        </Text>
 
-      <Text
-        style={[
-          Typography.normal,
-          {
-            width: Mixins.scaleWidth(240),
-            textAlign: 'center',
-            top: Mixins.scaleHeight(60),
-          },
-        ]}>
-        Thank you for registering your company. We will review it shortly and
-        approve it once verification is complete
-      </Text>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              width: wp('70%'),
+              textAlign: 'center',
+              top: hp('7%'),
+            },
+          ]}>
+          Thank you for registering your company. We will review it shortly and
+          approve it once verification is complete
+        </Text>
+      </View>
     </View>
   );
 };

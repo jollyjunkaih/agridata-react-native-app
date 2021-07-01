@@ -42,7 +42,8 @@ export const SupplierDashboard = props => {
         <MenuButton
           navigation={props.navigation}
           updateAuthState={props.updateAuthState}
-          userType={props.user.role}></MenuButton>
+          //userType={props.user.role}
+        ></MenuButton>
       </View>
 
       <Image
@@ -65,7 +66,7 @@ export const SupplierDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.supplierCompany.name}
+        {/*{props.user.supplierCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
         What would you like to do today
