@@ -110,17 +110,69 @@ export const RetailerTasks = props => {
       <View
         style={{
           top: Mixins.scaleHeight(40),
-          height: Mixins.scaleHeight(175),
+          height: Mixins.scaleHeight(350),
         }}>
-        <ReceiveList ReceiveList={[{}, {}]} />
+        {task == 'pay' ? (
+          <UploadReceiptList
+            UploadReceiptList={[
+              {
+                supplierName: "Matthew's Farm",
+                items: 10,
+                createdAt: '30 June 2021',
+                id: 1,
+              },
+              {
+                supplierName: "Jane's Farm",
+                items: 4,
+                createdAt: '29 June 2021',
+                id: 2,
+              },
+              {
+                supplierName: "Mina's Wholesale",
+                items: 5,
+                createdAt: '30 June 2021',
+                id: 3,
+              },
+              {
+                supplierName: "Gina's Avacadoes",
+                items: 2,
+                createdAt: '29 June 2021',
+                id: 4,
+              },
+            ]}
+          />
+        ) : (
+          <ReceiveList
+            ReceiveList={[
+              {
+                supplierName: "Matthew's Farm",
+                items: 10,
+                createdAt: '30 June 2021',
+                id: 1,
+              },
+              {
+                supplierName: "Jane's Farm",
+                items: 4,
+                createdAt: '29 June 2021',
+                id: 2,
+              },
+              {
+                supplierName: "Mina's Wholesale",
+                items: 5,
+                createdAt: '30 June 2021',
+                id: 3,
+              },
+              {
+                supplierName: "Gina's Avacadoes",
+                items: 2,
+                createdAt: '29 June 2021',
+                id: 4,
+              },
+            ]}
+          />
+        )}
       </View>
-      <View
-        style={{
-          top: Mixins.scaleHeight(65),
-          height: Mixins.scaleHeight(200),
-        }}>
-        <UploadReceiptList UploadReceiptList={[{}, {}]} />
-      </View>
+
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
       </View>

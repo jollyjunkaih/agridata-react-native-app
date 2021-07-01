@@ -9,13 +9,21 @@ import {
   SupplierDashboard,
   PersonalProfile,
   EditPersonal,
+  GeneralManagerDashboard,
 } from './dashboard';
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 import {SupplierTasks, RetailerTasks} from './tasks';
 import {DataAnalytics} from './data-analytics';
-import {Registration, Login, CreateCompany} from './authentication';
+import {
+  Registration,
+  Login,
+  CreateCompany,
+  Verification,
+  Landing,
+  CreateAccountPopUp,
+} from './authentication';
 
 export {
   RetailManagerDashboard,
@@ -40,4 +48,8 @@ export {
   Login,
   CreateCompany,
   SupplierDashboard,
+  Landing,
+  Verification,
+  GeneralManagerDashboard,
+  CreateAccountPopUp,
 };

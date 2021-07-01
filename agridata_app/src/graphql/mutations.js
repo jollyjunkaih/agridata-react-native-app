@@ -31,11 +31,7 @@ export const createUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -54,6 +50,10 @@ export const createUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -64,11 +64,7 @@ export const createUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -90,6 +86,10 @@ export const createUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -128,11 +128,7 @@ export const updateUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -151,6 +147,10 @@ export const updateUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -161,11 +161,7 @@ export const updateUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -187,6 +183,10 @@ export const updateUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -225,11 +225,7 @@ export const deleteUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -248,6 +244,10 @@ export const deleteUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -258,11 +258,7 @@ export const deleteUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -284,6 +280,10 @@ export const deleteUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -314,11 +314,7 @@ export const createRetailerCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -366,6 +362,20 @@ export const createRetailerCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -393,11 +403,7 @@ export const updateRetailerCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -445,6 +451,20 @@ export const updateRetailerCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -472,11 +492,7 @@ export const deleteRetailerCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -524,6 +540,20 @@ export const deleteRetailerCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -551,11 +581,7 @@ export const createSupplierCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -619,6 +645,20 @@ export const createSupplierCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -646,11 +686,7 @@ export const updateSupplierCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -714,6 +750,20 @@ export const updateSupplierCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -741,11 +791,7 @@ export const deleteSupplierCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -809,6 +855,20 @@ export const deleteSupplierCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -822,6 +882,77 @@ export const createChatGroup = /* GraphQL */ `
     createChatGroup(input: $input, condition: $condition) {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          nextToken
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
@@ -849,6 +980,7 @@ export const createChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -861,6 +993,77 @@ export const updateChatGroup = /* GraphQL */ `
     updateChatGroup(input: $input, condition: $condition) {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          nextToken
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
@@ -888,6 +1091,7 @@ export const updateChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -900,6 +1104,77 @@ export const deleteChatGroup = /* GraphQL */ `
     deleteChatGroup(input: $input, condition: $condition) {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          nextToken
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
@@ -927,6 +1202,7 @@ export const deleteChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -998,6 +1274,28 @@ export const createChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
         chatParticipants {
           nextToken
         }
@@ -1006,6 +1304,7 @@ export const createChatGroupUsers = /* GraphQL */ `
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -1022,7 +1321,9 @@ export const createChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1030,7 +1331,9 @@ export const createChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1055,6 +1358,28 @@ export const updateChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
         chatParticipants {
           nextToken
         }
@@ -1063,6 +1388,7 @@ export const updateChatGroupUsers = /* GraphQL */ `
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -1079,7 +1405,9 @@ export const updateChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1087,7 +1415,9 @@ export const updateChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1112,6 +1442,28 @@ export const deleteChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
         chatParticipants {
           nextToken
         }
@@ -1120,6 +1472,7 @@ export const deleteChatGroupUsers = /* GraphQL */ `
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -1136,7 +1489,9 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1144,7 +1499,9 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1170,11 +1527,7 @@ export const createProductListing = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1196,6 +1549,10 @@ export const createProductListing = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1226,11 +1583,7 @@ export const updateProductListing = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1252,6 +1605,10 @@ export const updateProductListing = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1282,11 +1639,7 @@ export const deleteProductListing = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1308,6 +1661,10 @@ export const deleteProductListing = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1437,11 +1794,7 @@ export const createGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1460,6 +1813,10 @@ export const createGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1471,11 +1828,7 @@ export const createGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1497,6 +1850,10 @@ export const createGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1526,11 +1883,7 @@ export const updateGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1549,6 +1902,10 @@ export const updateGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1560,11 +1917,7 @@ export const updateGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1586,6 +1939,10 @@ export const updateGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1615,11 +1972,7 @@ export const deleteGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1638,6 +1991,10 @@ export const deleteGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1649,11 +2006,7 @@ export const deleteGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1675,6 +2028,10 @@ export const deleteGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1704,11 +2061,7 @@ export const createPaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1727,6 +2080,10 @@ export const createPaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1738,11 +2095,7 @@ export const createPaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1764,6 +2117,10 @@ export const createPaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1780,7 +2137,9 @@ export const createPaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1789,7 +2148,9 @@ export const createPaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1822,11 +2183,7 @@ export const updatePaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1845,6 +2202,10 @@ export const updatePaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1856,11 +2217,7 @@ export const updatePaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1882,6 +2239,10 @@ export const updatePaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1898,7 +2259,9 @@ export const updatePaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1907,7 +2270,9 @@ export const updatePaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1940,11 +2305,7 @@ export const deletePaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1963,6 +2324,10 @@ export const deletePaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1974,11 +2339,7 @@ export const deletePaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2000,6 +2361,10 @@ export const deletePaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2016,7 +2381,9 @@ export const deletePaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -2025,7 +2392,9 @@ export const deletePaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -2058,11 +2427,7 @@ export const createInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2081,6 +2446,10 @@ export const createInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2092,11 +2461,7 @@ export const createInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2118,6 +2483,10 @@ export const createInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2148,11 +2517,7 @@ export const updateInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2171,6 +2536,10 @@ export const updateInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2182,11 +2551,7 @@ export const updateInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2208,6 +2573,10 @@ export const updateInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2238,11 +2607,7 @@ export const deleteInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2261,6 +2626,10 @@ export const deleteInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -2272,11 +2641,7 @@ export const deleteInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -2298,6 +2663,10 @@ export const deleteInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }

@@ -1,5 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {scaleHeight} from '_styles';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {
@@ -8,6 +15,7 @@ import {
   ToDoButton,
   InvoiceButton,
   MenuButton,
+  DataAnalyticsButton,
 } from '_scenes/dashboard/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -25,7 +33,11 @@ export const SupplierDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton></MenuButton>
+        <MenuButton
+          navigation={props.navigation}
+          updateAuthState={props.updateAuthState}
+          //userType={props.user.role}
+        ></MenuButton>
       </View>
 
       <Image
@@ -50,16 +62,25 @@ export const SupplierDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        Company Name!
+        {/*{props.user.supplierCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today
       </Text>
-      <ChatButton top={90} navigation={props.navigation}></ChatButton>
-      <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
-      <MarketplaceButton
-        top={90}
-        navigation={props.navigation}></MarketplaceButton>
+      <View
+        style={{height: Mixins.scaleHeight(300), top: Mixins.scaleHeight(100)}}>
+        <ScrollView>
+          <ToDoButton top={0} navigation={props.navigation}></ToDoButton>
+          <MarketplaceButton
+            top={0}
+            navigation={props.navigation}></MarketplaceButton>
+          <DataAnalyticsButton
+            top={0}
+            navigation={props.navigation}></DataAnalyticsButton>
+          <InvoiceButton top={0} navigation={props.navigation}></InvoiceButton>
+          <ChatButton top={0} navigation={props.navigation}></ChatButton>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

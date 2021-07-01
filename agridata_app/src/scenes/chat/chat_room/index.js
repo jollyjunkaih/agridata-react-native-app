@@ -5,7 +5,6 @@ import {
   View,
   KeyboardAvoidingView,
   AppState,
-  SliderComponent,
   Platform,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
@@ -15,8 +14,14 @@ import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
 import {listMessagesInChat} from '../../../graphql/queries';
 import {DismissKeyboardView} from '_components';
+import {messagesInChatByDate} from '../../../graphql/queries';
+import {onCreateMessage} from '../../../graphql/subscriptions';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-import {API} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 
 export const ChatRoom = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
@@ -30,15 +35,14 @@ export const ChatRoom = props => {
   const fetchMessages = async () => {
     try {
       const message = await API.graphql({
-        query: listMessagesInChat,
+        query: messagesInChatByDate,
         variables: {
-          filter: {chatGroupID: {eq: itemID}},
+          chatGroupID: itemID,
           sortDirection: 'ASC',
         },
       });
-      if (message.data) {
-        setMessages(message.data.listMessages.items);
-      }
+      var tempMessage = message.data.messagesInChatByDate.items;
+      setMessages(tempMessage.reverse());
     } catch (e) {
       console.log(e);
       console.log("there's a problem");
@@ -46,7 +50,33 @@ export const ChatRoom = props => {
   };
   useEffect(() => {
     fetchMessages();
+    console.log('useEffect Triggered');
+  }, [itemID]);
+
+  useEffect(() => {
+    const subscription = API.graphql(
+      graphqlOperation(onCreateMessage),
+    ).subscribe({
+      next: data => {
+        console.log(data.value.data.onCreateMessage);
+        const newMessage = data.value.data.onCreateMessage;
+
+        if (newMessage.chatGroupID != itemID) {
+          console.log('Message is in another room!');
+          return;
+        }
+
+        messages = messages.reverse();
+        messages.push(newMessage.data.newMessage);
+        messages = messages.reverse();
+        setMessages(messages);
+        // setMessages([newMessage, ...messages]);
+      },
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
+
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -120,7 +150,7 @@ export const ChatRoom = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-          Name of chat
+          Matthew's Farm
         </Text>
         <View
           style={{
@@ -128,7 +158,7 @@ export const ChatRoom = props => {
             top: Mixins.scaleHeight(30),
             right: Mixins.scaleWidth(15),
           }}>
-          <ChatInfo />
+          <ChatInfo chatGroupID={itemID} />
         </View>
 
         <View
@@ -151,40 +181,22 @@ export const ChatRoom = props => {
           top: Mixins.scaleHeight(10),
           width: Mixins.scaleWidth(340),
         }}>
-        <DismissKeyboardView>
-          <View
-            style={{
-              height: Mixins.scaleHeight(460),
-            }}>
-            <ChatBubbleList data={[{}, {}]} userID={userID} />
-          </View>
+        <View
+          style={{
+            height: Mixins.scaleHeight(460),
+          }}>
+          <ChatBubbleList data={messages} userID={userID} />
+        </View>
 
-          <View style={{top: Mixins.scaleHeight(0)}}>
-            <MessageInput
-              userID={userID}
-              chatGroupID={itemID}
-              user={'user'}
-              setMessages={setMessages}
-              messages={messages}></MessageInput>
-          </View>
-        </DismissKeyboardView>
+        <View style={{top: Mixins.scaleHeight(0)}}>
+          <MessageInput
+            userID={userID}
+            chatGroupID={itemID}
+            user={'user'}
+            setMessages={setMessages}
+            messages={messages}></MessageInput>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
-
-const data = [
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-  {name: '1'},
-];

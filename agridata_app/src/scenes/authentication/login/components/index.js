@@ -16,6 +16,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Modal from 'react-native-modal';
 import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const ForgetPassword = props => {
   const [changePassword, setChangePassword] = useState(false);
@@ -25,16 +29,14 @@ export const ForgetPassword = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(70) : -180
-      }>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('10%') : -180}>
       <SafeAreaView>
         <DismissKeyboardView>
           <View
             style={{
               position: 'absolute',
-              top: Mixins.scaleHeight(-10),
-              left: Mixins.scaleWidth(285),
+              top: hp('-1.5%'),
+              left: wp('80%'),
               zIndex: 1000,
               shadowColor: '#000',
               shadowOffset: {
@@ -50,8 +52,8 @@ export const ForgetPassword = props => {
 
           <View
             style={{
-              height: Mixins.scaleHeight(200),
-              width: Mixins.scaleWidth(280),
+              height: hp('30%'),
+              width: wp('80%'),
               backgroundColor: 'white',
               borderRadius: 20,
               alignItems: 'center',
@@ -62,8 +64,8 @@ export const ForgetPassword = props => {
                 Typography.normal,
                 {
                   textAlign: 'center',
-                  margin: Mixins.scaleWidth(20),
-                  top: Mixins.scaleHeight(10),
+                  margin: wp('5%'),
+                  top: hp('1%'),
                 },
               ]}>
               Enter Phone Number to Reset Password
@@ -72,8 +74,8 @@ export const ForgetPassword = props => {
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: Mixins.scaleWidth(150),
-                  top: Mixins.scaleHeight(20),
+                  width: wp('60%'),
+                  top: hp('3%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
                   alignItems: 'center',
@@ -84,7 +86,7 @@ export const ForgetPassword = props => {
                     setSearch(value);
                   }}
                   placeholder="Phone Number"
-                  style={{height: Mixins.scaleHeight(30)}}></TextInput>
+                  style={{height: hp('5%')}}></TextInput>
               </View>
             </View>
             <TouchableOpacity
@@ -94,9 +96,9 @@ export const ForgetPassword = props => {
                   : setChangePassword(true),
               ]}
               style={{
-                top: Mixins.scaleHeight(50),
-                width: Mixins.scaleWidth(100),
-                height: Mixins.scaleHeight(30),
+                top: hp('7%'),
+                width: wp('30%'),
+                height: hp('5%'),
                 backgroundColor: Colors.LIGHT_BLUE,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -139,16 +141,14 @@ export const ChangePassword = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(70) : -180
-      }>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('10%') : -180}>
       <SafeAreaView>
         <DismissKeyboardView>
           <View
             style={{
               position: 'absolute',
-              top: Mixins.scaleHeight(-10),
-              left: Mixins.scaleWidth(295),
+              top: hp('-1.5%'),
+              left: wp('82%'),
               zIndex: 1000,
               shadowColor: '#000',
               shadowOffset: {
@@ -164,8 +164,8 @@ export const ChangePassword = props => {
 
           <View
             style={{
-              height: Mixins.scaleHeight(250),
-              width: Mixins.scaleWidth(300),
+              height: hp('40%'),
+              width: wp('85%'),
               backgroundColor: 'white',
               borderRadius: 20,
               alignItems: 'center',
@@ -176,8 +176,8 @@ export const ChangePassword = props => {
                 Typography.normal,
                 {
                   textAlign: 'center',
-                  margin: Mixins.scaleWidth(20),
-                  top: Mixins.scaleHeight(10),
+                  margin: wp('3%'),
+                  top: hp('2%'),
                 },
               ]}>
               Reset password by typing in your new password and auth code
@@ -186,8 +186,8 @@ export const ChangePassword = props => {
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: Mixins.scaleWidth(150),
-                  top: Mixins.scaleHeight(10),
+                  width: wp('40%'),
+                  top: hp('2%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
                   alignItems: 'center',
@@ -198,13 +198,13 @@ export const ChangePassword = props => {
                     setCode(value);
                   }}
                   placeholder="Auth Code"
-                  style={{height: Mixins.scaleHeight(30)}}></TextInput>
+                  style={{height: hp('5%')}}></TextInput>
               </View>
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: Mixins.scaleWidth(150),
-                  top: Mixins.scaleHeight(30),
+                  width: wp('40%'),
+                  top: hp('4%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
                   alignItems: 'center',
@@ -215,12 +215,12 @@ export const ChangePassword = props => {
                     setPassword(value);
                   }}
                   placeholder="New Password"
-                  style={{height: Mixins.scaleHeight(30)}}></TextInput>
+                  style={{height: hp('5%')}}></TextInput>
               </View>
             </View>
             <TouchableOpacity
               onPress={() => setResendCodeModal(true)}
-              style={{top: Mixins.scaleHeight(50)}}>
+              style={{top: hp('8%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
                 Re-send Code
@@ -235,7 +235,7 @@ export const ChangePassword = props => {
                   ? setResendCodeSuccessModal(true)
                   : setResendCodeSuccessModal(false),
               ]}
-              style={{top: Mixins.scaleHeight(70)}}>
+              style={{top: hp('12%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
                 Change Password
@@ -268,22 +268,30 @@ export const ChangePassword = props => {
 
 export const PhoneNumberModal = props => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <View
         style={{
-          height: Mixins.scaleHeight(220),
-          width: Mixins.scaleWidth(300),
+          height: hp('40%'),
+          width: wp('90%'),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
           alignSelf: 'center',
         }}>
-        <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
           Please Enter Your Phone Number!
         </Text>
 
-        <View style={{top: Mixins.scaleHeight(50), justifyContent: 'center'}}>
-          <Icon name="warning" color={'red'} size={Mixins.scaleWidth(120)} />
+        <View style={{top: hp('8%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('40%')} />
         </View>
       </View>
     </SafeAreaView>
@@ -292,11 +300,15 @@ export const PhoneNumberModal = props => {
 
 export const PasswordCodeModal = props => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <View
         style={{
-          height: Mixins.scaleHeight(260),
-          width: Mixins.scaleWidth(320),
+          height: hp('50%'),
+          width: wp('90%'),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
@@ -304,13 +316,13 @@ export const PasswordCodeModal = props => {
         }}>
         <Text
           style={[
-            Typography.normal,
-            {top: Mixins.scaleHeight(20), textAlign: 'center'},
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
           Please Enter Both Authentification Code and New Password!
         </Text>
-        <View style={{top: Mixins.scaleHeight(50), justifyContent: 'center'}}>
-          <Icon name="warning" color={'red'} size={Mixins.scaleWidth(120)} />
+        <View style={{top: hp('8%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('45%')} />
         </View>
       </View>
     </SafeAreaView>
@@ -323,34 +335,27 @@ export const ResendCodeSuccessModal = props => {
       <DismissKeyboardView>
         <View
           style={{
-            height: Mixins.scaleHeight(270),
-            width: Mixins.scaleWidth(320),
+            height: hp('45%'),
+            width: wp('90%'),
             backgroundColor: 'white',
             borderRadius: 20,
             alignItems: 'center',
             alignSelf: 'center',
           }}>
           <Text
-            style={[
-              Typography.header,
-              {top: Mixins.scaleHeight(20), textAlign: 'center'},
-            ]}>
+            style={[Typography.header, {top: hp('3%'), textAlign: 'center'}]}>
             Password Successfuly Changed!
           </Text>
-          <View style={{top: Mixins.scaleHeight(30), justifyContent: 'center'}}>
-            <Icon
-              name="checkmark-done"
-              color={'green'}
-              size={Mixins.scaleWidth(120)}
-            />
+          <View style={{top: hp('4%'), justifyContent: 'center'}}>
+            <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
           </View>
           <TouchableOpacity
             onPress={() => props.setForgetPassword(false)}
             style={{
-              top: Mixins.scaleHeight(40),
+              top: hp('5%'),
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(100),
-              height: Mixins.scaleHeight(25),
+              width: wp('30%'),
+              height: hp('5%'),
               alignItems: 'center',
               justifyContent: 'center',
               shadowColor: '#000',
@@ -373,11 +378,15 @@ export const ResendCodeSuccessModal = props => {
 
 export const ResendCodeModal = props => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <View
         style={{
-          height: Mixins.scaleHeight(260),
-          width: Mixins.scaleWidth(320),
+          height: hp('45%'),
+          width: wp('90%'),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
@@ -386,16 +395,12 @@ export const ResendCodeModal = props => {
         <Text
           style={[
             Typography.header,
-            {top: Mixins.scaleHeight(20), textAlign: 'center'},
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
           Code Sent!
         </Text>
-        <View style={{top: Mixins.scaleHeight(50), justifyContent: 'center'}}>
-          <Icon
-            name="checkmark-done"
-            color={'green'}
-            size={Mixins.scaleWidth(120)}
-          />
+        <View style={{top: hp('10%'), justifyContent: 'center'}}>
+          <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
         </View>
       </View>
     </SafeAreaView>

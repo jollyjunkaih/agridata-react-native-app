@@ -32,13 +32,13 @@ const ProductCard = props => {
         elevation: 3,
         alignItems: 'center',
       }}>
-      <Image
+      {/*<Image
         style={{
           height: Mixins.scaleHeight(70),
           width: Mixins.scaleHeight(70),
           borderRadius: 100,
           top: Mixins.scaleHeight(10),
-        }}></Image>
+        }}></Image>*/}
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
         {props.productName}
       </Text>
@@ -347,7 +347,7 @@ const PurchaseOrder = props => {
               top: Mixins.scaleHeight(10),
             },
           ]}>
-          Hinsou Wholesale
+          Jane's Farm
         </Text>
       </View>
       <View
@@ -430,10 +430,7 @@ const PurchaseOrderList = props => {
       }
       renderItem={({item}) => {
         return (
-          <PurchaseOrderComponent
-            productName={item.produce}
-            availableQuantity={item.quantity}
-          />
+          <PurchaseOrderComponent name={item.name} quantity={item.quantity} />
         );
       }}
     />
@@ -455,13 +452,14 @@ const PurchaseOrderComponent = props => {
               Typography.small,
               {position: 'absolute', left: Mixins.scaleWidth(5)},
             ]}>
-            Product
+            {props.name}
           </Text>
         </View>
         <View>
           <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
             {' '}
-            |{'\t'}300kg
+            |{'\t'}
+            {props.quantity}kg
           </Text>
         </View>
         <TouchableOpacity style={{left: Mixins.scaleWidth(85)}}>
@@ -478,4 +476,9 @@ const PurchaseOrderComponent = props => {
     </View>
   );
 };
-const DATA = [{}, {}, {}, {}];
+const DATA = [
+  {name: 'Ginger', quantity: '30'},
+  {name: 'Bananas', quantity: '40'},
+  {name: 'Avacadoes', quantity: '50'},
+  {name: 'Durian', quantity: '60'},
+];
