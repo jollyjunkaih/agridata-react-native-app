@@ -26,7 +26,7 @@ export const RetailManagerDashboard = props => {
           left: Mixins.scaleWidth(30),
         }}>
         <MenuButton
-          userType={props.user.role}
+          //userType={props.user.role}
           updateAuthState={props.updateAuthState}
           navigation={props.navigation}></MenuButton>
       </View>
@@ -53,7 +53,7 @@ export const RetailManagerDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.retailerCompany.name}
+        {/*{props.user.retailerCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today

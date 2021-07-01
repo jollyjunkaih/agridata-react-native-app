@@ -15,6 +15,10 @@ import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
 import {API} from 'aws-amplify';
 import {createMessage} from '../../../../../graphql/mutations';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -23,9 +27,9 @@ export const ProductCard = props => {
       onPress={() => setProductModal(true)}
       style={{
         backgroundColor: Colors.GRAY_LIGHT,
-        width: Mixins.scaleWidth(130),
-        height: Mixins.scaleHeight(155),
-        margin: Mixins.scaleWidth(17.5),
+        width: wp('36%'),
+        height: hp('20%'),
+        margin: wp('5%'),
         borderRadius: 20,
         elevation: 3,
         alignItems: 'center',
@@ -37,14 +41,10 @@ export const ProductCard = props => {
           borderRadius: 100,
           top: Mixins.scaleHeight(10),
         }}></Image>*/}
-      <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
+      <Text style={[Typography.normal, {top: hp('2.5%')}]}>
         {props.productName}
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {top: Mixins.scaleHeight(20), width: Mixins.scaleWidth(80)},
-        ]}>
+      <Text style={[Typography.small, {top: hp('4%'), width: wp('25%')}]}>
         Price: {props.priceMin} - {props.priceMax}
         {'\n'}MOQ: {props.moq}
         {'\n'}Available: {props.availableQuantity}
@@ -74,13 +74,14 @@ export const MarketplaceList = props => {
       ListEmptyComponent={
         <View
           style={{
-            width: Mixins.scaleWidth(330),
-            height: Mixins.scaleHeight(420),
-            top: Mixins.scaleHeight(30),
+            width: wp('100%'),
+            height: hp('30%'),
+            top: hp('100%'),
             alignItems: 'center',
+            backgroundColor: 'red',
           }}>
           <Image
-            style={{resizeMode: 'cover', width: Mixins.scaleWidth(340)}}
+            style={{resizeMode: 'cover', width: wp('40%')}}
             source={require('_assets/images/produce.png')}></Image>
         </View>
       }
@@ -116,16 +117,16 @@ export const ProductPopUp = props => {
   return (
     <View
       style={{
-        right: Mixins.scaleWidth(17.5),
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        right: wp('5%'),
+        height: hp('70%'),
+        width: wp('100%'),
         justifyContent: 'center',
         alignItems: 'center',
       }}>
       <View
         style={{
-          height: Mixins.scaleHeight(385),
-          width: Mixins.scaleWidth(290),
+          height: hp('60%'),
+          width: wp('80%'),
           backgroundColor: 'white',
           borderRadius: 20,
           alignItems: 'center',
@@ -133,46 +134,44 @@ export const ProductPopUp = props => {
         <View
           style={{
             position: 'absolute',
-            right: Mixins.scaleWidth(-10),
-            top: Mixins.scaleHeight(-10),
+            right: wp('-2%'),
+            top: hp('-1%'),
           }}>
           <CloseButton setModal={props.setProductModal}></CloseButton>
         </View>
         <View
           style={{
-            left: Mixins.scaleWidth(10),
-            top: Mixins.scaleHeight(15),
+            left: wp('7%'),
+            top: hp('3%'),
             position: 'absolute',
-            width: Mixins.scaleWidth(270),
+            width: wp('50%'),
             flexDirection: 'row',
           }}>
-          <Text style={[Typography.header, {left: Mixins.scaleWidth(15)}]}>
-            {props.item.productName}
-          </Text>
+          <Text style={[Typography.header]}>{props.item.productName}</Text>
           <View
             style={{
               position: 'absolute',
-              left: Mixins.scaleWidth(110),
-              top: Mixins.scaleHeight(6),
+              left: wp('55%'),
+              top: hp('0.5%'),
             }}>
-            <ChatButton size={Mixins.scaleWidth(25)}></ChatButton>
+            <ChatButton size={wp('8%')}></ChatButton>
           </View>
         </View>
 
         <Image
           style={{
-            top: Mixins.scaleHeight(40),
-            height: Mixins.scaleWidth(130),
-            width: Mixins.scaleWidth(130),
+            top: hp('7%'),
+            height: hp('15%'),
+            width: wp('32%'),
             borderRadius: 100,
           }}
           source={require('_assets/images/agridata.png')}></Image>
         <View
           style={{
-            top: Mixins.scaleHeight(160),
-            left: Mixins.scaleWidth(20),
+            top: hp('23%'),
+            left: wp('7%'),
             position: 'absolute',
-            width: Mixins.scaleWidth(250),
+            width: wp('80%'),
             flexDirection: 'row',
           }}>
           <TouchableOpacity
@@ -182,38 +181,38 @@ export const ProductPopUp = props => {
               })
             }
             style={{
-              width: Mixins.scaleWidth(145),
+              width: wp('40%'),
               flexDirection: 'row',
               flexWrap: 'wrap',
-              height: Mixins.scaleHeight(42),
-              left: Mixins.scaleWidth(10),
+              height: hp('50%'),
+              left: wp('4%'),
             }}>
-            <Icon name="rocket-outline" size={Mixins.scaleWidth(20)}></Icon>
+            <Icon name="rocket-outline" size={wp('5%')}></Icon>
             <Text
               style={[
                 Typography.normal,
                 {
                   fontFamily: 'Poppins-SemiBold',
-                  left: Mixins.scaleWidth(10),
-                  width: Mixins.scaleWidth(110),
+                  left: wp('3%'),
+                  width: wp('30%'),
                 },
               ]}>
               Visit supplier store
             </Text>
             <Rating
-              imageSize={Mixins.scaleWidth(22)}
+              imageSize={wp('6%')}
               readonly={true}
               startingValue={3.5}></Rating>
           </TouchableOpacity>
           <View
             style={{
-              width: Mixins.scaleWidth(105),
-              right: Mixins.scaleWidth(0),
+              width: wp('30%'),
+              right: wp('-1%'),
             }}>
             <Text
               style={[
                 Typography.normal,
-                {bottom: Mixins.scaleHeight(-15), color: Colors.PALE_BLUE},
+                {top: wp('6%'), color: Colors.PALE_BLUE},
               ]}>
               RM {props.item.priceMin}-{props.item.priceMax}/kg
             </Text>
@@ -222,9 +221,9 @@ export const ProductPopUp = props => {
         <View
           style={{
             position: 'absolute',
-            bottom: Mixins.scaleHeight(20),
-            width: Mixins.scaleWidth(245),
-            height: Mixins.scaleHeight(155),
+            bottom: wp('6%'),
+            width: wp('70%'),
+            height: hp('25%'),
             backgroundColor: Colors.GRAY_LIGHT,
             borderRadius: 20,
             alignItems: 'center',
@@ -233,24 +232,24 @@ export const ProductPopUp = props => {
             style={[
               Typography.small,
               {
-                lineHeight: Mixins.scaleHeight(20),
-                top: Mixins.scaleHeight(20),
-                left: Mixins.scaleWidth(20),
+                lineHeight: hp('3%'),
+                top: hp('2%'),
+                left: wp('5%'),
                 position: 'absolute',
               },
             ]}>
             Variety:{props.item.type}
-            {'\n'}Available:{props.item.availableQuantity}
-            {'\n'}MOQ:{props.item.moq}
+            {'\n'}Available: {props.item.availableQuantity}
+            {'\n'}MOQ: {props.item.moq}
             {'\n'}Other Details:
           </Text>
 
           <View
             style={{
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(40),
+              width: wp('60%'),
+              height: hp('7%'),
               backgroundColor: 'white',
-              top: Mixins.scaleHeight(100),
+              top: hp('15%'),
             }}></View>
         </View>
       </View>
@@ -273,7 +272,7 @@ export const FavouritesList = props => {
       ListEmptyComponent={
         <View
           style={{
-            width: Mixins.scaleWidth(330),
+            width: wp('80%'),
             height: Mixins.scaleHeight(420),
             top: Mixins.scaleHeight(30),
             alignItems: 'center',

@@ -35,7 +35,8 @@ export const AccountsDashboard = props => {
         <MenuButton
           navigation={props.navigation}
           updateAuthState={props.updateAuthState}
-          userType={props.user.role}></MenuButton>
+          //userType={props.user.role}
+        ></MenuButton>
       </View>
       <Image
         style={{
@@ -51,7 +52,7 @@ export const AccountsDashboard = props => {
         {Strings.welcome}
       </Text>
 
-      <Text
+      {/* <Text
         style={[
           Typography.largestSize,
           {
@@ -61,7 +62,7 @@ export const AccountsDashboard = props => {
           },
         ]}>
         {props.user.retailerCompany.name}
-      </Text>
+      </Text>*/}
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         {Strings.whatToDo}
       </Text>
