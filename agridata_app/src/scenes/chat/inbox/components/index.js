@@ -73,7 +73,7 @@ export const ChatList = props => {
           onRefresh={props.onRefresh}
         />
       }
-      keyExtractor={item => item.chatGroupID}
+      keyExtractor={item => item.id}
       data={props.data}
       numColumns={1}
       ItemSeparatorComponent={Seperator}
@@ -108,7 +108,7 @@ export const ChatList = props => {
             chatName={item.name}
             mostRecentMessage={item.mostRecentMessage}
             updatedAt={item.updatedAt}
-            chatGroupID={item.chatGroupID}
+            chatGroupID={item.id}
             navigation={props.navigation}
           />
         );

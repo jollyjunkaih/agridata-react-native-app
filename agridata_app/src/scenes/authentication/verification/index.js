@@ -14,8 +14,18 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Auth} from 'aws-amplify';
 
 export const Verification = props => {
+  const signOut = async () => {
+    try {
+      await Auth.signOut();
+      props.updateAuthState('loggedOut');
+      console.log('Logged Out');
+    } catch (error) {
+      console.log('Error signing out: ', error);
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
@@ -38,7 +48,9 @@ export const Verification = props => {
           style={{
             top: Mixins.scaleHeight(20),
             alignItems: 'center',
-            zIndex: 2,
+            zIndex: 20,
+
+            height: Mixins.scaleHeight(380),
           }}>
           <Text
             style={[
@@ -67,6 +79,7 @@ export const Verification = props => {
             style={{
               top: Mixins.scaleHeight(70),
               width: Mixins.scaleWidth(270),
+              height: Mixins.scaleHeight(100),
             }}>
             <Text style={[Typography.medium, {textAlign: 'center'}]}>
               Hang in there! It might take some time to verify your account.
@@ -80,11 +93,11 @@ export const Verification = props => {
               </Text>
             </View>
           </View>
-
           <TouchableOpacity
+            onPress={() => props.navigation.navigate('companyprofile')}
             style={{
               alignItems: 'center',
-              top: Mixins.scaleHeight(110),
+              top: Mixins.scaleHeight(70),
               backgroundColor: Colors.LIGHT_BLUE,
               width: Mixins.scaleWidth(150),
               height: Mixins.scaleWidth(40),
@@ -97,14 +110,16 @@ export const Verification = props => {
               shadowOpacity: 2,
               shadowRadius: 3,
               shadowColor: 'grey',
-              zIndex: 2,
+              zIndex: 22,
+              elevation: 2,
             }}>
             <Text style={[Typography.normal]}>UPDATE COMPANY</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => signOut()}
             style={{
               alignItems: 'center',
-              top: Mixins.scaleHeight(130),
+              top: Mixins.scaleHeight(85),
               backgroundColor: Colors.LIGHT_BLUE,
               width: Mixins.scaleWidth(150),
               height: Mixins.scaleWidth(40),
@@ -117,14 +132,16 @@ export const Verification = props => {
               shadowOpacity: 2,
               shadowRadius: 3,
               shadowColor: 'grey',
-              zIndex: 2,
+              elevation: 2,
+              zIndex: 22,
             }}>
             <Text style={[Typography.normal]}>LOG OUT</Text>
           </TouchableOpacity>
         </View>
+
         <View
           style={{
-            bottom: Mixins.scaleHeight(-300),
+            bottom: Mixins.scaleHeight(-120),
             right: Mixins.scaleWidth(0),
             position: 'absolute',
           }}>
@@ -139,7 +156,7 @@ export const Verification = props => {
         </View>
         <View
           style={{
-            bottom: Mixins.scaleHeight(-490),
+            bottom: Mixins.scaleHeight(-310),
             right: Mixins.scaleWidth(100),
             position: 'absolute',
             transform: [{scaleY: -1}],

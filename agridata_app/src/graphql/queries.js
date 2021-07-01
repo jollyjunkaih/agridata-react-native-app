@@ -1,50 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-//List Chat Groups by updatedAt, able to check the user's last online or can use get users (should be a more effiecient query) {need to raise this question to AWS Support}
-export const listChatsContainingUser = /* GraphQL */ `
-  query ListChatGroupUserss(
-    $filter: ModelChatGroupUsersFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listChatGroupUserss(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        chatGroupID
-        lastOnline
-        chatGroup {
-          name
-          updatedAt
-          mostRecentMessage
-        }
-      }
-      nextToken
-    }
-  }
-`;
-
-//List Messages in Chat Room by createdAt
-export const listMessagesInChat = /* GraphQL */ `
-  query ListMessages(
-    $filter: ModelMessageFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        type
-        content
-        senderID
-        uniqueContentID
-        sender
-        createdAt
-      }
-      nextToken
-    }
-  }
-`;
-
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -72,11 +28,7 @@ export const getUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -95,6 +47,10 @@ export const getUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -105,11 +61,7 @@ export const getUser = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -131,6 +83,10 @@ export const getUser = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -160,7 +116,9 @@ export const listUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -168,7 +126,9 @@ export const listUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -198,11 +158,7 @@ export const getRetailerCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -250,6 +206,20 @@ export const getRetailerCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -273,11 +243,7 @@ export const listRetailerCompanys = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -296,6 +262,10 @@ export const listRetailerCompanys = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -322,11 +292,7 @@ export const getSupplierCompany = /* GraphQL */ `
         nextToken
       }
       type
-      address {
-        street
-        town
-        postcode
-      }
+      address
       rating {
         numberOfRatings
         CurrentRating
@@ -390,6 +356,20 @@ export const getSupplierCompany = /* GraphQL */ `
         }
         nextToken
       }
+      chatGroups {
+        items {
+          id
+          name
+          retailerID
+          supplierID
+          updatedAt
+          mostRecentMessage
+          mostRecentMessageSender
+          createdAt
+        }
+        nextToken
+      }
+      verified
       createdAt
       updatedAt
     }
@@ -413,11 +393,7 @@ export const listSupplierCompanys = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -439,6 +415,10 @@ export const listSupplierCompanys = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -451,6 +431,77 @@ export const getChatGroup = /* GraphQL */ `
     getChatGroup(id: $id) {
       id
       name
+      retailerID
+      retailerCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        registrationNumber
+        favouriteStores {
+          id
+          name
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
+      supplierID
+      supplierCompany {
+        id
+        name
+        employees {
+          nextToken
+        }
+        type
+        address
+        rating {
+          numberOfRatings
+          CurrentRating
+        }
+        bankAccount {
+          bankName
+          accountNumber
+        }
+        registrationNumber
+        listings {
+          nextToken
+        }
+        goodsTask {
+          nextToken
+        }
+        paymentTask {
+          nextToken
+        }
+        invoice {
+          nextToken
+        }
+        chatGroups {
+          nextToken
+        }
+        verified
+        createdAt
+        updatedAt
+      }
       chatParticipants {
         items {
           id
@@ -478,6 +529,7 @@ export const getChatGroup = /* GraphQL */ `
       }
       updatedAt
       mostRecentMessage
+      mostRecentMessageSender
       createdAt
     }
   }
@@ -492,6 +544,28 @@ export const listChatGroups = /* GraphQL */ `
       items {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
         chatParticipants {
           nextToken
         }
@@ -500,6 +574,7 @@ export const listChatGroups = /* GraphQL */ `
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       nextToken
@@ -553,6 +628,28 @@ export const getChatGroupUsers = /* GraphQL */ `
       chatGroup {
         id
         name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
         chatParticipants {
           nextToken
         }
@@ -561,6 +658,7 @@ export const getChatGroupUsers = /* GraphQL */ `
         }
         updatedAt
         mostRecentMessage
+        mostRecentMessageSender
         createdAt
       }
       user {
@@ -577,7 +675,9 @@ export const getChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -585,7 +685,9 @@ export const getChatGroupUsers = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -612,8 +714,11 @@ export const listChatGroupUserss = /* GraphQL */ `
         chatGroup {
           id
           name
+          retailerID
+          supplierID
           updatedAt
           mostRecentMessage
+          mostRecentMessageSender
           createdAt
         }
         user {
@@ -644,11 +749,7 @@ export const getProductListing = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -670,6 +771,10 @@ export const getProductListing = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -699,7 +804,9 @@ export const listProductListings = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -797,11 +904,7 @@ export const getGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -820,6 +923,10 @@ export const getGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -831,11 +938,7 @@ export const getGoodsTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -857,6 +960,10 @@ export const getGoodsTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -885,7 +992,9 @@ export const listGoodsTasks = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -894,7 +1003,9 @@ export const listGoodsTasks = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -923,11 +1034,7 @@ export const getPaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -946,6 +1053,10 @@ export const getPaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -957,11 +1068,7 @@ export const getPaymentTask = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -983,6 +1090,10 @@ export const getPaymentTask = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -999,7 +1110,9 @@ export const getPaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1008,7 +1121,9 @@ export const getPaymentTask = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1040,7 +1155,9 @@ export const listPaymentTasks = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1049,7 +1166,9 @@ export const listPaymentTasks = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1086,11 +1205,7 @@ export const getInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1109,6 +1224,10 @@ export const getInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1120,11 +1239,7 @@ export const getInvoice = /* GraphQL */ `
           nextToken
         }
         type
-        address {
-          street
-          town
-          postcode
-        }
+        address
         rating {
           numberOfRatings
           CurrentRating
@@ -1146,6 +1261,10 @@ export const getInvoice = /* GraphQL */ `
         invoice {
           nextToken
         }
+        chatGroups {
+          nextToken
+        }
+        verified
         createdAt
         updatedAt
       }
@@ -1175,7 +1294,9 @@ export const listInvoices = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
           createdAt
           updatedAt
         }
@@ -1184,7 +1305,541 @@ export const listInvoices = /* GraphQL */ `
           id
           name
           type
+          address
           registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        items {
+          name
+          quantity
+          price
+        }
+        createdAt
+        paid
+        receivedBy
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getChatGroupsContainingRetailersByUpdatedAt = /* GraphQL */ `
+  query GetChatGroupsContainingRetailersByUpdatedAt(
+    $retailerID: ID
+    $updatedAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelChatGroupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getChatGroupsContainingRetailersByUpdatedAt(
+      retailerID: $retailerID
+      updatedAt: $updatedAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        chatParticipants {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        updatedAt
+        mostRecentMessage
+        mostRecentMessageSender
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getChatGroupsContainingSuppliersByUpdatedAt = /* GraphQL */ `
+  query GetChatGroupsContainingSuppliersByUpdatedAt(
+    $supplierID: ID
+    $updatedAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelChatGroupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getChatGroupsContainingSuppliersByUpdatedAt(
+      supplierID: $supplierID
+      updatedAt: $updatedAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        retailerID
+        retailerCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        supplierCompany {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        chatParticipants {
+          nextToken
+        }
+        messages {
+          nextToken
+        }
+        updatedAt
+        mostRecentMessage
+        mostRecentMessageSender
+        createdAt
+      }
+      nextToken
+    }
+  }
+`;
+export const messagesInChatByDate = /* GraphQL */ `
+  query MessagesInChatByDate(
+    $chatGroupID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    messagesInChatByDate(
+      chatGroupID: $chatGroupID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        chatGroupID
+        type
+        content
+        senderID
+        uniqueContentID
+        sender
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const productListingByNameStartingWithLowestPrice = /* GraphQL */ `
+  query ProductListingByNameStartingWithLowestPrice(
+    $supplierID: ID
+    $productNameLowPrice: ModelProductListingListingsBySupplierCompositeKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelProductListingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    productListingByNameStartingWithLowestPrice(
+      supplierID: $supplierID
+      productNameLowPrice: $productNameLowPrice
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        productName
+        variety
+        quantityAvailable
+        lowPrice
+        highPrice
+        minimumQuantity
+        productPicture
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const goodsTaskForRetailerByDate = /* GraphQL */ `
+  query GoodsTaskForRetailerByDate(
+    $retailerID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelGoodsTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    goodsTaskForRetailerByDate(
+      retailerID: $retailerID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        items {
+          name
+          quantity
+          price
+        }
+        createdAt
+        deliveryDate
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const goodsTaskForSupplierByDate = /* GraphQL */ `
+  query GoodsTaskForSupplierByDate(
+    $supplierID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelGoodsTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    goodsTaskForSupplierByDate(
+      supplierID: $supplierID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        items {
+          name
+          quantity
+          price
+        }
+        createdAt
+        deliveryDate
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const paymentsTaskForRetailerByDate = /* GraphQL */ `
+  query PaymentsTaskForRetailerByDate(
+    $retailerID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPaymentTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    paymentsTaskForRetailerByDate(
+      retailerID: $retailerID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        paid
+        amount
+        payBefore
+        receipt
+        createdAt
+        invoiceID
+        invoice {
+          id
+          retailerID
+          supplierID
+          createdAt
+          paid
+          receivedBy
+          updatedAt
+        }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const paymentsTaskForSupplierByDate = /* GraphQL */ `
+  query PaymentsTaskForSupplierByDate(
+    $supplierID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPaymentTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    paymentsTaskForSupplierByDate(
+      supplierID: $supplierID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        paid
+        amount
+        payBefore
+        receipt
+        createdAt
+        invoiceID
+        invoice {
+          id
+          retailerID
+          supplierID
+          createdAt
+          paid
+          receivedBy
+          updatedAt
+        }
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const invoiceForRetailerByDate = /* GraphQL */ `
+  query InvoiceForRetailerByDate(
+    $retailerID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelInvoiceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    invoiceForRetailerByDate(
+      retailerID: $retailerID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        supplierID
+        items {
+          name
+          quantity
+          price
+        }
+        createdAt
+        paid
+        receivedBy
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const invoiceForSupplierByDate = /* GraphQL */ `
+  query InvoiceForSupplierByDate(
+    $supplierID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelInvoiceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    invoiceForSupplierByDate(
+      supplierID: $supplierID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        retailer {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          createdAt
+          updatedAt
+        }
+        retailerID
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
           createdAt
           updatedAt
         }

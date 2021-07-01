@@ -50,7 +50,7 @@ export const EditPersonal = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(25) : -180
+        Platform.OS === 'ios' ? Mixins.scaleHeight(25) : Mixins.scaleHeight(50)
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -113,7 +113,7 @@ export const EditPersonal = props => {
             top: Mixins.scaleHeight(60),
             backgroundColor: Colors.GRAY_MEDIUM,
             width: Mixins.scaleWidth(300),
-            height: Mixins.scaleHeight(280),
+            height: Mixins.scaleHeight(340),
             borderRadius: 10,
           }}>
           <View
@@ -141,6 +141,7 @@ export const EditPersonal = props => {
               <Text style={[Typography.normal]}>General Manager</Text>
             </View>
           </View>
+
           <View
             style={{
               top: Mixins.scaleHeight(50),
@@ -148,100 +149,109 @@ export const EditPersonal = props => {
               width: Mixins.scaleWidth(300),
               height: Mixins.scaleHeight(30),
             }}>
-            <Text style={[Typography.placeholderSmall]}>Company Address </Text>
+            <Text style={[Typography.placeholderSmall]}>Email Address </Text>
             <TextInput
-              placeholder="STREET, CITY, STATE"
+              placeholder="email@gmail.com"
+              underlineColorAndroid="transparent"
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
+                height: Mixins.scaleHeight(40),
                 width: Mixins.scaleWidth(260),
-                top: Mixins.scaleHeight(5),
+                top: Mixins.scaleHeight(-5),
+                right: Mixins.scaleWidth(2),
+                borderBottomColor: 'transparent',
               }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(15),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+                width: Mixins.scaleWidth(200),
+              }}></View>
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(65),
+              top: Mixins.scaleHeight(70),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
               height: Mixins.scaleHeight(30),
             }}>
             <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
             <TextInput
-              placeholder="email@gmail.com"
+              underlineColorAndroid="transparent"
+              placeholder="+60 11 6569 1999"
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
+                height: Mixins.scaleHeight(40),
                 width: Mixins.scaleWidth(260),
-                top: Mixins.scaleHeight(5),
+                top: Mixins.scaleHeight(-5),
+                right: Mixins.scaleWidth(2),
+                borderBottomColor: 'transparent',
               }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(15),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+                width: Mixins.scaleWidth(200),
+              }}></View>
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(80),
+              top: Mixins.scaleHeight(90),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
               height: Mixins.scaleHeight(30),
             }}>
-            <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+            <Text style={[Typography.placeholderSmall]}>Password </Text>
             <TextInput
-              placeholder="+60 11 6569 1999 "
+              placeholder="************"
+              underlineColorAndroid="transparent"
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
+                borderBottomColor: 'transparent',
+                height: Mixins.scaleHeight(40),
                 width: Mixins.scaleWidth(260),
-                top: Mixins.scaleHeight(5),
+                top: Mixins.scaleHeight(-5),
+                right: Mixins.scaleWidth(2),
               }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(15),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+                width: Mixins.scaleWidth(200),
+                height: 0,
+              }}></View>
           </View>
-          <View
+          <TouchableOpacity
+            onPress={() => setSuccesfulChangesModal(true)}
             style={{
-              top: Mixins.scaleHeight(95),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
+              alignSelf: 'center',
+              top: Mixins.scaleHeight(110),
+              width: Mixins.scaleWidth(140),
               height: Mixins.scaleHeight(30),
+              backgroundColor: Colors.LIGHT_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              zIndex: 5,
+              elevation: 4,
             }}>
-            <Text style={[Typography.placeholderSmall]}>Password</Text>
-            <TextInput
-              placeholder="•••••••••••••••••"
-              style={[
-                Typography.placeholderSmall,
-                {
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
-                  top: Mixins.scaleHeight(5),
-                },
-              ]}></TextInput>
-          </View>
+            <Text>Save Changes</Text>
+            <Icon
+              name="checkmark-circle-outline"
+              size={Mixins.scaleWidth(20)}
+              style={{left: Mixins.scaleWidth(10)}}
+            />
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          onPress={() => setSuccesfulChangesModal(true)}
-          style={{
-            top: Mixins.scaleHeight(90),
-            width: Mixins.scaleWidth(140),
-            height: Mixins.scaleHeight(30),
-            backgroundColor: Colors.LIGHT_BLUE,
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }}>
-          <Text>Save Changes</Text>
-          <Icon
-            name="checkmark-circle-outline"
-            size={Mixins.scaleWidth(20)}
-            style={{left: Mixins.scaleWidth(10)}}
-          />
-        </TouchableOpacity>
         <Modal
           isVisible={succesfulChangesModal}
           onBackdropPress={() => setSuccesfulChangesModal(false)}>

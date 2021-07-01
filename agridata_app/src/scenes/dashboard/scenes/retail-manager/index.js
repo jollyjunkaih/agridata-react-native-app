@@ -9,9 +9,9 @@ import {
   InvoiceButton,
   MenuButton,
 } from '_scenes/dashboard/components';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 export const RetailManagerDashboard = props => {
+  console.log(props.user);
   return (
     <SafeAreaView
       style={{
@@ -25,7 +25,10 @@ export const RetailManagerDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton></MenuButton>
+        <MenuButton
+          userType={props.user.role}
+          updateAuthState={props.updateAuthState}
+          navigation={props.navigation}></MenuButton>
       </View>
 
       <Image
@@ -50,7 +53,7 @@ export const RetailManagerDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        Company Name!
+        {props.user.retailerCompany.name}
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today

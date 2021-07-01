@@ -13,7 +13,15 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {BackButton} from '_components';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Modal from 'react-native-modal';
+import {API, graphqlOperation} from 'aws-amplify';
+import {
+  createRetailerCompany,
+  createSupplierCompany,
+  updateUser,
+} from '../../../graphql/mutations';
 
 export const CreateCompany = props => {
   const [open, setOpen] = useState(false);
@@ -23,84 +31,229 @@ export const CreateCompany = props => {
     {label: 'Supermarket', value: 'supermarket'},
     {label: 'Farm', value: 'farm'},
   ]);
-
+  const [createAccountButton, setCreateAccountButton] = useState(false);
+  const [companyName, setCompanyName] = useState('');
+  const [companyAddress, setCompanyAddress] = useState('');
+  const [companyRegistrationNum, setCompanyRegistrationNum] = useState('');
+  const registerCompany = async () => {
+    console.log('registering');
+    console.log(props.user.id);
+    if (value == 'supermarket') {
+      try {
+        const supermarket = await API.graphql({
+          query: createRetailerCompany,
+          variables: {
+            input: {
+              name: companyName,
+              type: value,
+              address: companyAddress,
+              registrationNumber: companyRegistrationNum,
+            },
+          },
+        });
+        console.log(supermarket);
+        const user = await API.graphql({
+          query: updateUser,
+          variables: {
+            input: {
+              id: props.user.id,
+              retailerCompanyID: supermarket.data.createRetailerCompany.id,
+            },
+          },
+        });
+        console.log(user);
+        console.log('add retailer success');
+        setCreateAccountButton(true);
+      } catch {
+        e => console.log(e);
+      }
+    } else {
+      try {
+        const supplier = await API.graphql({
+          query: createSupplierCompany,
+          variables: {
+            input: {
+              name: companyName,
+              type: value,
+              address: companyAddress,
+              registrationNumber: companyRegistrationNum,
+            },
+          },
+        });
+        console.log(supplier);
+        const user = await API.graphql({
+          query: updateUser,
+          variables: {
+            input: {
+              id: props.user.id,
+              supplierCompanyID: supplier.data.createSupplierCompany.id,
+            },
+          },
+        });
+        console.log(user);
+        console.log('add supplier success');
+        setCreateAccountButton(true);
+      } catch {
+        e => console.log(e);
+      }
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(200) : -180
+        Platform.OS === 'ios'
+          ? Mixins.scaleHeight(200)
+          : Mixins.scaleHeight(-150)
       }>
-      <SafeAreaView>
-        <View>
-          <TouchableOpacity
-            style={{left: Mixins.scaleWidth(30), top: Mixins.scaleHeight(20)}}>
-            <Icon name="arrow-back-outline" size={40} />
-          </TouchableOpacity>
-          <Image
-            source={require('_assets/images/fruits.png')}
-            style={{
-              position: 'absolute',
-              right: 0,
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(170),
-              resizeMode: 'cover',
-            }}
-          />
+      <SafeAreaView
+        style={{
+          backgroundColor: 'white',
+          height: Mixins.scaleHeight(640),
+          width: Mixins.scaleWidth(360),
+        }}>
+        <View
+          style={{
+            position: 'absolute',
+            top: Spacing.BackButtonTop,
+            left: Spacing.BackButtonLeft,
+          }}>
+          <BackButton navigation={props.navigation} />
         </View>
+        <Image
+          source={require('_assets/images/fruits.png')}
+          style={{
+            position: 'absolute',
+            right: 0,
+            width: Mixins.scaleWidth(160),
+            height: Mixins.scaleHeight(180),
+            resizeMode: 'cover',
+          }}
+        />
+        <View style={{top: Mixins.scaleHeight(30)}}>
+          <View>
+            <Text
+              style={[
+                Typography.largestSize,
+                {
+                  width: Mixins.scaleWidth(300),
+                  left: Mixins.scaleWidth(30),
+                  top: Mixins.scaleHeight(30),
+                },
+              ]}>
+              REGISTER
+            </Text>
+            <Text
+              style={[
+                Typography.largestSize,
+                {
+                  width: Mixins.scaleWidth(300),
+                  left: Mixins.scaleWidth(30),
+                  top: Mixins.scaleHeight(10),
+                },
+              ]}>
+              COMPANY
+            </Text>
+          </View>
+        </View>
+
         <View>
-          <Text
-            style={[
-              Typography.largestSize,
-              {
-                width: Mixins.scaleWidth(300),
-                left: Mixins.scaleWidth(30),
-                top: Mixins.scaleHeight(50),
-              },
-            ]}>
-            CREATE
-          </Text>
-          <Text
-            style={[
-              Typography.largestSize,
-              {
-                width: Mixins.scaleWidth(300),
-                left: Mixins.scaleWidth(30),
-                top: Mixins.scaleHeight(40),
-              },
-            ]}>
-            COMPANY
-          </Text>
+          <View
+            style={{
+              top: Mixins.scaleHeight(50),
+              left: Mixins.scaleWidth(30),
+            }}>
+            <Text style={[Typography.placeholder]}>Company Name</Text>
+            <TextInput
+              keyboardType="default"
+              placeholder="eg: City Grocer"
+              underlineColorAndroid="transparent"
+              onChangeText={item => setCompanyName(item)}
+              value={companyName}
+              style={{
+                width: Mixins.scaleWidth(280),
+                height: Mixins.scaleHeight(40),
+                right: Mixins.scaleWidth(5),
+                borderBottomColor: 'transparent',
+              }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(10),
+                width: Mixins.scaleWidth(290),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+                color: 'black',
+              }}></View>
+          </View>
         </View>
         <View>
           <View
-            style={{top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(30)}}>
-            <Text style={[Typography.placeholder, {fontSize: 12}]}>
-              Company Name
+            style={{
+              top: Mixins.scaleHeight(50),
+              left: Mixins.scaleWidth(30),
+            }}>
+            <Text style={[Typography.placeholder]}>
+              Company Registration Number
             </Text>
             <TextInput
               keyboardType="default"
               placeholder=""
+              underlineColorAndroid="transparent"
+              onChangeText={item => setCompanyRegistrationNum(item)}
+              value={companyRegistrationNum}
               style={{
-                marginTop: 8,
-                borderBottomWidth: 0.5,
-                borderBottomColor: 'grey',
                 width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(20),
+                height: Mixins.scaleHeight(40),
+                right: Mixins.scaleWidth(5),
+                borderBottomColor: 'transparent',
+                color: 'black',
               }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(10),
+                width: Mixins.scaleWidth(290),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+              }}></View>
+          </View>
+        </View>
+        <View>
+          <View
+            style={{
+              top: Mixins.scaleHeight(50),
+              left: Mixins.scaleWidth(30),
+            }}>
+            <Text style={[Typography.placeholder]}>Company Address</Text>
+            <TextInput
+              keyboardType="default"
+              placeholder="eg. Lot3, Jalan Bendera, Penampang"
+              underlineColorAndroid="transparent"
+              onChangeText={item => setCompanyAddress(item)}
+              value={companyAddress}
+              style={{
+                width: Mixins.scaleWidth(280),
+                height: Mixins.scaleHeight(40),
+                right: Mixins.scaleWidth(5),
+                borderBottomColor: 'transparent',
+                color: 'black',
+              }}></TextInput>
+            <View
+              style={{
+                bottom: Mixins.scaleHeight(10),
+                width: Mixins.scaleWidth(290),
+                borderBottomWidth: 1,
+                borderColor: Colors.GRAY_DARK,
+              }}></View>
           </View>
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(100),
+            top: Mixins.scaleHeight(50),
             left: Mixins.scaleWidth(30),
-            height: Mixins.scaleHeight(50),
             width: Mixins.scaleWidth(280),
-            borderColor: 'grey',
-            borderWidth: 1,
           }}>
           <View style={{marginTop: 5}}>
             <Text style={[Typography.placeholder, {fontSize: 12}]}>
-              {' '}
               What type of company are you running?
             </Text>
           </View>
@@ -108,7 +261,7 @@ export const CreateCompany = props => {
             style={{
               width: Mixins.scaleWidth(200),
               zIndex: 1000,
-              height: Mixins.scaleHeight(20),
+              height: Mixins.scaleHeight(120),
             }}>
             <DropDownPicker
               open={open}
@@ -117,6 +270,8 @@ export const CreateCompany = props => {
               setOpen={setOpen}
               setValue={setValue}
               setItems={setItems}
+              dropDownDirection="BOTTOM"
+              listItemContainerStyle={{height: Mixins.scaleHeight(30)}}
               style={{
                 width: Mixins.scaleWidth(275),
                 height: Mixins.scaleHeight(30),
@@ -127,51 +282,22 @@ export const CreateCompany = props => {
               dropDownContainerStyle={{
                 borderWidth: 0,
                 width: Mixins.scaleWidth(275),
+                height: Mixins.scaleHeight(90),
               }}></DropDownPicker>
-          </View>
-          <View style={{top: Mixins.scaleHeight(30)}}>
-            <Text style={[Typography.placeholder, {fontSize: 12}]}>
-              Company License Number
-            </Text>
-            <TextInput
-              keyboardType="default"
-              placeholder=""
-              style={{
-                marginTop: 8,
-                borderBottomWidth: 0.5,
-                borderBottomColor: 'grey',
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(20),
-              }}></TextInput>
-          </View>
-          <View style={{top: Mixins.scaleHeight(50)}}>
-            <Text style={[Typography.placeholder, {fontSize: 12}]}>
-              Office Address
-            </Text>
-            <TextInput
-              keyboardType="default"
-              placeholder=""
-              style={{
-                marginTop: 8,
-                borderBottomWidth: 0.5,
-                borderBottomColor: 'grey',
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(20),
-              }}></TextInput>
           </View>
         </View>
         <View
           style={{
             alignItems: 'center',
-            top: Mixins.scaleHeight(250),
+            top: Mixins.scaleHeight(80),
           }}>
           <TouchableOpacity
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleWidth(30),
+              width: Mixins.scaleWidth(150),
+              height: Mixins.scaleWidth(40),
               justifyContent: 'center',
-              borderRadius: 10,
+              borderRadius: 20,
               shadowOffset: {
                 width: 1,
                 height: 2,
@@ -179,53 +305,35 @@ export const CreateCompany = props => {
               shadowOpacity: 2,
               shadowRadius: 3,
               shadowColor: 'grey',
+            }}
+            onPress={() => {
+              if (
+                value == null ||
+                companyName == '' ||
+                companyRegistrationNum == '' ||
+                companyAddress == ''
+              ) {
+                console.log('oops');
+              } else {
+                registerCompany();
+              }
             }}>
-            <View style={{flexDirection: 'row', left: Mixins.scaleWidth(10)}}>
-              <Text style={[Typography.normal, {fontSize: 17}]}>
-                CREATE ACCOUNT
-              </Text>
-
-              <View style={{marginLeft: Mixins.scaleWidth(20)}}>
-                <Icon name="arrow-forward-outline" size={25} />
-              </View>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={[Typography.large]}>REGISTER</Text>
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{alignItems: 'center', top: Mixins.scaleHeight(270)}}>
-          <Text style={[Typography.small]}>
-            By continuing, you agree to our{' '}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            top: Mixins.scaleHeight(275),
-            justifyContent: 'center',
+        <Modal
+          isVisible={createAccountButton}
+          onBackdropPress={() => {
+            setCreateAccountButton(false);
+            props.navigation.navigate('verification');
           }}>
-          <TouchableOpacity style={{borderBottomWidth: 1}}>
-            <Text style={[Typography.small]}>Terms of Service</Text>
-          </TouchableOpacity>
-          <Text
-            style={[
-              Typography.small,
-              {
-                marginLeft: Mixins.scaleWidth(5),
-                marginRight: Mixins.scaleWidth(5),
-              },
-            ]}>
-            and
-          </Text>
-          <TouchableOpacity style={{borderBottomWidth: 1}}>
-            <Text style={[Typography.small]}>Privacy Policy</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{alignItems: 'center', top: Mixins.scaleHeight(295)}}>
-          <TouchableOpacity>
-            <Text style={[Typography.welcome, {fontSize: 12}]}>
-              Having any trouble?
-            </Text>
-          </TouchableOpacity>
-        </View>
+          <CreateAccountPopUp
+            setCreateAccountButton={
+              setCreateAccountButton
+            }></CreateAccountPopUp>
+        </Modal>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
@@ -237,7 +345,7 @@ export const CreateAccountPopUp = props => {
       style={{
         backgroundColor: Colors.GRAY_WHITE,
         width: Mixins.scaleWidth(300),
-        height: Mixins.scaleHeight(350),
+        height: Mixins.scaleHeight(400),
         alignItems: 'center',
         left: Mixins.scaleWidth(15),
         borderRadius: 10,
@@ -254,40 +362,31 @@ export const CreateAccountPopUp = props => {
           />
         </View>
       </View>
-      <View style={{bottom: Mixins.scaleHeight(30)}}>
-        <Text
-          style={[
-            Typography.welcome,
-            {
-              fontSize: 25,
-              width: Mixins.scaleWidth(300),
-              left: Mixins.scaleWidth(30),
-              top: Mixins.scaleHeight(50),
-            },
-          ]}>
-          YOUR ACCOUNT IS
-        </Text>
-        <Text
-          style={[
-            Typography.welcome,
-            {
-              fontSize: 25,
-              width: Mixins.scaleWidth(300),
-              left: Mixins.scaleWidth(30),
-              top: Mixins.scaleHeight(40),
-            },
-          ]}>
-          BEING VERIFIED
-        </Text>
-        <View>
-          <Text>
-            Hang in there! It might take some time to verify your account.
-          </Text>
-          <Text>
-            For the meantime,you can try updating your company information.
-          </Text>
-        </View>
-      </View>
+      <Text
+        style={[
+          Typography.welcome,
+          {
+            width: Mixins.scaleWidth(240),
+            alignSelf: 'center',
+            textAlign: 'center',
+            top: Mixins.scaleHeight(40),
+          },
+        ]}>
+        YOUR ACCOUNT IS BEING VERIFIED
+      </Text>
+
+      <Text
+        style={[
+          Typography.normal,
+          {
+            width: Mixins.scaleWidth(240),
+            textAlign: 'center',
+            top: Mixins.scaleHeight(60),
+          },
+        ]}>
+        Thank you for registering your company. We will review it shortly and
+        approve it once verification is complete
+      </Text>
     </View>
   );
 };

@@ -13,24 +13,47 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
 import {API} from 'aws-amplify';
-import {createMessage} from '../../../../graphql/mutations';
-import dayjs from 'dayjs';
-import {abs} from 'react-native-reanimated';
+import {
+  createMessage,
+  deleteChatGroupUsers,
+  updateChatGroup,
+} from '../../../../graphql/mutations';
+import {listUsersInChat} from '../../../../graphql/queries';
+
+var dayjs = require('dayjs');
 
 const ChatBubble = props => {
-  const createdAt = dayjs(props.createdAt).format('HH:mm D/M');
-  const isMyMessage = () => {
-    if (props.userID == props.senderID) return false;
-    else return true;
+  const [orderQuotationModal, setOrderQuotationModal] = useState(false);
+  const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
+  console.log(props);
+  const getInitials = name => {
+    if (name) {
+      let initials = name.split(' ');
+
+      if (initials.length > 1) {
+        initials = initials.shift().charAt(0) + initials.pop().charAt(0);
+      } else {
+        initials = name.substring(0, 2);
+      }
+
+      return initials.toUpperCase();
+    } else {
+      return null;
+    }
   };
-  const contentType = 'order';
+
+  //const createdAt = dayjs(props.createdAt).add(8, 'hour').format('HH:mm D/M');
+  const isMyMessage = () => {
+    if (props.sender == 'me') return true;
+    else return false;
+  };
+  const contentType = props.contentType;
   if (contentType == 'text') {
     return (
       <View style={{margin: Mixins.scaleWidth(5)}}>
         {!isMyMessage() && (
           <View
             style={{
-              left: Mixins.scaleWidth(-5),
               top: Mixins.scaleHeight(22),
               borderColor: 'white',
               borderWidth: Mixins.scaleWidth(0.2),
@@ -56,7 +79,7 @@ const ChatBubble = props => {
                 fontWeight: 'bold',
                 textAlign: 'center',
               }}>
-              {props.sender}JK
+              {getInitials(props.sender)}
             </Text>
           </View>
         )}
@@ -66,19 +89,21 @@ const ChatBubble = props => {
             marginLeft: isMyMessage() ? Mixins.scaleWidth(50) : 0,
             marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(50),
             borderRadius: 15,
-            left: isMyMessage() ? 0 : Mixins.scaleHeight(25),
-            width: isMyMessage() ? 0 : Mixins.scaleHeight(180),
+            left: isMyMessage() ? Mixins.scaleWidth(75) : Mixins.scaleWidth(35),
+            width: isMyMessage()
+              ? Mixins.scaleWidth(200)
+              : Mixins.scaleWidth(180),
           }}>
           <View style={{marginTop: Mixins.scaleHeight(10)}}>
             <Text style={[Typography.normal, {margin: Mixins.scaleWidth(5)}]}>
-              {props.content}sgzvsztgvzsdgzgzdvgxd
+              {props.content}
             </Text>
             <Text
               style={[
                 Typography.small,
                 {alignSelf: 'flex-end', right: Mixins.scaleWidth(10)},
               ]}>
-              {createdAt}
+              createdAt
             </Text>
           </View>
         </View>
@@ -86,33 +111,282 @@ const ChatBubble = props => {
     );
   } else if (contentType == 'inquiry') {
     return (
-      <ProductInquiry
-        sender={props.sender}
-        senderID={props.senderID}
-        contentID={props.contentID}
-        createdAt={createdAt}
-        userID={props.userID}
-      />
+      <View>
+        <View>
+          {!isMyMessage() && (
+            <View
+              style={{
+                left: Mixins.scaleWidth(5),
+                top: Mixins.scaleHeight(60),
+                borderColor: 'white',
+                borderWidth: Mixins.scaleWidth(0.2),
+                width: Mixins.scaleWidth(28),
+                height: Mixins.scaleWidth(28),
+                position: 'absolute',
+                borderRadius: 100,
+                justifyContent: 'center',
+                backgroundColor: Colors.GRAY_WHITE,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+
+                elevation: 5,
+              }}>
+              <Text
+                style={{
+                  color: Colors.GRAY_DARK,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
+                {getInitials(props.sender)}
+              </Text>
+            </View>
+          )}
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+            width: Mixins.scaleWidth(180),
+            height: Mixins.scaleHeight(80),
+            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
+            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            borderRadius: 15,
+            marginTop: Mixins.scaleHeight(15),
+          }}>
+          <Text style={[Typography.large]}>Product Inquiry</Text>
+
+          <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(120),
+              height: Mixins.scaleHeight(20),
+              top: Mixins.scaleHeight(5),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <Text
+            style={[
+              Typography.small,
+              {
+                alignSelf: 'flex-end',
+                right: Mixins.scaleWidth(10),
+                top: Mixins.scaleHeight(10),
+              },
+            ]}>
+            createdAt
+          </Text>
+        </View>
+      </View>
     );
-  } else if (contentType == 'purchase') {
+  } else if (contentType == 'po') {
     return (
-      <PurchaseOrder
-        sender={props.sender}
-        senderID={props.senderID}
-        contentID={props.contentID}
-        createdAt={createdAt}
-        userID={props.userID}
-      />
+      <View>
+        <View>
+          {!isMyMessage() && (
+            <View
+              style={{
+                left: Mixins.scaleWidth(5),
+                top: Mixins.scaleHeight(60),
+                borderColor: 'white',
+                borderWidth: Mixins.scaleWidth(0.2),
+                width: Mixins.scaleWidth(28),
+                height: Mixins.scaleWidth(28),
+                position: 'absolute',
+                borderRadius: 100,
+                justifyContent: 'center',
+                backgroundColor: Colors.GRAY_WHITE,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+
+                elevation: 5,
+              }}>
+              <Text
+                style={{
+                  color: Colors.GRAY_DARK,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
+                {getInitials(props.sender)}
+              </Text>
+            </View>
+          )}
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+            width: Mixins.scaleWidth(180),
+            height: Mixins.scaleHeight(80),
+            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
+            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            borderRadius: 15,
+            marginTop: Mixins.scaleHeight(15),
+          }}>
+          <Text style={[Typography.large]}>Purchase Order</Text>
+
+          <TouchableOpacity
+            onPress={() => setPurchaseOrderModal(true)}
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(120),
+              height: Mixins.scaleHeight(20),
+              top: Mixins.scaleHeight(5),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <Text
+            style={[
+              Typography.small,
+              {
+                alignSelf: 'flex-end',
+                right: Mixins.scaleWidth(10),
+                top: Mixins.scaleHeight(10),
+              },
+            ]}>
+            createdAt
+          </Text>
+        </View>
+        <Modal
+          isVisible={purchaseOrderModal}
+          onBackdropPress={() => setPurchaseOrderModal(false)}>
+          <PurchaseOrder></PurchaseOrder>
+        </Modal>
+      </View>
     );
-  } else if (contentType == 'order') {
+  } else if (contentType == 'quotation') {
     return (
-      <OrderQuotation
-        sender={props.sender}
-        senderID={props.senderID}
-        contentID={props.contentID}
-        createdAt={createdAt}
-        userID={props.userID}
-      />
+      <View>
+        <View>
+          {!isMyMessage() && (
+            <View
+              style={{
+                left: Mixins.scaleWidth(5),
+                top: Mixins.scaleHeight(60),
+                borderColor: 'white',
+                borderWidth: Mixins.scaleWidth(0.2),
+                width: Mixins.scaleWidth(28),
+                height: Mixins.scaleWidth(28),
+                position: 'absolute',
+                borderRadius: 100,
+                justifyContent: 'center',
+                backgroundColor: Colors.GRAY_WHITE,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+
+                elevation: 5,
+              }}>
+              <Text
+                style={{
+                  color: Colors.GRAY_DARK,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
+                {getInitials(props.sender)}
+              </Text>
+            </View>
+          )}
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+            width: Mixins.scaleWidth(180),
+            height: Mixins.scaleHeight(80),
+            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
+            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            borderRadius: 15,
+            marginTop: Mixins.scaleHeight(15),
+          }}>
+          <Text style={[Typography.large]}>Order Quotation</Text>
+
+          <TouchableOpacity
+            onPress={() => setOrderQuotationModal(true)}
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(120),
+              height: Mixins.scaleHeight(20),
+              top: Mixins.scaleHeight(5),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <Text
+            style={[
+              Typography.small,
+              {
+                alignSelf: 'flex-end',
+                right: Mixins.scaleWidth(10),
+                top: Mixins.scaleHeight(10),
+              },
+            ]}>
+            createdAt
+          </Text>
+        </View>
+        <Modal
+          isVisible={orderQuotationModal}
+          onBackdropPress={() => setOrderQuotationModal(false)}>
+          <OrderQuotationModal></OrderQuotationModal>
+        </Modal>
+      </View>
     );
   }
 };
@@ -123,10 +397,45 @@ export const ChatBubbleList = props => {
       <FlatList
         inverted={true}
         keyExtractor={item => item.id}
-        data={props.data}
+        data={[
+          {
+            sender: 'Jeremy',
+            content: 'When do you want me to deliver?',
+            type: 'text',
+          },
+          {
+            sender: 'me',
+            content: 'Tuesday can?',
+            type: 'text',
+          },
+          {
+            sender: 'May',
+            content: 'When do you want me to deliver?',
+            type: 'po',
+          },
+          {
+            sender: 'me',
+            content: 'May just sent the PO. Can check Jeremy? Got stock?',
+            type: 'text',
+          },
+          {
+            sender: 'Jeremy',
+            content: 'Got. Give me one sec, i send u the quotation',
+            type: 'text',
+          },
+          {
+            sender: 'Jeremy',
+            content: 'Got. Give me one sec, i send u the quotation',
+            type: 'quotation',
+          },
+          {
+            sender: 'May',
+            content: 'Thanks, just what we were looking for',
+            type: 'text',
+          },
+        ].reverse()}
         numColumns={1}
         renderItem={item => {
-          console.log(item);
           return (
             <ChatBubble
               sender={item.item.sender}
@@ -145,7 +454,7 @@ export const ChatBubbleList = props => {
 };
 
 export const MessageInput = props => {
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState('');
   const createNewMessage = async () => {
     try {
       const newMessage = await API.graphql({
@@ -160,7 +469,22 @@ export const MessageInput = props => {
           },
         },
       });
-      return newMessage;
+      const updateChat = await API.graphql({
+        query: updateChatGroup,
+        variables: {
+          input: {
+            id: props.chatGroupID,
+            mostRecentMessage: message,
+            mostRecentMessageSender: props.user,
+          },
+        },
+      });
+      var messages = props.messages;
+      messages = messages.reverse();
+      messages.push(newMessage.data.createMessage);
+      messages = messages.reverse();
+      props.setMessages(messages);
+      setMessage('');
     } catch {
       e => console.log(e);
     }
@@ -179,6 +503,7 @@ export const MessageInput = props => {
           underlineColorAndroid={'transparent'}
           multiline={true}
           onChangeText={text => setMessage(text)}
+          value={message}
           style={{
             width: Mixins.scaleWidth(260),
             height: Mixins.scaleHeight(40),
@@ -188,13 +513,9 @@ export const MessageInput = props => {
         />
       </View>
       <TouchableOpacity
-        onPress={async () => {
-          if (message) {
-            const newMessage = await createNewMessage();
-            const messages = props.messages;
-            console.log(messages);
-            console.log(newMessage.data.createNewMessage);
-          } else {
+        onPress={() => {
+          if (message.length > 0) {
+            createNewMessage();
           }
         }}
         style={{
@@ -219,10 +540,31 @@ export const MessageInput = props => {
 
 export const ChatInfo = props => {
   const [chatInfoModal, setChatInfoModal] = useState(false);
-  const [addPersonModal, setAddPersonModal] = useState(false);
-  const [removePersonModal, setRemovePersonModal] = useState(false);
+  const [chatParticipants, setChatParticipants] = useState(null);
+  const fetchChatParticipants = async () => {
+    try {
+      console.log(props.chatGroupID);
+      const products = await API.graphql({
+        query: listUsersInChat,
+        variables: {
+          filter: {chatGroupID: {eq: props.chatGroupID}},
+        },
+      });
+      console.log(products.data.listChatGroupUserss.items);
+      if (products.data) {
+        setChatParticipants(products.data.listChatGroupUserss.items);
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("there's a problem");
+    }
+  };
   return (
-    <TouchableOpacity onPress={() => setChatInfoModal(true)}>
+    <TouchableOpacity
+      onPress={async () => {
+        await fetchChatParticipants();
+        setChatInfoModal(true);
+      }}>
       <Icon
         color={Colors.GRAY_DARK}
         name="information-circle-outline"
@@ -232,12 +574,315 @@ export const ChatInfo = props => {
         onBackdropPress={() => setChatInfoModal(false)}>
         <ChatInfoModal
           setChatInfoModal={setChatInfoModal}
-          setAddPersonModal={setAddPersonModal}
-          setRemovePersonModal={setRemovePersonModal}
-          addPersonModal={addPersonModal}
+          chatParticipants={chatParticipants}
+          setChatParticipants={setChatParticipants}
+          chatGroupID={props.chatGroupID}
         />
       </Modal>
     </TouchableOpacity>
+  );
+};
+
+const ChatInfoModal = props => {
+  const [addPersonModal, setAddPersonModal] = useState(false);
+
+  return (
+    <View
+      style={{
+        left: Mixins.scaleWidth(100),
+        width: Mixins.scaleWidth(250),
+        height: Mixins.scaleHeight(650),
+        backgroundColor: Colors.PALE_GREEN,
+        borderRadius: 20,
+        top: Mixins.scaleHeight(0),
+      }}>
+      <View style={{top: Mixins.scaleHeight(20), alignItems: 'center'}}>
+        <Image
+          source={require('_assets/images/agridata.png')}
+          style={{width: Mixins.scaleWidth(130), resizeMode: 'contain'}}
+        />
+      </View>
+
+      <Text
+        style={[
+          Typography.normal,
+          {alignSelf: 'center', top: Mixins.scaleHeight(0)},
+        ]}>
+        GINGER TEAM
+      </Text>
+
+      <View
+        style={{
+          borderBottomWidth: 1,
+          borderBottomColor: Colors.GRAY_MEDIUM,
+          top: Mixins.scaleHeight(10),
+        }}></View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {top: Mixins.scaleHeight(30), left: Mixins.scaleWidth(20)},
+        ]}>
+        Participants (No)
+      </Text>
+      <View
+        style={{
+          alignSelf: 'center',
+          top: Mixins.scaleHeight(30),
+        }}>
+        <View
+          style={{
+            maxHeight: Mixins.scaleHeight(180),
+            width: Mixins.scaleWidth(240),
+          }}>
+          <ChatParticipantList
+            data={props.chatParticipants}
+            chatGroupID={props.chatGroupID}
+            setChatParticipants={props.setChatParticipants}
+            chatParticipants={props.chatParticipants}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() => [
+            setAddPersonModal(true),
+            console.log('addperson: ', addPersonModal),
+          ]}
+          style={{
+            backgroundColor: Colors.GRAY_MEDIUM,
+            height: Mixins.scaleHeight(30),
+            width: Mixins.scaleWidth(160),
+            top: Mixins.scaleHeight(10),
+            flexDirection: 'row',
+            borderRadius: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 2,
+            left: Mixins.scaleWidth(50),
+          }}>
+          <Icon name="add" size={Mixins.scaleWidth(25)} />
+          <Text
+            style={[
+              Typography.normal,
+              {
+                marginRight: Mixins.scaleWidth(10),
+                top: Mixins.scaleHeight(1),
+                color: Colors.LIME_GREEN,
+                left: Mixins.scaleWidth(10),
+              },
+            ]}>
+            Add Participants
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          bottom: Mixins.scaleHeight(140),
+          width: Mixins.scaleWidth(200),
+          position: 'absolute',
+        }}>
+        <Text
+          style={[
+            Typography.placeholder,
+            {top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(20)},
+          ]}>
+          Attachments
+        </Text>
+        <View
+          style={{
+            top: Mixins.scaleHeight(90),
+            left: Mixins.scaleWidth(-15),
+            maxHeight: Mixins.scaleHeight(120),
+          }}>
+          <InvoiceList></InvoiceList>
+        </View>
+      </View>
+
+      <Modal
+        isVisible={addPersonModal}
+        onBackdropPress={() => setAddPersonModal(false)}>
+        <AddPersonModal
+          setAddPersonModal={setAddPersonModal}
+          addPersonModal={addPersonModal}
+        />
+      </Modal>
+    </View>
+  );
+};
+
+const ChatParticipantList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: Mixins.scaleWidth(250),
+          marginVertical: Mixins.scaleHeight(1),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        keyExtractor={item => item.user.id}
+        data={props.data}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return (
+            <ChatParticipantCard
+              setChatParticipants={props.setChatParticipants}
+              chatParticipants={props.chatParticipants}
+              user={item.user.name}
+              userID={item.user.id}
+              chatGroupID={props.chatGroupID}
+            />
+          );
+        }}
+      />
+    </View>
+  );
+};
+
+const ChatParticipantCard = props => {
+  const [removePersonModal, setRemovePersonModal] = useState(false);
+  return (
+    <View
+      style={{
+        alignSelf: 'center',
+        height: Mixins.scaleHeight(30),
+        width: Mixins.scaleWidth(240),
+        borderRadius: 30,
+      }}>
+      <View
+        style={{
+          left: Mixins.scaleWidth(20),
+          height: Mixins.scaleHeight(40),
+          justifyContent: 'center',
+        }}>
+        <Text style={Typography.normal}>{props.user}</Text>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => setRemovePersonModal(true)}
+        style={{
+          height: Mixins.scaleHeight(40),
+          position: 'absolute',
+          right: Mixins.scaleWidth(20),
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Icon
+          name="person-remove-outline"
+          size={Mixins.scaleWidth(20)}
+          color="black"
+        />
+      </TouchableOpacity>
+      <Modal
+        isVisible={removePersonModal}
+        onBackdropPress={() => setRemovePersonModal(false)}>
+        <RemovePersonModal
+          setRemovePersonModal={setRemovePersonModal}
+          setChatParticipants={props.setChatParticipants}
+          chatParticipants={props.chatParticipants}
+          name={props.user}
+          id={props.id}
+          chatGroupID={props.chatGroupID}
+        />
+      </Modal>
+    </View>
+  );
+};
+
+const RemovePersonModal = props => {
+  const removePerson = async () => {
+    try {
+      const uniqueID = 'chat' + props.chatGroupID + props.id;
+      const removedPerson = await API.graphql({
+        query: deleteChatGroupUsers,
+        variables: {input: {id: uniqueID}},
+      });
+      chatParticipants = props.chatParticipants;
+      for (let [i, chatParticipants] of chatParticipants.entries()) {
+        if (chatParticipants.id == props.id) {
+          chatParticipants.splice(i, 1);
+        }
+      }
+      props.setChatParticipants(chatParticipants);
+      props.setRemovePersonModal(false);
+    } catch {
+      e => console.log(e);
+    }
+  };
+  return (
+    <View
+      style={{
+        backgroundColor: Colors.GRAY_MEDIUM,
+        borderRadius: 20,
+        height: Mixins.scaleHeight(190),
+        width: Mixins.scaleWidth(300),
+        left: Mixins.scaleWidth(10),
+      }}>
+      <View style={{alignSelf: 'center', top: Mixins.scaleHeight(10)}}>
+        <Icon
+          name="alert-circle-outline"
+          size={Mixins.scaleWidth(70)}
+          color={Colors.ALERT}
+        />
+      </View>
+      <Text
+        style={[
+          Typography.normal,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Are you sure you want to remove {props.name}?
+      </Text>
+      <TouchableOpacity
+        onPress={() => removePerson}
+        style={{
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: Mixins.scaleWidth(80),
+          alignSelf: 'center',
+          borderRadius: 20,
+          height: Mixins.scaleHeight(25),
+          justifyContent: 'center',
+          top: Mixins.scaleHeight(40),
+        }}>
+        <Text style={[Typography.normal, {alignSelf: 'center'}]}>Confirm</Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-8),
+          top: Mixins.scaleHeight(-8),
+        }}>
+        <CloseButton setModal={props.setRemovePersonModal} />
+      </View>
+    </View>
+  );
+};
+
+const AddPersonModal = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(300),
+        width: Mixins.scaleWidth(300),
+        backgroundColor: Colors.GRAY_DARK,
+        left: Mixins.scaleWidth(10),
+        borderRadius: 20,
+      }}>
+      <Text
+        style={[
+          Typography.large,
+          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
+        ]}>
+        Who would you like to add?
+      </Text>
+      <EmployeeList></EmployeeList>
+      <View style={{top: Mixins.scaleHeight(50)}}></View>
+    </View>
   );
 };
 
@@ -306,97 +951,10 @@ const ProductInquiry = props => {
     if (props.userID == props.senderID) return true;
     else return false;
   };
-  return (
-    <View>
-      <View>
-        {!isMyMessage() && (
-          <View
-            style={{
-              left: Mixins.scaleWidth(5),
-              top: Mixins.scaleHeight(60),
-              borderColor: 'white',
-              borderWidth: Mixins.scaleWidth(0.2),
-              width: Mixins.scaleWidth(28),
-              height: Mixins.scaleWidth(28),
-              position: 'absolute',
-              borderRadius: 100,
-              justifyContent: 'center',
-              backgroundColor: Colors.GRAY_WHITE,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}>
-            <Text
-              style={{
-                color: Colors.GRAY_DARK,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              {props.sender}JK
-            </Text>
-          </View>
-        )}
-      </View>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-          width: Mixins.scaleWidth(180),
-          height: Mixins.scaleHeight(80),
-          marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
-          marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
-          left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
-          borderRadius: 15,
-          marginTop: Mixins.scaleHeight(15),
-        }}>
-        <Text style={[Typography.large]}>Product Inquiry</Text>
-
-        <TouchableOpacity
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 10,
-            backgroundColor: Colors.LIGHT_BLUE,
-            width: Mixins.scaleWidth(120),
-            height: Mixins.scaleHeight(20),
-            top: Mixins.scaleHeight(5),
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5,
-          }}>
-          <Text style={[Typography.small]}>Inspect</Text>
-        </TouchableOpacity>
-
-        <Text
-          style={[
-            Typography.small,
-            {
-              alignSelf: 'flex-end',
-              right: Mixins.scaleWidth(10),
-              top: Mixins.scaleHeight(10),
-            },
-          ]}>
-          {props.createdAt}
-        </Text>
-      </View>
-    </View>
-  );
+  return <View></View>;
 };
 
-export const PurchaseOrder = props => {
+export const PurchaseOrder2 = props => {
   const isMyMessage = () => {
     if (props.userID == props.senderID) return true;
     else return false;
@@ -509,7 +1067,7 @@ export const PurchaseOrder = props => {
               right: Mixins.scaleWidth(10),
             },
           ]}>
-          {props.createdAt}
+          props.createdAt
         </Text>
       </View>
     </View>
@@ -640,116 +1198,6 @@ export const OrderQuotation = props => {
       <Modal isVisible={orderQuotationModal}>
         <OrderQuotationModal setOrderQuotationModal={setOrderQuotationModal} />
       </Modal>
-    </View>
-  );
-};
-
-const ChatInfoModal = props => {
-  return (
-    <View
-      style={{
-        left: Mixins.scaleWidth(100),
-        width: Mixins.scaleWidth(250),
-        height: Mixins.scaleHeight(650),
-        backgroundColor: Colors.PALE_GREEN,
-        borderRadius: 20,
-        top: Mixins.scaleHeight(0),
-      }}>
-      <View style={{top: Mixins.scaleHeight(60), alignItems: 'center'}}>
-        <Image source={require('_assets/images/agridata.png')} />
-      </View>
-      <View>
-        <Text
-          style={[
-            Typography.normal,
-            {alignSelf: 'center', top: Mixins.scaleHeight(50)},
-          ]}>
-          GINGER TEAM
-        </Text>
-      </View>
-      <View
-        style={{
-          borderBottomWidth: 1,
-          borderBottomColor: Colors.GRAY_MEDIUM,
-          top: Mixins.scaleHeight(70),
-        }}></View>
-      <View>
-        <Text
-          style={[
-            Typography.placeholder,
-            {top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(20)},
-          ]}>
-          Participants (No)
-        </Text>
-      </View>
-      <View
-        style={{
-          height: Mixins.scaleHeight(290),
-          width: Mixins.scaleWidth(300),
-          alignSelf: 'center',
-          top: Mixins.scaleHeight(110),
-        }}>
-        <ChatParticipantList
-          setRemovePersonModal={props.setRemovePersonModal}
-        />
-      </View>
-
-      <View
-        style={{
-          height: Mixins.scaleHeight(30),
-          width: Mixins.scaleWidth(140),
-          alignSelf: 'center',
-          top: Mixins.scaleHeight(-205),
-          flexDirection: 'row',
-          borderRadius: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-          elevation: 2,
-          left: Mixins.scaleWidth(-30),
-        }}>
-        <TouchableOpacity
-          onPress={() => [
-            props.setAddPersonModal(true),
-            console.log('addperson: ', props.addPersonModal),
-          ]}
-          style={{
-            marginRight: Mixins.scaleWidth(5),
-            backgroundColor: Colors.GRAY_MEDIUM,
-            borderRadius: 30,
-          }}>
-          <Icon name="add" size={Mixins.scaleWidth(25)} />
-        </TouchableOpacity>
-        <Text
-          style={[
-            Typography.normal,
-            {
-              marginRight: Mixins.scaleWidth(10),
-              top: Mixins.scaleHeight(1),
-              color: Colors.LIME_GREEN,
-              left: Mixins.scaleWidth(10),
-            },
-          ]}>
-          Add Participants
-        </Text>
-      </View>
-      <View>
-        <View>
-          <Text
-            style={[
-              Typography.placeholder,
-              {top: Mixins.scaleHeight(-60), left: Mixins.scaleWidth(20)},
-            ]}>
-            Attachments
-          </Text>
-          <View
-            style={{
-              top: Mixins.scaleHeight(-40),
-              left: Mixins.scaleWidth(-15),
-            }}>
-            <InvoiceList></InvoiceList>
-          </View>
-        </View>
-      </View>
     </View>
   );
 };
@@ -984,36 +1432,6 @@ const InvoiceList = props => {
   );
 };
 
-const ChatParticipantList = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          alignSelf: 'center',
-          width: Mixins.scaleWidth(250),
-          marginVertical: Mixins.scaleHeight(1),
-        }}></View>
-    );
-  };
-  return (
-    <View>
-      <FlatList
-        numColumns={1}
-        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
-        ItemSeparatorComponent={Seperator}
-        renderItem={({item}) => {
-          return (
-            <ChatParticipantCard
-              name={item.name}
-              setRemovePersonModal={props.setRemovePersonModal}
-            />
-          );
-        }}
-      />
-    </View>
-  );
-};
 const InvoiceCard = props => {
   return (
     <TouchableOpacity
@@ -1037,110 +1455,134 @@ const InvoiceCard = props => {
   );
 };
 
-const ChatParticipantCard = props => {
+const PurchaseOrder = props => {
   return (
     <View
       style={{
-        alignSelf: 'center',
+        height: Mixins.scaleHeight(385),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderRadius: 10,
+        left: Mixins.scaleWidth(15),
+        alignItems: 'center',
+      }}>
+      <View style={{alignItems: 'center'}}>
+        <Text
+          style={[
+            Typography.large,
+            {
+              fontFamily: 'Poppins-SemiBold',
+              top: Mixins.scaleHeight(15),
+            },
+          ]}>
+          Purchase Order For
+        </Text>
+        <Text
+          style={[
+            Typography.header,
+            {
+              fontFamily: 'Poppins-Bold',
+              color: Colors.LIME_GREEN,
+              top: Mixins.scaleHeight(10),
+            },
+          ]}>
+          Jane's Farm
+        </Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: Colors.GRAY_WHITE,
+          height: Mixins.scaleHeight(220),
+          top: Mixins.scaleHeight(30),
+          borderRadius: 10,
+        }}>
+        <PurchaseOrderList></PurchaseOrderList>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-10),
+          top: Mixins.scaleHeight(-10),
+        }}>
+        <CloseButton setModal={props.setPurchaseOrderModal} />
+      </View>
+    </View>
+  );
+};
+const PurchaseOrderList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          borderBottomWidth: 1,
+          width: Mixins.scaleWidth(200),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+    );
+  };
+  return (
+    <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={props.refreshing}
+          onRefresh={props.onRefresh}
+        />
+      }
+      keyExtractor={item => item.id}
+      data={DATA}
+      numColumns={1}
+      ItemSeparatorComponent={Seperator}
+      ListEmptyComponent={
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(420),
+            top: Mixins.scaleHeight(30),
+            alignItems: 'center',
+          }}></View>
+      }
+      renderItem={({item}) => {
+        return (
+          <PurchaseOrderComponent name={item.name} quantity={item.quantity} />
+        );
+      }}
+    />
+  );
+};
+
+const PurchaseOrderComponent = props => {
+  return (
+    <View
+      style={{
         height: Mixins.scaleHeight(30),
-        width: Mixins.scaleWidth(240),
-        borderRadius: 30,
+        justifyContent: 'center',
+        backgroundColor: Colors.GRAY_WHITE,
       }}>
-      <View
-        style={{
-          left: Mixins.scaleWidth(20),
-          height: Mixins.scaleHeight(40),
-          justifyContent: 'center',
-        }}>
-        <Text style={Typography.normal}>Name</Text>
-      </View>
-
-      <TouchableOpacity
-        onPress={() => props.setRemovePersonModal(true)}
-        style={{
-          height: Mixins.scaleHeight(40),
-          position: 'absolute',
-          right: Mixins.scaleWidth(20),
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Icon
-          name="person-remove-outline"
-          size={Mixins.scaleWidth(20)}
-          color="black"
-        />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const RemovePersonModal = props => {
-  return (
-    <View
-      style={{
-        backgroundColor: Colors.GRAY_MEDIUM,
-        borderRadius: 20,
-        height: Mixins.scaleHeight(160),
-        width: Mixins.scaleWidth(300),
-        left: Mixins.scaleWidth(10),
-      }}>
-      <View style={{alignSelf: 'center', top: Mixins.scaleHeight(10)}}>
-        <Icon
-          name="alert-circle-outline"
-          size={Mixins.scaleWidth(70)}
-          color={Colors.ALERT}
-        />
-      </View>
-      <Text
-        style={[
-          Typography.normal,
-          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
-        ]}>
-        Are you sure you want to remove XXX?
-      </Text>
-      <TouchableOpacity
-        onPress={() => props.setRemovePersonModal(false)}
-        style={{
-          backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(80),
-          alignSelf: 'center',
-          borderRadius: 20,
-          height: Mixins.scaleHeight(25),
-          justifyContent: 'center',
-          top: Mixins.scaleHeight(40),
-        }}>
-        <Text style={[Typography.normal, {alignSelf: 'center'}]}>Confirm</Text>
-      </TouchableOpacity>
-      <View
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(-8),
-          top: Mixins.scaleHeight(-8),
-        }}>
-        <CloseButton setModal={props.setRemovePersonModal} />
+      <View style={{flexDirection: 'row'}}>
+        <View>
+          <Text
+            style={[
+              Typography.small,
+              {position: 'absolute', left: Mixins.scaleWidth(5)},
+            ]}>
+            {props.name}
+          </Text>
+        </View>
+        <View>
+          <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
+            {' '}
+            |{'\t'}
+            {props.quantity}kg
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
-
-const AddPersonModal = props => {
-  return (
-    <View
-      style={{
-        height: Mixins.scaleHeight(300),
-        width: Mixins.scaleWidth(300),
-        backgroundColor: Colors.GRAY_DARK,
-        left: Mixins.scaleWidth(10),
-        borderRadius: 20,
-      }}>
-      <Text
-        style={[
-          Typography.large,
-          {alignSelf: 'center', top: Mixins.scaleHeight(20)},
-        ]}>
-        Who would you like to add?
-      </Text>
-      <View style={{top: Mixins.scaleHeight(50)}}></View>
-    </View>
-  );
-};
+const DATA = [
+  {name: 'Ginger', quantity: '30'},
+  {name: 'Bananas', quantity: '40'},
+  {name: 'Avacadoes', quantity: '50'},
+  {name: 'Durian', quantity: '60'},
+];

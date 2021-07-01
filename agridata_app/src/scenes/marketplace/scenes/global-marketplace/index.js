@@ -1,13 +1,57 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
 import {NavBar} from '_components';
-import {MarketplaceList} from './components';
+import {MarketplaceList, FavouritesList} from './components';
+import {API} from 'aws-amplify';
+import {
+  getRetailerCompany,
+  listProductListings,
+} from '../../../../graphql/queries';
 
 export const Marketplace = props => {
   const [choice, setChoice] = useState('product');
+  const [productsList, setProducts] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  console.log(props.user);
+  const fetchFavourites = async () => {
+    const favourites = await API.graphql({
+      query: getRetailerCompany,
+      variables: {id: props.user.retailerCompanyID},
+    });
+  };
+
+  const fetchProducts = async () => {
+    try {
+      const products = await API.graphql({
+        query: listProductListings,
+        variables: {},
+      });
+      console.log(products);
+      if (products.data.listProductListings) {
+        console.log('Products: \n');
+        console.log(products);
+        setProducts(products.data.listProductListings.items);
+      }
+      console.log(productsList);
+    } catch (e) {
+      console.log(e);
+      console.log("there's a problem");
+    }
+  };
+  useEffect(() => {
+    fetchProducts();
+    console.log('Refreshing...');
+  }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchProducts();
+    setRefreshing(false);
+  };
   return (
     <SafeAreaView
       style={{
@@ -17,7 +61,7 @@ export const Marketplace = props => {
         alignItems: 'center',
       }}>
       <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-        Global Marketplace
+        Local Marketplace
       </Text>
       <View style={{top: Mixins.scaleHeight(40)}}>
         <Searchbar />
@@ -66,7 +110,7 @@ export const Marketplace = props => {
             borderColor: Colors.GRAY_LIGHT,
             borderWidth: Mixins.scaleWidth(1),
           }}></View>
-        {choice == 'favorites' ? (
+        {choice == 'favourites' ? (
           <View
             style={{
               width: Mixins.scaleWidth(179),
@@ -87,7 +131,7 @@ export const Marketplace = props => {
           </View>
         ) : (
           <TouchableOpacity
-            onPress={() => setChoice('favorites')}
+            onPress={() => setChoice('favourites')}
             style={{
               width: Mixins.scaleWidth(179),
               alignItems: 'center',
@@ -97,22 +141,89 @@ export const Marketplace = props => {
           </TouchableOpacity>
         )}
       </View>
-      <View
-        style={{
-          width: Mixins.scaleWidth(330),
-          height: Mixins.scaleHeight(425),
-          top: Mixins.scaleHeight(70),
-        }}>
-        <MarketplaceList productList={items} />
-      </View>
+      {choice == 'favourites' ? (
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(425),
+            top: Mixins.scaleHeight(70),
+          }}>
+          <FavouritesList
+            data={[
+              {name: 'Freshest Wholesale', id: 3},
+              {name: "Jane's Farm", id: 2},
+              {name: "Matthew's Farm", id: 1},
+            ]}
+            navigation={props.navigation}
+          />
+        </View>
+      ) : (
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(425),
+            top: Mixins.scaleHeight(70),
+          }}>
+          <MarketplaceList
+            productList={[
+              {
+                lowPrice: 5,
+                highPrice: 10,
+                productName: 'Avacadoes',
+                minimumQuantity: '30',
+                quantityAvailable: '300',
+              },
+              {
+                lowPrice: 5.5,
+                highPrice: 9,
+                productName: 'Avacadoes',
+                minimumQuantity: '50',
+                quantityAvailable: '400',
+              },
+              {
+                lowPrice: 4.5,
+                highPrice: 10,
+                productName: 'Avacadoes',
+                minimumQuantity: '45',
+                quantityAvailable: '100',
+              },
+              {
+                lowPrice: 5,
+                highPrice: 10,
+                productName: 'Avacadoes',
+                minimumQuantity: '30',
+                quantityAvailable: '300',
+              },
+              {
+                lowPrice: 2,
+                highPrice: 4,
+                productName: 'Bananas',
+                minimumQuantity: '30',
+                quantityAvailable: '300',
+              },
+              {
+                lowPrice: 2.1,
+                highPrice: 3.3,
+                productName: 'Bananas',
+                minimumQuantity: '40',
+                quantityAvailable: '300',
+              },
+              {
+                lowPrice: 3,
+                highPrice: 3.5,
+                productName: 'Bananas',
+                minimumQuantity: '30',
+                quantityAvailable: '300',
+              },
+            ]}
+            navigation={props.navigation}
+          />
+        </View>
+      )}
+
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-20)}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>
   );
 };
-
-const items = [
-  {produce: 'Ginger', quantity: '10'},
-  {produce: 'Ginger', quantity: '10'},
-];
