@@ -29,13 +29,13 @@ import {
   Verification,
 } from './scenes';
 import {DataAnalytics} from './scenes/data_analytics/';
-import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
-import config from './aws-exports';
+//import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
+//import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
 import {getUser} from './graphql/queries';
 import {createUser} from './graphql/mutations';
 
-Amplify.configure(config);
+//Amplify.configure(config);
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -402,8 +402,9 @@ const Initializing = () => {
     </View>
   );
 };
+/*
 const App = () => {
-  const [isUserLoggedIn, setUserLoggedIn] = useState('initializing');
+  const [isUserLoggedIn, setUserLoggedIn] = useState('loggedIn');
   const [userID, setUserID] = useState(null);
   const [userAttributes, setUserAttributes] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
@@ -505,5 +506,9 @@ const App = () => {
     </NavigationContainer>
   );
 };
+*/
 
+export const App = () => {
+  return <SupplierTasks></SupplierTasks>;
+};
 export default App;

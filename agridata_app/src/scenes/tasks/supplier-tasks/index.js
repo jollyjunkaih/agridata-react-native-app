@@ -11,6 +11,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {SendTaskList, ReceivePaymentTaskList, SortModal} from '../components';
 import {NavBar} from '_components';
 import Modal from 'react-native-modal';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const SupplierTasks = props => {
   const [sortModal, setSortModal] = useState(false);
@@ -19,16 +23,16 @@ export const SupplierTasks = props => {
       style={{
         backgroundColor: 'white',
         flex: 1,
+        width: wp('100%'),
+        height: hp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-        Tasks
-      </Text>
+      <Text style={[Typography.header, {top: hp('5%')}]}>Tasks</Text>
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={{
-            marginHorizontal: Mixins.scaleWidth(60),
-            top: Mixins.scaleHeight(25),
+            right: wp('15%'),
+            top: hp('4%'),
           }}>
           <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
             Send
@@ -36,8 +40,8 @@ export const SupplierTasks = props => {
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            top: Mixins.scaleHeight(25),
-            marginHorizontal: Mixins.scaleWidth(60),
+            top: hp('4%'),
+            left: wp('15%'),
           }}>
           <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
             Claim
@@ -46,17 +50,17 @@ export const SupplierTasks = props => {
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(30),
-          width: Mixins.scaleWidth(360),
-          borderBottomWidth: 1,
-          height: 0,
+          top: hp('5%'),
+          width: wp('100%'),
+          borderBottomWidth: wp('0.5%'),
+          height: hp('0%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
       <View
         style={{
-          width: Mixins.scaleWidth(290),
-          height: Mixins.scaleHeight(30),
-          top: Mixins.scaleHeight(40),
+          width: wp('80%'),
+          height: hp('5%'),
+          top: hp('6%'),
           flexDirection: 'row',
         }}>
         <Text style={[Typography.normal, {textTransform: 'uppercase'}]}>
@@ -64,21 +68,21 @@ export const SupplierTasks = props => {
         </Text>
         <TouchableOpacity
           onPress={() => setSortModal(true)}
-          style={{position: 'absolute', right: Mixins.scaleWidth(0)}}>
-          <Icon name="funnel-outline" size={Mixins.scaleWidth(20)}></Icon>
+          style={{position: 'absolute', right: wp('0%')}}>
+          <Icon name="funnel-outline" size={wp('5%')}></Icon>
         </TouchableOpacity>
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(40),
-          height: Mixins.scaleHeight(175),
+          top: hp('7%'),
+          height: hp('28%'),
         }}>
         <SendTaskList SendTaskList={[{}, {}]} />
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(65),
-          height: Mixins.scaleHeight(200),
+          top: hp('10%'),
+          height: hp('28%'),
         }}>
         <ReceivePaymentTaskList ReceiveTaskList={[{}, {}]} />
       </View>

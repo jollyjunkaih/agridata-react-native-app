@@ -16,21 +16,26 @@ import {
   MenuButton,
 } from '_scenes/dashboard/components';
 import Strings from '_utils';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const AccountsDashboard = props => {
   return (
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('100%'),
+        width: wp('100%'),
+        flex: 1,
         alignItems: 'center',
       }}>
       <View
         style={{
           position: 'absolute',
-          top: Mixins.scaleHeight(30),
-          left: Mixins.scaleWidth(30),
+          top: hp('5%'),
+          left: wp('8%'),
         }}>
         <MenuButton
           navigation={props.navigation}
@@ -39,15 +44,15 @@ export const AccountsDashboard = props => {
       </View>
       <Image
         style={{
-          top: Mixins.scaleHeight(40),
+          top: hp('6%'),
           resizeMode: 'contain',
-          width: Mixins.scaleWidth(90),
-          height: Mixins.scaleHeight(70),
+          width: wp('50%'),
+          height: hp('11%'),
         }}
         source={require('_assets/images/agridata.png')}
       />
 
-      <Text style={[Typography.welcome, {top: Mixins.scaleHeight(60)}]}>
+      <Text style={[Typography.welcome, {top: hp('10%')}]}>
         {Strings.welcome}
       </Text>
 
@@ -55,14 +60,14 @@ export const AccountsDashboard = props => {
         style={[
           Typography.largestSize,
           {
-            top: Mixins.scaleHeight(50),
+            top: hp('8%'),
             color: '#8EAB3D',
             textTransform: 'uppercase',
           },
         ]}>
         {props.user.retailerCompany.name}
       </Text>
-      <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
+      <Text style={[Typography.normal, {top: hp('10%')}]}>
         {Strings.whatToDo}
       </Text>
       <ChatButton top={90} navigation={props.navigation}></ChatButton>
