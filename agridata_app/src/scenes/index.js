@@ -15,7 +15,13 @@ import {Inbox, ChatRoom} from './chat';
 import {Orders} from './orders';
 import {SupplierTasks, RetailerTasks} from './tasks';
 import {DataAnalytics} from './data-analytics';
-import {Registration, Login, CreateCompany, Landing} from './authentication';
+import {
+  Registration,
+  Login,
+  CreateCompany,
+  Verification,
+  Landing,
+} from './authentication';
 
 export {
   RetailManagerDashboard,
@@ -41,4 +47,5 @@ export {
   CreateCompany,
   SupplierDashboard,
   Landing,
+  Verification,
 };

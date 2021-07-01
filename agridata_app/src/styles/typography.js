@@ -62,3 +62,9 @@ export const large = {
   fontFamily: 'Poppins-SemiBold',
   color: '#444443',
 };
+
+export const medium = {
+  fontSize: scaleFont(12),
+  fontFamily: 'Poppins-Regular',
+  color: '#444443',
+};

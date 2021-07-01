@@ -25,6 +25,7 @@ import {
   Login,
   CreateCompany,
   Landing,
+  Verification,
 } from './scenes';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';

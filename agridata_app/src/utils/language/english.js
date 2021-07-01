@@ -1,4 +1,17 @@
 export default {
   welcome: 'Welcome Back',
   whatToDo: 'What would you like to do today?',
+  chats: 'Chats',
+  todo: 'To Do',
+  invoices: 'Invoice',
+  companyProfile: 'Company Profile',
+  personalProfile: 'Personal Profile',
+  humanResource: 'Human Resource',
+  logOut: 'Log Out',
+  team: 'Team',
+  owner: 'Owner',
+  addNewTeamMember: 'Add New Team Member',
+  saveChanges: 'Save Changes',
+  yes: 'Yes',
+  no: 'No',
 };
