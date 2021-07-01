@@ -30,11 +30,12 @@ import {
   CreateAccountPopUp,
 } from './scenes';
 import {DataAnalytics} from './scenes/data_analytics/';
-/*&import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
+/*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';*/
 import {View, ActivityIndicator} from 'react-native';
 import {getUser} from './graphql/queries';
 import {createUser} from './graphql/mutations';
+import {MarketplaceList} from '_scenes';
 
 /*Amplify.configure(config);*/
 
@@ -405,10 +406,10 @@ const Initializing = () => {
 };
 /*const App = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState('loggedIn');
-  const [userID, setUserID] = useState(true);
-  const [userAttributes, setUserAttributes] = useState(true);
-  const [userDetails, setUserDetails] = useState(true);
-  const [runAgain, setRunAgain] = useState(true);
+  const [userID, setUserID] = useState(null);
+  const [userAttributes, setUserAttributes] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+  const [runAgain, setRunAgain] = useState(false);
 
   const createNewUser = async () => {
     try {
@@ -510,7 +511,7 @@ const Initializing = () => {
 export const App = () => {
   return (
     <NavigationContainer>
-      <Orders></Orders>
+      <Marketplace></Marketplace>
     </NavigationContainer>
   );
 };

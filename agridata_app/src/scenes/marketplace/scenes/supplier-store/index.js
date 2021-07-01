@@ -7,6 +7,10 @@ import {ProductPopUp, AddItemsButton, SupplierplaceList} from './components';
 import {NavBar, BackButton} from '_components';
 import {listProductListings} from '../../../../graphql/queries';
 import {API} from 'aws-amplify';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const SupplierStore = props => {
   const [productsList, setProducts] = useState([]);
@@ -43,8 +47,8 @@ export const SupplierStore = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('100%'),
+        width: wp('100%'),
         alignItems: 'center',
       }}>
       <View
@@ -55,17 +59,15 @@ export const SupplierStore = props => {
         }}>
         <BackButton />
       </View>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-        My Store
-      </Text>
-      <View style={{top: Mixins.scaleHeight(40)}}>
+      <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
+      <View style={{top: hp('6%')}}>
         <Searchbar />
       </View>
       <View
         style={{
-          width: Mixins.scaleWidth(330),
-          height: Mixins.scaleHeight(425),
-          top: Mixins.scaleHeight(70),
+          width: wp('90%'),
+          height: hp('80%'),
+          top: hp('12%'),
         }}>
         <SupplierplaceList
           productList={productsList}
@@ -75,13 +77,13 @@ export const SupplierStore = props => {
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(20),
-          bottom: Mixins.scaleHeight(80),
+          right: wp('8%'),
+          bottom: hp('14%'),
         }}>
         <AddItemsButton setProducts={setProducts} user={props.user} />
       </View>
 
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
+      <View style={{position: 'absolute', bottom: hp('-3%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>
