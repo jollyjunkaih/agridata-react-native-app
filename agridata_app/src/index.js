@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {
   AccountsDashboard,
   RetailManagerDashboard,
+  GeneralManagerDashboard,
   Marketplace,
   Store,
   Inbox,
@@ -19,7 +20,7 @@ import {
   HumanResource,
   PersonalProfile,
   EditPersonal,
-  DataAnalytics,
+  //DataAnalytics,
   Registration,
   SupplierDashboard,
   Login,
@@ -27,10 +28,12 @@ import {
   Landing,
   Verification,
 } from './scenes';
+import {DataAnalytics} from './scenes/data_analytics/';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
 import {getUser} from './graphql/queries';
+import {createUser} from './graphql/mutations';
 
 Amplify.configure(config);
 
@@ -49,6 +52,7 @@ const AuthenticationNavigator = props => {
             {...screenProps}
             updateAuthState={props.updateAuthState}
             updateUserID={props.updateUserID}
+            setUserAttributes={props.setUserAttributes}
           />
         )}
       </AuthenticationStack.Screen>
@@ -67,9 +71,12 @@ const AuthenticationNavigator = props => {
 
 const AppNavigator = props => {
   console.log(props.user);
-  const type = props.user.role;
-  if (props.user.retailerID || props.user.supplierID) {
-    if (props.user.retailerID && props.user.retailer.verified != undefined) {
+  const type = 'general-manager';
+  if (props.user.retailerCompanyID || props.user.supplierCompanyID) {
+    if (
+      props.user.retailerCompanyID &&
+      props.user.retailerCompany.verified != undefined
+    ) {
       if (type == 'retailer-manager') {
         console.log('Retail Manager \n');
         return (
@@ -78,42 +85,45 @@ const AppNavigator = props => {
               {screenProps => (
                 <RetailManagerDashboard
                   {...screenProps}
-                  userType={type}
+                  user={props.user}
                   updateAuthState={props.updateAuthState}
                 />
               )}
             </AppStack.Screen>
             <AppStack.Screen name="marketplace">
-              {screenProps => <Marketplace {...screenProps} />}
+              {screenProps => (
+                <Marketplace {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
 
             <AppStack.Screen name="store">
-              {screenProps => <Store {...screenProps} />}
+              {screenProps => <Store {...screenProps} user={props.user} />}
             </AppStack.Screen>
 
             <AppStack.Screen name="inbox">
-              {screenProps => <Inbox {...screenProps} />}
+              {screenProps => <Inbox {...screenProps} user={props.user} />}
             </AppStack.Screen>
 
             <AppStack.Screen name="chatroom">
-              {screenProps => (
-                <ChatRoom
-                  {...screenProps}
-                  userAttributes={props.userAttributes}
-                />
-              )}
+              {screenProps => <ChatRoom {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="orders">
-              {screenProps => <Orders {...screenProps} />}
+              {screenProps => <Orders {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="tasks">
-              {screenProps => <RetailerTasks {...screenProps} />}
+              {screenProps => (
+                <RetailerTasks {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="personalprofile">
-              {screenProps => <PersonalProfile {...screenProps} />}
+              {screenProps => (
+                <PersonalProfile {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="editprofile">
-              {screenProps => <EditPersonal {...screenProps} />}
+              {screenProps => (
+                <EditPersonal {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
           </AppStack.Navigator>
         );
@@ -125,41 +135,35 @@ const AppNavigator = props => {
               {screenProps => (
                 <AccountsDashboard
                   {...screenProps}
+                  user={props.user}
                   updateAuthState={props.updateAuthState}
                 />
               )}
             </AppStack.Screen>
             <AppStack.Screen name="inbox">
-              {screenProps => <Inbox {...screenProps} />}
+              {screenProps => <Inbox {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="chatroom">
-              {screenProps => (
-                <ChatRoom
-                  {...screenProps}
-                  userAttributes={props.userAttributes}
-                />
-              )}
+              {screenProps => <ChatRoom {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="tasks">
-              {screenProps => <SupplierTasks {...screenProps} />}
+              {screenProps => (
+                <SupplierTasks {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="orders">
-              {screenProps => <Orders {...screenProps} />}
+              {screenProps => <Orders {...screenProps} user={props.user} />}
             </AppStack.Screen>
-            <AppStack.Screen name="companyprofile">
-              {screenProps => <CompanyProfile {...screenProps} />}
-            </AppStack.Screen>
-            <AppStack.Screen name="editcompany">
-              {screenProps => <EditCompany {...screenProps} />}
-            </AppStack.Screen>
-            <AppStack.Screen name="humanresource">
-              {screenProps => <HumanResource {...screenProps} />}
-            </AppStack.Screen>
+
             <AppStack.Screen name="personalprofile">
-              {screenProps => <PersonalProfile {...screenProps} />}
+              {screenProps => (
+                <PersonalProfile {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="editpersonal">
-              {screenProps => <EditPersonal {...screenProps} />}
+              {screenProps => (
+                <EditPersonal {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
           </AppStack.Navigator>
         );
@@ -171,13 +175,38 @@ const AppNavigator = props => {
               {screenProps => (
                 <OwnerDashboard
                   {...screenProps}
-                  userType={type}
+                  user={props.user}
                   updateAuthState={props.updateAuthState}
                 />
               )}
             </AppStack.Screen>
             <AppStack.Screen name="orders">
-              {screenProps => <Orders {...screenProps} />}
+              {screenProps => <Orders {...screenProps} user={props.user} />}
+            </AppStack.Screen>{' '}
+            <AppStack.Screen name="companyprofile">
+              {screenProps => (
+                <CompanyProfile {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="editcompany">
+              {screenProps => (
+                <EditCompany {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="humanresource">
+              {screenProps => (
+                <HumanResource {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="personalprofile">
+              {screenProps => (
+                <PersonalProfile {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="editpersonal">
+              {screenProps => (
+                <EditPersonal {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
           </AppStack.Navigator>
         );
@@ -190,11 +219,24 @@ const AppNavigator = props => {
                 <EmployeeDashboard
                   {...screenProps}
                   updateAuthState={props.updateAuthState}
+                  user={props.user}
                 />
               )}
             </AppStack.Screen>
             <AppStack.Screen name="tasks">
-              {screenProps => <RetailerTasks {...screenProps} />}
+              {screenProps => (
+                <RetailerTasks {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="personalprofile">
+              {screenProps => (
+                <PersonalProfile {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="editpersonal">
+              {screenProps => (
+                <EditPersonal {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
           </AppStack.Navigator>
         );
@@ -204,39 +246,74 @@ const AppNavigator = props => {
           <AppStack.Navigator headerMode="none">
             <AppStack.Screen name="dashboard">
               {screenProps => (
-                <RetailManagerDashboard
+                <GeneralManagerDashboard
                   {...screenProps}
                   updateAuthState={props.updateAuthState}
+                  user={props.user}
                 />
               )}
             </AppStack.Screen>
+            <AppStack.Screen name="orders">
+              {screenProps => <Orders {...screenProps} user={props.user} />}
+            </AppStack.Screen>
             <AppStack.Screen name="marketplace">
-              {screenProps => <Marketplace {...screenProps} />}
+              {screenProps => (
+                <Marketplace {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="store">
-              {screenProps => <Store {...screenProps} />}
+              {screenProps => <Store {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="chatroom">
-              {screenProps => <ChatRoom {...screenProps} />}
+              {screenProps => <ChatRoom {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="inbox">
-              {screenProps => <Inbox {...screenProps} />}
+              {screenProps => <Inbox {...screenProps} user={props.user} />}
             </AppStack.Screen>
             <AppStack.Screen name="tasks">
-              {screenProps => <RetailerTasks {...screenProps} />}
+              {screenProps => (
+                <RetailerTasks {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="dataanalytics">
-              {screenProps => <DataAnalytics {...screenProps} />}
+              {screenProps => (
+                <DataAnalytics {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
             <AppStack.Screen name="invoice">
-              {screenProps => <Invoice {...screenProps} />}
+              {screenProps => <Invoice {...screenProps} user={props.user} />}
+            </AppStack.Screen>
+            <AppStack.Screen name="companyprofile">
+              {screenProps => (
+                <CompanyProfile {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="editcompany">
+              {screenProps => (
+                <EditCompany {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="humanresource">
+              {screenProps => (
+                <HumanResource {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="personalprofile">
+              {screenProps => (
+                <PersonalProfile {...screenProps} user={props.user} />
+              )}
+            </AppStack.Screen>
+            <AppStack.Screen name="editpersonal">
+              {screenProps => (
+                <EditPersonal {...screenProps} user={props.user} />
+              )}
             </AppStack.Screen>
           </AppStack.Navigator>
         );
       }
     } else if (
-      props.user.supplierID &&
-      props.user.supplier.verified != undefined
+      props.user.supplierCompanyID &&
+      props.user.supplierCompany.verified != undefined
     ) {
       console.log('Supplier \n');
       return (
@@ -246,26 +323,33 @@ const AppNavigator = props => {
               <SupplierDashboard
                 {...screenProps}
                 updateAuthState={props.updateAuthState}
+                user={props.user}
               />
             )}
           </AppStack.Screen>
           <AppStack.Screen name="marketplace">
-            {screenProps => <SupplierStore {...screenProps} />}
+            {screenProps => (
+              <SupplierStore {...screenProps} user={props.user} />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="chatroom">
-            {screenProps => <ChatRoom {...screenProps} />}
+            {screenProps => <ChatRoom {...screenProps} user={props.user} />}
           </AppStack.Screen>
           <AppStack.Screen name="inbox">
-            {screenProps => <Inbox {...screenProps} />}
+            {screenProps => <Inbox {...screenProps} user={props.user} />}
           </AppStack.Screen>
           <AppStack.Screen name="tasks">
-            {screenProps => <SupplierTasks {...screenProps} />}
+            {screenProps => (
+              <SupplierTasks {...screenProps} user={props.user} />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="dataanalytics">
-            {screenProps => <DataAnalytics {...screenProps} />}
+            {screenProps => (
+              <DataAnalytics {...screenProps} user={props.user} />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="invoice">
-            {screenProps => <Invoice {...screenProps} />}
+            {screenProps => <Invoice {...screenProps} user={props.user} />}
           </AppStack.Screen>
         </AppStack.Navigator>
       );
@@ -273,7 +357,13 @@ const AppNavigator = props => {
       return (
         <AppStack.Navigator headerMode="none">
           <AppStack.Screen name="verification">
-            {screenProps => <RetailManagerDashboard {...screenProps} />}
+            {screenProps => (
+              <Verification
+                {...screenProps}
+                updateAuthState={props.updateAuthState}
+                user={props.user}
+              />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="companyprofile">
             {screenProps => <CompanyProfile {...screenProps} />}
@@ -315,7 +405,32 @@ const Initializing = () => {
 const App = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState('initializing');
   const [userID, setUserID] = useState(null);
+  const [userAttributes, setUserAttributes] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
+  const [runAgain, setRunAgain] = useState(false);
+
+  const createNewUser = async () => {
+    try {
+      const newUserInfo = await API.graphql({
+        query: createUser,
+        variables: {
+          input: {
+            id: userID,
+            name: userAttributes.name,
+            role: userAttributes['custom:role'],
+            contactNumber: userAttributes.phone_number,
+          },
+        },
+      });
+      console.log('newuser: ' + newUserInfo.data.createUser);
+      console.log(newUserInfo.data.createUser);
+      setUserDetails(newUserInfo.data.getUser);
+      setUserLoggedIn('loggedIn');
+    } catch {
+      e => console.log(e);
+    }
+  };
+
   const getUserAttributes = async () => {
     try {
       if (userID) {
@@ -325,25 +440,41 @@ const App = () => {
         });
         console.log('fetch' + userID);
         console.log(userInfo);
-        setUserDetails(userInfo.data.getUser);
-        setUserLoggedIn('loggedIn');
+        if (userInfo.data.getUser != null) {
+          setUserDetails(userInfo.data.getUser);
+          setUserLoggedIn('loggedIn');
+        } else {
+          console.log('no user found');
+          console.log(userAttributes);
+          if (userAttributes != null) {
+            console.log('attempting to create new user');
+            createNewUser();
+          } else {
+            setRunAgain(true);
+          }
+        }
       }
     } catch {
-      e => console.log('failed');
+      e => console.log(e);
     }
   };
+
+  useEffect(() => {
+    checkAuthState();
+  }, [userID]);
+
   useEffect(() => {
     getUserAttributes();
     console.log('useEffect Triggered');
-  }, [userID]);
-  useEffect(() => {
-    checkAuthState();
-  }, []);
+  }, [userID, runAgain]);
   async function checkAuthState() {
+    //this checks for the current authenticated state (for when u dont click logout)
     try {
       const user = await Auth.currentAuthenticatedUser();
       setUserID(user.attributes.sub);
-      console.log('✅ User is alreadry signed in: ' + user.attributes.sub);
+      setUserAttributes(user.attributes);
+      console.log('✅ User is alreadry signed in: ');
+      console.log(user.attributes);
     } catch (err) {
       console.log('❌ User is not signed in');
       setUserLoggedIn('loggedOut');
@@ -367,8 +498,8 @@ const App = () => {
       )}
       {isUserLoggedIn === 'loggedOut' && (
         <AuthenticationNavigator
-          updateAuthState={updateAuthState}
           updateUserID={updateUserID}
+          setUserAttributes={setUserAttributes}
         />
       )}
     </NavigationContainer>

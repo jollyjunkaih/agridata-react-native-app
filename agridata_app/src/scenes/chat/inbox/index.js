@@ -69,7 +69,26 @@ export const Inbox = props => {
           width: Mixins.scaleWidth(340),
           top: Mixins.scaleHeight(60),
         }}>
-        <ChatList data={chatRooms} navigation={props.navigation} />
+        <ChatList
+          data={[
+            {
+              name: "Matthew's Farm",
+              mostRecentMessage: 'Has the invoice been processed?',
+              updatedAt: '30-6-21',
+            },
+            {
+              name: "Jane's Farm",
+              mostRecentMessage: 'How are the pineapples?',
+              updatedAt: '30-6-21',
+            },
+            {
+              name: "Gina's Orchard",
+              mostRecentMessage: 'RM 5 okay?',
+              updatedAt: '30-6-21',
+            },
+          ]}
+          navigation={props.navigation}
+        />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />

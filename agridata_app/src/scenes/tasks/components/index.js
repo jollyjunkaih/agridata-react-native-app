@@ -485,7 +485,7 @@ const InvoiceModal = props => {
             left: Mixins.scaleWidth(20),
           },
         ]}>
-        Invoice NUMXXXX
+        Invoice 12435
       </Text>
       <Text
         style={[
@@ -496,7 +496,7 @@ const InvoiceModal = props => {
             top: Mixins.scaleHeight(35),
           },
         ]}>
-        DD-MM-YY
+        30 June 2021
       </Text>
       <Text
         style={
@@ -507,7 +507,7 @@ const InvoiceModal = props => {
             left: Mixins.scaleWidth(20),
           })
         }>
-        Company Name
+        Matthew's Farm
       </Text>
       <View
         style={{
@@ -525,11 +525,22 @@ const InvoiceModal = props => {
           }}>
           <FlatList
             keyExtractor={item => item.id}
-            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+            data={[
+              {productName: 'Ginger', quantity: 30, price: 20, amount: 600},
+              {productName: 'Ginger', quantity: 30, price: 20, amount: 600},
+              {productName: 'Ginger', quantity: 30, price: 20, amount: 600},
+            ]}
             numColumns={1}
             ItemSeparatorComponent={Seperator}
-            renderItem={item => {
-              return <InvoiceItem user={item.name} />;
+            renderItem={({item}) => {
+              return (
+                <InvoiceItem
+                  productName={item.productName}
+                  quantity={item.quantity}
+                  price={item.price}
+                  amount={item.amount}
+                />
+              );
             }}
           />
         </View>
@@ -542,7 +553,7 @@ const InvoiceModal = props => {
               marginTop: Mixins.scaleHeight(10),
             },
           ]}>
-          TOTAL: RM XXX
+          TOTAL: RM 3000
         </Text>
       </View>
 
@@ -582,7 +593,7 @@ const InvoiceItem = props => {
           Typography.small,
           {position: 'absolute', left: Mixins.scaleWidth(10)},
         ]}>
-        Product Name
+        {props.productName}
       </Text>
       <TextInput
         style={[
@@ -638,10 +649,21 @@ const ProductList = props => {
     <View>
       <FlatList
         numColumns={1}
-        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
+        data={[
+          {productName: 'Guava', quantity: 20, price: 10},
+          {productName: 'Pineapple', quantity: 40, price: 7},
+          {productName: 'Avacado', quantity: 40, price: 10},
+          {productName: 'Ginger', quantity: 20, price: 12},
+        ]}
         ItemSeparatorComponent={Seperator}
         renderItem={({item}) => {
-          return <Product name={item.name} />;
+          return (
+            <Product
+              productName={item.productName}
+              quantity={item.quantity}
+              price={item.price}
+            />
+          );
         }}></FlatList>
     </View>
   );
@@ -663,7 +685,7 @@ const Product = props => {
             position: 'absolute',
           },
         ]}>
-        Product
+        {props.productName}
       </Text>
       <Text
         style={[
@@ -674,7 +696,7 @@ const Product = props => {
             position: 'absolute',
           },
         ]}>
-        | 300kg
+        | {props.quantity}kg
       </Text>
       <Text
         style={[
@@ -685,7 +707,7 @@ const Product = props => {
             position: 'absolute',
           },
         ]}>
-        @ RM 8/kg
+        @ RM {props.price}/kg
       </Text>
     </View>
   );
@@ -1215,7 +1237,7 @@ const Receive = props => {
               position: 'absolute',
             },
           ]}>
-          City Grocer
+          {props.supplierName}
         </Text>
         <Text
           style={[
@@ -1227,7 +1249,7 @@ const Receive = props => {
               position: 'absolute',
             },
           ]}>
-          4 items
+          {props.items} items
         </Text>
         <Text
           style={[
@@ -1252,7 +1274,7 @@ const Receive = props => {
               fontStyle: 'italic',
             },
           ]}>
-          30 June,2021
+          {props.createdAt}
         </Text>
       </View>
       <Modal isVisible={receiveModal}>
@@ -1271,8 +1293,14 @@ export const ReceiveList = props => {
         keyExtractor={item => item.id}
         data={props.ReceiveList}
         numColumns={1}
-        renderItem={item => {
-          return <Receive user={item.name} />;
+        renderItem={({item}) => {
+          return (
+            <Receive
+              createdAt={item.createdAt}
+              items={item.items}
+              supplierName={item.supplierName}
+            />
+          );
         }}
       />
     </View>
@@ -1350,7 +1378,7 @@ const UploadReceiptModal = props => {
             left: Mixins.scaleWidth(20),
           },
         ]}>
-        Payment From:
+        Payment To:
       </Text>
       <Text
         style={[
@@ -1361,7 +1389,7 @@ const UploadReceiptModal = props => {
             left: Mixins.scaleWidth(150),
           },
         ]}>
-        CITY GROCER
+        Matthew's Farm
       </Text>
       <Text
         style={[
@@ -1541,7 +1569,7 @@ const UploadReceipt = props => {
               position: 'absolute',
             },
           ]}>
-          City Grocer
+          {props.supplierName}
         </Text>
         <Text
           style={[
@@ -1553,7 +1581,7 @@ const UploadReceipt = props => {
               position: 'absolute',
             },
           ]}>
-          4 items
+          {props.items} items
         </Text>
         <Text
           style={[
@@ -1578,7 +1606,7 @@ const UploadReceipt = props => {
               fontStyle: 'italic',
             },
           ]}>
-          30 June,2021
+          {props.createdAt}
         </Text>
       </View>
       <Modal isVisible={uploadReceiptModal}>
@@ -1597,8 +1625,14 @@ export const UploadReceiptList = props => {
         keyExtractor={item => item.id}
         data={props.UploadReceiptList}
         numColumns={1}
-        renderItem={item => {
-          return <UploadReceipt user={item.name} />;
+        renderItem={({item}) => {
+          return (
+            <UploadReceipt
+              createdAt={item.createdAt}
+              items={item.items}
+              supplierName={item.supplierName}
+            />
+          );
         }}
       />
     </View>

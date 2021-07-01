@@ -23,8 +23,27 @@ import {ChatButton} from '../../../components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {
+  deleteProductListing,
+  updateProductListing,
+  createProductListing,
+} from '../../../../../graphql/mutations';
+import {API} from 'aws-amplify';
 
 export const ProductPopUp = props => {
+  const addListing = async () => {
+    const newListing = await API.graphql({
+      query: createProductListing,
+      variables: {input: {supplierID: props.id}},
+    });
+    var products = props.productList;
+    for (let [i, product] of products.entries()) {
+      if (product.id == props.id) {
+        products.splice(i, 1);
+      }
+    }
+    props.setProducts(products);
+  };
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -443,27 +462,65 @@ export const AddItemsButton = props => {
       onPress={() => setAddItemsButton(true)}>
       <Text style={[Typography.normal]}>Add Items</Text>
       <Modal isVisible={addItemsButton}>
-        <ProductPopUp setAddItemsButton={setAddItemsButton}></ProductPopUp>
+        <ProductPopUp
+          setAddItemsButton={setAddItemsButton}
+          user={props.user}
+          setProducts={props.setProducts}></ProductPopUp>
       </Modal>
     </TouchableOpacity>
   );
 };
 
 export const ProductModal = props => {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'kg', value: 'kg'},
-    {label: 'units', value: 'units'},
-  ]);
-  const [open2, setOpen2] = useState(false);
-  const [value2, setValue2] = useState(null);
-  const [items2, setItems2] = useState([
-    {label: 'kg', value: 'kg'},
-    {label: 'units', value: 'units'},
-  ]);
+  const [lowPrice, setLowPrice] = useState(props.item.priceMin.toString());
+  const [highPrice, setHighPrice] = useState(props.item.priceMax.toString());
+  const [available, setAvailable] = useState(
+    props.item.availableQuantity.toString(),
+  );
+  const [moq, setMOQ] = useState(props.item.moq.toString());
+
   const [successfulModal, setSuccessfulModal] = useState(false);
   const [unsuccessfulModal, setUnsuccessfulModal] = useState(false);
+
+  const deleteListing = async () => {
+    const deletedListing = await API.graphql({
+      query: deleteProductListing,
+      variables: {input: {id: props.item.id}},
+    });
+    var products = props.productList;
+    for (let [i, product] of products.entries()) {
+      if (product.id == props.item.id) {
+        products.splice(i, 1);
+      }
+    }
+    props.setProducts(products);
+  };
+  const updateListing = async () => {
+    console.log(props);
+    const updatedListing = await API.graphql({
+      query: updateProductListing,
+      variables: {
+        input: {
+          id: props.item.id,
+          lowPrice: parseFloat(lowPrice),
+          highPrice: parseFloat(highPrice),
+          quantityAvailable: parseInt(available),
+          minimumQuantity: parseInt(moq),
+          productName: props.item.productName,
+        },
+      },
+    });
+    var products = props.productList;
+    for (let [i, product] of products.entries()) {
+      if (product.id == props.item.id) {
+        products.splice(i, 1);
+      }
+    }
+    products.push(updatedListing.data.updateProductListing);
+    props.setProducts(products);
+    setSuccessfulModal(true);
+  };
+
   return (
     <View>
       <KeyboardAvoidingView
@@ -477,7 +534,7 @@ export const ProductModal = props => {
         }}>
         <View
           style={{
-            height: Mixins.scaleHeight(460),
+            height: Mixins.scaleHeight(500),
             width: Mixins.scaleWidth(310),
             backgroundColor: 'white',
             borderRadius: 20,
@@ -497,7 +554,7 @@ export const ProductModal = props => {
           </View>
           <View
             style={{top: Mixins.scaleHeight(25), right: Mixins.scaleWidth(75)}}>
-            <Text style={[Typography.normal]}>Product Name</Text>
+            <Text style={[Typography.normal]}>{props.item.productName}</Text>
           </View>
           <View style={{top: Mixins.scaleHeight(30)}}>
             <Image
@@ -515,9 +572,9 @@ export const ProductModal = props => {
               backgroundColor: Colors.GRAY_LIGHT,
               borderRadius: 15,
               width: Mixins.scaleWidth(270),
-              height: Mixins.scaleHeight(130),
+              height: Mixins.scaleHeight(180),
               alignItems: 'center',
-              justifyContent: 'center',
+
               zIndex: 10,
               shadowColor: '#000',
               shadowOffset: {
@@ -533,103 +590,131 @@ export const ProductModal = props => {
                 alignItems: 'flex-start',
                 justifyContent: 'center',
                 margin: Mixins.scaleWidth(5),
-                left: Mixins.scaleWidth(7),
               }}>
               <View style={{margin: Mixins.scaleWidth(5)}}>
                 <Text>Enter Product Details</Text>
               </View>
               <View
                 style={{
-                  backgroundColor: 'white',
-                  width: Mixins.scaleWidth(195),
-                  height: Mixins.scaleHeight(20),
                   margin: Mixins.scaleWidth(5),
-                  justifyContent: 'center',
-                  borderRadius: 5,
                 }}>
-                <TextInput
-                  style={{left: Mixins.scaleWidth(10)}}
-                  placeholder="RM 5"></TextInput>
+                <Text>Price Range</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: Mixins.scaleWidth(220),
-                  zIndex: 1000,
-                }}>
+              <View style={{flexDirection: 'row'}}>
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(115),
+                    width: Mixins.scaleWidth(80),
                     height: Mixins.scaleHeight(20),
                     margin: Mixins.scaleWidth(5),
                     justifyContent: 'center',
                     borderRadius: 5,
                   }}>
                   <TextInput
-                    style={{left: Mixins.scaleWidth(10)}}
-                    placeholder="1000"></TextInput>
-                </View>
-                <View>
-                  <DropDownPicker
-                    open={open}
-                    value={value}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    defaultValue="kg"
+                    underlineColorAndroid="transparent"
                     style={{
-                      width: Mixins.scaleWidth(75),
-                      height: Mixins.scaleHeight(25),
+                      left: Mixins.scaleWidth(10),
+                      height: Mixins.scaleHeight(40),
+                      borderBottomColor: 'transparent',
                     }}
-                    containerStyle={{width: Mixins.scaleWidth(75)}}
-                    placeholder="kg"
-                  />
+                    value={lowPrice}
+                    onChangeText={item => setLowPrice(item)}></TextInput>
                 </View>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: Mixins.scaleWidth(220),
-                  zIndex: 10,
-                }}>
+                <Text style={{top: Mixins.scaleHeight(5)}}>-</Text>
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(115),
+                    width: Mixins.scaleWidth(80),
                     height: Mixins.scaleHeight(20),
                     margin: Mixins.scaleWidth(5),
                     justifyContent: 'center',
                     borderRadius: 5,
                   }}>
                   <TextInput
-                    style={{left: Mixins.scaleWidth(10)}}
-                    placeholder="1000"></TextInput>
+                    underlineColorAndroid="transparent"
+                    style={{
+                      left: Mixins.scaleWidth(10),
+                      height: Mixins.scaleHeight(40),
+                      borderBottomColor: 'transparent',
+                    }}
+                    value={highPrice}
+                    onChangeText={item => setHighPrice(item)}></TextInput>
                 </View>
-                <DropDownPicker
-                  open={open2}
-                  value={value2}
-                  items={items2}
-                  setOpen={setOpen2}
-                  setValue={setValue2}
-                  setItems={setItems2}
-                  defaultValue="kg"
+              </View>
+
+              <View
+                style={{
+                  margin: Mixins.scaleWidth(5),
+                  flexDirection: 'row',
+                }}>
+                <Text style={{top: Mixins.scaleHeight(3)}}>Available</Text>
+                <View
                   style={{
-                    width: Mixins.scaleWidth(75),
-                    height: Mixins.scaleHeight(25),
-                    zIndex: 1,
-                  }}
-                  containerStyle={{width: Mixins.scaleWidth(75)}}
-                  placeholder="kg"
-                />
+                    backgroundColor: 'white',
+                    width: Mixins.scaleWidth(60),
+                    height: Mixins.scaleHeight(20),
+                    margin: Mixins.scaleWidth(5),
+                    justifyContent: 'center',
+                    borderRadius: 5,
+                    left: Mixins.scaleWidth(10),
+                  }}>
+                  <TextInput
+                    underlineColorAndroid="transparent"
+                    style={{
+                      left: Mixins.scaleWidth(10),
+                      height: Mixins.scaleHeight(40),
+                      borderBottomColor: 'transparent',
+                    }}
+                    value={available}
+                    onChangeText={item => setAvailable(item)}></TextInput>
+                </View>
+                <Text
+                  style={{
+                    top: Mixins.scaleHeight(3),
+                    left: Mixins.scaleWidth(10),
+                  }}>
+                  kg
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  margin: Mixins.scaleWidth(5),
+                  flexDirection: 'row',
+                }}>
+                <Text style={{top: Mixins.scaleHeight(3)}}>MOQ</Text>
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    width: Mixins.scaleWidth(60),
+                    height: Mixins.scaleHeight(20),
+                    margin: Mixins.scaleWidth(5),
+                    justifyContent: 'center',
+                    borderRadius: 5,
+                    left: Mixins.scaleWidth(10),
+                  }}>
+                  <TextInput
+                    underlineColorAndroid="transparent"
+                    style={{
+                      left: Mixins.scaleWidth(10),
+                      height: Mixins.scaleHeight(40),
+                      borderBottomColor: 'transparent',
+                    }}
+                    value={moq}
+                    onChangeText={item => setMOQ(item)}></TextInput>
+                </View>
+                <Text
+                  style={{
+                    top: Mixins.scaleHeight(3),
+                    left: Mixins.scaleWidth(10),
+                  }}>
+                  kg
+                </Text>
               </View>
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => setSuccessfulModal(true)}
+            onPress={() => updateListing()}
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
               width: Mixins.scaleWidth(120),
@@ -735,14 +820,18 @@ const ProductCard = props => {
       <Text
         style={[
           Typography.small,
-          {top: Mixins.scaleHeight(20), width: Mixins.scaleWidth(80)},
+          {top: Mixins.scaleHeight(20), width: Mixins.scaleWidth(100)},
         ]}>
         Price: {props.priceMin} - {props.priceMax}
         {'\n'}MOQ: {props.moq}
-        {'\n'}Available: {props.availableQuantity}
+        {'\n'}Quantity: {props.availableQuantity}
       </Text>
       <Modal isVisible={productModal}>
-        <ProductModal setProductModal={setProductModal}></ProductModal>
+        <ProductModal
+          setProducts={props.setProducts}
+          productList={props.productList}
+          setProductModal={setProductModal}
+          item={props}></ProductModal>
       </Modal>
     </TouchableOpacity>
   );
@@ -776,18 +865,17 @@ export const SupplierplaceList = props => {
       renderItem={({item}) => {
         return (
           <ProductCard
-            productName={item.produce}
+            setProducts={props.setProducts}
+            productList={props.productList}
+            productName={item.productName}
             type={item.variety}
-            availableQuantity={item.quantity}
+            availableQuantity={item.quantityAvailable}
             date={item.updatedAt}
-            image={item.image}
-            priceMin={item.listedPrice}
-            priceMax={item.listedPrice}
-            farmName={item.farmName} //need to add
-            farmLocation={item.farmLocation} //need to add
-            availdate={item.delivery} //need to add
-            moq={item.moq}
-            farmerID={item.farmerID}
+            image={item.productPicture}
+            priceMin={item.lowPrice}
+            priceMax={item.highPrice}
+            moq={item.minimumQuantity}
+            farmerID={item.supplierID}
             id={item.id}
           />
         );

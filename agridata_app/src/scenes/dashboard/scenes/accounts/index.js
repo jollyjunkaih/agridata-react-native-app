@@ -32,7 +32,10 @@ export const AccountsDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton navigation={props.navigation}></MenuButton>
+        <MenuButton
+          navigation={props.navigation}
+          updateAuthState={props.updateAuthState}
+          userType={props.user.role}></MenuButton>
       </View>
       <Image
         style={{
@@ -57,7 +60,7 @@ export const AccountsDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        Company Name!
+        {props.user.retailerCompany.name}
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         {Strings.whatToDo}

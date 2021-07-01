@@ -24,7 +24,10 @@ export const OwnerDashboard = props => {
           top: Mixins.scaleHeight(30),
           left: Mixins.scaleWidth(30),
         }}>
-        <MenuButton userType={props.userType}></MenuButton>
+        <MenuButton
+          userType={props.user.role}
+          updateAuthState={props.updateAuthState}
+          navigation={props.navigation}></MenuButton>
       </View>
       <Image
         style={{
@@ -47,7 +50,7 @@ export const OwnerDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        Company Name!
+        {props.user.retailerCompany.name}
       </Text>
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(70)}]}>
         What would you like to do today

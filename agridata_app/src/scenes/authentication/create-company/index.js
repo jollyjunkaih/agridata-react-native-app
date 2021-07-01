@@ -182,6 +182,7 @@ export const CreateCompany = props => {
                 width: Mixins.scaleWidth(290),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
+                color: 'black',
               }}></View>
           </View>
         </View>
@@ -205,6 +206,7 @@ export const CreateCompany = props => {
                 height: Mixins.scaleHeight(40),
                 right: Mixins.scaleWidth(5),
                 borderBottomColor: 'transparent',
+                color: 'black',
               }}></TextInput>
             <View
               style={{
@@ -233,6 +235,7 @@ export const CreateCompany = props => {
                 height: Mixins.scaleHeight(40),
                 right: Mixins.scaleWidth(5),
                 borderBottomColor: 'transparent',
+                color: 'black',
               }}></TextInput>
             <View
               style={{

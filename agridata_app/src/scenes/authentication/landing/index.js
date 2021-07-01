@@ -78,7 +78,11 @@ export const Landing = props => {
           </View>
         </TouchableOpacity>
 
-        <View style={{position: 'absolute', top: Mixins.scaleHeight(350)}}>
+        <View
+          style={{
+            position: 'absolute',
+            top: Mixins.scaleHeight(370),
+          }}>
           <Image
             source={require('_assets/images/greenproduce.png')}
             style={{

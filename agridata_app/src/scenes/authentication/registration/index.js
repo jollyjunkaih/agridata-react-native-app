@@ -16,7 +16,7 @@ import {BackButton} from '_components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {createUser} from '../../../graphql/mutations';
-import {API, Auth} from 'aws-amplify';
+import {API, Auth, graphql} from 'aws-amplify';
 
 export const Registration = props => {
   const [password, setPassword] = useState('');
@@ -38,9 +38,12 @@ export const Registration = props => {
         attributes: {
           email: email,
           phone_number: phone,
+          'custom:role': value,
+          name: name,
         },
       });
       console.log(user.userSub);
+      props.navigation.navigate('signin');
       return user.userSub;
     } catch (error) {
       console.log('❌ Error signing up...', error);
@@ -123,6 +126,7 @@ export const Registration = props => {
                   height: Mixins.scaleHeight(40),
                   right: Mixins.scaleWidth(5),
                   borderBottomColor: 'transparent',
+                  color: 'black',
                 }}></TextInput>
               <View
                 style={{
@@ -149,6 +153,7 @@ export const Registration = props => {
                   width: Mixins.scaleWidth(280),
                   height: Mixins.scaleHeight(40),
                   borderBottomColor: 'transparent',
+                  color: 'black',
                 }}></TextInput>
               <View
                 style={{
@@ -174,6 +179,7 @@ export const Registration = props => {
                   right: Mixins.scaleWidth(5),
                   width: Mixins.scaleWidth(280),
                   height: Mixins.scaleHeight(40),
+                  color: 'black',
                   borderBottomColor: 'transparent',
                 }}></TextInput>
               <View
@@ -201,6 +207,7 @@ export const Registration = props => {
                   width: Mixins.scaleWidth(280),
                   height: Mixins.scaleHeight(40),
                   borderBottomColor: 'transparent',
+                  color: 'black',
                 }}></TextInput>
               <View
                 style={{
@@ -296,20 +303,8 @@ export const Registration = props => {
               } else {
                 try {
                   const userID = await signUp();
-                  const userDetails = {
-                    id: userID,
-                    name: name,
-                    role: value,
-                    contactNumber: phone,
-                  };
-                  const user = await API.graphql({
-                    query: createUser,
-                    variables: {input: userDetails},
-                  });
-                  console.log(user);
-                  props.navigation.navigate('signin');
                 } catch {
-                  console.log('error');
+                  e => console.log('error ' + e);
                 }
               }
             }}

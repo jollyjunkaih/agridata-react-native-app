@@ -9,6 +9,7 @@ import {
   SupplierDashboard,
   PersonalProfile,
   EditPersonal,
+  GeneralManagerDashboard,
 } from './dashboard';
 import {Marketplace, Store, SupplierStore} from './marketplace';
 import {Inbox, ChatRoom} from './chat';
@@ -48,4 +49,5 @@ export {
   SupplierDashboard,
   Landing,
   Verification,
+  GeneralManagerDashboard,
 };

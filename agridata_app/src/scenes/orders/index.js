@@ -60,7 +60,35 @@ export const Orders = props => {
           top: Mixins.scaleHeight(40),
           height: Mixins.scaleHeight(440),
         }}>
-        <OrderList OrderList={[{}, {}, {}, {}, {}, {}]} />
+        <OrderList
+          OrderList={[
+            {
+              id: 1234,
+              companyName: "Matthew's Farm",
+              date: '30 June 2021',
+              amount: 500,
+            },
+            {
+              id: 1235,
+              companyName: "Jane's Farm",
+              date: '30 June 2021',
+              amount: 435,
+            },
+
+            {
+              id: 1233,
+              companyName: "Jun's Wholesale",
+              date: '29 June 2021',
+              amount: 345,
+            },
+            {
+              id: 1236,
+              companyName: "Matthew's Farm",
+              date: '28 June 2021',
+              amount: 708,
+            },
+          ]}
+        />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />

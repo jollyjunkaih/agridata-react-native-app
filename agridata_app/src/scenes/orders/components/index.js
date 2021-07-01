@@ -29,8 +29,15 @@ export const OrderList = props => {
         keyExtractor={item => item.id}
         data={props.OrderList}
         numColumns={1}
-        renderItem={item => {
-          return <Order user={item.name} />;
+        renderItem={({item}) => {
+          return (
+            <Order
+              id={item.id}
+              amount={item.amount}
+              companyName={item.companyName}
+              createdAt={item.date}
+            />
+          );
         }}
       />
     </View>
@@ -94,14 +101,14 @@ const Order = props => {
               Typography.small,
               {fontFamily: 'Poppins-SemiBold', left: Mixins.scaleWidth(40)},
             ]}>
-            {'\u26AC'} XXXXXXXXXXXX
+            {'\u26AC'} {props.id}
           </Text>
           <Text style={[Typography.small, {left: Mixins.scaleWidth(40)}]}>
-            {'\u26AC'} Company Name
+            {'\u26AC'} {props.companyName}
             {'\n'}
-            {'\u26AC'} Date
+            {'\u26AC'} {props.createdAt}
             {'\n'}
-            {'\u26AC'} Invoice Amount
+            {'\u26AC'} {props.amount}
             {'\n'}
           </Text>
         </View>
@@ -238,7 +245,7 @@ const InvoiceModal = props => {
             left: Mixins.scaleWidth(20),
           },
         ]}>
-        Invoice NUMXXXX
+        Invoice #1214
       </Text>
       <Text
         style={[
@@ -249,7 +256,7 @@ const InvoiceModal = props => {
             top: Mixins.scaleHeight(55),
           },
         ]}>
-        DD-MM-YY
+        30 June 2021
       </Text>
       <Text
         style={
@@ -260,7 +267,7 @@ const InvoiceModal = props => {
             left: Mixins.scaleWidth(20),
           })
         }>
-        Company Name
+        Matthew's Farm
       </Text>
       <View
         style={{
@@ -278,11 +285,21 @@ const InvoiceModal = props => {
           }}>
           <FlatList
             keyExtractor={item => item.id}
-            data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
+            data={[
+              {productName: 'Ginger', price: 10, quantity: 40, amount: 400},
+              {productName: 'Sawi', price: 3, quantity: 40, amount: 120},
+            ]}
             numColumns={1}
             ItemSeparatorComponent={Seperator}
-            renderItem={item => {
-              return <InvoiceItem user={item.name} />;
+            renderItem={({item}) => {
+              return (
+                <InvoiceItem
+                  productName={item.productName}
+                  price={item.price}
+                  quantity={item.quantity}
+                  amount={item.amount}
+                />
+              );
             }}
           />
         </View>
@@ -295,7 +312,7 @@ const InvoiceModal = props => {
               marginTop: Mixins.scaleHeight(10),
             },
           ]}>
-          TOTAL: RM XXX
+          TOTAL: RM 600
         </Text>
       </View>
 
@@ -359,21 +376,21 @@ const InvoiceItem = props => {
           Typography.small,
           {position: 'absolute', left: Mixins.scaleWidth(10)},
         ]}>
-        Product Name
+        {props.productName}
       </Text>
       <Text
         style={[
           Typography.small,
           {position: 'absolute', left: Mixins.scaleWidth(100)},
         ]}>
-        |XXXkg
+        |{props.quantity}kg
       </Text>
       <Text
         style={[
           Typography.small,
           {position: 'absolute', left: Mixins.scaleWidth(145)},
         ]}>
-        @ RM8/kg
+        @ RM{props.price}/kg
       </Text>
       <Text
         style={[
@@ -384,7 +401,7 @@ const InvoiceItem = props => {
             fontFamily: 'Poppins-SemiBold',
           },
         ]}>
-        RM XXX
+        RM {props.amount}
       </Text>
     </View>
   );
@@ -666,7 +683,7 @@ const createPDF = async () => {
   };
   try {
     const ShareResponse = await Share.open(shareOptions);
-    RNFS.unlink(filePath);
+    //RNFS.unlink(filePath);
   } catch (error) {
     console.log('Error: ', error);
     RNFS.unlink(filePath);
@@ -701,7 +718,7 @@ const createCSV = async () => {
   try {
     const ShareResponse = await Share.open(shareOptions);
     console.log(ShareResponse);
-    RNFS.unlink(file);
+    //RNFS.unlink(file);
   } catch (error) {
     console.log('Error1: ', error);
     RNFS.unlink(file);

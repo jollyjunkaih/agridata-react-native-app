@@ -23,6 +23,9 @@ import {listUsersInChat} from '../../../../graphql/queries';
 var dayjs = require('dayjs');
 
 const ChatBubble = props => {
+  const [orderQuotationModal, setOrderQuotationModal] = useState(false);
+  const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
+  console.log(props);
   const getInitials = name => {
     if (name) {
       let initials = name.split(' ');
@@ -39,9 +42,9 @@ const ChatBubble = props => {
     }
   };
 
-  const createdAt = dayjs(props.createdAt).add(8, 'hour').format('HH:mm D/M');
+  //const createdAt = dayjs(props.createdAt).add(8, 'hour').format('HH:mm D/M');
   const isMyMessage = () => {
-    if (props.userID == props.senderID) return true;
+    if (props.sender == 'me') return true;
     else return false;
   };
   const contentType = props.contentType;
@@ -100,7 +103,7 @@ const ChatBubble = props => {
                 Typography.small,
                 {alignSelf: 'flex-end', right: Mixins.scaleWidth(10)},
               ]}>
-              {createdAt}
+              createdAt
             </Text>
           </View>
         </View>
@@ -190,7 +193,7 @@ const ChatBubble = props => {
                 top: Mixins.scaleHeight(10),
               },
             ]}>
-            {createdAt}
+            createdAt
           </Text>
         </View>
       </View>
@@ -249,6 +252,7 @@ const ChatBubble = props => {
           <Text style={[Typography.large]}>Purchase Order</Text>
 
           <TouchableOpacity
+            onPress={() => setPurchaseOrderModal(true)}
             style={{
               justifyContent: 'center',
               alignItems: 'center',
@@ -279,9 +283,14 @@ const ChatBubble = props => {
                 top: Mixins.scaleHeight(10),
               },
             ]}>
-            {createdAt}
+            createdAt
           </Text>
         </View>
+        <Modal
+          isVisible={purchaseOrderModal}
+          onBackdropPress={() => setPurchaseOrderModal(false)}>
+          <PurchaseOrder></PurchaseOrder>
+        </Modal>
       </View>
     );
   } else if (contentType == 'quotation') {
@@ -338,6 +347,7 @@ const ChatBubble = props => {
           <Text style={[Typography.large]}>Order Quotation</Text>
 
           <TouchableOpacity
+            onPress={() => setOrderQuotationModal(true)}
             style={{
               justifyContent: 'center',
               alignItems: 'center',
@@ -368,9 +378,14 @@ const ChatBubble = props => {
                 top: Mixins.scaleHeight(10),
               },
             ]}>
-            {createdAt}
+            createdAt
           </Text>
         </View>
+        <Modal
+          isVisible={orderQuotationModal}
+          onBackdropPress={() => setOrderQuotationModal(false)}>
+          <OrderQuotationModal></OrderQuotationModal>
+        </Modal>
       </View>
     );
   }
@@ -382,7 +397,43 @@ export const ChatBubbleList = props => {
       <FlatList
         inverted={true}
         keyExtractor={item => item.id}
-        data={props.data}
+        data={[
+          {
+            sender: 'Jeremy',
+            content: 'When do you want me to deliver?',
+            type: 'text',
+          },
+          {
+            sender: 'me',
+            content: 'Tuesday can?',
+            type: 'text',
+          },
+          {
+            sender: 'May',
+            content: 'When do you want me to deliver?',
+            type: 'po',
+          },
+          {
+            sender: 'me',
+            content: 'May just sent the PO. Can check Jeremy? Got stock?',
+            type: 'text',
+          },
+          {
+            sender: 'Jeremy',
+            content: 'Got. Give me one sec, i send u the quotation',
+            type: 'text',
+          },
+          {
+            sender: 'Jeremy',
+            content: 'Got. Give me one sec, i send u the quotation',
+            type: 'quotation',
+          },
+          {
+            sender: 'May',
+            content: 'Thanks, just what we were looking for',
+            type: 'text',
+          },
+        ].reverse()}
         numColumns={1}
         renderItem={item => {
           return (
@@ -903,7 +954,7 @@ const ProductInquiry = props => {
   return <View></View>;
 };
 
-export const PurchaseOrder = props => {
+export const PurchaseOrder2 = props => {
   const isMyMessage = () => {
     if (props.userID == props.senderID) return true;
     else return false;
@@ -1016,7 +1067,7 @@ export const PurchaseOrder = props => {
               right: Mixins.scaleWidth(10),
             },
           ]}>
-          {props.createdAt}
+          props.createdAt
         </Text>
       </View>
     </View>
@@ -1403,3 +1454,135 @@ const InvoiceCard = props => {
     </TouchableOpacity>
   );
 };
+
+const PurchaseOrder = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(385),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderRadius: 10,
+        left: Mixins.scaleWidth(15),
+        alignItems: 'center',
+      }}>
+      <View style={{alignItems: 'center'}}>
+        <Text
+          style={[
+            Typography.large,
+            {
+              fontFamily: 'Poppins-SemiBold',
+              top: Mixins.scaleHeight(15),
+            },
+          ]}>
+          Purchase Order For
+        </Text>
+        <Text
+          style={[
+            Typography.header,
+            {
+              fontFamily: 'Poppins-Bold',
+              color: Colors.LIME_GREEN,
+              top: Mixins.scaleHeight(10),
+            },
+          ]}>
+          Jane's Farm
+        </Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: Colors.GRAY_WHITE,
+          height: Mixins.scaleHeight(220),
+          top: Mixins.scaleHeight(30),
+          borderRadius: 10,
+        }}>
+        <PurchaseOrderList></PurchaseOrderList>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          right: Mixins.scaleWidth(-10),
+          top: Mixins.scaleHeight(-10),
+        }}>
+        <CloseButton setModal={props.setPurchaseOrderModal} />
+      </View>
+    </View>
+  );
+};
+const PurchaseOrderList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          borderBottomWidth: 1,
+          width: Mixins.scaleWidth(200),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+    );
+  };
+  return (
+    <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={props.refreshing}
+          onRefresh={props.onRefresh}
+        />
+      }
+      keyExtractor={item => item.id}
+      data={DATA}
+      numColumns={1}
+      ItemSeparatorComponent={Seperator}
+      ListEmptyComponent={
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(420),
+            top: Mixins.scaleHeight(30),
+            alignItems: 'center',
+          }}></View>
+      }
+      renderItem={({item}) => {
+        return (
+          <PurchaseOrderComponent name={item.name} quantity={item.quantity} />
+        );
+      }}
+    />
+  );
+};
+
+const PurchaseOrderComponent = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(30),
+        justifyContent: 'center',
+        backgroundColor: Colors.GRAY_WHITE,
+      }}>
+      <View style={{flexDirection: 'row'}}>
+        <View>
+          <Text
+            style={[
+              Typography.small,
+              {position: 'absolute', left: Mixins.scaleWidth(5)},
+            ]}>
+            {props.name}
+          </Text>
+        </View>
+        <View>
+          <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
+            {' '}
+            |{'\t'}
+            {props.quantity}kg
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+const DATA = [
+  {name: 'Ginger', quantity: '30'},
+  {name: 'Bananas', quantity: '40'},
+  {name: 'Avacadoes', quantity: '50'},
+  {name: 'Durian', quantity: '60'},
+];

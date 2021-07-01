@@ -24,7 +24,7 @@ export const Login = props => {
       const user = await Auth.signIn(email, password);
       console.log('Successful sign in');
       props.updateUserID(user.attributes.sub);
-      props.updateAuthState('loggedIn');
+      props.setUserAttributes(user.attributes);
     } catch (error) {
       console.log('Error signing in...', error);
     }
@@ -107,6 +107,7 @@ export const Login = props => {
                 height: Mixins.scaleHeight(40),
                 right: Mixins.scaleWidth(5),
                 borderBottomColor: 'transparent',
+                color: 'black',
               }}></TextInput>
             <View
               style={{
@@ -134,6 +135,7 @@ export const Login = props => {
                 height: Mixins.scaleHeight(40),
                 right: Mixins.scaleWidth(5),
                 borderBottomColor: 'transparent',
+                color: 'black',
               }}></TextInput>
             <View
               style={{

@@ -13,7 +13,8 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
-import {min} from 'react-native-reanimated';
+import {API} from 'aws-amplify';
+import {createMessage} from '../../../../../graphql/mutations';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -29,13 +30,13 @@ export const ProductCard = props => {
         elevation: 3,
         alignItems: 'center',
       }}>
-      <Image
+      {/**  <Image
         style={{
           height: Mixins.scaleHeight(70),
           width: Mixins.scaleHeight(70),
           borderRadius: 100,
           top: Mixins.scaleHeight(10),
-        }}></Image>
+        }}></Image>*/}
       <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
         {props.productName}
       </Text>
@@ -49,7 +50,10 @@ export const ProductCard = props => {
         {'\n'}Available: {props.availableQuantity}
       </Text>
       <Modal isVisible={productModal}>
-        <ProductPopUp setProductModal={setProductModal}></ProductPopUp>
+        <ProductPopUp
+          setProductModal={setProductModal}
+          navigation={props.navigation}
+          item={props}></ProductPopUp>
       </Modal>
     </TouchableOpacity>
   );
@@ -83,18 +87,16 @@ export const MarketplaceList = props => {
       renderItem={({item}) => {
         return (
           <ProductCard
-            productName={item.produce}
+            navigation={props.navigation}
+            productName={item.productName}
             type={item.variety}
-            availableQuantity={item.quantity}
+            availableQuantity={item.quantityAvailable}
             date={item.updatedAt}
-            image={item.image}
-            priceMin={item.listedPrice}
-            priceMax={item.listedPrice}
-            farmName={item.farmName} //need to add
-            farmLocation={item.farmLocation} //need to add
-            availdate={item.delivery} //need to add
-            moq={item.moq}
-            farmerID={item.farmerID}
+            image={item.productPicture}
+            priceMin={item.lowPrice}
+            priceMax={item.highPrice}
+            moq={item.minimumQuantity}
+            farmerID={item.supplierID}
             id={item.id}
           />
         );
@@ -104,6 +106,13 @@ export const MarketplaceList = props => {
 };
 
 export const ProductPopUp = props => {
+  const createProductInquiry = async () => {
+    //try to send a chat to the chatroom
+    const createProductInquiry = await API.graphql({
+      query: createMessage,
+      variables: {input: {}},
+    });
+  };
   return (
     <View
       style={{
@@ -138,7 +147,7 @@ export const ProductPopUp = props => {
             flexDirection: 'row',
           }}>
           <Text style={[Typography.header, {left: Mixins.scaleWidth(15)}]}>
-            {props.productName}Ginger
+            {props.item.productName}
           </Text>
           <View
             style={{
@@ -167,7 +176,11 @@ export const ProductPopUp = props => {
             flexDirection: 'row',
           }}>
           <TouchableOpacity
-            onPress={() => console.log('navigate')}
+            onPress={() =>
+              props.navigation.navigate('store', {
+                itemId: props.item.supplierID,
+              })
+            }
             style={{
               width: Mixins.scaleWidth(145),
               flexDirection: 'row',
@@ -185,7 +198,7 @@ export const ProductPopUp = props => {
                   width: Mixins.scaleWidth(110),
                 },
               ]}>
-              Visit {props.farm}
+              Visit supplier store
             </Text>
             <Rating
               imageSize={Mixins.scaleWidth(22)}
@@ -202,7 +215,7 @@ export const ProductPopUp = props => {
                 Typography.normal,
                 {bottom: Mixins.scaleHeight(-15), color: Colors.PALE_BLUE},
               ]}>
-              RM 25-18/kg
+              RM {props.item.priceMin}-{props.item.priceMax}/kg
             </Text>
           </View>
         </View>
@@ -226,7 +239,10 @@ export const ProductPopUp = props => {
                 position: 'absolute',
               },
             ]}>
-            Variety:{'\n'}Available:{'\n'}MOQ:{'\n'}Other Details:
+            Variety:{props.item.type}
+            {'\n'}Available:{props.item.availableQuantity}
+            {'\n'}MOQ:{props.item.moq}
+            {'\n'}Other Details:
           </Text>
 
           <View
@@ -239,5 +255,72 @@ export const ProductPopUp = props => {
         </View>
       </View>
     </View>
+  );
+};
+
+export const FavouritesList = props => {
+  return (
+    <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={props.refreshing}
+          onRefresh={props.onRefresh}
+        />
+      }
+      keyExtractor={item => item.id}
+      data={props.data}
+      numColumns={2}
+      ListEmptyComponent={
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(420),
+            top: Mixins.scaleHeight(30),
+            alignItems: 'center',
+          }}>
+          <Image
+            style={{resizeMode: 'cover', width: Mixins.scaleWidth(340)}}
+            source={require('_assets/images/produce.png')}></Image>
+        </View>
+      }
+      renderItem={({item}) => {
+        return (
+          <StoreCard
+            navigation={props.navigation}
+            storeID={item.id}
+            storeName={item.name}
+          />
+        );
+      }}
+    />
+  );
+};
+
+const StoreCard = props => {
+  console.log(props);
+  return (
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate('store', {itemId: props.id})}
+      style={{
+        backgroundColor: Colors.GRAY_LIGHT,
+        width: Mixins.scaleWidth(130),
+        height: Mixins.scaleHeight(155),
+        margin: Mixins.scaleWidth(17.5),
+        borderRadius: 20,
+        elevation: 3,
+        alignItems: 'center',
+      }}>
+      {/**  <Image
+        style={{
+          height: Mixins.scaleHeight(70),
+          width: Mixins.scaleHeight(70),
+          borderRadius: 100,
+          top: Mixins.scaleHeight(10),
+        }}></Image>
+      */}
+      <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
+        {props.storeName}
+      </Text>
+    </TouchableOpacity>
   );
 };

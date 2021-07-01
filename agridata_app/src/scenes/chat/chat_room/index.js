@@ -144,7 +144,7 @@ export const ChatRoom = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-          Name of chat
+          Matthew's Farm
         </Text>
         <View
           style={{
