@@ -51,6 +51,7 @@ export const getUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -87,6 +88,7 @@ export const getUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -119,6 +121,7 @@ export const listUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -129,6 +132,7 @@ export const listUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -220,6 +224,7 @@ export const getRetailerCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -266,6 +271,7 @@ export const listRetailerCompanys = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -370,6 +376,7 @@ export const getSupplierCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -419,6 +426,7 @@ export const listSupplierCompanys = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -462,6 +470,7 @@ export const getChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -499,6 +508,7 @@ export const getChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -552,6 +562,7 @@ export const listChatGroups = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -563,6 +574,7 @@ export const listChatGroups = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -636,6 +648,7 @@ export const getChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -647,6 +660,7 @@ export const getChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -678,6 +692,7 @@ export const getChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -688,6 +703,7 @@ export const getChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -775,6 +791,7 @@ export const getProductListing = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -807,6 +824,7 @@ export const listProductListings = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -927,6 +945,7 @@ export const getGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -964,6 +983,7 @@ export const getGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -995,6 +1015,7 @@ export const listGoodsTasks = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1006,6 +1027,7 @@ export const listGoodsTasks = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1057,6 +1079,7 @@ export const getPaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1094,6 +1117,7 @@ export const getPaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1113,6 +1137,7 @@ export const getPaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1124,6 +1149,7 @@ export const getPaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1158,6 +1184,7 @@ export const listPaymentTasks = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1169,6 +1196,7 @@ export const listPaymentTasks = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1228,6 +1256,7 @@ export const getInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1265,6 +1294,7 @@ export const getInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1297,6 +1327,7 @@ export const listInvoices = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1308,6 +1339,7 @@ export const listInvoices = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1354,6 +1386,7 @@ export const getChatGroupsContainingRetailersByUpdatedAt = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1365,6 +1398,7 @@ export const getChatGroupsContainingRetailersByUpdatedAt = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1411,6 +1445,7 @@ export const getChatGroupsContainingSuppliersByUpdatedAt = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1422,6 +1457,7 @@ export const getChatGroupsContainingSuppliersByUpdatedAt = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1472,18 +1508,18 @@ export const messagesInChatByDate = /* GraphQL */ `
     }
   }
 `;
-export const productListingByNameStartingWithLowestPrice = /* GraphQL */ `
-  query ProductListingByNameStartingWithLowestPrice(
+export const productListingByRetailer = /* GraphQL */ `
+  query ProductListingByRetailer(
     $supplierID: ID
-    $productNameLowPrice: ModelProductListingListingsBySupplierCompositeKeyConditionInput
+    $productName: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelProductListingFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    productListingByNameStartingWithLowestPrice(
+    productListingByRetailer(
       supplierID: $supplierID
-      productNameLowPrice: $productNameLowPrice
+      productName: $productName
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -1498,6 +1534,52 @@ export const productListingByNameStartingWithLowestPrice = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
+          createdAt
+          updatedAt
+        }
+        supplierID
+        productName
+        variety
+        quantityAvailable
+        lowPrice
+        highPrice
+        minimumQuantity
+        productPicture
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const productListingByNameStartingWithLowestPrice = /* GraphQL */ `
+  query ProductListingByNameStartingWithLowestPrice(
+    $productName: String
+    $lowPrice: ModelFloatKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelProductListingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    productListingByNameStartingWithLowestPrice(
+      productName: $productName
+      lowPrice: $lowPrice
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        supplier {
+          id
+          name
+          type
+          address
+          registrationNumber
+          verified
+          logo
           createdAt
           updatedAt
         }
@@ -1542,6 +1624,7 @@ export const goodsTaskForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1553,6 +1636,7 @@ export const goodsTaskForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1596,6 +1680,7 @@ export const goodsTaskForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1607,6 +1692,7 @@ export const goodsTaskForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1650,6 +1736,7 @@ export const paymentsTaskForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1661,6 +1748,7 @@ export const paymentsTaskForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1712,6 +1800,7 @@ export const paymentsTaskForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1723,6 +1812,7 @@ export const paymentsTaskForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1774,6 +1864,7 @@ export const invoiceForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1785,6 +1876,7 @@ export const invoiceForRetailerByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1829,6 +1921,7 @@ export const invoiceForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1840,6 +1933,7 @@ export const invoiceForSupplierByDate = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }

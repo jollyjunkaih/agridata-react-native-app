@@ -25,6 +25,7 @@ export const Login = props => {
       console.log('Successful sign in');
       props.updateUserID(user.attributes.sub);
       props.setUserAttributes(user.attributes);
+      props.updateAuthState('loggedIn'); //added this else it wont trigger the run
     } catch (error) {
       console.log('Error signing in...', error);
     }

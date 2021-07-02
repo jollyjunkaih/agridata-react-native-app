@@ -25,7 +25,7 @@ export const EmployeeDashboard = props => {
         <MenuButton
           navigation={props.navigation}
           updateAuthState={props.updateAuthState}
-          userType={props.user.role}></MenuButton>
+          userType={'retail-employee'}></MenuButton>
       </View>
       <Image
         style={{

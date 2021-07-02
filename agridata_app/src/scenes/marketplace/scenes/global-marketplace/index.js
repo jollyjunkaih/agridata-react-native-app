@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, View, TouchableOpacity, Image} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
@@ -9,14 +9,20 @@ import {API} from 'aws-amplify';
 import {
   getRetailerCompany,
   listProductListings,
+  productListingByNameStartingWithLowestPrice,
 } from '../../../../graphql/queries';
 
 export const Marketplace = props => {
   const [choice, setChoice] = useState('product');
   const [productsList, setProducts] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [initialRender, setInitialRender] = useState(true);
+  const [searchPressed, setSearchPressed] = useState(false);
+  const [favourites, setFavourites] = useState(
+    props.user.retailerCompany.favouriteStores,
+  );
   const [refreshing, setRefreshing] = useState(false);
-  console.log(props.user);
+  console.log('marketplace initial render' + props.user);
   const fetchFavourites = async () => {
     const favourites = await API.graphql({
       query: getRetailerCompany,
@@ -27,14 +33,16 @@ export const Marketplace = props => {
   const fetchProducts = async () => {
     try {
       const products = await API.graphql({
-        query: listProductListings,
-        variables: {},
+        query: productListingByNameStartingWithLowestPrice,
+        variables: {productName: searchValue, sortDirection: 'ASC'},
       });
       console.log(products);
-      if (products.data.listProductListings) {
+      if (products.data.productListingByNameStartingWithLowestPrice) {
         console.log('Products: \n');
         console.log(products);
-        setProducts(products.data.listProductListings.items);
+        setProducts(
+          products.data.productListingByNameStartingWithLowestPrice.items,
+        );
       }
       console.log(productsList);
     } catch (e) {
@@ -43,9 +51,19 @@ export const Marketplace = props => {
     }
   };
   useEffect(() => {
-    fetchProducts();
-    console.log('Refreshing...');
-  }, []);
+    if (searchPressed && choice == 'product') {
+      console.log('useEffectTriggered');
+      console.log('searching for ' + searchValue);
+      setInitialRender(false);
+      setSearchPressed(false);
+      fetchProducts();
+    }
+    //potentially do a search for favourites but must have a way to remove the filter
+  }, [searchPressed]);
+  useEffect(() => {
+    console.log('resetting search');
+    setSearchValue('');
+  }, [choice]);
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -64,7 +82,11 @@ export const Marketplace = props => {
         Local Marketplace
       </Text>
       <View style={{top: Mixins.scaleHeight(40)}}>
-        <Searchbar />
+        <Searchbar
+          setSearchPressed={setSearchPressed}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
       </View>
       <View
         style={{
@@ -95,7 +117,7 @@ export const Marketplace = props => {
           </View>
         ) : (
           <TouchableOpacity
-            onPress={() => setChoice('product')}
+            onPress={() => [setChoice('product'), setInitialRender(true)]}
             style={{
               marginHorizontal: Mixins.scaleWidth(60),
               top: Mixins.scaleHeight(4),
@@ -148,14 +170,26 @@ export const Marketplace = props => {
             height: Mixins.scaleHeight(425),
             top: Mixins.scaleHeight(70),
           }}>
-          <FavouritesList
-            data={[
-              {name: 'Freshest Wholesale', id: 3},
-              {name: "Jane's Farm", id: 2},
-              {name: "Matthew's Farm", id: 1},
-            ]}
-            navigation={props.navigation}
-          />
+          <FavouritesList data={favourites} navigation={props.navigation} />
+        </View>
+      ) : initialRender ? (
+        <View
+          style={{
+            width: Mixins.scaleWidth(330),
+            height: Mixins.scaleHeight(425),
+            top: Mixins.scaleHeight(70),
+          }}>
+          <View
+            style={{
+              width: Mixins.scaleWidth(330),
+              height: Mixins.scaleHeight(420),
+              top: Mixins.scaleHeight(30),
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{resizeMode: 'cover', width: Mixins.scaleWidth(340)}}
+              source={require('_assets/images/produce.png')}></Image>
+          </View>
         </View>
       ) : (
         <View
@@ -165,57 +199,7 @@ export const Marketplace = props => {
             top: Mixins.scaleHeight(70),
           }}>
           <MarketplaceList
-            productList={[
-              {
-                lowPrice: 5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 5.5,
-                highPrice: 9,
-                productName: 'Avacadoes',
-                minimumQuantity: '50',
-                quantityAvailable: '400',
-              },
-              {
-                lowPrice: 4.5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '45',
-                quantityAvailable: '100',
-              },
-              {
-                lowPrice: 5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 2,
-                highPrice: 4,
-                productName: 'Bananas',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 2.1,
-                highPrice: 3.3,
-                productName: 'Bananas',
-                minimumQuantity: '40',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 3,
-                highPrice: 3.5,
-                productName: 'Bananas',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-            ]}
+            productList={productsList}
             navigation={props.navigation}
           />
         </View>

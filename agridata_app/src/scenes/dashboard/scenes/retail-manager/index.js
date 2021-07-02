@@ -26,7 +26,7 @@ export const RetailManagerDashboard = props => {
           left: Mixins.scaleWidth(30),
         }}>
         <MenuButton
-          userType={props.user.role}
+          userType={'retail-manager'}
           updateAuthState={props.updateAuthState}
           navigation={props.navigation}></MenuButton>
       </View>

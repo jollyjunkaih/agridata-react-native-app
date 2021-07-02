@@ -35,7 +35,7 @@ export const AccountsDashboard = props => {
         <MenuButton
           navigation={props.navigation}
           updateAuthState={props.updateAuthState}
-          userType={props.user.role}></MenuButton>
+          userType={'accounts'}></MenuButton>
       </View>
       <Image
         style={{

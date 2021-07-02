@@ -36,7 +36,7 @@ export const SupplierDashboard = props => {
         <MenuButton
           navigation={props.navigation}
           updateAuthState={props.updateAuthState}
-          userType={props.user.role}></MenuButton>
+          userType={'supplier'}></MenuButton>
       </View>
 
       <Image

@@ -60,7 +60,6 @@ const AuthenticationNavigator = props => {
         {screenProps => (
           <Registration
             {...screenProps}
-            updateAuthState={props.updateAuthState}
             updateUserAttributes={props.updateUserAttributes}
           />
         )}
@@ -71,7 +70,7 @@ const AuthenticationNavigator = props => {
 
 const AppNavigator = props => {
   console.log(props.user);
-  const type = 'general-manager';
+  const type = 'supplier';
   if (props.user.retailerCompanyID || props.user.supplierCompanyID) {
     if (
       props.user.retailerCompanyID &&
@@ -368,7 +367,7 @@ const AppNavigator = props => {
           <AppStack.Screen name="companyprofile">
             {screenProps => <CompanyProfile {...screenProps} />}
           </AppStack.Screen>
-          <AppStack.Screen name="editcompanyprofile">
+          <AppStack.Screen name="editcompany">
             {screenProps => <EditCompany {...screenProps} />}
           </AppStack.Screen>
         </AppStack.Navigator>
@@ -382,12 +381,17 @@ const AppNavigator = props => {
         </AppStack.Screen>
 
         <AppStack.Screen name="verification">
-          {screenProps => <RetailManagerDashboard {...screenProps} />}
+          {screenProps => (
+            <Verification
+              {...screenProps}
+              updateAuthState={props.updateAuthState}
+            />
+          )}
         </AppStack.Screen>
         <AppStack.Screen name="companyprofile">
           {screenProps => <CompanyProfile {...screenProps} />}
         </AppStack.Screen>
-        <AppStack.Screen name="editcompanyprofile">
+        <AppStack.Screen name="editcompany">
           {screenProps => <EditCompany {...screenProps} />}
         </AppStack.Screen>
       </AppStack.Navigator>
@@ -424,7 +428,7 @@ const App = () => {
       });
       console.log('newuser: ' + newUserInfo.data.createUser);
       console.log(newUserInfo.data.createUser);
-      setUserDetails(newUserInfo.data.getUser);
+      setUserDetails(newUserInfo.data.createUser);
       setUserLoggedIn('loggedIn');
     } catch {
       e => console.log(e);
@@ -500,6 +504,7 @@ const App = () => {
         <AuthenticationNavigator
           updateUserID={updateUserID}
           setUserAttributes={setUserAttributes}
+          updateAuthState={updateAuthState}
         />
       )}
     </NavigationContainer>

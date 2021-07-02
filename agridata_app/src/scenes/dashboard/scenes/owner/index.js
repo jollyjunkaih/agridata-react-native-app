@@ -25,7 +25,7 @@ export const OwnerDashboard = props => {
           left: Mixins.scaleWidth(30),
         }}>
         <MenuButton
-          userType={props.user.role}
+          userType={'owner'}
           updateAuthState={props.updateAuthState}
           navigation={props.navigation}></MenuButton>
       </View>

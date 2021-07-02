@@ -26,6 +26,7 @@ type RetailerCompany @model{
   invoice: [Invoice] @connection(keyName: "invoiceByRetailer", fields: ["id"])
   chatGroups: [ChatGroup] @connection(keyName: "chatGroupbyRetailer", fields: ["id"])
   verified: Boolean
+  logo: String
 }
 
 type Favourites{
@@ -49,6 +50,7 @@ type SupplierCompany @model{
   invoice: [Invoice] @connection(keyName: "invoiceBySupplier", fields: ["id"])
   chatGroups: [ChatGroup] @connection(keyName: "chatGroupbySupplier", fields: ["id"])
   verified: Boolean
+  logo: String
 }
 
 
@@ -108,7 +110,8 @@ type ChatGroupUsers @model
 }
 
 type ProductListing @model
-@key(name: "listingsBySupplier", fields: ["supplierID","productName","lowPrice"], queryField:"productListingByNameStartingWithLowestPrice"){
+@key(name: "listingsBySupplier", fields: ["supplierID","productName"], queryField:"productListingByRetailer")
+@key(name: "listingsByNameByPrice", fields: ["productName","lowPrice"], queryField:"productListingByNameStartingWithLowestPrice"){
   id:ID
   supplier: SupplierCompany @connection(fields:["supplierID"])
   supplierID: ID

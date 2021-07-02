@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -11,8 +11,23 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
 import {MarketplaceList, PurchaseOrderButton} from './components';
 import {NavBar, BackButton} from '_components';
+import {API, Storage} from 'aws-amplify';
+import {productListingByRetailer} from '../../../../graphql/queries';
 
 export const Store = props => {
+  const {itemId} = props.route.params; //supplierid
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async props => {
+    const products = await API.graphql({
+      query: productListingByRetailer,
+      variables: {supplierID: itemId, sortDirection: 'ASC'},
+    });
+    useEffect(() => {
+      console.log('Fetching Products from ' + itemId);
+      fetchProducts();
+    }, []);
+  };
   return (
     <SafeAreaView
       style={{

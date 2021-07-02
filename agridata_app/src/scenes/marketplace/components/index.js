@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity, Text} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -15,7 +15,13 @@ export const Searchbar = props => {
         justifyContent: 'center',
       }}>
       {/* Add searchable dropdown */}
-      <TextInput></TextInput>
+      <TextInput
+        value={props.searchValue}
+        onChangeText={item => props.setSearchValue(item)}
+        style={{
+          position: 'absolute',
+          width: Mixins.scaleWidth(200),
+        }}></TextInput>
       <View style={{position: 'absolute', left: Mixins.scaleWidth(10)}}>
         <Icon
           name="search"
@@ -23,6 +29,15 @@ export const Searchbar = props => {
           color={Colors.GRAY_DARK}
         />
       </View>
+      <TouchableOpacity
+        style={{position: 'absolute', right: 30}}
+        onPress={() => {
+          if (props.searchValue != '') {
+            props.setSearchPressed(true);
+          }
+        }}>
+        <Text>Search</Text>
+      </TouchableOpacity>
     </View>
   );
 };

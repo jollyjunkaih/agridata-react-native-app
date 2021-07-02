@@ -28,22 +28,9 @@ import {
   updateProductListing,
   createProductListing,
 } from '../../../../../graphql/mutations';
-import {API} from 'aws-amplify';
+import {API, Storage} from 'aws-amplify';
 
 export const ProductPopUp = props => {
-  const addListing = async () => {
-    const newListing = await API.graphql({
-      query: createProductListing,
-      variables: {input: {supplierID: props.id}},
-    });
-    var products = props.productList;
-    for (let [i, product] of products.entries()) {
-      if (product.id == props.id) {
-        products.splice(i, 1);
-      }
-    }
-    props.setProducts(products);
-  };
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -57,6 +44,44 @@ export const ProductPopUp = props => {
     {label: 'units', value: 'units'},
   ]);
   const [imageSource, setImageSource] = useState(null);
+  const [productName, setProductName] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setmaxPrice] = useState('');
+  const [moq, setMOQ] = useState('');
+  const [variety, setVariety] = useState('');
+  const [grade, setGrade] = useState('');
+
+  async function addListing() {
+    try {
+      if (imageSource) {
+        const response = await fetch(imageSource);
+        const blob = await response.blob();
+        console.log('FileName: \n');
+        photo.fileName =
+          selected + '_' + variety + '_' + user.attributes.nickname;
+        await Storage.put(photo.fileName, blob, {
+          contentType: 'image/jpeg',
+        });
+        console.log('image passed');
+      }
+      const response = await API.graphql({
+        query: createProductListing,
+        variables: {input: {supplierID: props.supplierID, productName}},
+      });
+      var products = props.productList;
+      for (let [i, product] of products.entries()) {
+        if (product.id == props.id) {
+          products.splice(i, 1);
+        }
+      }
+      props.setProducts(products);
+      console.log('Response :\n');
+      console.log(response);
+      setsuccessModal(true);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function selectImage() {
     let options = {
@@ -104,7 +129,7 @@ export const ProductPopUp = props => {
         }}>
         <CloseButton setModal={props.setAddItemsButton} />
       </View>
-      <View style={{}}>
+      <View>
         <View
           style={{
             alignItems: 'center',
@@ -130,7 +155,6 @@ export const ProductPopUp = props => {
                   name="add-outline"
                   size={150}
                   style={{
-                    resizeMode: 'cover',
                     width: Mixins.scaleWidth(150),
                     height: Mixins.scaleWidth(150),
                     borderRadius: 100,
@@ -415,7 +439,8 @@ export const ProductPopUp = props => {
           </View>
         </View>
       </View>
-      <View
+
+      <TouchableOpacity
         style={{
           height: Mixins.scaleHeight(30),
           width: Mixins.scaleWidth(150),
@@ -433,16 +458,15 @@ export const ProductPopUp = props => {
           shadowOpacity: 5,
           shadowRadius: 3,
           shadowColor: 'grey',
-        }}>
-        <TouchableOpacity>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={[Typography.normal]}> Add Product</Text>
-            <View style={{right: Mixins.scaleWidth(-7)}}>
-              <Icon name="add-circle-outline" size={20} />
-            </View>
+        }}
+        onPress={() => [addListing(), console.log('true')]}>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={[Typography.normal]}> Add Product</Text>
+          <View style={{right: Mixins.scaleWidth(-7)}}>
+            <Icon name="add-circle-outline" size={20} />
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 };

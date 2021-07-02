@@ -47,7 +47,7 @@ export const CreateCompany = props => {
               name: companyName,
               type: value,
               address: companyAddress,
-              registrationNumber: companyRegistrationNum,
+              registrationNumber: parseInt(companyRegistrationNum),
             },
           },
         });
@@ -76,7 +76,7 @@ export const CreateCompany = props => {
               name: companyName,
               type: value,
               address: companyAddress,
-              registrationNumber: companyRegistrationNum,
+              registrationNumber: parseInt(companyRegistrationNum),
             },
           },
         });

@@ -54,6 +54,7 @@ export const createUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -90,6 +91,7 @@ export const createUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -151,6 +153,7 @@ export const updateUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -187,6 +190,7 @@ export const updateUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -248,6 +252,7 @@ export const deleteUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -284,6 +289,7 @@ export const deleteUser = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -376,6 +382,7 @@ export const createRetailerCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -465,6 +472,7 @@ export const updateRetailerCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -554,6 +562,7 @@ export const deleteRetailerCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -659,6 +668,7 @@ export const createSupplierCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -764,6 +774,7 @@ export const updateSupplierCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -869,6 +880,7 @@ export const deleteSupplierCompany = /* GraphQL */ `
         nextToken
       }
       verified
+      logo
       createdAt
       updatedAt
     }
@@ -913,6 +925,7 @@ export const createChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -950,6 +963,7 @@ export const createChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1024,6 +1038,7 @@ export const updateChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1061,6 +1076,7 @@ export const updateChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1135,6 +1151,7 @@ export const deleteChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1172,6 +1189,7 @@ export const deleteChatGroup = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1282,6 +1300,7 @@ export const createChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1293,6 +1312,7 @@ export const createChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1324,6 +1344,7 @@ export const createChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1334,6 +1355,7 @@ export const createChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1366,6 +1388,7 @@ export const updateChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1377,6 +1400,7 @@ export const updateChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1408,6 +1432,7 @@ export const updateChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1418,6 +1443,7 @@ export const updateChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1450,6 +1476,7 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1461,6 +1488,7 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1492,6 +1520,7 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1502,6 +1531,7 @@ export const deleteChatGroupUsers = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -1553,6 +1583,7 @@ export const createProductListing = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1609,6 +1640,7 @@ export const updateProductListing = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1665,6 +1697,7 @@ export const deleteProductListing = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1817,6 +1850,7 @@ export const createGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1854,6 +1888,7 @@ export const createGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1906,6 +1941,7 @@ export const updateGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1943,6 +1979,7 @@ export const updateGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -1995,6 +2032,7 @@ export const deleteGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2032,6 +2070,7 @@ export const deleteGoodsTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2084,6 +2123,7 @@ export const createPaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2121,6 +2161,7 @@ export const createPaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2140,6 +2181,7 @@ export const createPaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2151,6 +2193,7 @@ export const createPaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2206,6 +2249,7 @@ export const updatePaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2243,6 +2287,7 @@ export const updatePaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2262,6 +2307,7 @@ export const updatePaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2273,6 +2319,7 @@ export const updatePaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2328,6 +2375,7 @@ export const deletePaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2365,6 +2413,7 @@ export const deletePaymentTask = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2384,6 +2433,7 @@ export const deletePaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2395,6 +2445,7 @@ export const deletePaymentTask = /* GraphQL */ `
           address
           registrationNumber
           verified
+          logo
           createdAt
           updatedAt
         }
@@ -2450,6 +2501,7 @@ export const createInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2487,6 +2539,7 @@ export const createInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2540,6 +2593,7 @@ export const updateInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2577,6 +2631,7 @@ export const updateInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2630,6 +2685,7 @@ export const deleteInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }
@@ -2667,6 +2723,7 @@ export const deleteInvoice = /* GraphQL */ `
           nextToken
         }
         verified
+        logo
         createdAt
         updatedAt
       }

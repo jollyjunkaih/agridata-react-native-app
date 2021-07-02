@@ -78,11 +78,7 @@ export const MarketplaceList = props => {
             height: Mixins.scaleHeight(420),
             top: Mixins.scaleHeight(30),
             alignItems: 'center',
-          }}>
-          <Image
-            style={{resizeMode: 'cover', width: Mixins.scaleWidth(340)}}
-            source={require('_assets/images/produce.png')}></Image>
-        </View>
+          }}></View>
       }
       renderItem={({item}) => {
         return (
