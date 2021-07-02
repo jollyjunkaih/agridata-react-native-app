@@ -518,6 +518,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierTasks></SupplierTasks>;
+  return <SupplierStore></SupplierStore>;
 };
 export default App;

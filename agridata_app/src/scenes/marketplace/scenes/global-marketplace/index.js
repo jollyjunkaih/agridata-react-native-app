@@ -82,8 +82,10 @@ export const Marketplace = props => {
         {choice == 'product' ? (
           <View
             style={{
-              marginHorizontal: wp('15%'),
-              top: hp('0.5%'),
+              width: wp('50%'),
+              borderRightWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
+              alignItems: 'center',
             }}>
             <Text
               style={[
@@ -101,26 +103,22 @@ export const Marketplace = props => {
           <TouchableOpacity
             onPress={() => setChoice('product')}
             style={{
-              marginHorizontal: wp('15%'),
-              top: hp('0.5%'),
+              width: wp('50%'),
+              borderRightWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
+              alignItems: 'center',
             }}>
             <Text style={Typography.normal}>Product</Text>
           </TouchableOpacity>
         )}
-        <View
-          style={{
-            height: hp('2.5%'),
-            marginVertical: hp('1%'),
-            borderColor: Colors.GRAY_LIGHT,
-            borderWidth: wp('0.2%'),
-            alignItems: 'center',
-          }}></View>
+
         {choice == 'favourites' ? (
           <View
             style={{
               width: wp('50%'),
+              borderLeftWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
-              justifyContent: 'center',
             }}>
             <Text
               style={[
@@ -139,8 +137,9 @@ export const Marketplace = props => {
             onPress={() => setChoice('favourites')}
             style={{
               width: wp('50%'),
+              borderLeftWidth: 0.5,
+              borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
-              justifyContent: 'center',
             }}>
             <Text style={Typography.normal}>Favourites</Text>
           </TouchableOpacity>
@@ -153,14 +152,7 @@ export const Marketplace = props => {
             height: hp('100%'),
             top: hp('10%'),
           }}>
-          <FavouritesList
-            data={[
-              {name: 'Freshest Wholesale', id: 3},
-              {name: "Jane's Farm", id: 2},
-              {name: "Matthew's Farm", id: 1},
-            ]}
-            navigation={props.navigation}
-          />
+          <FavouritesList data={[{}, {}, {}]} navigation={props.navigation} />
         </View>
       ) : (
         <View
@@ -169,60 +161,7 @@ export const Marketplace = props => {
             height: hp('80%'),
             top: hp('10%'),
           }}>
-          <MarketplaceList
-            productList={[
-              {
-                lowPrice: 5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 5.5,
-                highPrice: 9,
-                productName: 'Avacadoes',
-                minimumQuantity: '50',
-                quantityAvailable: '400',
-              },
-              {
-                lowPrice: 4.5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '45',
-                quantityAvailable: '100',
-              },
-              {
-                lowPrice: 5,
-                highPrice: 10,
-                productName: 'Avacadoes',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 2,
-                highPrice: 4,
-                productName: 'Bananas',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 2.1,
-                highPrice: 3.3,
-                productName: 'Bananas',
-                minimumQuantity: '40',
-                quantityAvailable: '300',
-              },
-              {
-                lowPrice: 3,
-                highPrice: 3.5,
-                productName: 'Bananas',
-                minimumQuantity: '30',
-                quantityAvailable: '300',
-              },
-            ]}
-            navigation={props.navigation}
-          />
+          <MarketplaceList productList={[{}]} navigation={props.navigation} />
         </View>
       )}
 

@@ -30,6 +30,10 @@ import {
 } from '../../../../../graphql/mutations';
 import {API} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const ProductPopUp = props => {
   const addListing = async () => {
@@ -90,66 +94,70 @@ export const ProductPopUp = props => {
         Platform.OS === 'ios' ? 100 : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
       style={{
-        height: Mixins.scaleHeight(470),
-        width: Mixins.scaleWidth(290),
-        right: Mixins.scaleWidth(-15),
+        height: hp('70%'),
+        width: wp('80%'),
+        alignSelf: 'center',
         backgroundColor: 'white',
-        top: Mixins.scaleHeight(8),
+
         borderRadius: 10,
       }}>
       <DismissKeyboardView>
         <View
           style={{
             position: 'absolute',
-            right: Mixins.scaleWidth(-12),
-            top: Mixins.scaleHeight(-10),
+            right: wp('1%'),
+            top: hp('1%'),
           }}>
           <CloseButton setModal={props.setAddItemsButton} />
         </View>
-        <View style={{}}>
+        <View>
           <View
             style={{
               alignItems: 'center',
 
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(0),
+              width: wp('50%'),
+              height: hp('0%'),
             }}>
             <View
               style={{
                 borderWidth: 0.5,
-                width: Mixins.scaleWidth(100),
-                height: Mixins.scaleWidth(100),
+                width: wp('30%'),
+                height: wp('30%'),
                 borderRadius: 100,
-                top: Mixins.scaleHeight(30),
-                right: Mixins.scaleWidth(-50),
+                top: hp('5%'),
+                left: wp('15%'),
               }}>
               {imageSource === null ? (
-                <TouchableOpacity
-                  onPress={() => {
-                    selectImage();
-                  }}>
-                  <Icon
-                    name="add-outline"
-                    size={150}
-                    style={{
-                      resizeMode: 'cover',
-                      width: Mixins.scaleWidth(150),
-                      height: Mixins.scaleWidth(150),
-                      borderRadius: 100,
-                      top: Mixins.scaleHeight(-20),
-                      left: Mixins.scaleWidth(-15),
-                    }}
-                    source={require('_assets/images/agridata.png')}
-                  />
-                </TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      selectImage();
+                    }}>
+                    <Icon
+                      name="add-outline"
+                      size={150}
+                      style={{
+                        resizeMode: 'cover',
+                        width: wp('30%'),
+                        height: hp('30%'),
+                        borderRadius: 100,
+                        bottom: hp('2.5%'),
+                        right: wp('3%'),
+                      }}
+                    />
+                  </TouchableOpacity>
+                  <View style={{bottom: hp('15%'), alignSelf: 'center'}}>
+                    <Text style={[Typography.large]}>Add Photo</Text>
+                  </View>
+                </View>
               ) : (
                 <View>
                   <Image
                     source={{uri: imageSource}}
                     style={{
                       resizeMode: 'cover',
-                      width: Mixins.scaleWidth(100),
-                      height: Mixins.scaleWidth(100),
+                      width: wp('30%'),
+                      height: hp('14%'),
                       borderRadius: 100,
                     }}
                   />
@@ -159,10 +167,10 @@ export const ProductPopUp = props => {
                     }}
                     style={{
                       borderRadius: 100,
-                      height: Mixins.scaleWidth(40),
-                      width: Mixins.scaleWidth(40),
+                      height: hp('5%'),
+                      width: wp('10%'),
                       backgroundColor: Colors.LIGHT_BLUE,
-                      bottom: Mixins.scaleWidth(30),
+                      bottom: hp('4%'),
                       left: Mixins.scaleWidth(75),
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -180,18 +188,7 @@ export const ProductPopUp = props => {
               )}
             </View>
           </View>
-          <View>
-            <Text
-              style={[
-                Typography.large,
-                {
-                  top: Mixins.scaleHeight(130),
-                  left: Mixins.scaleWidth(100),
-                },
-              ]}>
-              Add Photo
-            </Text>
-          </View>
+
           <View>
             {/*<Text
             style={
@@ -208,11 +205,11 @@ export const ProductPopUp = props => {
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(140),
+            top: hp('25%'),
             backgroundColor: Colors.GRAY,
-            height: Mixins.scaleHeight(220),
-            width: Mixins.scaleWidth(250),
-            left: Mixins.scaleWidth(20),
+            height: hp('35%'),
+            width: wp('70%'),
+            left: wp('5%'),
             borderRadius: 15,
             shadowOffset: {
               width: 0,
@@ -223,22 +220,19 @@ export const ProductPopUp = props => {
             shadowColor: 'grey',
           }}>
           <Text
-            style={
-              ([Typography.normal],
-              {left: Mixins.scaleWidth(20), top: Mixins.scaleHeight(10)})
-            }>
+            style={([Typography.normal], {left: wp('6%'), top: hp('1.5%')})}>
             Enter product details
           </Text>
           <View
             style={{
-              left: Mixins.scaleWidth(20),
-              top: Mixins.scaleHeight(10),
+              left: wp('6%'),
+              top: hp('2%'),
             }}>
             <View
               style={{
                 backgroundColor: 'white',
-                width: Mixins.scaleWidth(200),
-                height: Mixins.scaleHeight(18),
+                width: wp('55%'),
+                height: hp('3%'),
                 borderRadius: 3,
                 justifyContent: 'center',
                 marginBottom: 8,
@@ -247,14 +241,14 @@ export const ProductPopUp = props => {
               <TextInput
                 keyboardType="default"
                 placeholder="Product Name"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                style={{left: wp('1%')}}></TextInput>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <View>
                 <Text
                   style={
                     ([Typography.large],
-                    {top: Mixins.scaleHeight(-3), marginRight: 5})
+                    {bottom: hp('0.5%'), marginRight: wp('1%')})
                   }>
                   RM
                 </Text>
@@ -262,8 +256,8 @@ export const ProductPopUp = props => {
               <View
                 style={{
                   backgroundColor: 'white',
-                  width: Mixins.scaleWidth(80),
-                  height: Mixins.scaleHeight(18),
+                  width: wp('22.3%'),
+                  height: hp('3%'),
                   borderRadius: 3,
                   justifyContent: 'center',
                   marginBottom: 8,
@@ -272,13 +266,13 @@ export const ProductPopUp = props => {
                 <TextInput
                   keyboardType="default"
                   placeholder=" Min Price"
-                  style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                  style={{left: wp('1%')}}></TextInput>
               </View>
               <View
                 style={{
                   height: 0,
-                  width: Mixins.scaleWidth(5),
-                  borderWidth: 1,
+                  width: wp('1.5%'),
+                  borderWidth: wp('0.2%'),
                   borderColor: 'black',
                   bottom: Mixins.scaleHeight(4),
                   left: Mixins.scaleWidth(-5),
@@ -286,8 +280,8 @@ export const ProductPopUp = props => {
               <View
                 style={{
                   backgroundColor: 'white',
-                  width: Mixins.scaleWidth(80),
-                  height: Mixins.scaleHeight(18),
+                  width: wp('22.3%'),
+                  height: hp('3%'),
                   borderRadius: 3,
                   justifyContent: 'center',
                   marginBottom: 8,
@@ -295,7 +289,7 @@ export const ProductPopUp = props => {
                 <TextInput
                   keyboardType="default"
                   placeholder=" Max Price"
-                  style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                  style={{left: wp('1%')}}></TextInput>
               </View>
             </View>
             <View
@@ -310,7 +304,7 @@ export const ProductPopUp = props => {
               <TextInput
                 keyboardType="default"
                 placeholder="Variety"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                style={{left: wp('1%')}}></TextInput>
             </View>
             <View
               style={{
@@ -331,7 +325,7 @@ export const ProductPopUp = props => {
                 <TextInput
                   keyboardType="default"
                   placeholder="Quantity Available"
-                  style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                  style={{left: wp('1%')}}></TextInput>
               </View>
               <View
                 style={{
