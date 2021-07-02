@@ -32,7 +32,7 @@ export const RetailManagerDashboard = props => {
           left: wp('8%'),
         }}>
         <MenuButton
-          //userType={props.user.role}
+          userType={'retail-manager'}
           updateAuthState={props.updateAuthState}
           navigation={props.navigation}></MenuButton>
       </View>

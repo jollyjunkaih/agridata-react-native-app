@@ -229,6 +229,7 @@ export const MenuButtonModal = props => {
           top: hp('10%'),
         }}
       />
+
       {props.userType == 'supplier' ||
       props.userType == 'general-manager' ||
       props.userType == 'owner' ? (
@@ -239,18 +240,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('companyprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(100),
-              left: Mixins.scaleWidth(150),
+              top: hp('16%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="briefcase-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="briefcase-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Company Profile</Text>
               </View>
@@ -263,18 +264,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('personalprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(120),
-              left: Mixins.scaleWidth(150),
+              top: hp('19%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="person-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Personal Profile</Text>
               </View>
@@ -286,18 +287,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('humanresource'),
             ]}
             style={{
-              top: Mixins.scaleHeight(140),
-              left: Mixins.scaleWidth(150),
+              top: hp('22%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="people-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="people-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Human Resource</Text>
               </View>
@@ -307,18 +308,18 @@ export const MenuButtonModal = props => {
           <TouchableOpacity
             onPress={() => signOut()}
             style={{
-              top: Mixins.scaleHeight(160),
-              left: Mixins.scaleWidth(150),
+              top: hp('25%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="log-out-outline" size={Mixins.scaleWidth(30)} />
+              <Icon name="log-out-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Logout</Text>
               </View>
@@ -333,18 +334,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('personalprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(120),
-              left: Mixins.scaleWidth(150),
+              top: hp('16%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="person-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Personal Profile</Text>
               </View>
@@ -354,18 +355,18 @@ export const MenuButtonModal = props => {
           <TouchableOpacity
             onPress={() => signOut()}
             style={{
-              top: Mixins.scaleHeight(130),
-              left: Mixins.scaleWidth(150),
+              top: hp('19%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="log-out-outline" size={Mixins.scaleWidth(30)} />
+              <Icon name="log-out-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Logout</Text>
               </View>

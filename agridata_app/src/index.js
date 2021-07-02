@@ -519,10 +519,6 @@ export const App = () => {
 */
 
 export const App = () => {
-<<<<<<< HEAD
-  return <ConfirmSignUp></ConfirmSignUp>;
-=======
-  return <RetailerTasks></RetailerTasks>;
->>>>>>> 8208a54abfc4c1b1efe855afa78580ec416821d2
+  return <PersonalProfile></PersonalProfile>;
 };
 export default App;

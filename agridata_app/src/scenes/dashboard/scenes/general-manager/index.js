@@ -63,7 +63,7 @@ export const GeneralManagerDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.retailerCompany.name}
+        {/*{props.user.retailerCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
         What would you like to do today
