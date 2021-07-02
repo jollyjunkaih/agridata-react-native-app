@@ -65,14 +65,6 @@ export const Registration = props => {
           width: wp('100%'),
         }}>
         <DismissKeyboardView>
-          <View
-            style={{
-              position: 'absolute',
-              top: hp('2%'),
-              left: wp('8%'),
-            }}>
-            <BackButton navigation={props.navigation} />
-          </View>
           <Image
             source={require('_assets/images/fruits.png')}
             style={{
@@ -210,6 +202,8 @@ export const Registration = props => {
                 top: hp('8%'),
                 height: hp('20%'),
                 zIndex: 2,
+
+                height: hp('7%'),
               }}>
               <DropDownPicker
                 open={open}
@@ -240,8 +234,8 @@ export const Registration = props => {
                 alignItems: 'center',
                 bottom: hp('4%'),
                 width: wp('85%'),
-
                 left: wp('8%'),
+                top: hp('10%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 By continuing, you are agreeing to our {'\n'}
@@ -278,7 +272,7 @@ export const Registration = props => {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{alignItems: 'center', bottom: hp('2%')}}>
+            <View style={{alignItems: 'center', top: hp('12%')}}>
               <TouchableOpacity>
                 <Text style={[Typography.placeholderSmall]}>
                   Having any trouble?
@@ -305,7 +299,7 @@ export const Registration = props => {
               }}
               style={{
                 backgroundColor: Colors.LIGHT_BLUE,
-                top: hp('2%'),
+                top: hp('15%'),
                 width: wp('30%'),
                 height: hp('4%'),
                 justifyContent: 'center',

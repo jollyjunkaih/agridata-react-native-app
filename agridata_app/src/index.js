@@ -28,6 +28,7 @@ import {
   Landing,
   Verification,
   CreateAccountPopUp,
+  ConfirmSignUp,
 } from './scenes';
 import {DataAnalytics} from './scenes/data_analytics/';
 /*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
@@ -518,6 +519,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierTasks></SupplierTasks>;
+  return <Login></Login>;
 };
 export default App;

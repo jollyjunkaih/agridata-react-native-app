@@ -18,6 +18,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
 import {DismissKeyboardView} from '_components';
 import {API, graphqlOperation} from 'aws-amplify';
+import Strings from '_utils';
 import {
   createRetailerCompany,
   createSupplierCompany,
@@ -107,66 +108,64 @@ export const CreateCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? hp('-20%') : Mixins.scaleHeight(-150)
+        Platform.OS === 'ios' ? hp('-30%') : Mixins.scaleHeight(-150)
       }>
-      <SafeAreaView
-        style={{
-          backgroundColor: 'white',
-          height: hp('100%'),
-          width: wp('100%'),
-        }}>
-        <View
+      <DismissKeyboardView>
+        <SafeAreaView
           style={{
-            position: 'absolute',
-            top: Spacing.BackButtonTop,
-            left: Spacing.BackButtonLeft,
+            height: hp('100%'),
+            width: wp('100%'),
           }}>
-          <BackButton navigation={props.navigation} />
-        </View>
-        <Image
-          source={require('_assets/images/fruits.png')}
-          style={{
-            position: 'absolute',
-
-            width: wp('50%'),
-            height: hp('30%'),
-            resizeMode: 'cover',
-          }}
-        />
-        <View style={{top: hp('5%')}}>
-          <View>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
-                  width: wp('40%'),
-                  left: wp('8%'),
-                  top: hp('4%'),
-                },
-              ]}>
-              REGISTER
-            </Text>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
-                  width: wp('50%'),
-                  left: wp('8%'),
-                  top: hp('2%'),
-                },
-              ]}>
-              COMPANY
-            </Text>
+          <View
+            style={{
+              position: 'absolute',
+              top: Spacing.BackButtonTop,
+              left: Spacing.BackButtonLeft,
+            }}>
+            <BackButton navigation={props.navigation} />
           </View>
-        </View>
+          <Image
+            source={require('_assets/images/fruits.png')}
+            style={{
+              position: 'absolute',
+              left: wp('50%'),
+              width: wp('50%'),
+              height: hp('30%'),
+              resizeMode: 'cover',
+            }}
+          />
+          <View style={{top: hp('6%')}}>
+            <View>
+              <Text
+                style={[
+                  Typography.largestSize,
+                  {
+                    width: wp('80%'),
+                    left: wp('8%'),
+                  },
+                ]}>
+                REGISTER
+              </Text>
+              <Text
+                style={[
+                  Typography.largestSize,
+                  {
+                    width: wp('80%'),
+                    left: wp('8%'),
+                    top: hp('-1%'),
+                  },
+                ]}>
+                COMPANY
+              </Text>
+            </View>
+          </View>
 
-        <View>
           <View
             style={{
               top: hp('7%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Company Name</Text>
+            <Text style={[Typography.placeholder]}>{Strings.companyName}</Text>
             <TextInput
               keyboardType="default"
               placeholder="eg: City Grocer"
@@ -182,18 +181,16 @@ export const CreateCompany = props => {
                 width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
-                color: 'black',
               }}></View>
           </View>
-        </View>
-        <View>
+
           <View
             style={{
               top: hp('8%'),
               left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>
-              Company Registration Number
+              {Strings.companyRegistrationNum}
             </Text>
             <TextInput
               keyboardType="default"
@@ -212,8 +209,7 @@ export const CreateCompany = props => {
                 borderColor: Colors.GRAY_DARK,
               }}></View>
           </View>
-        </View>
-        <View>
+
           <View
             style={{
               top: hp('9%'),
@@ -229,7 +225,6 @@ export const CreateCompany = props => {
               style={{
                 width: wp('50%'),
                 height: hp('7%'),
-                color: 'black',
               }}></TextInput>
             <View
               style={{
@@ -238,97 +233,98 @@ export const CreateCompany = props => {
                 borderColor: Colors.GRAY_DARK,
               }}></View>
           </View>
-        </View>
-        <View
-          style={{
-            top: hp('10%'),
-            left: wp('8%'),
-          }}>
-          <View>
-            <Text style={[Typography.placeholder, {fontSize: 12}]}>
-              What type of company are you running?
-            </Text>
+
+          <View
+            style={{
+              top: hp('10%'),
+              left: wp('8%'),
+            }}>
+            <View>
+              <Text style={[Typography.placeholder, {fontSize: 12}]}>
+                What type of company are you running?
+              </Text>
+            </View>
+            <View
+              style={{
+                zIndex: 1000,
+                top: hp('1%'),
+                left: wp('-1%'),
+              }}>
+              <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                dropDownDirection="BOTTOM"
+                listItemContainerStyle={{height: Mixins.scaleHeight(30)}}
+                style={{
+                  width: wp('80%'),
+                  height: hp('5%'),
+                  borderColor: 'white',
+                  borderRadius: 3,
+                  backgroundColor: Colors.GRAY_LIGHT,
+                }}
+                containerStyle={{}}
+                dropDownContainerStyle={{
+                  borderWidth: 0,
+                  width: wp('80%'),
+                  height: hp('15%'),
+                  backgroundColor: Colors.GRAY_LIGHT,
+                }}></DropDownPicker>
+            </View>
           </View>
           <View
             style={{
-              zIndex: 1000,
-              top: hp('1%'),
-              left: wp('-1%'),
+              alignItems: 'center',
+              top: hp('25%'),
             }}>
-            <DropDownPicker
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-              dropDownDirection="BOTTOM"
-              listItemContainerStyle={{height: Mixins.scaleHeight(30)}}
+            <TouchableOpacity
               style={{
-                width: wp('80%'),
-                height: hp('5%'),
-                borderColor: 'white',
-                borderRadius: 3,
-                backgroundColor: Colors.GRAY_LIGHT,
+                backgroundColor: Colors.LIGHT_BLUE,
+                width: wp('45%'),
+                height: hp('7%'),
+                justifyContent: 'center',
+                borderRadius: 20,
+                shadowOffset: {
+                  width: 1,
+                  height: 2,
+                },
+                shadowOpacity: 2,
+                shadowRadius: 3,
+                shadowColor: 'grey',
               }}
-              containerStyle={{}}
-              dropDownContainerStyle={{
-                borderWidth: 0,
-                width: wp('80%'),
-                height: hp('15%'),
-                backgroundColor: Colors.GRAY_LIGHT,
-              }}></DropDownPicker>
+              onPress={() => {
+                if (
+                  value == null ||
+                  companyName == '' ||
+                  companyRegistrationNum == '' ||
+                  companyAddress == ''
+                ) {
+                  console.log('oops');
+                } else {
+                  registerCompany();
+                }
+              }}>
+              <View style={{alignSelf: 'center'}}>
+                <Text style={[Typography.large]}>REGISTER</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </View>
-        <View
-          style={{
-            alignItems: 'center',
-            top: hp('30%'),
-          }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: Colors.LIGHT_BLUE,
-              width: wp('45%'),
-              height: hp('7%'),
-              justifyContent: 'center',
-              borderRadius: 20,
-              shadowOffset: {
-                width: 1,
-                height: 2,
-              },
-              shadowOpacity: 2,
-              shadowRadius: 3,
-              shadowColor: 'grey',
-            }}
-            onPress={() => {
-              if (
-                value == null ||
-                companyName == '' ||
-                companyRegistrationNum == '' ||
-                companyAddress == ''
-              ) {
-                console.log('oops');
-              } else {
-                registerCompany();
-              }
+          <Modal
+            isVisible={createAccountButton}
+            onBackdropPress={() => {
+              setCreateAccountButton(false);
+              props.navigation.navigate('verification');
             }}>
-            <View style={{alignSelf: 'center'}}>
-              <Text style={[Typography.large]}>REGISTER</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <Modal
-          isVisible={createAccountButton}
-          onBackdropPress={() => {
-            setCreateAccountButton(false);
-            props.navigation.navigate('verification');
-          }}>
-          <CreateAccountPopUp
-            setCreateAccountButton={
-              setCreateAccountButton
-            }></CreateAccountPopUp>
-        </Modal>
-      </SafeAreaView>
+            <CreateAccountPopUp
+              setCreateAccountButton={
+                setCreateAccountButton
+              }></CreateAccountPopUp>
+          </Modal>
+        </SafeAreaView>
+      </DismissKeyboardView>
     </KeyboardAvoidingView>
   );
 };

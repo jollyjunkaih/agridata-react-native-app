@@ -11,8 +11,7 @@ export const CloseButton = props => {
       style={{
         height: Mixins.scaleWidth(30),
         width: Mixins.scaleWidth(30),
-        backgroundColor: Colors.PALE_GREEN,
-        borderRadius: 100,
+
         justifyContent: 'center',
         alignItems: 'center',
       }}>
