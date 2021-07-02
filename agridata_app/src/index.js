@@ -519,6 +519,10 @@ export const App = () => {
 */
 
 export const App = () => {
+<<<<<<< HEAD
   return <PersonalProfile></PersonalProfile>;
+=======
+  return <Store></Store>;
+>>>>>>> 333d7360096b6ba6f041c8555fd00c143718681d
 };
 export default App;

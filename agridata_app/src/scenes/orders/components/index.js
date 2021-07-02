@@ -105,7 +105,7 @@ const Order = props => {
           }}></View>
         <View
           style={{
-            top: hp('1.5%'),
+            top: hp('1%'),
             width: wp('50%'),
           }}>
           <Text
@@ -235,8 +235,8 @@ const InvoiceModal = props => {
       <View
         style={{
           position: 'absolute',
-          right: wp('-4%'),
-          top: hp('-2%'),
+          right: wp('1%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setInvoiceModal} />
       </View>
@@ -263,14 +263,13 @@ const InvoiceModal = props => {
         30 June 2021
       </Text>
       <Text
-        style={
-          ([Typography.normal],
+        style={[
+          Typography.normal,
           {
-            position: 'absolute',
             top: hp('8.5%'),
             left: wp('5%'),
-          })
-        }>
+          },
+        ]}>
         Matthew's Farm
       </Text>
       <View
@@ -312,8 +311,9 @@ const InvoiceModal = props => {
             Typography.normal,
             {
               fontFamily: 'Poppins-SemiBold',
-              left: wp('55%'),
+              textAlign: 'right',
               marginTop: hp('2%'),
+              right: hp('2%'),
             },
           ]}>
           TOTAL: RM 600
@@ -400,7 +400,6 @@ const InvoiceItem = props => {
           {
             position: 'absolute',
             right: wp('3%'),
-            fontFamily: 'Poppins-SemiBold',
           },
         ]}>
         RM {props.amount}
