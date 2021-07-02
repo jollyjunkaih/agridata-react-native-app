@@ -18,6 +18,10 @@ import PDFLib, {PDFDocument, PDFPage} from 'react-native-pdf-lib';
 import * as RNFS from 'react-native-fs';
 import logo from '_assets/images/agridata.png';
 import XLSX from 'xlsx';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 //import {PDFDocument} from 'pdf-lib';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
@@ -51,59 +55,67 @@ const Order = props => {
       onPress={() => setInvoiceModal(true)}
       style={{
         marginBottom: 10,
-        width: Mixins.scaleWidth(305),
-        height: Mixins.scaleHeight(80),
+        width: wp('90%'),
+        height: hp('13%'),
+        alignItems: 'center',
       }}>
       <View
         style={{
           backgroundColor: Colors.GRAY_LIGHT,
           borderRadius: 10,
           flexDirection: 'row',
-          width: Mixins.scaleWidth(300),
-          height: Mixins.scaleHeight(80),
+          width: wp('85%'),
+          height: hp('12%'),
           elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
         <View
           style={{
             backgroundColor: Colors.GRAY_BLACK,
-            height: Mixins.scaleHeight(80),
-            width: Mixins.scaleWidth(16),
+            height: hp('12%'),
+            width: wp('2%'),
             borderRadius: 10,
           }}></View>
         <View
           style={{
             backgroundColor: Colors.GRAY_LIGHT,
-            height: Mixins.scaleHeight(80),
-            width: Mixins.scaleWidth(80),
-            right: Mixins.scaleWidth(8),
+            height: hp('12%'),
+            width: wp('24%'),
+
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View style={{bottom: Mixins.scaleHeight(3)}}>
-            <Icon name="clipboard-outline" size={Mixins.scaleWidth(40)} />
+          <View style={{}}>
+            <Icon name="clipboard-outline" size={wp('11%')} />
           </View>
         </View>
         <View
           style={{
             alignSelf: 'center',
             width: 0,
-            height: Mixins.scaleHeight(50),
+            height: hp('8%'),
             borderRightWidth: 1,
             borderColor: Colors.GRAY_DARK,
           }}></View>
         <View
           style={{
-            justifyContent: 'center',
-            width: Mixins.scaleWidth(180),
+            top: hp('1.5%'),
+            width: wp('50%'),
           }}>
           <Text
             style={[
               Typography.small,
-              {fontFamily: 'Poppins-SemiBold', left: Mixins.scaleWidth(40)},
+              {fontFamily: 'Poppins-SemiBold', left: wp('11%')},
             ]}>
             {'\u26AC'} {props.id}
           </Text>
-          <Text style={[Typography.small, {left: Mixins.scaleWidth(40)}]}>
+          <Text style={[Typography.small, {left: wp('11%')}]}>
             {'\u26AC'} {props.companyName}
             {'\n'}
             {'\u26AC'} {props.createdAt}
@@ -125,84 +137,76 @@ export const SortModal = props => {
     <View
       style={{
         position: 'absolute',
-        right: Mixins.scaleWidth(30),
-        top: Mixins.scaleHeight(115),
+        right: wp('8%'),
+        top: hp('18%'),
         backgroundColor: Colors.GRAY_MEDIUM,
-        borderRadius: 20,
-        width: Mixins.scaleWidth(180),
-        height: Mixins.scaleHeight(105),
+        borderRadius: 5,
+        width: wp('53%'),
+        height: hp('17%'),
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       <TouchableOpacity
         style={{
           flexDirection: 'row',
           backgroundColor: 'white',
-          width: Mixins.scaleWidth(170),
-          height: Mixins.scaleHeight(20),
+          width: wp('50%'),
+          height: hp('3.3%'),
           borderRadius: 20,
-          marginHorizontal: Mixins.scaleWidth(5),
-          marginTop: Mixins.scaleHeight(5),
         }}>
-        <View style={{left: Mixins.scaleWidth(15), flexDirection: 'row'}}>
-          <Icon name="time-outline" size={Mixins.scaleWidth(20)} />
-          <Icon name="arrow-up-outline" size={Mixins.scaleWidth(13)} />
+        <View style={{left: wp('3.5%'), flexDirection: 'row'}}>
+          <Icon name="time-outline" size={wp('6%')} />
+          <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(25)}]}>
-          From Oldest
-        </Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>From Oldest</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
           flexDirection: 'row',
           backgroundColor: 'white',
-          width: Mixins.scaleWidth(170),
-          height: Mixins.scaleHeight(20),
+          width: wp('50%'),
+          height: hp('3.3%'),
           borderRadius: 20,
-          marginHorizontal: Mixins.scaleWidth(5),
-          marginTop: Mixins.scaleHeight(5),
+          marginHorizontal: wp('1.8%'),
+          marginTop: hp('0.5%'),
         }}>
-        <View style={{left: Mixins.scaleWidth(15), flexDirection: 'row'}}>
-          <Icon name="time-outline" size={Mixins.scaleWidth(20)} />
-          <Icon name="arrow-down-outline" size={Mixins.scaleWidth(13)} />
+        <View style={{left: wp('3.5%'), flexDirection: 'row'}}>
+          <Icon name="time-outline" size={wp('6%')} />
+          <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(25)}]}>
-          From Newest
-        </Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>From Newest</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
           flexDirection: 'row',
           backgroundColor: 'white',
-          width: Mixins.scaleWidth(170),
-          height: Mixins.scaleHeight(20),
+          width: wp('50%'),
+          height: hp('3.3%'),
           borderRadius: 20,
-          marginHorizontal: Mixins.scaleWidth(5),
-          marginTop: Mixins.scaleHeight(5),
+          marginHorizontal: wp('1.8%'),
+          marginTop: hp('0.5%'),
         }}>
-        <View style={{left: Mixins.scaleWidth(15), flexDirection: 'row'}}>
-          <Icon name="pricetags-outline" size={Mixins.scaleWidth(20)} />
-          <Icon name="arrow-up-outline" size={Mixins.scaleWidth(13)} />
+        <View style={{left: wp('3.5%'), flexDirection: 'row'}}>
+          <Icon name="pricetags-outline" size={wp('6%')} />
+          <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(25)}]}>
-          From Cheapest
-        </Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>From Cheapest</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
           flexDirection: 'row',
           backgroundColor: 'white',
-          width: Mixins.scaleWidth(170),
-          height: Mixins.scaleHeight(20),
+          width: wp('50%'),
+          height: hp('3.3%'),
           borderRadius: 20,
-          marginHorizontal: Mixins.scaleWidth(5),
-          marginTop: Mixins.scaleHeight(5),
+          marginHorizontal: wp('1.8%'),
+          marginTop: hp('0.5%'),
         }}>
-        <View style={{left: Mixins.scaleWidth(15), flexDirection: 'row'}}>
-          <Icon name="pricetags-outline" size={Mixins.scaleWidth(20)} />
-          <Icon name="arrow-down-outline" size={Mixins.scaleWidth(13)} />
+        <View style={{left: wp('3.5%'), flexDirection: 'row'}}>
+          <Icon name="pricetags-outline" size={wp('6%')} />
+          <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(25)}]}>
-          From Priciest
-        </Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>From Priciest</Text>
       </TouchableOpacity>
     </View>
   );
@@ -215,7 +219,7 @@ const InvoiceModal = props => {
         style={{
           height: 0,
           borderBottomWidth: 1,
-          width: Mixins.scaleWidth(340),
+          width: wp('90%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
     );
@@ -223,16 +227,16 @@ const InvoiceModal = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(320),
-        height: Mixins.scaleHeight(520),
+        width: wp('90%'),
+        height: hp('82%'),
         backgroundColor: Colors.GRAY_WHITE,
         borderRadius: 10,
       }}>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-10),
-          top: Mixins.scaleHeight(-10),
+          right: wp('-4%'),
+          top: hp('-2%'),
         }}>
         <CloseButton setModal={props.setInvoiceModal} />
       </View>
@@ -241,8 +245,8 @@ const InvoiceModal = props => {
           Typography.header,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(30),
-            left: Mixins.scaleWidth(20),
+            top: hp('4%'),
+            left: wp('5%'),
           },
         ]}>
         Invoice #1214
@@ -252,8 +256,8 @@ const InvoiceModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(55),
+            right: wp('5%'),
+            top: hp('8%'),
           },
         ]}>
         30 June 2021
@@ -263,8 +267,8 @@ const InvoiceModal = props => {
           ([Typography.normal],
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(55),
-            left: Mixins.scaleWidth(20),
+            top: hp('8.5%'),
+            left: wp('5%'),
           })
         }>
         Matthew's Farm
@@ -272,16 +276,16 @@ const InvoiceModal = props => {
       <View
         style={{
           borderBottomWidth: 2,
-          width: Mixins.scaleWidth(250),
+          width: wp('80%'),
           alignSelf: 'center',
-          top: Mixins.scaleHeight(80),
+          top: hp('13%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
-      <View style={{top: Mixins.scaleHeight(90)}}>
+      <View style={{top: hp('14%')}}>
         <View
           style={{
-            width: Mixins.scaleWidth(320),
-            maxHeight: Mixins.scaleHeight(320),
+            width: wp('90%'),
+            maxHeight: hp('50%'),
           }}>
           <FlatList
             keyExtractor={item => item.id}
@@ -308,8 +312,8 @@ const InvoiceModal = props => {
             Typography.normal,
             {
               fontFamily: 'Poppins-SemiBold',
-              left: Mixins.scaleWidth(200),
-              marginTop: Mixins.scaleHeight(10),
+              left: wp('55%'),
+              marginTop: hp('2%'),
             },
           ]}>
           TOTAL: RM 600
@@ -320,42 +324,52 @@ const InvoiceModal = props => {
         style={{
           position: 'absolute',
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(85),
-          height: Mixins.scaleHeight(30),
-          bottom: Mixins.scaleHeight(30),
-          right: Mixins.scaleHeight(20),
-          elevation: 3,
+          width: wp('23%'),
+          height: hp('5%'),
+          bottom: hp('5%'),
+          right: wp('7%'),
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
           borderRadius: 10,
           flexDirection: 'row',
           alignItems: 'center',
         }}
         onPress={() => createPDF()}>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
-          PDF
-        </Text>
-        <View style={{position: 'absolute', right: Mixins.scaleWidth(15)}}>
-          <Icon name="cloud-download-outline" size={Mixins.scaleWidth(20)} />
+        <Text style={[Typography.normal, {left: wp('3%')}]}>PDF</Text>
+        <View style={{position: 'absolute', right: wp('3%')}}>
+          <Icon name="cloud-download-outline" size={wp('5.5%')} />
         </View>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
           position: 'absolute',
           backgroundColor: Colors.PALE_GREEN,
-          width: Mixins.scaleWidth(85),
-          height: Mixins.scaleHeight(30),
-          bottom: Mixins.scaleHeight(30),
-          right: Mixins.scaleHeight(120),
-          elevation: 3,
+          width: wp('23%'),
+          height: hp('5%'),
+          bottom: hp('5%'),
+          right: wp('35%'),
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
           borderRadius: 10,
           flexDirection: 'row',
           alignItems: 'center',
         }}
         onPress={() => createCSV()}>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
-          CSV
-        </Text>
-        <View style={{position: 'absolute', right: Mixins.scaleWidth(15)}}>
-          <Icon name="cloud-download-outline" size={Mixins.scaleWidth(20)} />
+        <Text style={[Typography.normal, {left: wp('3%')}]}>CSV</Text>
+        <View style={{position: 'absolute', right: wp('3%')}}>
+          <Icon name="cloud-download-outline" size={wp('5.5%')} />
         </View>
       </TouchableOpacity>
     </View>
@@ -366,30 +380,18 @@ const InvoiceItem = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(300),
-        height: Mixins.scaleHeight(35),
+        width: wp('85%'),
+        height: hp('6%'),
         alignSelf: 'center',
         justifyContent: 'center',
       }}>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(10)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('3%')}]}>
         {props.productName}
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(100)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('25%')}]}>
         |{props.quantity}kg
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(145)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('40%')}]}>
         @ RM{props.price}/kg
       </Text>
       <Text
@@ -397,7 +399,7 @@ const InvoiceItem = props => {
           Typography.small,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(10),
+            right: wp('3%'),
             fontFamily: 'Poppins-SemiBold',
           },
         ]}>
