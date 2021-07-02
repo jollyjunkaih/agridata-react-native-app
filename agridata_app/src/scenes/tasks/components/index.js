@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   FlatList,
+  SafeAreaView,
   Text,
   Image,
 } from 'react-native';
@@ -60,6 +61,13 @@ const SendTask = props => {
           width: wp('85%'),
           height: hp('12.5%'),
           elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
         <View
           style={{
@@ -239,216 +247,219 @@ const SendTaskModal = props => {
     }, 300);
   };
   return (
-    <View
-      style={{
-        width: wp('90%'),
-        height: hp('80%'),
-        backgroundColor: Colors.GRAY_WHITE,
-        borderRadius: 10,
-      }}>
+    <SafeAreaView style={{height: hp('100%'), width: wp('100%')}}>
       <View
         style={{
-          position: 'absolute',
-          right: wp('-4%'),
-          top: hp('-3%'),
+          width: wp('90%'),
+          height: hp('80%'),
+          top: hp('10%'),
+          backgroundColor: Colors.GRAY_WHITE,
+          borderRadius: 10,
         }}>
-        <CloseButton setModal={props.setSendTaskModal} />
-      </View>
-      <Text
-        style={[
-          Typography.normal,
-          {
+        <View
+          style={{
             position: 'absolute',
-            top: hp('7%'),
-            left: wp('8%'),
-          },
-        ]}>
-        Sunday
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
+            right: wp('1%'),
+            top: hp('1%'),
+          }}>
+          <CloseButton setModal={props.setSendTaskModal} />
+        </View>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              position: 'absolute',
+              top: hp('7%'),
+              left: wp('8%'),
+            },
+          ]}>
+          Sunday
+        </Text>
+        <Text
+          style={[
+            Typography.placeholder,
+            {
+              position: 'absolute',
+              right: wp('7%'),
+              top: hp('7%'),
+              fontStyle: 'italic',
+            },
+          ]}>
+          Order #12345
+        </Text>
+        <Text
+          style={[
+            Typography.header,
+            {
+              position: 'absolute',
+              top: hp('11%'),
+              left: wp('8%'),
+            },
+          ]}>
+          30th June, 2021
+        </Text>
+        <View
+          style={{
+            borderBottomWidth: wp('1%'),
+            width: wp('80%'),
+            alignSelf: 'center',
+            top: hp('18%'),
+            borderColor: Colors.GRAY_MEDIUM,
             position: 'absolute',
-            right: wp('7%'),
-            top: hp('7%'),
-            fontStyle: 'italic',
-          },
-        ]}>
-        Order #12345
-      </Text>
-      <Text
-        style={[
-          Typography.header,
-          {
-            position: 'absolute',
-            top: hp('11%'),
-            left: wp('8%'),
-          },
-        ]}>
-        30th June, 2021
-      </Text>
-      <View
-        style={{
-          borderBottomWidth: wp('1%'),
-          width: wp('80%'),
-          alignSelf: 'center',
-          top: hp('18%'),
-          borderColor: Colors.GRAY_MEDIUM,
-          position: 'absolute',
-        }}></View>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
+          }}></View>
+        <Text
+          style={[
+            Typography.placeholder,
+            {
+              position: 'absolute',
+              top: hp('21%'),
+              left: wp('8%'),
+            },
+          ]}>
+          Items:
+        </Text>
+        <View
+          style={{
             position: 'absolute',
             top: hp('21%'),
-            left: wp('8%'),
-          },
-        ]}>
-        Items:
-      </Text>
-      <View
-        style={{
-          position: 'absolute',
-          top: hp('21%'),
-          left: wp('35%'),
-        }}>
-        <ProductList></ProductList>
-      </View>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('40%'),
-            left: wp('8%'),
-          },
-        ]}>
-        Delivery Date:
-      </Text>
-      {confirmedDate ? (
-        <View>
-          <Text
-            style={[
-              Typography.small,
-              {
-                position: 'absolute',
-                top: hp('40%'),
-                left: wp('35%'),
-              },
-            ]}>
-            {deliverydate}
-          </Text>
-          <TouchableOpacity
-            style={{
+            left: wp('35%'),
+          }}>
+          <ProductList></ProductList>
+        </View>
+        <Text
+          style={[
+            Typography.placeholder,
+            {
               position: 'absolute',
               top: hp('40%'),
-              left: wp('57%'),
-              elevation: 5,
-            }}
-            onPress={item => setConfirmedDate(false)}>
-            <Icon name="pencil-outline" size={Mixins.scaleWidth(15)} />
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <View>
-          <DatePicker
-            style={{
-              backgroundColor: Colors.GRAY_WHITE,
-              borderColor: 'black',
-              borderRadius: 20,
-              width: wp('40%'),
-              height: hp('6%'),
-              elevation: 2,
-              position: 'absolute',
-              top: hp('38%'),
-              left: wp('35%'),
-              justifyContent: 'center',
-            }}
-            customStyles={{
-              dateInput: {
-                position: 'absolute',
-                right: wp('6%'),
-                textAlignVertical: 'center',
-                borderColor: 'transparent',
-              },
-              dateIcon: {
-                position: 'absolute',
-                left: wp('3%'),
-                height: hp('5%'),
-                width: wp('7%'),
-              },
-              dateText: {fontSize: Mixins.scaleFont(14)},
-            }}
-            format="DD-MM-YYYY"
-            placeholder="Pick a date"
-            showIcon={true}
-            minDate={now()}
-            date={deliverydate}
-            onDateChange={item => setDate(item)}
-            androidMode="spinner"></DatePicker>
-          <TouchableOpacity
-            style={{
-              position: 'absolute',
-              top: hp('39%'),
-              left: wp('78%'),
-              elevation: 5,
-            }}
-            onPress={item => setConfirmedDate(item)}>
-            <Icon name="checkmark-outline" size={Mixins.scaleWidth(20)} />
-          </TouchableOpacity>
-        </View>
-      )}
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('52%'),
-            left: wp('8%'),
-          },
-        ]}>
-        Buyer:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('52%'),
-            left: wp('35%'),
-          },
-        ]}>
-        City Grocer
-      </Text>
-      <TouchableOpacity
-        style={{
-          backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('30%'),
-          height: hp('5%'),
-          alignSelf: 'center',
-          justifyContent: 'center',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-          position: 'absolute',
-          bottom: hp('8%'),
-          borderRadius: 10,
-        }}
-        onPress={() => {
-          Switch();
-        }}>
-        <Text style={[Typography.normal, {textAlign: 'center'}]}>
-          Create Invoice
+              left: wp('8%'),
+            },
+          ]}>
+          Delivery Date:
         </Text>
-      </TouchableOpacity>
-    </View>
+        {confirmedDate ? (
+          <View>
+            <Text
+              style={[
+                Typography.small,
+                {
+                  position: 'absolute',
+                  top: hp('40%'),
+                  left: wp('35%'),
+                },
+              ]}>
+              {deliverydate}
+            </Text>
+            <TouchableOpacity
+              style={{
+                position: 'absolute',
+                top: hp('40%'),
+                left: wp('57%'),
+                elevation: 5,
+              }}
+              onPress={item => setConfirmedDate(false)}>
+              <Icon name="pencil-outline" size={wp('5%')} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View>
+            <DatePicker
+              style={{
+                backgroundColor: Colors.GRAY_WHITE,
+                borderColor: 'black',
+                borderRadius: 20,
+                width: wp('40%'),
+                height: hp('6%'),
+                elevation: 2,
+                position: 'absolute',
+                top: hp('38%'),
+                left: wp('35%'),
+                justifyContent: 'center',
+              }}
+              customStyles={{
+                dateInput: {
+                  position: 'absolute',
+                  right: wp('6%'),
+                  textAlignVertical: 'center',
+                  borderColor: 'transparent',
+                },
+                dateIcon: {
+                  position: 'absolute',
+                  left: wp('3%'),
+                  height: hp('5%'),
+                  width: wp('7%'),
+                },
+                dateText: {fontSize: hp('2%')},
+              }}
+              format="DD-MM-YYYY"
+              placeholder="Pick a date"
+              showIcon={true}
+              minDate={now()}
+              date={deliverydate}
+              onDateChange={item => setDate(item)}
+              androidMode="spinner"></DatePicker>
+            <TouchableOpacity
+              style={{
+                position: 'absolute',
+                top: hp('39%'),
+                left: wp('78%'),
+                elevation: 5,
+              }}
+              onPress={item => setConfirmedDate(item)}>
+              <Icon name="checkmark-outline" size={wp('5%')} />
+            </TouchableOpacity>
+          </View>
+        )}
+        <Text
+          style={[
+            Typography.placeholder,
+            {
+              position: 'absolute',
+              top: hp('52%'),
+              left: wp('8%'),
+            },
+          ]}>
+          Buyer:
+        </Text>
+        <Text
+          style={[
+            Typography.small,
+            {
+              position: 'absolute',
+              top: hp('52%'),
+              left: wp('35%'),
+            },
+          ]}>
+          City Grocer
+        </Text>
+        <TouchableOpacity
+          style={{
+            backgroundColor: Colors.LIGHT_BLUE,
+            width: wp('30%'),
+            height: hp('5%'),
+            alignSelf: 'center',
+            justifyContent: 'center',
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            position: 'absolute',
+            bottom: hp('8%'),
+            borderRadius: 10,
+          }}
+          onPress={() => {
+            Switch();
+          }}>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>
+            Create Invoice
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -459,7 +470,7 @@ const InvoiceModal = props => {
         style={{
           height: 0,
           borderBottomWidth: 1,
-          width: Mixins.scaleWidth(340),
+          width: wp('95%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
     );
@@ -467,16 +478,16 @@ const InvoiceModal = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(320),
-        height: Mixins.scaleHeight(520),
+        width: wp('90%'),
+        height: hp('80%'),
         backgroundColor: Colors.GRAY_WHITE,
         borderRadius: 10,
       }}>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-10),
-          top: Mixins.scaleHeight(-10),
+          right: wp('1%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setInvoiceModal} />
       </View>
@@ -485,8 +496,8 @@ const InvoiceModal = props => {
           Typography.header,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(30),
-            left: Mixins.scaleWidth(20),
+            top: hp('5%'),
+            left: wp('5%'),
           },
         ]}>
         Invoice 12435
@@ -496,8 +507,8 @@ const InvoiceModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(35),
+            right: wp('5%'),
+            top: hp('6%'),
           },
         ]}>
         30 June 2021
@@ -507,8 +518,8 @@ const InvoiceModal = props => {
           ([Typography.normal],
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(55),
-            left: Mixins.scaleWidth(20),
+            top: hp('9%'),
+            left: wp('5%'),
           })
         }>
         Matthew's Farm
@@ -516,16 +527,16 @@ const InvoiceModal = props => {
       <View
         style={{
           borderBottomWidth: 2,
-          width: Mixins.scaleWidth(250),
+          width: wp('80%'),
           alignSelf: 'center',
-          top: Mixins.scaleHeight(80),
+          top: hp('14%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
-      <View style={{top: Mixins.scaleHeight(90)}}>
+      <View style={{top: hp('15%')}}>
         <View
           style={{
-            width: Mixins.scaleWidth(320),
-            maxHeight: Mixins.scaleHeight(320),
+            width: wp('90%'),
+            maxHeight: hp('50%'),
           }}>
           <FlatList
             keyExtractor={item => item.id}
@@ -553,28 +564,26 @@ const InvoiceModal = props => {
             Typography.normal,
             {
               fontFamily: 'Poppins-SemiBold',
-              left: Mixins.scaleWidth(200),
-              marginTop: Mixins.scaleHeight(10),
+              left: wp('60%'),
+              marginTop: hp('1%'),
             },
           ]}>
           TOTAL: RM 3000
         </Text>
       </View>
-
       <TouchableOpacity
         style={{
           position: 'absolute',
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(120),
-          height: Mixins.scaleHeight(30),
-          bottom: Mixins.scaleHeight(30),
-          right: Mixins.scaleHeight(20),
+          width: wp('35%'),
+          height: hp('5%'),
+          bottom: hp('5%'),
+          right: wp('5%'),
           elevation: 3,
           borderRadius: 10,
-          flexDirection: 'row',
-          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        <Text style={[Typography.normal, {left: Mixins.scaleWidth(15)}]}>
+        <Text style={[Typography.normal, {left: wp('5%')}]}>
           Create Invoice
         </Text>
       </TouchableOpacity>
@@ -587,40 +596,28 @@ const InvoiceItem = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(300),
-        height: Mixins.scaleHeight(35),
+        width: wp('85%'),
+        height: hp('5%'),
         alignSelf: 'center',
         justifyContent: 'center',
       }}>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(10)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('4%')}]}>
         {props.productName}
       </Text>
       <TextInput
         style={[
           Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(110)},
+          {position: 'absolute', left: wp('30%'), height: hp('10%')},
         ]}
         onChangeText={onChangeNumber}
         value={number}
         placeholder="100"
         keyboardType="numeric"
       />
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(150)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('40%')}]}>
         kg
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {position: 'absolute', left: Mixins.scaleWidth(170)},
-        ]}>
+      <Text style={[Typography.small, {position: 'absolute', left: wp('45%')}]}>
         @ RM8/kg
       </Text>
       <Text
@@ -628,8 +625,7 @@ const InvoiceItem = props => {
           Typography.small,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(10),
-            fontFamily: 'Poppins-SemiBold',
+            right: wp('4%'),
           },
         ]}>
         RM XXX
@@ -645,7 +641,7 @@ const ProductList = props => {
         style={{
           height: 0,
           alignSelf: 'center',
-          width: Mixins.scaleWidth(260),
+          width: wp('70%'),
         }}></View>
     );
   };
@@ -677,8 +673,8 @@ const Product = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(20),
-        width: Mixins.scaleWidth(260),
+        height: hp('3%'),
+        width: wp('70%'),
         justifyContent: 'center',
       }}>
       <Text
@@ -696,7 +692,7 @@ const Product = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(65),
+            left: wp('20%'),
             position: 'absolute',
           },
         ]}>
@@ -707,7 +703,7 @@ const Product = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(120),
+            left: wp('33%'),
             position: 'absolute',
           },
         ]}>
@@ -752,6 +748,13 @@ const ReceivePaymentTask = props => {
           width: wp('85%'),
           height: hp('12.5%'),
           elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
         <View
           style={{
@@ -844,8 +847,8 @@ const ReceivePaymentModal = props => {
       <View
         style={{
           position: 'absolute',
-          right: wp('-4%'),
-          top: hp('-2%'),
+          right: wp('1%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setReceiveTaskModal} />
       </View>
@@ -879,7 +882,7 @@ const ReceivePaymentModal = props => {
             position: 'absolute',
             fontFamily: 'Poppins-SemiBold',
             top: hp('6%'),
-            left: Mixins.scaleWidth(20),
+            left: wp('5%'),
           },
         ]}>
         Payment Alert
@@ -1033,30 +1036,19 @@ const ReceivePaymentModal = props => {
 
 //Retailer receive
 const ReceiveModal = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          borderBottomWidth: 1,
-          width: Mixins.scaleWidth(340),
-          borderColor: Colors.GRAY_MEDIUM,
-        }}></View>
-    );
-  };
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(320),
-        height: Mixins.scaleHeight(520),
+        width: wp('90%'),
+        height: hp('80%'),
         backgroundColor: Colors.GRAY_WHITE,
         borderRadius: 10,
       }}>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-10),
-          top: Mixins.scaleHeight(-10),
+          right: wp('1%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setReceiveModal} />
       </View>
@@ -1065,8 +1057,8 @@ const ReceiveModal = props => {
           Typography.normal,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(50),
-            left: Mixins.scaleWidth(30),
+            top: hp('7%'),
+            left: wp('8%'),
           },
         ]}>
         Sunday
@@ -1076,8 +1068,8 @@ const ReceiveModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(50),
+            right: wp('7%'),
+            top: hp('7%'),
             fontStyle: 'italic',
           },
         ]}>
@@ -1088,18 +1080,18 @@ const ReceiveModal = props => {
           Typography.header,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(70),
-            left: Mixins.scaleWidth(30),
+            top: hp('11%'),
+            left: wp('8%'),
           },
         ]}>
         30th June, 2021
       </Text>
       <View
         style={{
-          borderBottomWidth: 2,
-          width: Mixins.scaleWidth(280),
+          borderBottomWidth: wp('1%'),
+          width: wp('80%'),
           alignSelf: 'center',
-          top: Mixins.scaleHeight(115),
+          top: hp('18%'),
           borderColor: Colors.GRAY_MEDIUM,
           position: 'absolute',
         }}></View>
@@ -1108,8 +1100,8 @@ const ReceiveModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(135),
-            left: Mixins.scaleWidth(30),
+            top: hp('21%'),
+            left: wp('8%'),
           },
         ]}>
         Items:
@@ -1117,8 +1109,8 @@ const ReceiveModal = props => {
       <View
         style={{
           position: 'absolute',
-          top: Mixins.scaleHeight(135),
-          left: Mixins.scaleWidth(120),
+          top: hp('21%'),
+          left: wp('35%'),
         }}>
         <ProductList></ProductList>
       </View>
@@ -1127,8 +1119,8 @@ const ReceiveModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(250),
-            left: Mixins.scaleWidth(30),
+            top: hp('40%'),
+            left: wp('8%'),
           },
         ]}>
         Delivery Date:
@@ -1138,8 +1130,8 @@ const ReceiveModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(252),
-            left: Mixins.scaleWidth(130),
+            top: hp('40.3%'),
+            left: wp('35%'),
           },
         ]}>
         1:30 PM Fri, 4 July
@@ -1149,8 +1141,8 @@ const ReceiveModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(330),
-            left: Mixins.scaleWidth(30),
+            top: hp('52%'),
+            left: wp('8%'),
           },
         ]}>
         Buyer:
@@ -1160,8 +1152,8 @@ const ReceiveModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(330),
-            left: Mixins.scaleWidth(130),
+            top: hp('52%'),
+            left: wp('35%'),
           },
         ]}>
         City Grocer
@@ -1169,13 +1161,13 @@ const ReceiveModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(150),
-          height: Mixins.scaleHeight(30),
+          width: wp('30%'),
+          height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
           elevation: 5,
           position: 'absolute',
-          bottom: Mixins.scaleHeight(50),
+          bottom: hp('8%'),
           borderRadius: 10,
           shadowColor: '#000',
           shadowOffset: {
@@ -1188,9 +1180,7 @@ const ReceiveModal = props => {
         }}>
         <Text style={[Typography.normal, {textAlign: 'center'}]}>
           Receive{'\t\t'}
-          <Icon
-            name="checkmark-circle-outline"
-            size={Mixins.scaleWidth(20)}></Icon>
+          <Icon name="checkmark-circle-outline" size={wp('5%')}></Icon>
         </Text>
       </TouchableOpacity>
     </View>
@@ -1215,6 +1205,13 @@ const Receive = props => {
           width: wp('85%'),
           height: hp('12.5%'),
           elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
         <View
           style={{
@@ -1226,14 +1223,14 @@ const Receive = props => {
         <View
           style={{
             backgroundColor: Colors.GRAY_LIGHT,
-            height: Mixins.scaleHeight(80),
-            width: Mixins.scaleWidth(80),
-            right: Mixins.scaleWidth(8),
+            height: hp('12.5%'),
+            width: wp('23%'),
+            right: wp('2%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View style={{bottom: Mixins.scaleHeight(3)}}>
-            <Icon name="cube-outline" size={Mixins.scaleWidth(40)} />
+          <View style={{bottom: hp('0.5%')}}>
+            <Icon name="cube-outline" size={wp('11%')} />
           </View>
         </View>
         <Text
@@ -1241,8 +1238,8 @@ const Receive = props => {
             Typography.normal,
             {
               color: Colors.LIME_GREEN,
-              top: Mixins.scaleHeight(20),
-              left: Mixins.scaleWidth(90),
+              top: hp('3%'),
+              left: wp('25%'),
               position: 'absolute',
             },
           ]}>
@@ -1253,8 +1250,8 @@ const Receive = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(45),
-              left: Mixins.scaleWidth(90),
+              top: hp('7%'),
+              left: wp('25%'),
               position: 'absolute',
             },
           ]}>
@@ -1265,8 +1262,8 @@ const Receive = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(40),
-              right: Mixins.scaleWidth(10),
+              top: hp('6.5%'),
+              right: hp('2%'),
               position: 'absolute',
             },
           ]}>
@@ -1277,8 +1274,8 @@ const Receive = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(50),
-              right: Mixins.scaleWidth(10),
+              top: hp('8%'),
+              right: hp('2%'),
               position: 'absolute',
               fontStyle: 'italic',
             },
@@ -1321,16 +1318,16 @@ const UploadReceiptModal = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(320),
-        height: Mixins.scaleHeight(520),
+        width: wp('90%'),
+        height: hp('80%'),
         backgroundColor: Colors.GRAY_WHITE,
         borderRadius: 10,
       }}>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-10),
-          top: Mixins.scaleHeight(-10),
+          right: wp('1%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setUploadReceiptModal} />
       </View>
@@ -1339,8 +1336,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(70),
-            right: Mixins.scaleWidth(20),
+            top: hp('7%'),
+            right: wp('4%'),
           },
         ]}>
         11:00 AM
@@ -1350,8 +1347,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            right: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(85),
+            right: wp('4%'),
+            top: hp('10%'),
             fontStyle: 'italic',
           },
         ]}>
@@ -1363,18 +1360,18 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             fontFamily: 'Poppins-SemiBold',
-            top: Mixins.scaleHeight(35),
-            left: Mixins.scaleWidth(20),
+            top: hp('6%'),
+            left: wp('5%'),
           },
         ]}>
         Payment Alert
       </Text>
       <View
         style={{
-          borderBottomWidth: 2,
-          width: Mixins.scaleWidth(280),
+          borderBottomWidth: wp('1%'),
+          width: wp('80%'),
           alignSelf: 'center',
-          top: Mixins.scaleHeight(115),
+          top: hp('18%'),
           borderColor: Colors.GRAY_MEDIUM,
           position: 'absolute',
         }}></View>
@@ -1383,8 +1380,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(150),
-            left: Mixins.scaleWidth(20),
+            top: hp('23%'),
+            left: wp('5%'),
           },
         ]}>
         Payment To:
@@ -1394,8 +1391,8 @@ const UploadReceiptModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(150),
-            left: Mixins.scaleWidth(150),
+            top: hp('23%'),
+            left: wp('41%'),
           },
         ]}>
         Matthew's Farm
@@ -1405,8 +1402,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(180),
-            left: Mixins.scaleWidth(20),
+            top: hp('28%'),
+            left: wp('5%'),
           },
         ]}>
         Order #:
@@ -1416,8 +1413,8 @@ const UploadReceiptModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(180),
-            left: Mixins.scaleWidth(150),
+            top: hp('28%'),
+            left: wp('41%'),
           },
         ]}>
         #12345
@@ -1427,8 +1424,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(210),
-            left: Mixins.scaleWidth(20),
+            top: hp('33%'),
+            left: wp('5%'),
           },
         ]}>
         Date of Payment:
@@ -1438,8 +1435,8 @@ const UploadReceiptModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(210),
-            left: Mixins.scaleWidth(150),
+            top: hp('33%'),
+            left: wp('41%'),
           },
         ]}>
         22 July, 2021
@@ -1449,8 +1446,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(240),
-            left: Mixins.scaleWidth(20),
+            top: hp('38%'),
+            left: wp('5%'),
           },
         ]}>
         Bank:
@@ -1460,8 +1457,8 @@ const UploadReceiptModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(240),
-            left: Mixins.scaleWidth(150),
+            top: hp('38%'),
+            left: wp('41%'),
           },
         ]}>
         MayBank
@@ -1471,8 +1468,8 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(270),
-            left: Mixins.scaleWidth(20),
+            top: hp('43%'),
+            left: wp('5%'),
           },
         ]}>
         Reference #:
@@ -1482,8 +1479,8 @@ const UploadReceiptModal = props => {
           Typography.small,
           {
             position: 'absolute',
-            top: Mixins.scaleHeight(270),
-            left: Mixins.scaleWidth(150),
+            top: hp('43%'),
+            left: wp('41%'),
           },
         ]}>
         9065 7756 8989
@@ -1491,13 +1488,13 @@ const UploadReceiptModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(180),
-          height: Mixins.scaleHeight(30),
+          width: wp('40%'),
+          height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
           elevation: 5,
           position: 'absolute',
-          bottom: Mixins.scaleHeight(50),
+          bottom: hp('10%'),
           borderRadius: 10,
           flexDirection: 'row',
           shadowColor: '#000',
@@ -1520,8 +1517,8 @@ const UploadReceiptModal = props => {
           </Text>
           <Icon
             name="receipt-outline"
-            size={Mixins.scaleWidth(20)}
-            style={{left: Mixins.scaleWidth(20)}}
+            size={wp('5%')}
+            style={{left: wp('3%')}}
           />
         </View>
       </TouchableOpacity>
@@ -1535,37 +1532,44 @@ const UploadReceipt = props => {
     <TouchableOpacity
       onPress={() => setUploadReceiptModal(true)}
       style={{
-        marginBottom: 10,
-        width: Mixins.scaleWidth(305),
-        height: Mixins.scaleHeight(80),
+        marginBottom: hp('2%'),
+        width: wp('85%'),
+        height: hp('12%'),
       }}>
       <View
         style={{
           backgroundColor: Colors.GRAY_LIGHT,
           borderRadius: 10,
           flexDirection: 'row',
-          width: Mixins.scaleWidth(300),
-          height: Mixins.scaleHeight(80),
+          width: wp('85%'),
+          height: hp('12.5%'),
           elevation: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
         }}>
         <View
           style={{
             backgroundColor: Colors.GRAY_BLACK,
-            height: Mixins.scaleHeight(80),
-            width: Mixins.scaleWidth(16),
+            height: hp('12.5%'),
+            width: wp('4.5%'),
             borderRadius: 10,
           }}></View>
         <View
           style={{
             backgroundColor: Colors.GRAY_LIGHT,
-            height: Mixins.scaleHeight(80),
-            width: Mixins.scaleWidth(80),
-            right: Mixins.scaleWidth(8),
+            height: hp('12.5%'),
+            width: wp('23%'),
+            right: wp('2%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View style={{bottom: Mixins.scaleHeight(3)}}>
-            <Icon name="cash-outline" size={Mixins.scaleWidth(40)} />
+          <View style={{bottom: hp('0.5%')}}>
+            <Icon name="cash-outline" size={wp('11%')} />
           </View>
         </View>
         <Text
@@ -1573,8 +1577,8 @@ const UploadReceipt = props => {
             Typography.normal,
             {
               color: Colors.LIME_GREEN,
-              top: Mixins.scaleHeight(20),
-              left: Mixins.scaleWidth(90),
+              top: hp('3%'),
+              left: wp('25%'),
               position: 'absolute',
             },
           ]}>
@@ -1585,8 +1589,8 @@ const UploadReceipt = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(45),
-              left: Mixins.scaleWidth(90),
+              top: hp('7%'),
+              left: wp('25%'),
               position: 'absolute',
             },
           ]}>
@@ -1597,8 +1601,8 @@ const UploadReceipt = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(40),
-              right: Mixins.scaleWidth(10),
+              top: hp('6.5%'),
+              right: hp('2%'),
               position: 'absolute',
             },
           ]}>
@@ -1609,8 +1613,8 @@ const UploadReceipt = props => {
             Typography.small,
             {
               color: 'grey',
-              top: Mixins.scaleHeight(50),
-              right: Mixins.scaleWidth(10),
+              top: hp('8%'),
+              right: hp('2%'),
               position: 'absolute',
               fontStyle: 'italic',
             },
