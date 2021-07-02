@@ -38,7 +38,6 @@ export const AddButton = props => {
       <View style={{left: Mixins.scaleWidth(5), bottom: Mixins.scaleHeight(1)}}>
         <Icon name="add-outline" size={Mixins.scaleWidth(20)}></Icon>
       </View>
-
       <Text style={[Typography.normal, {left: Mixins.scaleWidth(10)}]}>
         {props.text}
       </Text>
@@ -49,7 +48,7 @@ export const AddButton = props => {
 export const BackButton = props => {
   return (
     <TouchableOpacity onPress={() => props.navigation.goBack()}>
-      <Icon name="arrow-back-outline" size={Mixins.scaleWidth(25)} />
+      <Icon name="arrow-back-outline" size={wp('7%')} />
     </TouchableOpacity>
   );
 };
