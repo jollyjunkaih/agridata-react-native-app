@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  Modal,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Typography, Spacing, Colors} from '_styles';
@@ -15,23 +14,29 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Modal from 'react-native-modal';
 
-export const ConfirmSignUp = ({navigation}) => {
+export const ConfirmSignUp = props => {
   const [username, setPhone] = useState('');
   const [authCode, setAuthCode] = useState('');
   const [error, setError] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false); //success modal
-  const [modalVisible2, setModalVisible2] = useState(false); //error modal
+  const [successfulModal, setSuccessfulModal] = useState(false); //success modal
+  const [unsuccessfulModal, setUnsuccessfulModal] = useState(false); //error modal
+  const [resendCode, setResendCode] = useState(false);
+  const [unsuccessfulModal2, setUnsuccessfulModal2] = useState(false);
+  const [wrongCode, setWrongCode] = useState(false);
 
   async function confirmSignUp() {
     try {
       const user = await Auth.confirmSignUp(username, authCode);
       console.log('✅ Code confirmed' + user);
-
+      setTimeout(() => {
+        setSuccessfulModal(true);
+      }, 3000);
       navigation.navigate('signin');
     } catch (error) {
       setError(true);
-      setModalVisible2(true);
+      setWrongCode(true);
       console.log(
         '❌ Verification code does not match. Please enter a valid verification code.',
         error.code,
@@ -43,7 +48,6 @@ export const ConfirmSignUp = ({navigation}) => {
     try {
       await Auth.resendSignUp(username);
       console.log('code resent successfully');
-      setModalVisible(true);
     } catch (err) {
       console.log('error resending code: ', err);
     }
@@ -93,7 +97,7 @@ export const ConfirmSignUp = ({navigation}) => {
               color: '#444443',
             },
           ]}>
-          Send a code to your phone and verify it
+          Send a code to your phone to verify it.
         </Text>
         <View style={{top: hp('10%')}}>
           <Text style={[Typography.small]}>Phone Number</Text>
@@ -129,203 +133,246 @@ export const ConfirmSignUp = ({navigation}) => {
               borderColor: Colors.GRAY_DARK,
             }}></View>
         </View>
-        <TouchableOpacity
-          style={{
-            top: hp('20%'),
-            width: wp('40%'),
-            height: hp('6%'),
-            backgroundColor: 'white',
-            borderRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-            if (username == '') {
-              setModalVisible2(true);
-            } else {
-              resendConfirmationCode();
-            }
-          }}>
-          <Text style={[Typography.normal]}>RESEND CODE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            top: hp('25%'),
-            width: wp('40%'),
-            height: hp('6%'),
-            backgroundColor: 'white',
-            borderRadius: 20,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-            if (authCode == '' || username == '') {
-              setModalVisible2(true);
-            } else {
-              confirmSignUp();
-            }
-          }}>
-          <Text style={[Typography.normal]}>VERIFY</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            style={{
+              top: hp('20%'),
+              width: wp('40%'),
+              height: hp('6%'),
+              backgroundColor: 'white',
+              borderRadius: 20,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => {
+              if (username == '') {
+                setUnsuccessfulModal2(true);
+              } else {
+                resendConfirmationCode();
+                setResendCode(true);
+              }
+            }}>
+            <Text style={[Typography.normal]}>RESEND CODE</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              top: hp('25%'),
+              width: wp('40%'),
+              height: hp('6%'),
+              backgroundColor: 'white',
+              borderRadius: 20,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => {
+              if (authCode == '' || username == '') {
+                setUnsuccessfulModal(true);
+              } else {
+                confirmSignUp();
+              }
+            }}>
+            <Text style={[Typography.normal]}>VERIFY</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <Modal
+        isVisible={unsuccessfulModal}
+        onBackdropPress={() => setUnsuccessfulModal(false)}>
+        <UnsuccessfulModal setUnsuccessfulModal={setUnsuccessfulModal} />
+      </Modal>
+      <Modal
+        isVisible={unsuccessfulModal2}
+        onBackdropPress={() => setUnsuccessfulModal2(false)}>
+        <UnsuccessfulModal2 setUnsuccessfulModal2={setUnsuccessfulModal2} />
+      </Modal>
+      <Modal
+        isVisible={successfulModal}
+        onBackdropPress={() => setSuccessfulModal(false)}>
+        <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
+      </Modal>
+      <Modal
+        isVisible={resendCode}
+        onBackdropPress={() => setResendCode(false)}>
+        <ResendCodeModal setResendCode={setResendCode} />
+      </Modal>
+      <Modal isVisible={wrongCode} onBackdropPress={() => setWrongCode(false)}>
+        <WrongCode setWrongCode={setWrongCode} />
+      </Modal>
+    </SafeAreaView>
+  );
+};
+
+export const SuccessfulModal = props => {
+  return (
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: hp('40%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Phone Successfully Verified
+        </Text>
+
+        <View style={{top: hp('10%'), justifyContent: 'center'}}>
+          <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
-const SuccessModal = props => {
+export const UnsuccessfulModal2 = props => {
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}>
-      <View style={styles.modalView}>
-        <Image
-          style={{
-            width: wp(122),
-            height: wp(120),
-            left: wp(0),
-            top: hp(40),
-          }}
-          source={require('_assets/images/Bad-Vege.png')}></Image>
-        <Text style={styles.modalText}>Code was sent successfully,</Text>
-        <TouchableOpacity
-          style={[
-            {
-              borderRadius: 20,
-              height: hp(30),
-              width: wp(120),
-              elevation: 2,
-              top: hp(60),
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-            styles.buttonClose,
-          ]}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <Text style={[styles.textStyle, {bottom: hp(2)}]}>Close</Text>
-        </TouchableOpacity>
-      </View>
-    </Modal>
-  );
-};
-
-const UnsuccesfulModal = props => {
-  return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible2}
-      onRequestClose={() => {
-        setModalVisible(!{modalVisible2});
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       <View
         style={{
-          height: hp(640),
-          width: wp(360),
-          justifyContent: 'center',
+          height: hp('40%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
           alignItems: 'center',
+          alignSelf: 'center',
         }}>
-        <View
-          style={{
-            width: wp(300),
-            height: hp(270),
-            backgroundColor: 'lightyellow',
-            borderRadius: 37,
-            alignItems: 'center',
-            shadowOpacity: 0.25,
-            shadowRadius: 4,
-            elevation: 5,
-          }}>
-          {username === '' ? (
-            <Text
-              style={{
-                color: 'black',
-                fontFamily: 'Poppins-SemiBold',
-                //fontSize: rfv(14),
-                width: wp(230),
-                top: hp(30),
-                textAlign: 'center',
-              }}>
-              Please enter your phone number
-            </Text>
-          ) : authCode == '' ? (
-            <Text
-              style={[
-                {
-                  width: wp(230),
-                  top: hp(30),
-                  textAlign: 'center',
-                },
-              ]}>
-              Please enter your code
-            </Text>
-          ) : (
-            <Text
-              style={{
-                color: 'black',
-                fontFamily: 'Poppins-SemiBold',
-                //fontSize: rfv(14),
-                width: wp(230),
-                top: hp(30),
-                textAlign: 'center',
-              }}>
-              The code you typed in is incorrect. Please try again
-            </Text>
-          )}
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Please Enter Phone Number!
+        </Text>
 
-          <View style={{top: hp(35)}}>
-            <Icon name="warning" size={120} color="red" />
-          </View>
-
-          <TouchableOpacity
-            style={{
-              borderRadius: 20,
-              height: hp(30),
-              width: wp(100),
-              elevation: 2,
-              bottom: hp(40),
-              position: 'absolute',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#2196F3',
-            }}
-            onPress={() => {
-              setModalVisible2(false);
-              setError(false);
-            }}>
-            <Text
-              style={{
-                color: 'white',
-                fontFamily: 'Poppins-Bold',
-                //fontSize: rfv(14),
-              }}>
-              AMEND
-            </Text>
-          </TouchableOpacity>
+        <View style={{top: hp('5%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('40%')} />
         </View>
       </View>
-    </Modal>
+    </SafeAreaView>
+  );
+};
+
+export const UnsuccessfulModal = props => {
+  return (
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: hp('40%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Please Enter Both Phone Number and Authentication Code!
+        </Text>
+
+        <View style={{top: hp('5%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('40%')} />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export const ResendCodeModal = props => {
+  return (
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: hp('45%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.header,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Code Sent!
+        </Text>
+        <View style={{top: hp('10%'), justifyContent: 'center'}}>
+          <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export const WrongCode = props => {
+  return (
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: hp('40%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Wrong Authentication Code! Please Re-enter Code!
+        </Text>
+
+        <View style={{top: hp('5%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('40%')} />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };

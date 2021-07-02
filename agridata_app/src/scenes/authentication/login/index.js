@@ -179,7 +179,7 @@ export const Login = props => {
         <View
           style={{
             alignItems: 'center',
-            top: hp('25%'),
+            top: hp('23%'),
           }}>
           <TouchableOpacity
             onPress={async () => {

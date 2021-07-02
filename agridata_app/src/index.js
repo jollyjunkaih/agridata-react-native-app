@@ -519,6 +519,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <Login></Login>;
+  return <ConfirmSignUp></ConfirmSignUp>;
 };
 export default App;
