@@ -71,13 +71,16 @@ const AuthenticationNavigator = props => {
 
 const AppNavigator = props => {
   console.log(props.user);
-  const type = 'supplier';
-  if (props.user.retailerCompanyID || props.user.supplierCompanyID) {
+  const type = props.user.role;
+  if (
+    props.user.retailerCompanyID != null ||
+    props.user.supplierCompanyID != null
+  ) {
     if (
-      props.user.retailerCompanyID &&
+      props.user.retailerCompanyID != null &&
       props.user.retailerCompany.verified != undefined
     ) {
-      if (type == 'retailer-manager') {
+      if (type == 'retailermanager') {
         console.log('Retail Manager \n');
         return (
           <AppStack.Navigator headerMode="none">
@@ -210,7 +213,7 @@ const AppNavigator = props => {
             </AppStack.Screen>
           </AppStack.Navigator>
         );
-      } else if (type == 'retailer-employee') {
+      } else if (type == 'retaileremployee') {
         console.log('Retailer Employee \n');
         return (
           <AppStack.Navigator headerMode="none">
@@ -240,7 +243,7 @@ const AppNavigator = props => {
             </AppStack.Screen>
           </AppStack.Navigator>
         );
-      } else if (type == 'general-manager') {
+      } else if (type == 'generalmanager') {
         console.log('General Manager \n');
         return (
           <AppStack.Navigator headerMode="none">
@@ -312,7 +315,7 @@ const AppNavigator = props => {
         );
       }
     } else if (
-      props.user.supplierCompanyID &&
+      props.user.supplierCompanyID != null &&
       props.user.supplierCompany.verified != undefined
     ) {
       console.log('Supplier \n');

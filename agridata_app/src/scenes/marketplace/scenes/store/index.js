@@ -13,25 +13,55 @@ import {Searchbar} from '../../components';
 import {MarketplaceList, PurchaseOrderButton} from './components';
 import {NavBar, BackButton} from '_components';
 import {API, Storage} from 'aws-amplify';
-import {productListingByRetailer} from '../../../../graphql/queries';
+import {
+  getSupplierCompany,
+  productListingByRetailer,
+} from '../../../../graphql/queries';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {purchaseOrderItems} from '../../../../graphql/queries';
 
 export const Store = props => {
   const {itemId} = props.route.params; //supplierid
   const [products, setProducts] = useState([]);
+  const [POList, setPOList] = useState([]);
+  const [storeName, setStoreName] = useState('');
+  const retailerID = props.user.retailerCompanyID;
+  console.log('retailer id:' + retailerID);
+  const purchaseOrder = retailerID + itemId;
+  console.log('purchase Order:' + purchaseOrder);
 
-  const fetchProducts = async props => {
-    const products = await API.graphql({
-      query: productListingByRetailer,
-      variables: {supplierID: itemId, sortDirection: 'ASC'},
+  useEffect(() => {
+    console.log('Fetching Products from ' + itemId);
+    fetchProducts();
+    console.log('Fetching PO from ' + purchaseOrder);
+    getPOList();
+  }, []);
+
+  const getPOList = async () => {
+    console.log('gettingPO');
+    try {
+      const list = await API.graphql({
+        query: purchaseOrderItems,
+        variables: {purchaseOrderID: purchaseOrder},
+      });
+      console.log(list.data.purchaseOrderItems.items);
+      setPOList(list.data.purchaseOrderItems.items);
+    } catch {
+      e => console.log(e);
+    }
+  };
+
+  const fetchProducts = async () => {
+    const supplier = await API.graphql({
+      query: getSupplierCompany,
+      variables: {id: itemId},
     });
-    useEffect(() => {
-      console.log('Fetching Products from ' + itemId);
-      fetchProducts();
-    }, []);
+    console.log(supplier.data.getSupplierCompany.listings.items);
+    setProducts(supplier.data.getSupplierCompany.listings.items);
+    setStoreName(supplier.data.getSupplierCompany.name);
   };
   return (
     <SafeAreaView
@@ -49,27 +79,35 @@ export const Store = props => {
         }}>
         <BackButton navigation={props.navigation} />
       </View>
-      <Text style={[Typography.header, {top: hp('4%')}]}>
-        {props.name}Jane's Farm
-      </Text>
-      <View style={{top: hp('6%')}}>
-        <Searchbar />
-      </View>
-      <ScrollView
+      <Text style={[Typography.header, {top: hp('4%')}]}>{storeName}</Text>
+
+      <View
         style={{
           width: wp('93%'),
           height: hp('90%'),
           top: hp('10%'),
         }}>
-        <MarketplaceList productList={items} />
-      </ScrollView>
+        <MarketplaceList
+          productList={products}
+          POList={POList}
+          setPOList={setPOList}
+          purchaseOrder={purchaseOrder}
+          user={props.user}
+        />
+      </View>
       <View
         style={{
           position: 'absolute',
           right: wp('5%'),
           bottom: hp('13%'),
         }}>
-        <PurchaseOrderButton />
+        <PurchaseOrderButton
+          purchaseOrder={purchaseOrder}
+          storeName={storeName}
+          POList={POList}
+          setPOList={setPOList}
+          user={props.user}
+        />
       </View>
 
       <View style={{position: 'absolute', bottom: hp('0%')}}>

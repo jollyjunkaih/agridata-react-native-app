@@ -43,12 +43,13 @@ export const Marketplace = props => {
       console.log(products);
       if (products.data.productListingByNameStartingWithLowestPrice) {
         console.log('Products: \n');
-        console.log(products);
+        console.log(
+          products.data.productListingByNameStartingWithLowestPrice.items,
+        );
         setProducts(
           products.data.productListingByNameStartingWithLowestPrice.items,
         );
       }
-      console.log(productsList);
     } catch (e) {
       console.log(e);
       console.log("there's a problem");

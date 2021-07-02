@@ -590,6 +590,8 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           highPrice
           minimumQuantity
           productPicture
+          grade
+          siUnit
           createdAt
           updatedAt
         }
@@ -693,6 +695,8 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           highPrice
           minimumQuantity
           productPicture
+          grade
+          siUnit
           createdAt
           updatedAt
         }
@@ -796,6 +800,8 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           highPrice
           minimumQuantity
           productPicture
+          grade
+          siUnit
           createdAt
           updatedAt
         }
@@ -955,7 +961,6 @@ export const onCreateChatGroup = /* GraphQL */ `
           type
           content
           senderID
-          uniqueContentID
           sender
           createdAt
           updatedAt
@@ -1065,7 +1070,6 @@ export const onUpdateChatGroup = /* GraphQL */ `
           type
           content
           senderID
-          uniqueContentID
           sender
           createdAt
           updatedAt
@@ -1175,7 +1179,6 @@ export const onDeleteChatGroup = /* GraphQL */ `
           type
           content
           senderID
-          uniqueContentID
           sender
           createdAt
           updatedAt
@@ -1197,7 +1200,6 @@ export const onCreateMessage = /* GraphQL */ `
       type
       content
       senderID
-      uniqueContentID
       sender
       createdAt
       updatedAt
@@ -1212,7 +1214,6 @@ export const onUpdateMessage = /* GraphQL */ `
       type
       content
       senderID
-      uniqueContentID
       sender
       createdAt
       updatedAt
@@ -1227,7 +1228,6 @@ export const onDeleteMessage = /* GraphQL */ `
       type
       content
       senderID
-      uniqueContentID
       sender
       createdAt
       updatedAt
@@ -1538,6 +1538,8 @@ export const onCreateProductListing = /* GraphQL */ `
       highPrice
       minimumQuantity
       productPicture
+      grade
+      siUnit
       createdAt
       updatedAt
     }
@@ -1592,6 +1594,8 @@ export const onUpdateProductListing = /* GraphQL */ `
       highPrice
       minimumQuantity
       productPicture
+      grade
+      siUnit
       createdAt
       updatedAt
     }
@@ -1646,6 +1650,8 @@ export const onDeleteProductListing = /* GraphQL */ `
       highPrice
       minimumQuantity
       productPicture
+      grade
+      siUnit
       createdAt
       updatedAt
     }
@@ -1656,8 +1662,15 @@ export const onCreatePurchaseOrder = /* GraphQL */ `
     onCreatePurchaseOrder {
       id
       items {
+        id
+        purchaseOrderID
         name
         quantity
+        createdAt
+        siUnit
+        variety
+        grade
+        updatedAt
       }
       createdAt
       updatedAt
@@ -1669,8 +1682,15 @@ export const onUpdatePurchaseOrder = /* GraphQL */ `
     onUpdatePurchaseOrder {
       id
       items {
+        id
+        purchaseOrderID
         name
         quantity
+        createdAt
+        siUnit
+        variety
+        grade
+        updatedAt
       }
       createdAt
       updatedAt
@@ -1682,10 +1702,62 @@ export const onDeletePurchaseOrder = /* GraphQL */ `
     onDeletePurchaseOrder {
       id
       items {
+        id
+        purchaseOrderID
         name
         quantity
+        createdAt
+        siUnit
+        variety
+        grade
+        updatedAt
       }
       createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateProducts = /* GraphQL */ `
+  subscription OnCreateProducts {
+    onCreateProducts {
+      id
+      purchaseOrderID
+      name
+      quantity
+      createdAt
+      siUnit
+      variety
+      grade
+      updatedAt
+    }
+  }
+`;
+export const onUpdateProducts = /* GraphQL */ `
+  subscription OnUpdateProducts {
+    onUpdateProducts {
+      id
+      purchaseOrderID
+      name
+      quantity
+      createdAt
+      siUnit
+      variety
+      grade
+      updatedAt
+    }
+  }
+`;
+export const onDeleteProducts = /* GraphQL */ `
+  subscription OnDeleteProducts {
+    onDeleteProducts {
+      id
+      purchaseOrderID
+      name
+      quantity
+      createdAt
+      siUnit
+      variety
+      grade
       updatedAt
     }
   }
@@ -1695,9 +1767,16 @@ export const onCreateOrderQuotation = /* GraphQL */ `
     onCreateOrderQuotation {
       id
       items {
+        id
+        quotationID
         name
+        variety
+        grade
         quantity
+        createdAt
         price
+        siUnit
+        updatedAt
       }
       createdAt
       updatedAt
@@ -1709,9 +1788,16 @@ export const onUpdateOrderQuotation = /* GraphQL */ `
     onUpdateOrderQuotation {
       id
       items {
+        id
+        quotationID
         name
+        variety
+        grade
         quantity
+        createdAt
         price
+        siUnit
+        updatedAt
       }
       createdAt
       updatedAt
@@ -1723,11 +1809,66 @@ export const onDeleteOrderQuotation = /* GraphQL */ `
     onDeleteOrderQuotation {
       id
       items {
+        id
+        quotationID
         name
+        variety
+        grade
         quantity
+        createdAt
         price
+        siUnit
+        updatedAt
       }
       createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateQuotedProducts = /* GraphQL */ `
+  subscription OnCreateQuotedProducts {
+    onCreateQuotedProducts {
+      id
+      quotationID
+      name
+      variety
+      grade
+      quantity
+      createdAt
+      price
+      siUnit
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQuotedProducts = /* GraphQL */ `
+  subscription OnUpdateQuotedProducts {
+    onUpdateQuotedProducts {
+      id
+      quotationID
+      name
+      variety
+      grade
+      quantity
+      createdAt
+      price
+      siUnit
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQuotedProducts = /* GraphQL */ `
+  subscription OnDeleteQuotedProducts {
+    onDeleteQuotedProducts {
+      id
+      quotationID
+      name
+      variety
+      grade
+      quantity
+      createdAt
+      price
+      siUnit
       updatedAt
     }
   }
@@ -1813,6 +1954,7 @@ export const onCreateGoodsTask = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       deliveryDate
@@ -1901,6 +2043,7 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       deliveryDate
@@ -1989,6 +2132,7 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       deliveryDate
@@ -2109,6 +2253,7 @@ export const onCreatePaymentTask = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -2232,6 +2377,7 @@ export const onUpdatePaymentTask = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -2355,6 +2501,7 @@ export const onDeletePaymentTask = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -2446,6 +2593,7 @@ export const onCreateInvoice = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       paid
@@ -2535,6 +2683,7 @@ export const onUpdateInvoice = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       paid
@@ -2624,6 +2773,7 @@ export const onDeleteInvoice = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       paid

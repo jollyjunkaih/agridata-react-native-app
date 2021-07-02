@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  RefreshControl,
   TextInput,
   KeyboardAvoidingView,
   Platform,
@@ -16,7 +15,14 @@ import Modal from 'react-native-modal';
 import {Rating} from 'react-native-ratings';
 import {ChatButton} from '../../../components';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {LIME_GREEN} from '_styles';
+import {API, Storage} from 'aws-amplify';
+
+import {
+  createProducts,
+  deleteProducts,
+  updateProducts,
+  createMessage,
+} from '../../../../../graphql/mutations';
 
 const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -49,10 +55,16 @@ const ProductCard = props => {
         ]}>
         Price: {props.priceMin} - {props.priceMax}
         {'\n'}MOQ: {props.moq}
-        {'\n'}Available: {props.availableQuantity}
+        {'\n'}Grade: {props.grade}
       </Text>
       <Modal isVisible={productModal}>
-        <ProductPopUp setProductModal={setProductModal}></ProductPopUp>
+        <ProductPopUp
+          setProductModal={setProductModal}
+          purchaseOrder={props.purchaseOrder}
+          POList={props.POList}
+          setPOList={props.setPOList}
+          id={props.id}
+          user={props.user}></ProductPopUp>
       </Modal>
     </TouchableOpacity>
   );
@@ -61,12 +73,6 @@ const ProductCard = props => {
 export const MarketplaceList = props => {
   return (
     <FlatList
-      refreshControl={
-        <RefreshControl
-          refreshing={props.refreshing}
-          onRefresh={props.onRefresh}
-        />
-      }
       keyExtractor={item => item.id}
       data={props.productList}
       numColumns={2}
@@ -99,6 +105,10 @@ export const MarketplaceList = props => {
             moq={item.moq}
             farmerID={item.farmerID}
             id={item.id}
+            purchaseOrder={props.purchaseOrder}
+            POList={props.POList}
+            setPOList={props.setPOList}
+            user={props.user}
           />
         );
       }}
@@ -107,6 +117,55 @@ export const MarketplaceList = props => {
 };
 
 const ProductPopUp = props => {
+  const [desiredQuantity, setDesiredQuantity] = useState('');
+  const [inquirySuccessfulModal, setInquirySuccessfulModal] = useState(false);
+  const sendProductInquiry = async () => {
+    console.log('creating product inquiry');
+    console.log(props.user);
+    console.log(props.id);
+    console.log(props.purchaseOrder);
+    const inquiry = {
+      chatGroupID: props.purchaseOrder,
+      type: 'inquiry',
+      content: props.id,
+      sender: props.user.name,
+      senderID: props.user.id,
+    };
+    try {
+      const message = await API.graphql({
+        query: createMessage,
+        variables: {input: inquiry},
+      });
+      console.log(message.data.createMessage);
+      setInquirySuccessfulModal(true);
+    } catch {
+      e => console.log(e);
+    }
+  };
+  const addToPurchaseOrder = async () => {
+    console.log('addingToPO ' + props.purchaseOrder);
+    try {
+      const added = await API.graphql({
+        query: createProducts,
+        variables: {
+          input: {
+            purchaseOrderID: props.purchaseOrder,
+            name: props.productName,
+            quantity: parseInt(desiredQuantity),
+            siUnit: 'kg',
+          },
+        },
+      });
+      console.log(added.data.createProducts);
+      var poList = props.POList;
+      console.log(poList);
+      poList.push(added.data.createProducts);
+      console.log(poList);
+      props.setPOList(poList);
+    } catch {
+      e => console.log(e);
+    }
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
@@ -147,9 +206,12 @@ const ProductPopUp = props => {
           }}>
           <Text style={[Typography.header]}>{props.productName}Ginger</Text>
           <View style={{position: 'absolute', right: Mixins.scaleWidth(10)}}>
-            <ChatButton size={Mixins.scaleWidth(25)}></ChatButton>
+            <TouchableOpacity onPress={() => sendProductInquiry()}>
+              <Icon name="chatbox-outline" size={Mixins.scaleWidth(25)}></Icon>
+            </TouchableOpacity>
           </View>
         </View>
+        {/** 
         <Image
           style={{
             top: Mixins.scaleHeight(40),
@@ -157,7 +219,7 @@ const ProductPopUp = props => {
             width: Mixins.scaleWidth(130),
             borderRadius: 100,
           }}
-          source={{uri: ''}}></Image>
+          source={{uri: ''}}></Image>*/}
         <View
           style={{
             top: Mixins.scaleHeight(160),
@@ -245,6 +307,8 @@ const ProductPopUp = props => {
           <Text style={Typography.normal}>Quantity to buy:</Text>
           <TextInput
             keyboardType="number-pad"
+            value={desiredQuantity}
+            onChangeText={item => setDesiredQuantity(item)}
             style={{
               left: Mixins.scaleWidth(15),
               width: Mixins.scaleWidth(80),
@@ -267,7 +331,7 @@ const ProductPopUp = props => {
 
         <View style={{position: 'absolute', bottom: Mixins.scaleHeight(10)}}>
           <TouchableOpacity
-            onPress={() => console.log('add to purchase order')}
+            onPress={() => addToPurchaseOrder()}
             style={{
               width: Mixins.scaleWidth(150),
               backgroundColor: Colors.GRAY_LIGHT,
@@ -290,12 +354,57 @@ const ProductPopUp = props => {
           </TouchableOpacity>
         </View>
       </View>
+      <Modal
+        isVisible={inquirySuccessfulModal}
+        onBackdropPress={() => setInquirySuccessfulModal(false)}>
+        <InquirySuccessfulModal />
+      </Modal>
     </KeyboardAvoidingView>
+  );
+};
+
+const InquirySuccessfulModal = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(330),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.PALE_GREEN,
+        borderRadius: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+      }}>
+      <View style={{top: Mixins.scaleWidth(30)}}>
+        <Image
+          source={require('_assets/images/Good-Vege.png')}
+          style={{
+            resizeMode: 'contain',
+            width: Mixins.scaleWidth(200),
+            height: Mixins.scaleHeight(150),
+          }}
+        />
+      </View>
+      <View style={{top: Mixins.scaleHeight(15)}}>
+        <Text style={[Typography.header]}>SUCCESS!</Text>
+      </View>
+      <View
+        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(25)}}>
+        <Text
+          style={[
+            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
+            Typography.small,
+          ]}>
+          You have successfully sent your product inquiry, wait for the supplier
+          to get back
+        </Text>
+      </View>
+    </View>
   );
 };
 
 export const PurchaseOrderButton = props => {
   const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
+
   return (
     <TouchableOpacity
       style={{
@@ -306,25 +415,56 @@ export const PurchaseOrderButton = props => {
         alignItems: 'center',
         borderRadius: 10,
       }}
-      onPress={() => setPurchaseOrderModal(true)}>
+      onPress={() => {
+        setPurchaseOrderModal(true);
+      }}>
       <Text style={[Typography.normal]}>Purchase Order</Text>
       <Modal isVisible={purchaseOrderModal}>
         <PurchaseOrder
-          setPurchaseOrderModal={setPurchaseOrderModal}></PurchaseOrder>
+          setPurchaseOrderModal={setPurchaseOrderModal}
+          POList={props.POList}
+          setPOList={props.setPOList}
+          user={props.user}
+          purchaseOrder={props.purchaseOrder}
+          storeName={props.storeName}></PurchaseOrder>
       </Modal>
     </TouchableOpacity>
   );
 };
 
 const PurchaseOrder = props => {
+  const [poSuccessfulModal, setpoSuccessfulModal] = useState(false);
+  const sendPO = async () => {
+    console.log('creating product inquiry');
+    console.log(props.user);
+
+    console.log(props.purchaseOrder);
+    const inquiry = {
+      chatGroupID: props.purchaseOrder,
+      type: 'purchaseorder',
+      content: props.purchaseOrder,
+      sender: props.user.name,
+      senderID: props.user.id,
+    };
+    try {
+      const message = await API.graphql({
+        query: createMessage,
+        variables: {input: inquiry},
+      });
+      console.log(message.data.createMessage);
+      setpoSuccessfulModal(true);
+    } catch {
+      e => console.log(e);
+    }
+  };
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(385),
-        width: Mixins.scaleWidth(290),
+        height: Mixins.scaleHeight(500),
+        width: Mixins.scaleWidth(320),
         backgroundColor: Colors.GRAY_LIGHT,
         borderRadius: 10,
-        left: Mixins.scaleWidth(15),
+        left: Mixins.scaleWidth(0),
         alignItems: 'center',
       }}>
       <View style={{alignItems: 'center'}}>
@@ -347,7 +487,7 @@ const PurchaseOrder = props => {
               top: Mixins.scaleHeight(10),
             },
           ]}>
-          Jane's Farm
+          {props.storeName}
         </Text>
       </View>
       <View
@@ -357,7 +497,9 @@ const PurchaseOrder = props => {
           top: Mixins.scaleHeight(30),
           borderRadius: 10,
         }}>
-        <PurchaseOrderList></PurchaseOrderList>
+        <PurchaseOrderList
+          POList={props.POList}
+          setPOList={props.setPOList}></PurchaseOrderList>
       </View>
       <TouchableOpacity
         style={{
@@ -374,7 +516,7 @@ const PurchaseOrder = props => {
           shadowRadius: 5,
           position: 'absolute',
         }}
-        onPress={() => console.log('Button')}>
+        onPress={() => sendPO()}>
         <View style={{flexDirection: 'row'}}>
           <Text style={[Typography.normal]}>Send P.O. To Supplier</Text>
           <View style={{right: Mixins.scaleWidth(-10)}}>
@@ -392,9 +534,54 @@ const PurchaseOrder = props => {
         }}>
         <CloseButton setModal={props.setPurchaseOrderModal} />
       </View>
+      <Modal
+        isVisible={poSuccessfulModal}
+        onBackdropPress={() => setpoSuccessfulModal(false)}>
+        <POSuccessfulModal />
+      </Modal>
     </View>
   );
 };
+
+const POSuccessfulModal = props => {
+  return (
+    <View
+      style={{
+        height: Mixins.scaleHeight(330),
+        width: Mixins.scaleWidth(290),
+        backgroundColor: Colors.PALE_GREEN,
+        borderRadius: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+      }}>
+      <View style={{top: Mixins.scaleWidth(30)}}>
+        <Image
+          source={require('_assets/images/Good-Vege.png')}
+          style={{
+            resizeMode: 'contain',
+            width: Mixins.scaleWidth(200),
+            height: Mixins.scaleHeight(150),
+          }}
+        />
+      </View>
+      <View style={{top: Mixins.scaleHeight(15)}}>
+        <Text style={[Typography.header]}>SUCCESS!</Text>
+      </View>
+      <View
+        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(25)}}>
+        <Text
+          style={[
+            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
+            Typography.small,
+          ]}>
+          You have successfully sent your purchase order, wait for the supplier
+          to get back
+        </Text>
+      </View>
+    </View>
+  );
+};
+
 const PurchaseOrderList = props => {
   const Seperator = () => {
     return (
@@ -409,14 +596,8 @@ const PurchaseOrderList = props => {
   };
   return (
     <FlatList
-      refreshControl={
-        <RefreshControl
-          refreshing={props.refreshing}
-          onRefresh={props.onRefresh}
-        />
-      }
       keyExtractor={item => item.id}
-      data={DATA}
+      data={props.POList}
       numColumns={1}
       ItemSeparatorComponent={Seperator}
       ListEmptyComponent={
@@ -426,11 +607,22 @@ const PurchaseOrderList = props => {
             height: Mixins.scaleHeight(420),
             top: Mixins.scaleHeight(30),
             alignItems: 'center',
-          }}></View>
+          }}>
+          <Text>PO is empty, start by adding a product from this store</Text>
+        </View>
       }
       renderItem={({item}) => {
         return (
-          <PurchaseOrderComponent name={item.name} quantity={item.quantity} />
+          <PurchaseOrderComponent
+            id={item.id}
+            name={item.name}
+            quantity={item.quantity}
+            variety={item.variety}
+            grade={item.grade}
+            siUnit={item.siUnit}
+            setPOList={props.setPOList}
+            POList={props.POList}
+          />
         );
       }}
     />
@@ -438,37 +630,84 @@ const PurchaseOrderList = props => {
 };
 
 const PurchaseOrderComponent = props => {
+  const deleteItemFromPO = async () => {
+    console.log('deleting item: ' + props.id);
+    try {
+      const deleted = await API.graphql({
+        query: deleteProducts,
+        variables: {input: {id: props.id}},
+      });
+      var poList = props.POList;
+      const tempList = poList.filter(item => item.id !== props.id);
+      console.log(tempList);
+      props.setPOList(tempList);
+      console.log(deleted.data.deleteProducts);
+    } catch {
+      e => console.log(e);
+    }
+  };
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(30),
-        justifyContent: 'center',
-        backgroundColor: Colors.GRAY_WHITE,
+        height: Mixins.scaleHeight(40),
+
+        width: Mixins.scaleWidth(300),
+        backgroundColor: 'red',
       }}>
       <View style={{flexDirection: 'row'}}>
         <View>
           <Text
             style={[
-              Typography.small,
+              Typography.normal,
               {position: 'absolute', left: Mixins.scaleWidth(5)},
             ]}>
             {props.name}
           </Text>
-        </View>
-        <View>
-          <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
-            {' '}
-            |{'\t'}
+          <Text
+            style={[
+              Typography.normal,
+              {
+                position: 'absolute',
+                left: Mixins.scaleWidth(5),
+                top: Mixins.scaleWidth(20),
+              },
+            ]}>
+            Grade: {props.name}
+          </Text>
+          <Text
+            style={[
+              Typography.normal,
+              {
+                position: 'absolute',
+                left: Mixins.scaleWidth(70),
+                top: Mixins.scaleWidth(20),
+              },
+            ]}>
+            Variety: {props.name}
+          </Text>
+          <Text
+            style={[
+              Typography.large,
+              {
+                position: 'absolute',
+                left: Mixins.scaleWidth(180),
+                top: Mixins.scaleHeight(10),
+              },
+            ]}>
             {props.quantity}kg
           </Text>
         </View>
-        <TouchableOpacity style={{left: Mixins.scaleWidth(85)}}>
-          <Icon name="create-outline" size={Mixins.scaleWidth(15)} />
+
+        <TouchableOpacity
+          style={{position: 'absolute', right: Mixins.scaleWidth(40)}}>
+          <Icon name="create-outline" size={Mixins.scaleWidth(25)} />
         </TouchableOpacity>
-        <TouchableOpacity style={{left: Mixins.scaleWidth(100)}}>
+        <TouchableOpacity
+          onPress={() => deleteItemFromPO()}
+          style={{position: 'absolute', right: Mixins.scaleWidth(5)}}>
           <Icon
             name="trash-outline"
-            size={Mixins.scaleWidth(15)}
+            size={Mixins.scaleWidth(25)}
             color={Colors.FAIL}
           />
         </TouchableOpacity>

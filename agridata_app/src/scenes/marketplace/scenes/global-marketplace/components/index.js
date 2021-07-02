@@ -135,7 +135,7 @@ export const MarketplaceList = props => {
             priceMin={item.lowPrice}
             priceMax={item.highPrice}
             moq={item.minimumQuantity}
-            farmerID={item.supplierID}
+            supplierID={item.supplierID}
             id={item.id}
           />
         );
@@ -186,9 +186,7 @@ export const ProductPopUp = props => {
             flexDirection: 'row',
             zIndex: 2,
           }}>
-          <Text style={[Typography.header]}>
-            {props.item.productName}Banana
-          </Text>
+          <Text style={[Typography.header]}>{props.item.productName}</Text>
         </View>
 
         <Image

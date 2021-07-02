@@ -53,6 +53,7 @@ type SupplierCompany @model{
   logo: String
 }
 
+"""to add a chatgroup list per company so that we have a base truth to query/check from"""
 
 type Rating {
   numberOfRatings: Int
@@ -88,14 +89,13 @@ type ChatGroup @model
 
 type Message @model 
 @key(name: "byChatGroup", fields: ["chatGroupID","createdAt"], queryField: "messagesInChatByDate"){
-  id:ID!
+  id:ID
   chatGroupID: ID!
   type: String! "Text, Product Inquiry, PO, Quotation"
   content: String!
   senderID: ID!
-  uniqueContentID: ID!
   sender: String!
-  createdAt: String!
+  createdAt: String
 }
 
 type ChatGroupUsers @model
@@ -122,6 +122,8 @@ type ProductListing @model
   highPrice:Float
   minimumQuantity:Int
   productPicture: String 
+  grade: String
+  siUnit: String
 }
 
 type PurchaseOrder @model{
@@ -130,9 +132,16 @@ type PurchaseOrder @model{
   createdAt: String
 }
 
-type Products{
+type Products @model
+@key(name: "productsInPurchaseOrder", fields: ["purchaseOrderID"],queryField: "purchaseOrderItems"){
+  id:ID
+  purchaseOrderID:ID
   name: String
   quantity: Int
+  createdAt: String
+  siUnit: String
+  variety: String
+  grade: String
 }
 
 type OrderQuotation @model{
@@ -141,11 +150,20 @@ type OrderQuotation @model{
   createdAt: String
 }
 
-type QuotedProducts{
+type QuotedProducts @model
+@key(name: "productsInQuotation", fields: ["quotationID"],queryField: "QuotationItems"){
+  id:ID
+  quotationID:ID
   name: String
+  variety: String
+  grade: String
   quantity: Int
-  price: Int
+  createdAt: String
+  price: Float
+  siUnit: String
 }
+
+
 
 type GoodsTask @model
 @key(name: "goodsTasksByRetailer", fields: ["retailerID","createdAt"],queryField: "goodsTaskForRetailerByDate")
@@ -155,7 +173,7 @@ type GoodsTask @model
   retailerID: ID
   supplier: SupplierCompany @connection(fields:["supplierID"])
   supplierID: ID
-  items: [QuotedProducts]
+  items: [Goods]
   createdAt: String
   deliveryDate: String
 }
@@ -185,8 +203,15 @@ type Invoice @model
   retailerID: ID
   supplier: SupplierCompany @connection(fields:["supplierID"])
   supplierID: ID
-  items: [QuotedProducts]
+  items: [Goods]
   createdAt: String
   paid: Boolean
   receivedBy: String
+}
+
+type Goods {
+  name: String
+  quantity: Int
+  price: Float
+  siUnit: String
 }

@@ -210,7 +210,8 @@ export const Registration = props => {
                 top: hp('8%'),
                 height: hp('20%'),
                 zIndex: 2,
-
+                width: wp('80%'),
+                backgroundColor: 'red',
                 height: hp('7%'),
               }}>
               <DropDownPicker
@@ -236,7 +237,7 @@ export const Registration = props => {
                   backgroundColor: Colors.GRAY_LIGHT,
                 }}></DropDownPicker>
             </View>
-            <View
+            {/*   <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -286,7 +287,7 @@ export const Registration = props => {
                   Having any trouble?
                 </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <TouchableOpacity
               onPress={async () => {
                 if (
@@ -323,6 +324,7 @@ export const Registration = props => {
                 shadowRadius: 3,
                 shadowColor: 'grey',
                 elevation: 3,
+                zIndex: 2,
               }}>
               <Text
                 style={[

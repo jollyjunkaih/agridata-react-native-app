@@ -319,6 +319,8 @@ export const getSupplierCompany = /* GraphQL */ `
           highPrice
           minimumQuantity
           productPicture
+          grade
+          siUnit
           createdAt
           updatedAt
         }
@@ -530,7 +532,6 @@ export const getChatGroup = /* GraphQL */ `
           type
           content
           senderID
-          uniqueContentID
           sender
           createdAt
           updatedAt
@@ -601,7 +602,6 @@ export const getMessage = /* GraphQL */ `
       type
       content
       senderID
-      uniqueContentID
       sender
       createdAt
       updatedAt
@@ -621,7 +621,6 @@ export const listMessages = /* GraphQL */ `
         type
         content
         senderID
-        uniqueContentID
         sender
         createdAt
         updatedAt
@@ -803,6 +802,8 @@ export const getProductListing = /* GraphQL */ `
       highPrice
       minimumQuantity
       productPicture
+      grade
+      siUnit
       createdAt
       updatedAt
     }
@@ -836,6 +837,8 @@ export const listProductListings = /* GraphQL */ `
         highPrice
         minimumQuantity
         productPicture
+        grade
+        siUnit
         createdAt
         updatedAt
       }
@@ -848,8 +851,15 @@ export const getPurchaseOrder = /* GraphQL */ `
     getPurchaseOrder(id: $id) {
       id
       items {
+        id
+        purchaseOrderID
         name
         quantity
+        createdAt
+        siUnit
+        variety
+        grade
+        updatedAt
       }
       createdAt
       updatedAt
@@ -866,10 +876,54 @@ export const listPurchaseOrders = /* GraphQL */ `
       items {
         id
         items {
+          id
+          purchaseOrderID
           name
           quantity
+          createdAt
+          siUnit
+          variety
+          grade
+          updatedAt
         }
         createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getProducts = /* GraphQL */ `
+  query GetProducts($id: ID!) {
+    getProducts(id: $id) {
+      id
+      purchaseOrderID
+      name
+      quantity
+      createdAt
+      siUnit
+      variety
+      grade
+      updatedAt
+    }
+  }
+`;
+export const listProductss = /* GraphQL */ `
+  query ListProductss(
+    $filter: ModelProductsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProductss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        purchaseOrderID
+        name
+        quantity
+        createdAt
+        siUnit
+        variety
+        grade
         updatedAt
       }
       nextToken
@@ -881,9 +935,16 @@ export const getOrderQuotation = /* GraphQL */ `
     getOrderQuotation(id: $id) {
       id
       items {
+        id
+        quotationID
         name
+        variety
+        grade
         quantity
+        createdAt
         price
+        siUnit
+        updatedAt
       }
       createdAt
       updatedAt
@@ -900,11 +961,57 @@ export const listOrderQuotations = /* GraphQL */ `
       items {
         id
         items {
+          id
+          quotationID
           name
+          variety
+          grade
           quantity
+          createdAt
           price
+          siUnit
+          updatedAt
         }
         createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getQuotedProducts = /* GraphQL */ `
+  query GetQuotedProducts($id: ID!) {
+    getQuotedProducts(id: $id) {
+      id
+      quotationID
+      name
+      variety
+      grade
+      quantity
+      createdAt
+      price
+      siUnit
+      updatedAt
+    }
+  }
+`;
+export const listQuotedProductss = /* GraphQL */ `
+  query ListQuotedProductss(
+    $filter: ModelQuotedProductsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuotedProductss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        quotationID
+        name
+        variety
+        grade
+        quantity
+        createdAt
+        price
+        siUnit
         updatedAt
       }
       nextToken
@@ -992,6 +1099,7 @@ export const getGoodsTask = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       deliveryDate
@@ -1036,6 +1144,7 @@ export const listGoodsTasks = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         deliveryDate
@@ -1158,6 +1267,7 @@ export const getPaymentTask = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -1303,6 +1413,7 @@ export const getInvoice = /* GraphQL */ `
         name
         quantity
         price
+        siUnit
       }
       createdAt
       paid
@@ -1348,6 +1459,7 @@ export const listInvoices = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -1499,7 +1611,6 @@ export const messagesInChatByDate = /* GraphQL */ `
         type
         content
         senderID
-        uniqueContentID
         sender
         createdAt
         updatedAt
@@ -1546,6 +1657,8 @@ export const productListingByRetailer = /* GraphQL */ `
         highPrice
         minimumQuantity
         productPicture
+        grade
+        siUnit
         createdAt
         updatedAt
       }
@@ -1591,7 +1704,70 @@ export const productListingByNameStartingWithLowestPrice = /* GraphQL */ `
         highPrice
         minimumQuantity
         productPicture
+        grade
+        siUnit
         createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const purchaseOrderItems = /* GraphQL */ `
+  query PurchaseOrderItems(
+    $purchaseOrderID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelProductsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    purchaseOrderItems(
+      purchaseOrderID: $purchaseOrderID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        purchaseOrderID
+        name
+        quantity
+        createdAt
+        siUnit
+        variety
+        grade
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const quotationItems = /* GraphQL */ `
+  query QuotationItems(
+    $quotationID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuotedProductsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    QuotationItems(
+      quotationID: $quotationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        quotationID
+        name
+        variety
+        grade
+        quantity
+        createdAt
+        price
+        siUnit
         updatedAt
       }
       nextToken
@@ -1645,6 +1821,7 @@ export const goodsTaskForRetailerByDate = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         deliveryDate
@@ -1701,6 +1878,7 @@ export const goodsTaskForSupplierByDate = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         deliveryDate
@@ -1885,6 +2063,7 @@ export const invoiceForRetailerByDate = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
@@ -1942,6 +2121,7 @@ export const invoiceForSupplierByDate = /* GraphQL */ `
           name
           quantity
           price
+          siUnit
         }
         createdAt
         paid
