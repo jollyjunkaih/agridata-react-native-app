@@ -17,6 +17,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {SuccesfulChangesModal} from '_components/modals';
 import Modal from 'react-native-modal';
+import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const EditCompany = props => {
   const [imageSource, setImageSource] = useState(null);
@@ -50,184 +55,192 @@ export const EditCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(10) : -180
+        Platform.OS === 'ios' ? hp('5%') : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
-      <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            top: Mixins.scaleHeight(20),
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: Mixins.scaleWidth(360),
-          }}>
-          <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
-            <BackButton navigation={props.navigation} />
-          </View>
-          <View>
-            <Text style={[Typography.header]}>Edit Company Profile</Text>
-          </View>
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(20),
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
-          }}>
-          {imageSource === null ? (
-            <View>
-              <Image source={require('_assets/images/company-logo.png')} />
-              <TouchableOpacity
-                onPress={() => {
-                  selectImage();
-                }}>
-                <Text
-                  style={{textAlign: 'center', top: Mixins.scaleHeight(10)}}>
-                  Change Image
-                </Text>
-              </TouchableOpacity>
+      <DismissKeyboardView>
+        <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              top: hp('2%'),
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: wp('100%'),
+            }}>
+            <View style={{left: wp('3%'), position: 'absolute'}}>
+              <BackButton navigation={props.navigation} />
             </View>
-          ) : (
             <View>
-              <Image
-                source={{uri: imageSource}}
+              <Text style={[Typography.header]}>Edit Company Profile</Text>
+            </View>
+          </View>
+          <View
+            style={{
+              top: hp('5%'),
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: wp('50%'),
+              height: hp('20%'),
+            }}>
+            {imageSource === null ? (
+              <View>
+                <Image source={require('_assets/images/company-logo.png')} />
+                <TouchableOpacity
+                  onPress={() => {
+                    selectImage();
+                  }}>
+                  <Text style={{textAlign: 'center', top: hp('2%')}}>
+                    Change Image
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View>
+                <Image
+                  source={{uri: imageSource}}
+                  style={{
+                    resizeMode: 'cover',
+                    width: wp('50%'),
+                    height: hp('20%'),
+                    borderRadius: 100,
+                  }}
+                />
+              </View>
+            )}
+          </View>
+          <View
+            style={{
+              top: hp('10%'),
+              backgroundColor: Colors.GRAY_MEDIUM,
+              width: wp('85%'),
+              height: hp('45%'),
+              borderRadius: 10,
+            }}>
+            <View
+              style={{
+                top: hp('3%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>Company Name</Text>
+              <TextInput
                 style={{
-                  resizeMode: 'cover',
-                  width: Mixins.scaleWidth(100),
-                  height: Mixins.scaleWidth(100),
-                  borderRadius: 100,
-                }}
-              />
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
+                }}></TextInput>
             </View>
-          )}
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(60),
-            backgroundColor: Colors.GRAY_MEDIUM,
-            width: Mixins.scaleWidth(300),
-            height: Mixins.scaleHeight(250),
-            borderRadius: 10,
-          }}>
-          <View
-            style={{
-              top: Mixins.scaleHeight(20),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Company Name</Text>
-            <TextInput
+            <View
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
-          </View>
-          <View
-            style={{
-              top: Mixins.scaleHeight(35),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>
-              Company Registration No.
-            </Text>
-            <TextInput
+                top: hp('6%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>
+                Company Registration No.
+              </Text>
+              <TextInput
+                style={{
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
+                }}></TextInput>
+            </View>
+            <View
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
-          </View>
-          <View
-            style={{
-              top: Mixins.scaleHeight(50),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Company Address </Text>
-            <TextInput
+                top: hp('9%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>
+                Company Address{' '}
+              </Text>
+              <TextInput
+                style={{
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
+                }}></TextInput>
+            </View>
+            <View
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
-          </View>
-          <View
-            style={{
-              top: Mixins.scaleHeight(65),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
-            <TextInput
+                top: hp('12%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
+              <TextInput
+                style={{
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
+                }}></TextInput>
+            </View>
+            <View
               style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
+                top: hp('15%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+              <TextInput
+                style={{
+                  borderColor: Colors.GRAY_DARK,
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
+                }}></TextInput>
+            </View>
           </View>
-          <View
-            style={{
-              top: Mixins.scaleHeight(80),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Email Address </Text>
-            <TextInput
-              style={{
-                borderColor: Colors.GRAY_DARK,
-                borderBottomWidth: Mixins.scaleWidth(1),
-                width: Mixins.scaleWidth(260),
-              }}></TextInput>
-          </View>
-        </View>
 
-        <TouchableOpacity
-          onPress={() => setSuccesfulChangesModal(true)}
-          style={{
-            top: Mixins.scaleHeight(100),
-            width: Mixins.scaleWidth(140),
-            height: Mixins.scaleHeight(30),
-            backgroundColor: Colors.LIGHT_BLUE,
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
+          <TouchableOpacity
+            onPress={() => setSuccesfulChangesModal(true)}
+            style={{
+              top: hp('15%'),
+              width: wp('40%'),
+              height: wp('11%'),
+              backgroundColor: Colors.LIGHT_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
 
-            elevation: 4,
-          }}>
-          <Text>Save Changes</Text>
-          <Icon
-            name="checkmark-circle-outline"
-            size={Mixins.scaleWidth(20)}
-            style={{left: Mixins.scaleWidth(10)}}
-          />
-        </TouchableOpacity>
-        <Modal
-          isVisible={succesfulChangesModal}
-          onBackdropPress={() => setSuccesfulChangesModal(false)}>
-          <SuccesfulChangesModal
-            setSuccesfulChangesModal={setSuccesfulChangesModal}
-            navigation={props.navigation}
-          />
-        </Modal>
-      </SafeAreaView>
+              elevation: 4,
+            }}>
+            <Text>Save Changes</Text>
+            <Icon
+              name="checkmark-circle-outline"
+              size={wp('5%')}
+              style={{left: wp('3%')}}
+            />
+          </TouchableOpacity>
+          <Modal
+            isVisible={succesfulChangesModal}
+            onBackdropPress={() => setSuccesfulChangesModal(false)}>
+            <SuccesfulChangesModal
+              setSuccesfulChangesModal={setSuccesfulChangesModal}
+              navigation={props.navigation}
+            />
+          </Modal>
+        </SafeAreaView>
+      </DismissKeyboardView>
     </KeyboardAvoidingView>
   );
 };

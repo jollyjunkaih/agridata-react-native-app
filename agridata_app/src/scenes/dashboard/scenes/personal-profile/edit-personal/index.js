@@ -17,6 +17,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Modal from 'react-native-modal';
 import {SuccesfulChangesModal} from '_components/modals';
+import {DismissKeyboardView} from '_components';
 
 export const EditPersonal = props => {
   const [imageSource, setImageSource] = useState(null);
@@ -53,102 +54,67 @@ export const EditPersonal = props => {
         Platform.OS === 'ios' ? Mixins.scaleHeight(25) : Mixins.scaleHeight(50)
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
-      <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            top: Mixins.scaleHeight(20),
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: Mixins.scaleWidth(360),
-          }}>
-          <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
-            <BackButton navigation={props.navigation} />
-          </View>
-          <View>
-            <Text style={[Typography.header]}>Edit Personal Profile</Text>
-          </View>
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(20),
-            alignItems: 'center',
-            justifyContent: 'center',
 
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
-          }}>
-          {imageSource === null ? (
-            <View>
-              <Image source={require('_assets/images/company-logo.png')} />
-              <TouchableOpacity
-                onPress={() => {
-                  selectImage();
-                }}>
-                <Text
-                  style={[
-                    Typography.normal,
-                    {textAlign: 'center', top: Mixins.scaleHeight(10)},
-                  ]}>
-                  Change Image
-                </Text>
-              </TouchableOpacity>
+        <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              top: Mixins.scaleHeight(20),
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: Mixins.scaleWidth(360),
+            }}>
+            <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
+              <BackButton navigation={props.navigation} />
             </View>
-          ) : (
             <View>
-              <Image
-                source={{uri: imageSource}}
-                style={{
-                  resizeMode: 'cover',
-                  width: Mixins.scaleWidth(100),
-                  height: Mixins.scaleWidth(100),
-                  borderRadius: 100,
-                }}
-              />
+              <Text style={[Typography.header]}>Edit Personal Profile</Text>
             </View>
-          )}
-        </View>
-        <View
-          style={{
-            top: Mixins.scaleHeight(60),
-            backgroundColor: Colors.GRAY_MEDIUM,
-            width: Mixins.scaleWidth(300),
-            height: Mixins.scaleHeight(340),
-            borderRadius: 10,
-          }}>
+          </View>
+
           <View
             style={{
               top: Mixins.scaleHeight(20),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Company Name</Text>
-            <View
-              style={{
-                top: Mixins.scaleHeight(5),
-              }}>
-              <Text style={[Typography.normal]}>Cory Beck</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              top: Mixins.scaleHeight(35),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Company Position</Text>
-            <View style={{top: Mixins.scaleHeight(5)}}>
-              <Text style={[Typography.normal]}>General Manager</Text>
-            </View>
-          </View>
+              alignItems: 'center',
+              justifyContent: 'center',
 
+              width: Mixins.scaleWidth(200),
+              height: Mixins.scaleHeight(150),
+            }}>
+            {imageSource === null ? (
+              <View>
+                <Image source={require('_assets/images/company-logo.png')} />
+                <TouchableOpacity
+                  onPress={() => {
+                    selectImage();
+                  }}>
+                  <Text
+                    style={[
+                      Typography.normal,
+                      {textAlign: 'center', top: Mixins.scaleHeight(10)},
+                    ]}>
+                    Change Image
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View>
+                <Image
+                  source={{uri: imageSource}}
+                  style={{
+                    resizeMode: 'cover',
+                    width: Mixins.scaleWidth(100),
+                    height: Mixins.scaleWidth(100),
+                    borderRadius: 100,
+                  }}
+                />
+              </View>
+            )}
+          </View>
           <View
             style={{
-              top: Mixins.scaleHeight(50),
-              left: Mixins.scaleWidth(20),
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
-            }}>
+              top: Mixins.scaleHeight(60),
+              backgroundColor: Colors.GRAY_MEDIUM}}>
             <Text style={[Typography.placeholderSmall]}>Email Address </Text>
             <TextInput
               placeholder="email@gmail.com"
@@ -166,14 +132,17 @@ export const EditPersonal = props => {
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
                 width: Mixins.scaleWidth(200),
-              }}></View>
+              }}>
+
+              </View>
           </View>
           <View
             style={{
               top: Mixins.scaleHeight(70),
               left: Mixins.scaleWidth(20),
               width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(30),
+              height: Mixins.scaleHeight(280),
+              borderRadius: 10,
             }}>
             <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
             <TextInput
@@ -250,7 +219,7 @@ export const EditPersonal = props => {
               style={{left: Mixins.scaleWidth(10)}}
             />
           </TouchableOpacity>
-        </View>
+    
 
         <Modal
           isVisible={succesfulChangesModal}

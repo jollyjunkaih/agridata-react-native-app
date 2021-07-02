@@ -14,4 +14,6 @@ export default {
   saveChanges: 'Menyimpan Perubahan',
   yes: 'Simpan',
   no: 'Batal',
+  companyName: 'Nama Syarikat',
+  companyRegistrationNum: 'Nombor Pendaftaran Syarikat',
 };

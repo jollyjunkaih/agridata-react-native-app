@@ -14,4 +14,6 @@ export default {
   saveChanges: 'Save Changes',
   yes: 'Yes',
   no: 'No',
+  companyName: 'Company Name',
+  companyRegistrationNum: 'Company Registration Number',
 };

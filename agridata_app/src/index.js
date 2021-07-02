@@ -27,6 +27,7 @@ import {
   CreateCompany,
   Landing,
   Verification,
+  ConfirmSignUp,
 } from './scenes';
 import {DataAnalytics} from './scenes/data_analytics/';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';

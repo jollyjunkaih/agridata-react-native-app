@@ -21,6 +21,7 @@ import {
 import {listUsersInChat} from '../../../../graphql/queries';
 
 var dayjs = require('dayjs');
+import {DismissKeyboardView} from '_components';
 
 const ChatBubble = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);

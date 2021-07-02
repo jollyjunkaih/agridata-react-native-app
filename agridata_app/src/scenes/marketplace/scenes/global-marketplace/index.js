@@ -11,6 +11,10 @@ import {
   listProductListings,
   productListingByNameStartingWithLowestPrice,
 } from '../../../../graphql/queries';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Marketplace = props => {
   const [choice, setChoice] = useState('product');
@@ -74,14 +78,14 @@ export const Marketplace = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('100%'),
+        width: wp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
+      <Text style={[Typography.header, {top: hp('5%')}]}>
         Local Marketplace
       </Text>
-      <View style={{top: Mixins.scaleHeight(40)}}>
+      <View style={{top: hp('6%')}}>
         <Searchbar
           setSearchPressed={setSearchPressed}
           searchValue={searchValue}
@@ -90,9 +94,9 @@ export const Marketplace = props => {
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(50),
-          width: Mixins.scaleWidth(360),
-          height: Mixins.scaleWidth(30),
+          top: hp('7%'),
+          width: wp('100%'),
+          height: hp('4%'),
           flexDirection: 'row',
           borderBottomWidth: 1,
           borderColor: Colors.GRAY_LIGHT,
@@ -100,8 +104,10 @@ export const Marketplace = props => {
         {choice == 'product' ? (
           <View
             style={{
-              marginHorizontal: Mixins.scaleWidth(60),
-              top: Mixins.scaleHeight(4),
+              width: wp('50%'),
+              borderRightWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
+              alignItems: 'center',
             }}>
             <Text
               style={[
@@ -119,25 +125,22 @@ export const Marketplace = props => {
           <TouchableOpacity
             onPress={() => [setChoice('product'), setInitialRender(true)]}
             style={{
-              marginHorizontal: Mixins.scaleWidth(60),
-              top: Mixins.scaleHeight(4),
+              width: wp('50%'),
+              borderRightWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
+              alignItems: 'center',
             }}>
             <Text style={Typography.normal}>Product</Text>
           </TouchableOpacity>
         )}
-        <View
-          style={{
-            height: Mixins.scaleHeight(15),
-            marginVertical: Mixins.scaleHeight(5),
-            borderColor: Colors.GRAY_LIGHT,
-            borderWidth: Mixins.scaleWidth(1),
-          }}></View>
+
         {choice == 'favourites' ? (
           <View
             style={{
-              width: Mixins.scaleWidth(179),
+              width: wp('50%'),
+              borderLeftWidth: 1,
+              borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
-              justifyContent: 'center',
             }}>
             <Text
               style={[
@@ -155,9 +158,10 @@ export const Marketplace = props => {
           <TouchableOpacity
             onPress={() => setChoice('favourites')}
             style={{
-              width: Mixins.scaleWidth(179),
+              width: wp('50%'),
+              borderLeftWidth: 0.5,
+              borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
-              justifyContent: 'center',
             }}>
             <Text style={Typography.normal}>Favourites</Text>
           </TouchableOpacity>
@@ -166,9 +170,9 @@ export const Marketplace = props => {
       {choice == 'favourites' ? (
         <View
           style={{
-            width: Mixins.scaleWidth(330),
-            height: Mixins.scaleHeight(425),
-            top: Mixins.scaleHeight(70),
+            width: wp('90%'),
+            height: hp('100%'),
+            top: hp('10%'),
           }}>
           <FavouritesList data={favourites} navigation={props.navigation} />
         </View>
@@ -194,9 +198,9 @@ export const Marketplace = props => {
       ) : (
         <View
           style={{
-            width: Mixins.scaleWidth(330),
-            height: Mixins.scaleHeight(425),
-            top: Mixins.scaleHeight(70),
+            width: wp('93%'),
+            height: hp('80%'),
+            top: hp('10%'),
           }}>
           <MarketplaceList
             productList={productsList}
@@ -205,7 +209,7 @@ export const Marketplace = props => {
         </View>
       )}
 
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-20)}}>
+      <View style={{position: 'absolute', top: hp('92%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

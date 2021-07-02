@@ -6,6 +6,7 @@ import {Searchbar} from './components';
 import {NavBar, BackButton} from '_components';
 import {getChatGroupsContainingRetailersByUpdatedAt} from '../../../graphql/queries';
 import {API} from 'aws-amplify';
+import {DismissKeyboardView} from '_components';
 
 export const Inbox = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
@@ -60,9 +61,12 @@ export const Inbox = props => {
           height: 0,
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
-      <View style={{top: Mixins.scaleHeight(40)}}>
-        <Searchbar />
-      </View>
+      <DismissKeyboardView>
+        <View style={{top: Mixins.scaleHeight(40)}}>
+          <Searchbar />
+        </View>
+      </DismissKeyboardView>
+
       <View
         style={{
           height: Mixins.scaleHeight(420),

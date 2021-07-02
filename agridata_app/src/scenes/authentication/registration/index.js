@@ -17,6 +17,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {createUser} from '../../../graphql/mutations';
 import {API, Auth, graphql} from 'aws-amplify';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {DismissKeyboardView} from '_components';
 
 export const Registration = props => {
   const [password, setPassword] = useState('');
@@ -52,296 +57,289 @@ export const Registration = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(200) : -180
-      }>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-20%') : -180}>
       <SafeAreaView
         style={{
           backgroundColor: 'white',
-          width: Mixins.scaleWidth(360),
-          height: Mixins.scaleHeight(640),
+          height: hp('100%'),
+          width: wp('100%'),
         }}>
-        <View
-          style={{
-            position: 'absolute',
-            top: Spacing.BackButtonTop,
-            left: Spacing.BackButtonLeft,
-          }}>
-          <BackButton navigation={props.navigation} />
-        </View>
-        <Image
-          source={require('_assets/images/fruits.png')}
-          style={{
-            position: 'absolute',
-            right: 0,
-            width: Mixins.scaleWidth(160),
-            height: Mixins.scaleHeight(180),
-            resizeMode: 'cover',
-          }}
-        />
-        <View style={{top: Mixins.scaleHeight(30)}}>
-          <View>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(30),
-                },
-              ]}>
-              CREATE
-            </Text>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(10),
-                },
-              ]}>
-              ACCOUNT
-            </Text>
-          </View>
-          <View
-            style={{top: Mixins.scaleHeight(10), left: Mixins.scaleWidth(30)}}>
-            <Text style={[Typography.large]}>Begin your journey with us!</Text>
-          </View>
-          <View style={{top: Mixins.scaleHeight(-20)}}>
-            <View
-              style={{
-                top: Mixins.scaleHeight(50),
-                left: Mixins.scaleWidth(30),
-              }}>
-              <Text style={[Typography.placeholder]}>Name</Text>
-              <TextInput
-                keyboardType="default"
-                placeholder="John Doe"
-                underlineColorAndroid="transparent"
-                onChangeText={item => setName(item)}
-                value={name}
-                style={{
-                  width: Mixins.scaleWidth(280),
-                  height: Mixins.scaleHeight(40),
-                  right: Mixins.scaleWidth(5),
-                  borderBottomColor: 'transparent',
-                  color: 'black',
-                }}></TextInput>
-              <View
-                style={{
-                  bottom: Mixins.scaleHeight(10),
-                  width: Mixins.scaleWidth(290),
-                  borderBottomWidth: 1,
-                  borderColor: Colors.GRAY_DARK,
-                }}></View>
-            </View>
-            <View
-              style={{
-                top: Mixins.scaleHeight(50),
-                left: Mixins.scaleWidth(30),
-              }}>
-              <Text style={[Typography.placeholder]}>Phone Number</Text>
-              <TextInput
-                keyboardType="default"
-                placeholder="+60109336377"
-                underlineColorAndroid="transparent"
-                onChangeText={item => setPhone(item)}
-                value={phone}
-                style={{
-                  right: Mixins.scaleWidth(5),
-                  width: Mixins.scaleWidth(280),
-                  height: Mixins.scaleHeight(40),
-                  borderBottomColor: 'transparent',
-                  color: 'black',
-                }}></TextInput>
-              <View
-                style={{
-                  bottom: Mixins.scaleHeight(10),
-                  width: Mixins.scaleWidth(290),
-                  borderBottomWidth: 1,
-                  borderColor: Colors.GRAY_DARK,
-                }}></View>
-            </View>
-            <View
-              style={{
-                top: Mixins.scaleHeight(50),
-                left: Mixins.scaleWidth(30),
-              }}>
-              <Text style={[Typography.placeholder]}>Email Address</Text>
-              <TextInput
-                keyboardType="default"
-                placeholder="example@example.com"
-                underlineColorAndroid="transparent"
-                onChangeText={item => setEmail(item)}
-                value={email}
-                style={{
-                  right: Mixins.scaleWidth(5),
-                  width: Mixins.scaleWidth(280),
-                  height: Mixins.scaleHeight(40),
-                  color: 'black',
-                  borderBottomColor: 'transparent',
-                }}></TextInput>
-              <View
-                style={{
-                  bottom: Mixins.scaleHeight(10),
-                  width: Mixins.scaleWidth(290),
-                  borderBottomWidth: 1,
-                  borderColor: Colors.GRAY_DARK,
-                }}></View>
-            </View>
-            <View
-              style={{
-                top: Mixins.scaleHeight(50),
-                left: Mixins.scaleWidth(30),
-              }}>
-              <Text style={[Typography.placeholder]}>Password</Text>
-              <TextInput
-                keyboardType="default"
-                placeholder="password"
-                underlineColorAndroid="transparent"
-                onChangeText={item => setPassword(item)}
-                value={password}
-                style={{
-                  right: Mixins.scaleWidth(5),
-                  width: Mixins.scaleWidth(280),
-                  height: Mixins.scaleHeight(40),
-                  borderBottomColor: 'transparent',
-                  color: 'black',
-                }}></TextInput>
-              <View
-                style={{
-                  bottom: Mixins.scaleHeight(10),
-                  width: Mixins.scaleWidth(290),
-                  borderBottomWidth: 1,
-                  borderColor: Colors.GRAY_DARK,
-                }}></View>
-            </View>
-          </View>
+        <DismissKeyboardView>
           <View
             style={{
-              left: Mixins.scaleWidth(20),
-              top: Mixins.scaleHeight(30),
-              height: Mixins.scaleHeight(100),
-              zIndex: 2,
+              position: 'absolute',
+              top: Spacing.BackButtonTop,
+              left: Spacing.BackButtonLeft,
             }}>
-            <DropDownPicker
-              open={open}
-              value={value}
-              items={items}
-              placeholder={'Role in Company'}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-              style={{
-                width: Mixins.scaleWidth(275),
-                height: Mixins.scaleHeight(30),
-                borderColor: 'white',
-                borderRadius: 3,
-              }}
-              dropDownDirection="BOTTOM"
-              listItemContainerStyle={{height: Mixins.scaleHeight(25)}}
-              dropDownContainerStyle={{
-                borderWidth: 1,
-                width: Mixins.scaleWidth(275),
-              }}></DropDownPicker>
+            <BackButton navigation={props.navigation} />
           </View>
-          <View
+          <Image
+            source={require('_assets/images/fruits.png')}
             style={{
-              justifyContent: 'center',
-              bottom: Mixins.scaleHeight(20),
-              flexDirection: 'row',
-            }}>
-            <Text style={[Typography.placeholderSmall]}>
-              By continuing, you agree to our
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                left: Mixins.scaleWidth(2),
-              }}>
-              <TouchableOpacity style={{borderBottomWidth: 1}}>
-                <Text style={[Typography.placeholderSmall]}>
-                  Terms of Service
-                </Text>
-              </TouchableOpacity>
+              position: 'absolute',
+              right: 0,
+              width: wp('50%'),
+              height: hp('30%'),
+              resizeMode: 'cover',
+              top: hp('-8%'),
+            }}
+          />
+          <View style={{top: hp('3%')}}>
+            <View>
               <Text
                 style={[
-                  Typography.placeholderSmall,
+                  Typography.largestSize,
+                  {width: wp('80%'), left: wp('8%'), top: hp('3%')},
+                ]}>
+                CREATE
+              </Text>
+              <Text
+                style={[
+                  Typography.largestSize,
                   {
-                    marginLeft: Mixins.scaleWidth(5),
-                    marginRight: Mixins.scaleWidth(5),
+                    width: wp('80%'),
+                    left: wp('8%'),
+                    top: hp('2%'),
                   },
                 ]}>
-                and
+                ACCOUNT
               </Text>
-              <TouchableOpacity style={{borderBottomWidth: 1}}>
+            </View>
+            <View style={{top: hp('2%'), left: wp('8%')}}>
+              <Text style={[Typography.large]}>
+                Begin your journey with us!
+              </Text>
+            </View>
+            <View>
+              <View
+                style={{
+                  top: hp('4%'),
+                  left: wp('8%'),
+                }}>
+                <Text style={[Typography.placeholder]}>Name</Text>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="John Doe"
+                  underlineColorAndroid="transparent"
+                  onChangeText={item => setName(item)}
+                  value={name}
+                  style={{
+                    width: wp('80%'),
+                    height: hp('6%'),
+                  }}></TextInput>
+                <View
+                  style={{
+                    width: wp('85%'),
+                    borderBottomWidth: 1,
+                    borderColor: Colors.GRAY_DARK,
+                  }}></View>
+              </View>
+              <View
+                style={{
+                  top: hp('5%'),
+                  left: wp('8%'),
+                }}>
+                <Text style={[Typography.placeholder]}>Phone Number</Text>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="+60109336377"
+                  underlineColorAndroid="transparent"
+                  onChangeText={item => setPhone(item)}
+                  value={phone}
+                  style={{
+                    width: wp('50%'),
+                    height: hp('6%'),
+                  }}></TextInput>
+                <View
+                  style={{
+                    width: wp('85%'),
+                    borderBottomWidth: 1,
+                    borderColor: Colors.GRAY_DARK,
+                  }}></View>
+              </View>
+              <View
+                style={{
+                  top: hp('6%'),
+                  left: wp('8%'),
+                }}>
+                <Text style={[Typography.placeholder]}>Email Address</Text>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="example@example.com"
+                  underlineColorAndroid="transparent"
+                  onChangeText={item => setEmail(item)}
+                  value={email}
+                  style={{
+                    width: wp('50%'),
+                    height: hp('6%'),
+                  }}></TextInput>
+                <View
+                  style={{
+                    width: wp('85%'),
+                    borderBottomWidth: 1,
+                    borderColor: Colors.GRAY_DARK,
+                  }}></View>
+              </View>
+              <View
+                style={{
+                  top: hp('6%'),
+                  left: wp('8%'),
+                }}>
+                <Text style={[Typography.placeholder]}>Password</Text>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="password"
+                  underlineColorAndroid="transparent"
+                  onChangeText={item => setPassword(item)}
+                  value={password}
+                  style={{
+                    width: wp('50%'),
+                    height: hp('6%'),
+                  }}></TextInput>
+                <View
+                  style={{
+                    width: wp('85%'),
+                    borderBottomWidth: 1,
+                    borderColor: Colors.GRAY_DARK,
+                  }}></View>
+              </View>
+            </View>
+            <View
+              style={{
+                left: wp('8%'),
+                top: hp('8%'),
+                height: hp('20%'),
+                zIndex: 2,
+
+                height: hp('7%'),
+              }}>
+              <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                placeholder={'Role in Company'}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                style={{
+                  width: wp('85%'),
+                  height: hp('6%'),
+                  borderColor: 'white',
+                  borderRadius: 3,
+                  backgroundColor: Colors.GRAY_LIGHT,
+                }}
+                dropDownDirection="BOTTOM"
+                listItemContainerStyle={{height: Mixins.scaleHeight(25)}}
+                dropDownContainerStyle={{
+                  borderWidth: 1,
+                  width: wp('85%'),
+                  backgroundColor: Colors.GRAY_LIGHT,
+                }}></DropDownPicker>
+            </View>
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                bottom: hp('4%'),
+                width: wp('85%'),
+                left: wp('8%'),
+                top: hp('10%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>
+                By continuing, you are agreeing to our {'\n'}
+              </Text>
+              <View
+                style={{
+                  bottom: hp('1%'),
+                  flexDirection: 'row',
+                }}>
+                <TouchableOpacity>
+                  <Text
+                    style={[
+                      Typography.placeholderSmall,
+                      {textDecorationLine: 'underline'},
+                    ]}>
+                    Terms of Service
+                  </Text>
+                </TouchableOpacity>
+                <Text
+                  style={[
+                    Typography.placeholderSmall,
+                    {marginLeft: wp('1%'), marginRight: wp('1%')},
+                  ]}>
+                  and
+                </Text>
+                <TouchableOpacity>
+                  <Text
+                    style={[
+                      Typography.placeholderSmall,
+                      {textDecorationLine: 'underline'},
+                    ]}>
+                    Privacy Policy
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{alignItems: 'center', top: hp('12%')}}>
+              <TouchableOpacity>
                 <Text style={[Typography.placeholderSmall]}>
-                  Privacy Policy
+                  Having any trouble?
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
-          <View style={{alignItems: 'center', bottom: Mixins.scaleHeight(15)}}>
-            <TouchableOpacity>
-              <Text style={[Typography.placeholderSmall]}>
-                Having any trouble?
+            <TouchableOpacity
+              onPress={async () => {
+                if (
+                  value == null ||
+                  email == '' ||
+                  phone == '' ||
+                  name == '' ||
+                  password == ''
+                ) {
+                  console.log('error');
+                } else {
+                  try {
+                    const userID = await signUp();
+                  } catch {
+                    e => console.log('error ' + e);
+                  }
+                }
+              }}
+              style={{
+                backgroundColor: Colors.LIGHT_BLUE,
+                top: hp('15%'),
+                width: wp('30%'),
+                height: hp('4%'),
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'center',
+                borderRadius: 10,
+                flexDirection: 'row',
+                shadowOffset: {
+                  width: 1,
+                  height: 2,
+                },
+                shadowOpacity: 2,
+                shadowRadius: 3,
+                shadowColor: 'grey',
+                elevation: 3,
+              }}>
+              <Text
+                style={[
+                  Typography.large,
+                  {position: 'absolute', left: wp('3%')},
+                ]}>
+                NEXT
               </Text>
+
+              <Icon
+                name="arrow-forward-outline"
+                size={wp('6%')}
+                style={{left: wp('10%')}}
+              />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={async () => {
-              if (
-                value == null ||
-                email == '' ||
-                phone == '' ||
-                name == '' ||
-                password == ''
-              ) {
-                console.log('error');
-              } else {
-                try {
-                  const userID = await signUp();
-                } catch {
-                  e => console.log('error ' + e);
-                }
-              }
-            }}
-            style={{
-              backgroundColor: Colors.LIGHT_BLUE,
-              top: Mixins.scaleHeight(10),
-              width: Mixins.scaleWidth(100),
-              height: Mixins.scaleWidth(30),
-              justifyContent: 'center',
-              alignItems: 'center',
-              alignSelf: 'center',
-              borderRadius: 10,
-              flexDirection: 'row',
-              shadowOffset: {
-                width: 1,
-                height: 2,
-              },
-              shadowOpacity: 2,
-              shadowRadius: 3,
-              shadowColor: 'grey',
-            }}>
-            <Text
-              style={[
-                Typography.large,
-                {position: 'absolute', left: Mixins.scaleWidth(20)},
-              ]}>
-              NEXT
-            </Text>
-            <View
-              style={{
-                marginLeft: Mixins.scaleWidth(45),
-                bottom: Mixins.scaleHeight(1),
-              }}>
-              <Icon name="arrow-forward-outline" size={Mixins.scaleWidth(20)} />
-            </View>
-          </TouchableOpacity>
-        </View>
+        </DismissKeyboardView>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

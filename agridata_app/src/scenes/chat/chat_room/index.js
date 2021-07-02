@@ -12,21 +12,27 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {ChatBubbleList, MessageInput, ChatInfo} from './components';
 import {NavBar, BackButton} from '_components';
 import BackgroundTimer from 'react-native-background-timer';
+import {listMessagesInChat} from '../../../graphql/queries';
+import {DismissKeyboardView} from '_components';
 import {messagesInChatByDate} from '../../../graphql/queries';
 import {onCreateMessage} from '../../../graphql/subscriptions';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import {API, graphqlOperation} from 'aws-amplify';
 
 export const ChatRoom = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
 
-  const {itemID} = props.route.params; //chatgroupid
+  const {itemID} = props.route.param; //props.route.params; //chatgroupid
   const [messages, setMessages] = useState(null);
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
-  const fetchMessages = async () => {
+  /*const fetchMessages = async () => {
     try {
       const message = await API.graphql({
         query: messagesInChatByDate,
@@ -70,7 +76,7 @@ export const ChatRoom = props => {
 
     return () => subscription.unsubscribe();
   }, []);
-
+*/
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -179,7 +185,7 @@ export const ChatRoom = props => {
           style={{
             height: Mixins.scaleHeight(460),
           }}>
-          <ChatBubbleList data={messages} userID={userID} />
+          <ChatBubbleList data={[{}, {}]} userID={userID} />
         </View>
 
         <View style={{top: Mixins.scaleHeight(0)}}>

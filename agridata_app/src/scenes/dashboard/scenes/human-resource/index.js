@@ -14,6 +14,10 @@ import {AddEmployeeButton} from './add-member';
 import Modal from 'react-native-modal';
 import {ceil} from 'react-native-reanimated';
 import {SuccesfulChangesModal} from '_components/modals';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const HumanResource = props => {
   const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
@@ -22,81 +26,80 @@ export const HumanResource = props => {
       <View
         style={{
           flexDirection: 'row',
-          top: Mixins.scaleHeight(20),
+          top: hp('3%'),
           alignItems: 'center',
           justifyContent: 'center',
-          right: Mixins.scaleWidth(10),
+          right: wp('3%'),
         }}>
-        <View style={{right: Mixins.scaleWidth(40)}}>
+        <View style={{right: wp('10%')}}>
           <BackButton navigation={props.navigation} />
         </View>
         <View>
           <Text style={[Typography.header]}>Human Resource</Text>
         </View>
       </View>
-      <View
-        style={{
-          top: Mixins.scaleHeight(20),
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: Mixins.scaleWidth(300),
-          height: Mixins.scaleHeight(200),
-        }}>
-        <Image source={require('_assets/images/company-logo.png')} />
-        <Text style={[Typography.header, {top: Mixins.scaleHeight(10)}]}>
-          City Grocer
-        </Text>
-      </View>
-      <View
-        style={{
-          top: Mixins.scaleHeight(20),
-          backgroundColor: Colors.GRAY_MEDIUM,
-          width: Mixins.scaleWidth(300),
-          height: Mixins.scaleHeight(250),
-          borderRadius: 10,
-        }}>
+      <View style={{top: hp('6%')}}>
         <View
-          style={{top: Mixins.scaleHeight(20), left: Mixins.scaleWidth(20)}}>
-          <Text style={[Typography.placeholderSmall]}>Team</Text>
-        </View>
-        <ParticipantList />
-        <AddEmployeeButton />
-        <TouchableOpacity
-          onPress={() => setSuccesfulChangesModal(true)}
           style={{
-            top: Mixins.scaleHeight(40),
-            width: Mixins.scaleWidth(140),
-            height: Mixins.scaleHeight(30),
-            backgroundColor: Colors.LIGHT_BLUE,
+            top: hp('2%'),
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            alignSelf: 'center',
-            elevation: 4,
+            width: wp('80%'),
+            height: hp('20%'),
           }}>
-          <Text>Save Changes</Text>
-          <Icon
-            name="checkmark-circle-outline"
-            size={Mixins.scaleWidth(20)}
-            style={{left: Mixins.scaleWidth(10)}}
-          />
-        </TouchableOpacity>
-        <Modal
-          isVisible={succesfulChangesModal}
-          onBackdropPress={() => setSuccesfulChangesModal(false)}>
-          <SuccesfulChangesModal
-            setSuccesfulChangesModal={setSuccesfulChangesModal}
-            navigation={props.navigation}
-          />
-        </Modal>
+          <Image source={require('_assets/images/company-logo.png')} />
+          <Text style={[Typography.header, {top: hp('2%')}]}>City Grocer</Text>
+        </View>
+        <View
+          style={{
+            top: hp('8%'),
+            backgroundColor: Colors.GRAY_MEDIUM,
+            width: wp('85%'),
+            height: hp('38%'),
+            borderRadius: 10,
+          }}>
+          <View style={{top: hp('3%'), left: wp('5%')}}>
+            <Text style={[Typography.placeholderSmall]}>Team</Text>
+          </View>
+          <ParticipantList />
+          <AddEmployeeButton />
+          <TouchableOpacity
+            onPress={() => setSuccesfulChangesModal(true)}
+            style={{
+              top: hp('8%'),
+              width: wp('40%'),
+              height: hp('5%'),
+              backgroundColor: Colors.LIGHT_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              alignSelf: 'center',
+              elevation: 4,
+            }}>
+            <Text>Save Changes</Text>
+            <Icon
+              name="checkmark-circle-outline"
+              size={wp('5.5%')}
+              style={{left: wp('4%')}}
+            />
+          </TouchableOpacity>
+          <Modal
+            isVisible={succesfulChangesModal}
+            onBackdropPress={() => setSuccesfulChangesModal(false)}>
+            <SuccesfulChangesModal
+              setSuccesfulChangesModal={setSuccesfulChangesModal}
+              navigation={props.navigation}
+            />
+          </Modal>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -107,12 +110,12 @@ const Participant = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(40),
-        top: Mixins.scaleHeight(20),
+        height: hp('6%'),
+        top: hp('4%'),
       }}>
       <View
         style={{
-          left: Mixins.scaleWidth(20),
+          left: wp('5%'),
           alignSelf: 'flex-start',
         }}>
         <Text style={[Typography.normal]}>Carey Beck</Text>
@@ -123,11 +126,11 @@ const Participant = props => {
       <TouchableOpacity
         onPress={() => setConfirmRemoveModal(true)}
         style={{
-          left: Mixins.scaleWidth(270),
-          bottom: Mixins.scaleHeight(25),
-          width: Mixins.scaleWidth(30),
+          left: wp('75%'),
+          bottom: hp('4%'),
+          width: wp('5%'),
         }}>
-        <Icon name="trash-outline" size={Mixins.scaleWidth(20)} />
+        <Icon name="trash-outline" size={wp('6%')} />
       </TouchableOpacity>
       <Modal
         isVisible={confirmRemoveModal}
@@ -142,26 +145,26 @@ const ConfirmRemoveModal = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(300),
-        width: Mixins.scaleWidth(290),
+        height: hp('48%'),
+        width: wp('85%'),
         backgroundColor: Colors.LIGHT_RED,
         borderRadius: 20,
         alignItems: 'center',
         alignSelf: 'center',
       }}>
-      <View style={{top: Mixins.scaleWidth(30)}}>
+      <View style={{top: hp('3%')}}>
         <Image
           source={require('_assets/images/Good-Vege.png')}
           style={{
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
+            width: wp('55%'),
+            height: hp('25%'),
           }}
         />
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(15),
+          top: hp('3%'),
         }}>
         <Text style={[Typography.large, {textAlign: 'center'}]}>
           Are you sure you want to
@@ -174,26 +177,50 @@ const ConfirmRemoveModal = props => {
           REMOVE A MEMBER?
         </Text>
       </View>
-
-      <TouchableOpacity
-        style={{
-          top: Mixins.scaleHeight(50),
-          backgroundColor: Colors.LIGHT_BLUE,
-          width: Mixins.scaleWidth(80),
-          height: Mixins.scaleHeight(25),
-          justifyContent: 'center',
-          borderRadius: 5,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-        }}>
-        <Text style={[Typography.small, {textAlign: 'center'}]}>Confirm</Text>
-      </TouchableOpacity>
+      <View style={{flexDirection: 'row'}}>
+        <TouchableOpacity
+          style={{
+            top: hp('7%'),
+            backgroundColor: Colors.LIGHT_BLUE,
+            width: wp('23%'),
+            height: hp('5%'),
+            justifyContent: 'center',
+            borderRadius: 5,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            right: wp('3%'),
+          }}>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            top: hp('7%'),
+            backgroundColor: Colors.LIGHT_BLUE,
+            width: wp('23%'),
+            height: hp('5%'),
+            justifyContent: 'center',
+            borderRadius: 5,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            left: wp('3%'),
+          }}>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>
+            Confirm
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -205,12 +232,12 @@ const ParticipantList = props => {
       <View
         style={{
           alignSelf: 'center',
-          width: Mixins.scaleWidth(260),
+          width: wp('70%'),
         }}></View>
     );
   };
   return (
-    <View style={{height: Mixins.scaleHeight(200)}}>
+    <View style={{height: hp('30%')}}>
       <FlatList
         numColumns={1}
         data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}

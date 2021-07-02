@@ -15,24 +15,27 @@ import {CloseButton} from '_components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {LIGHT_BLUE} from '_styles';
 import {Auth} from 'aws-amplify';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const MarketplaceButton = props => (
   <TouchableOpacity
     onPress={() => props.navigation.navigate('marketplace')}
     style={{
       top: Mixins.scaleHeight(props.top),
-      width: Mixins.scaleWidth(280),
-      height: Mixins.scaleHeight(80),
+      width: wp('80%'),
+      height: hp('15%'),
       justifyContent: 'center',
-      margin: 10,
       alignItems: 'center',
       borderRadius: 10,
     }}>
     <Image
       style={{
         resizeMode: 'cover',
-        width: Mixins.scaleWidth(280),
-        height: Mixins.scaleHeight(80),
+        width: wp('80%'),
+        height: hp('12%'),
         position: 'absolute',
         borderRadius: 10,
         opacity: 0.4,
@@ -49,18 +52,17 @@ export const ChatButton = props => (
     onPress={() => props.navigation.navigate('inbox')}
     style={{
       top: Mixins.scaleHeight(props.top),
-      width: Mixins.scaleWidth(280),
-      height: Mixins.scaleHeight(80),
+      width: wp('80%'),
+      height: hp('15%'),
       justifyContent: 'center',
-      margin: 10,
       alignItems: 'center',
       borderRadius: 10,
     }}>
     <Image
       style={{
         resizeMode: 'cover',
-        width: Mixins.scaleWidth(280),
-        height: Mixins.scaleHeight(80),
+        width: wp('80%'),
+        height: hp('12%'),
         position: 'absolute',
         borderRadius: 10,
         opacity: 0.4,
@@ -77,18 +79,17 @@ export const InvoiceButton = props => (
     onPress={() => props.navigation.navigate('orders')}
     style={{
       top: Mixins.scaleHeight(props.top),
-      width: Mixins.scaleWidth(280),
-      height: Mixins.scaleHeight(80),
+      width: wp('80%'),
+      height: hp('15%'),
       justifyContent: 'center',
-      margin: 10,
       alignItems: 'center',
       borderRadius: 10,
     }}>
     <Image
       style={{
         resizeMode: 'cover',
-        width: Mixins.scaleWidth(280),
-        height: Mixins.scaleHeight(80),
+        width: wp('80%'),
+        height: hp('12%'),
         position: 'absolute',
         borderRadius: 10,
         opacity: 0.4,
@@ -105,18 +106,17 @@ export const ToDoButton = props => (
     onPress={() => props.navigation.navigate('tasks')}
     style={{
       top: Mixins.scaleHeight(props.top),
-      width: Mixins.scaleWidth(280),
-      height: Mixins.scaleHeight(80),
+      width: wp('80%'),
+      height: hp('15%'),
       justifyContent: 'center',
-      margin: 10,
       alignItems: 'center',
       borderRadius: 10,
     }}>
     <Image
       style={{
         resizeMode: 'cover',
-        width: Mixins.scaleWidth(280),
-        height: Mixins.scaleHeight(80),
+        width: wp('80%'),
+        height: hp('12%'),
         position: 'absolute',
         borderRadius: 10,
         opacity: 0.4,
@@ -133,18 +133,17 @@ export const DataAnalyticsButton = props => (
     onPress={() => props.navigation.navigate('dataanalytics')}
     style={{
       top: Mixins.scaleHeight(props.top),
-      width: Mixins.scaleHeight(280),
-      height: Mixins.scaleHeight(80),
+      width: wp('80%'),
+      height: hp('15%'),
       justifyContent: 'center',
-      margin: 10,
       alignItems: 'center',
       borderRadius: 10,
     }}>
     <Image
       style={{
         resizeMode: 'cover',
-        width: Mixins.scaleWidth(280),
-        height: Mixins.scaleHeight(80),
+        width: wp('80%'),
+        height: hp('12%'),
         position: 'absolute',
         borderRadius: 10,
         opacity: 0.4,
@@ -195,30 +194,30 @@ export const MenuButtonModal = props => {
   return (
     <View
       style={{
-        width: Mixins.scaleWidth(350),
-        height: Mixins.scaleHeight(640),
+        width: wp('100%'),
+        height: hp('100%'),
         backgroundColor: Colors.PALE_GREEN,
-        right: Mixins.scaleWidth(150),
+        right: wp('42%'),
         borderRadius: 20,
       }}>
       <TouchableOpacity
         onPress={() => props.setMenuButtonModal(false)}
         style={{
-          top: Mixins.scaleHeight(60),
-          left: Mixins.scaleWidth(150),
+          top: hp('10%'),
+          left: wp('40%'),
           zIndex: 3,
-          width: Mixins.scaleWidth(30),
+          width: wp('10%'),
         }}>
-        <Icon name="close-outline" size={Mixins.scaleWidth(30)} />
+        <Icon name="close-outline" size={wp('10%')} />
       </TouchableOpacity>
       <View>
         <Image
           style={{
-            left: Mixins.scaleWidth(155),
-            top: Mixins.scaleHeight(75),
+            left: wp('43%'),
+            top: hp('11%'),
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(110),
-            height: Mixins.scaleHeight(85),
+            width: wp('30%'),
+            height: hp('13%'),
           }}
           source={require('_assets/images/agridata.png')}
         />
@@ -226,10 +225,11 @@ export const MenuButtonModal = props => {
       <View
         style={{
           borderBottomColor: Colors.GRAY_MEDIUM,
-          borderBottomWidth: Mixins.scaleWidth(1),
-          top: Mixins.scaleHeight(70),
+          borderBottomWidth: wp('0.5%'),
+          top: hp('10%'),
         }}
       />
+
       {props.userType == 'supplier' ||
       props.userType == 'general-manager' ||
       props.userType == 'owner' ? (
@@ -240,18 +240,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('companyprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(100),
-              left: Mixins.scaleWidth(150),
+              top: hp('16%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="briefcase-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="briefcase-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Company Profile</Text>
               </View>
@@ -264,18 +264,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('personalprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(120),
-              left: Mixins.scaleWidth(150),
+              top: hp('19%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="person-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Personal Profile</Text>
               </View>
@@ -287,18 +287,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('humanresource'),
             ]}
             style={{
-              top: Mixins.scaleHeight(140),
-              left: Mixins.scaleWidth(150),
+              top: hp('22%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="people-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="people-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Human Resource</Text>
               </View>
@@ -308,18 +308,18 @@ export const MenuButtonModal = props => {
           <TouchableOpacity
             onPress={() => signOut()}
             style={{
-              top: Mixins.scaleHeight(160),
-              left: Mixins.scaleWidth(150),
+              top: hp('25%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="log-out-outline" size={Mixins.scaleWidth(30)} />
+              <Icon name="log-out-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Logout</Text>
               </View>
@@ -334,18 +334,18 @@ export const MenuButtonModal = props => {
               props.navigation.navigate('personalprofile'),
             ]}
             style={{
-              top: Mixins.scaleHeight(120),
-              left: Mixins.scaleWidth(150),
+              top: hp('16%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(160),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="person-outline" size={Mixins.scaleWidth(25)} />
+              <Icon name="person-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Personal Profile</Text>
               </View>
@@ -355,18 +355,18 @@ export const MenuButtonModal = props => {
           <TouchableOpacity
             onPress={() => signOut()}
             style={{
-              top: Mixins.scaleHeight(130),
-              left: Mixins.scaleWidth(150),
+              top: hp('19%'),
+              left: wp('42%'),
               zIndex: 3,
-              width: Mixins.scaleWidth(150),
+              width: wp('50%'),
             }}>
             <View style={{flexDirection: 'row'}}>
-              <Icon name="log-out-outline" size={Mixins.scaleWidth(30)} />
+              <Icon name="log-out-outline" size={wp('7%')} />
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
-                  left: Mixins.scaleWidth(10),
+                  left: wp('3%'),
                 }}>
                 <Text style={[Typography.placeholder]}>Logout</Text>
               </View>

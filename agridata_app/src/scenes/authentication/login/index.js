@@ -15,8 +15,17 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {BackButton} from '_components';
 import {Auth} from 'aws-amplify';
+import {DismissKeyboardView} from '_components';
+import {ForgetPassword} from './components';
+import Modal from 'react-native-modal';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 export const Login = props => {
   const [secure, setSecure] = useState(true);
+  const [forgetPassword, setForgetPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const signIn = async () => {
@@ -33,14 +42,12 @@ export const Login = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(200) : -180
-      }>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-40%') : hp('-30%%')}>
       <SafeAreaView
         style={{
           backgroundColor: 'white',
-          height: Mixins.scaleHeight(640),
-          width: Mixins.scaleWidth(360),
+          height: hp('100%'),
+          width: wp('100%'),
         }}>
         <View
           style={{
@@ -55,20 +62,20 @@ export const Login = props => {
           style={{
             position: 'absolute',
             right: 0,
-            width: Mixins.scaleWidth(160),
-            height: Mixins.scaleHeight(180),
+            width: wp('50%'),
+            height: hp('30%'),
             resizeMode: 'cover',
           }}
         />
-        <View style={{top: Mixins.scaleHeight(30)}}>
+        <View style={{top: hp('5%')}}>
           <View>
             <Text
               style={[
                 Typography.largestSize,
                 {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(30),
+                  width: wp('80%'),
+                  left: wp('8%'),
+                  top: hp('4%'),
                 },
               ]}>
               Welcome
@@ -77,24 +84,23 @@ export const Login = props => {
               style={[
                 Typography.largestSize,
                 {
-                  width: Mixins.scaleWidth(300),
-                  left: Mixins.scaleWidth(30),
-                  top: Mixins.scaleHeight(10),
+                  width: wp('50%'),
+                  left: wp('8%'),
+                  top: hp('2%'),
                 },
               ]}>
               Back
             </Text>
           </View>
-          <View
-            style={{top: Mixins.scaleHeight(10), left: Mixins.scaleWidth(30)}}>
+          <View style={{top: hp('3%'), left: wp('8%')}}>
             <Text style={[Typography.large]}>Login to your account now!</Text>
           </View>
         </View>
         <View>
           <View
             style={{
-              top: Mixins.scaleHeight(80),
-              left: Mixins.scaleWidth(30),
+              top: hp('12%'),
+              left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>Phone Number / Email</Text>
             <TextInput
@@ -104,44 +110,40 @@ export const Login = props => {
               onChangeText={item => setEmail(item)}
               value={email}
               style={{
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(40),
-                right: Mixins.scaleWidth(5),
+                width: wp('80%'),
+                height: hp('7%'),
                 borderBottomColor: 'transparent',
                 color: 'black',
               }}></TextInput>
             <View
               style={{
-                bottom: Mixins.scaleHeight(10),
-                width: Mixins.scaleWidth(290),
+                width: wp('85%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
               }}></View>
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(80),
-              left: Mixins.scaleWidth(30),
-              height: Mixins.scaleWidth(70),
+              top: hp('14%'),
+              left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>Password</Text>
             <TextInput
+              placeholder="Password"
               secureTextEntry={secure}
               keyboardType="default"
               underlineColorAndroid="transparent"
               onChangeText={item => setPassword(item)}
               value={password}
               style={{
-                width: Mixins.scaleWidth(280),
-                height: Mixins.scaleHeight(40),
-                right: Mixins.scaleWidth(5),
+                width: wp('50%'),
+                height: hp('7%'),
                 borderBottomColor: 'transparent',
                 color: 'black',
               }}></TextInput>
             <View
               style={{
-                bottom: Mixins.scaleHeight(10),
-                width: Mixins.scaleWidth(290),
+                width: wp('85%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
               }}></View>
@@ -154,16 +156,17 @@ export const Login = props => {
                 }
               }}
               style={{
-                left: Mixins.scaleWidth(270),
+                right: wp('15%'),
                 position: 'absolute',
-                bottom: Mixins.scaleWidth(20),
+                bottom: hp('2%'),
               }}>
-              <Icon name="eye-outline" size={25}></Icon>
+              <Icon name="eye-outline" size={wp('6%')}></Icon>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity
-            style={{top: Mixins.scaleHeight(70), left: Mixins.scaleWidth(210)}}>
+            onPress={() => setForgetPassword(true)}
+            style={{top: hp('15%'), left: wp('63%')}}>
             <Text
               style={[
                 Typography.welcome,
@@ -174,11 +177,14 @@ export const Login = props => {
               Forgot Password?
             </Text>
           </TouchableOpacity>
+          <Modal isVisible={forgetPassword}>
+            <ForgetPassword setForgetPassword={setForgetPassword} />
+          </Modal>
         </View>
         <View
           style={{
             alignItems: 'center',
-            top: Mixins.scaleHeight(100),
+            top: hp('23%'),
           }}>
           <TouchableOpacity
             onPress={async () => {
@@ -190,8 +196,8 @@ export const Login = props => {
             }}
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(140),
-              height: Mixins.scaleWidth(40),
+              width: wp('40%'),
+              height: hp('5%'),
               justifyContent: 'center',
               borderRadius: 10,
               shadowOffset: {
@@ -202,10 +208,10 @@ export const Login = props => {
               shadowRadius: 3,
               shadowColor: 'grey',
             }}>
-            <View style={{flexDirection: 'row', left: Mixins.scaleWidth(20)}}>
+            <View style={{flexDirection: 'row', left: wp('7%')}}>
               <Text style={[Typography.large]}>LOG IN</Text>
-              <View style={{marginLeft: Mixins.scaleWidth(20)}}>
-                <Icon name="arrow-forward-outline" size={25} />
+              <View style={{left: wp('8%')}}>
+                <Icon name="arrow-forward-outline" size={wp('6%')} />
               </View>
             </View>
           </TouchableOpacity>
@@ -215,15 +221,15 @@ export const Login = props => {
           style={{
             alignItems: 'center',
             position: 'absolute',
-            bottom: Mixins.scaleHeight(70),
+            bottom: hp('13%'),
             alignSelf: 'center',
           }}>
           <View
             style={{
               alignItems: 'center',
-              marginBottom: Mixins.scaleHeight(10),
+              marginBottom: hp('3%'),
             }}>
-            <Icon name="finger-print-outline" size={40} />
+            <Icon name="finger-print-outline" size={wp('12%')} />
           </View>
 
           <Text style={[Typography.normal]}>Log In Using Fingerprint</Text>
@@ -233,7 +239,7 @@ export const Login = props => {
           style={{
             alignItems: 'center',
             position: 'absolute',
-            bottom: Mixins.scaleHeight(35),
+            bottom: hp('6%'),
             alignSelf: 'center',
           }}>
           <Text style={[Typography.welcome, {fontSize: 12}]}>

@@ -29,6 +29,11 @@ import {
   createProductListing,
 } from '../../../../../graphql/mutations';
 import {API, Storage} from 'aws-amplify';
+import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const ProductPopUp = props => {
   const [open, setOpen] = useState(false);
@@ -111,111 +116,106 @@ export const ProductPopUp = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? 250 : -180
+        Platform.OS === 'ios' ? 100 : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
       style={{
-        height: Mixins.scaleHeight(470),
-        width: Mixins.scaleWidth(290),
-        right: Mixins.scaleWidth(-15),
+        height: hp('70%'),
+        width: wp('80%'),
+        alignSelf: 'center',
         backgroundColor: 'white',
-        top: Mixins.scaleHeight(8),
+
         borderRadius: 10,
       }}>
-      <View
-        style={{
-          position: 'absolute',
-          right: Mixins.scaleWidth(-12),
-          top: Mixins.scaleHeight(-10),
-        }}>
-        <CloseButton setModal={props.setAddItemsButton} />
-      </View>
-      <View>
+      <DismissKeyboardView>
         <View
           style={{
-            alignItems: 'center',
-
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(0),
+            position: 'absolute',
+            right: wp('1%'),
+            top: hp('1%'),
           }}>
+          <CloseButton setModal={props.setAddItemsButton} />
+        </View>
+        <View>
           <View
             style={{
-              borderWidth: 0.5,
-              width: Mixins.scaleWidth(100),
-              height: Mixins.scaleWidth(100),
-              borderRadius: 100,
-              top: Mixins.scaleHeight(30),
-              right: Mixins.scaleWidth(-50),
+              alignItems: 'center',
+
+              width: wp('50%'),
+              height: hp('0%'),
             }}>
-            {imageSource === null ? (
-              <TouchableOpacity
-                onPress={() => {
-                  selectImage();
-                }}>
-                <Icon
-                  name="add-outline"
-                  size={150}
-                  style={{
-                    width: Mixins.scaleWidth(150),
-                    height: Mixins.scaleWidth(150),
-                    borderRadius: 100,
-                    top: Mixins.scaleHeight(-20),
-                    left: Mixins.scaleWidth(-15),
-                  }}
-                  source={require('_assets/images/agridata.png')}
-                />
-              </TouchableOpacity>
-            ) : (
-              <View>
-                <Image
-                  source={{uri: imageSource}}
-                  style={{
-                    resizeMode: 'cover',
-                    width: Mixins.scaleWidth(100),
-                    height: Mixins.scaleWidth(100),
-                    borderRadius: 100,
-                  }}
-                />
-                <TouchableOpacity
-                  onPress={() => {
-                    selectImage();
-                  }}
-                  style={{
-                    borderRadius: 100,
-                    height: Mixins.scaleWidth(40),
-                    width: Mixins.scaleWidth(40),
-                    backgroundColor: Colors.LIGHT_BLUE,
-                    bottom: Mixins.scaleWidth(30),
-                    left: Mixins.scaleWidth(75),
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    shadowOffset: {
-                      width: 1,
-                      height: 1,
-                    },
-                    shadowOpacity: 2,
-                    shadowRadius: 3,
-                    shadowColor: 'grey',
-                  }}>
-                  <Icon type="ionicon" name="pencil" size={25} />
-                </TouchableOpacity>
-              </View>
-            )}
+            <View
+              style={{
+                borderWidth: 0.5,
+                width: wp('30%'),
+                height: wp('30%'),
+                borderRadius: 100,
+                top: hp('5%'),
+                left: wp('15%'),
+              }}>
+              {imageSource === null ? (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      selectImage();
+                    }}>
+                    <Icon
+                      name="add-outline"
+                      size={150}
+                      style={{
+                        resizeMode: 'cover',
+                        width: wp('30%'),
+                        height: hp('30%'),
+                        borderRadius: 100,
+                        bottom: hp('2.5%'),
+                        right: wp('3%'),
+                      }}
+                    />
+                  </TouchableOpacity>
+                  <View style={{bottom: hp('15%'), alignSelf: 'center'}}>
+                    <Text style={[Typography.large]}>Add Photo</Text>
+                  </View>
+                </View>
+              ) : (
+                <View>
+                  <Image
+                    source={{uri: imageSource}}
+                    style={{
+                      resizeMode: 'cover',
+                      width: wp('30%'),
+                      height: hp('14%'),
+                      borderRadius: 100,
+                    }}
+                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      selectImage();
+                    }}
+                    style={{
+                      borderRadius: 100,
+                      height: hp('5%'),
+                      width: wp('10%'),
+                      backgroundColor: Colors.LIGHT_BLUE,
+                      bottom: hp('4%'),
+                      left: Mixins.scaleWidth(75),
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      shadowOffset: {
+                        width: 1,
+                        height: 1,
+                      },
+                      shadowOpacity: 2,
+                      shadowRadius: 3,
+                      shadowColor: 'grey',
+                    }}>
+                    <Icon type="ionicon" name="pencil" size={25} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
           </View>
-        </View>
-        <View>
-          <Text
-            style={[
-              Typography.large,
-              {
-                top: Mixins.scaleHeight(130),
-                left: Mixins.scaleWidth(100),
-              },
-            ]}>
-            Add Photo
-          </Text>
-        </View>
-        <View>
-          {/*<Text
+
+          <View>
+            {/*<Text
             style={
               ([Typography.small],
               {
@@ -226,168 +226,101 @@ export const ProductPopUp = props => {
             }>
             You can only add up to 8 images
           </Text>*/}
+          </View>
         </View>
-      </View>
-      <View
-        style={{
-          top: Mixins.scaleHeight(140),
-          backgroundColor: Colors.GRAY,
-          height: Mixins.scaleHeight(220),
-          width: Mixins.scaleWidth(250),
-          left: Mixins.scaleWidth(20),
-          borderRadius: 15,
-          shadowOffset: {
-            width: 0,
-            height: 5,
-          },
-          shadowOpacity: 5,
-          shadowRadius: 3,
-          shadowColor: 'grey',
-        }}>
-        <Text
-          style={
-            ([Typography.normal],
-            {left: Mixins.scaleWidth(20), top: Mixins.scaleHeight(10)})
-          }>
-          Enter product details
-        </Text>
         <View
           style={{
-            left: Mixins.scaleWidth(20),
-            top: Mixins.scaleHeight(10),
+            top: hp('25%'),
+            backgroundColor: Colors.GRAY,
+            height: hp('35%'),
+            width: wp('70%'),
+            left: wp('5%'),
+            borderRadius: 15,
+            shadowOffset: {
+              width: 0,
+              height: 5,
+            },
+            shadowOpacity: 5,
+            shadowRadius: 3,
+            shadowColor: 'grey',
           }}>
+          <Text
+            style={([Typography.normal], {left: wp('6%'), top: hp('1.5%')})}>
+            Enter product details
+          </Text>
           <View
             style={{
-              backgroundColor: 'white',
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(18),
-              borderRadius: 3,
-              justifyContent: 'center',
-              marginBottom: 8,
-              marginTop: 5,
-            }}>
-            <TextInput
-              keyboardType="default"
-              placeholder="Product Name"
-              style={{left: Mixins.scaleWidth(3)}}></TextInput>
-          </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View>
-              <Text
-                style={
-                  ([Typography.large],
-                  {top: Mixins.scaleHeight(-3), marginRight: 5})
-                }>
-                RM
-              </Text>
-            </View>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: Mixins.scaleWidth(80),
-                height: Mixins.scaleHeight(18),
-                borderRadius: 3,
-                justifyContent: 'center',
-                marginBottom: 8,
-                marginRight: 10,
-              }}>
-              <TextInput
-                keyboardType="default"
-                placeholder=" Min Price"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
-            </View>
-            <View
-              style={{
-                height: 0,
-                width: Mixins.scaleWidth(5),
-                borderWidth: 1,
-                borderColor: 'black',
-                bottom: Mixins.scaleHeight(4),
-                left: Mixins.scaleWidth(-5),
-              }}></View>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: Mixins.scaleWidth(80),
-                height: Mixins.scaleHeight(18),
-                borderRadius: 3,
-                justifyContent: 'center',
-                marginBottom: 8,
-              }}>
-              <TextInput
-                keyboardType="default"
-                placeholder=" Max Price"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
-            </View>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(18),
-              borderRadius: 3,
-              justifyContent: 'center',
-              marginBottom: 8,
-            }}>
-            <TextInput
-              keyboardType="default"
-              placeholder="Variety"
-              style={{left: Mixins.scaleWidth(3)}}></TextInput>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              zIndex: 1001,
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(25),
+              left: wp('6%'),
+              top: hp('2%'),
             }}>
             <View
               style={{
                 backgroundColor: 'white',
-                width: Mixins.scaleWidth(110),
-                height: Mixins.scaleHeight(18),
+                width: wp('55%'),
+                height: hp('3%'),
                 borderRadius: 3,
                 justifyContent: 'center',
                 marginBottom: 8,
+                marginTop: 5,
               }}>
               <TextInput
                 keyboardType="default"
-                placeholder="Quantity Available"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                placeholder="Product Name"
+                style={{left: wp('1%')}}></TextInput>
             </View>
-            <View
-              style={{
-                width: Mixins.scaleWidth(80),
-                marginLeft: 10,
-                height: Mixins.scaleHeight(20),
-              }}>
-              <DropDownPicker
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                defaultValue="kg"
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View>
+                <Text
+                  style={
+                    ([Typography.large],
+                    {bottom: hp('0.5%'), marginRight: wp('1%')})
+                  }>
+                  RM
+                </Text>
+              </View>
+              <View
                 style={{
-                  width: Mixins.scaleWidth(80),
-                  height: Mixins.scaleHeight(18),
-
-                  borderColor: 'white',
+                  backgroundColor: 'white',
+                  width: wp('22.3%'),
+                  height: hp('3%'),
                   borderRadius: 3,
-                }}
-                containerStyle={{
-                  width: Mixins.scaleWidth(80),
-                }}
-                dropDownContainerStyle={{borderWidth: 0}}
-                placeholder="kg"></DropDownPicker>
+                  justifyContent: 'center',
+                  marginBottom: 8,
+                  marginRight: 10,
+                }}>
+                <TextInput
+                  keyboardType="default"
+                  placeholder=" Min Price"
+                  style={{left: wp('1%')}}></TextInput>
+              </View>
+              <View
+                style={{
+                  height: 0,
+                  width: wp('1.5%'),
+                  borderWidth: wp('0.2%'),
+                  borderColor: 'black',
+                  bottom: Mixins.scaleHeight(4),
+                  left: Mixins.scaleWidth(-5),
+                }}></View>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  width: wp('22.3%'),
+                  height: hp('3%'),
+                  borderRadius: 3,
+                  justifyContent: 'center',
+                  marginBottom: 8,
+                }}>
+                <TextInput
+                  keyboardType="default"
+                  placeholder=" Max Price"
+                  style={{left: wp('1%')}}></TextInput>
+              </View>
             </View>
-          </View>
-          <View style={{flexDirection: 'row', zIndex: 1000}}>
             <View
               style={{
                 backgroundColor: 'white',
-                width: Mixins.scaleWidth(110),
+                width: Mixins.scaleWidth(200),
                 height: Mixins.scaleHeight(18),
                 borderRadius: 3,
                 justifyContent: 'center',
@@ -395,78 +328,142 @@ export const ProductPopUp = props => {
               }}>
               <TextInput
                 keyboardType="default"
-                placeholder="Minimum Order"
-                style={{left: Mixins.scaleWidth(3)}}></TextInput>
+                placeholder="Variety"
+                style={{left: wp('1%')}}></TextInput>
             </View>
-            <View style={{marginLeft: 10}}>
-              <DropDownPicker
-                open={open2}
-                value={value2}
-                items={items2}
-                setOpen={setOpen2}
-                setValue={setValue2}
-                setItems={setItems2}
-                defaultValue="kg"
+            <View
+              style={{
+                flexDirection: 'row',
+                zIndex: 1001,
+                width: Mixins.scaleWidth(200),
+                height: Mixins.scaleHeight(25),
+              }}>
+              <View
                 style={{
-                  width: Mixins.scaleWidth(80),
+                  backgroundColor: 'white',
+                  width: Mixins.scaleWidth(110),
                   height: Mixins.scaleHeight(18),
                   borderRadius: 3,
-                  borderColor: 'white',
-                }}
-                containerStyle={{
+                  justifyContent: 'center',
+                  marginBottom: 8,
+                }}>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="Quantity Available"
+                  style={{left: wp('1%')}}></TextInput>
+              </View>
+              <View
+                style={{
                   width: Mixins.scaleWidth(80),
-                }}
-                dropDownContainerStyle={{borderWidth: 0}}
-                placeholder="kg"
-              />
+                  marginLeft: 10,
+                  height: Mixins.scaleHeight(20),
+                }}>
+                <DropDownPicker
+                  open={open}
+                  value={value}
+                  items={items}
+                  setOpen={setOpen}
+                  setValue={setValue}
+                  setItems={setItems}
+                  defaultValue="kg"
+                  style={{
+                    width: Mixins.scaleWidth(80),
+                    height: Mixins.scaleHeight(18),
+
+                    borderColor: 'white',
+                    borderRadius: 3,
+                  }}
+                  containerStyle={{
+                    width: Mixins.scaleWidth(80),
+                  }}
+                  dropDownContainerStyle={{borderWidth: 0}}
+                  placeholder="kg"></DropDownPicker>
+              </View>
+            </View>
+            <View style={{flexDirection: 'row', zIndex: 1000}}>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  width: Mixins.scaleWidth(110),
+                  height: Mixins.scaleHeight(18),
+                  borderRadius: 3,
+                  justifyContent: 'center',
+                  marginBottom: 8,
+                }}>
+                <TextInput
+                  keyboardType="default"
+                  placeholder="Minimum Order"
+                  style={{left: Mixins.scaleWidth(3)}}></TextInput>
+              </View>
+              <View style={{marginLeft: 10}}>
+                <DropDownPicker
+                  open={open2}
+                  value={value2}
+                  items={items2}
+                  setOpen={setOpen2}
+                  setValue={setValue2}
+                  setItems={setItems2}
+                  defaultValue="kg"
+                  style={{
+                    width: Mixins.scaleWidth(80),
+                    height: Mixins.scaleHeight(18),
+                    borderRadius: 3,
+                    borderColor: 'white',
+                  }}
+                  containerStyle={{
+                    width: Mixins.scaleWidth(80),
+                  }}
+                  dropDownContainerStyle={{borderWidth: 0}}
+                  placeholder="kg"
+                />
+              </View>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: Mixins.scaleWidth(200),
+                height: Mixins.scaleHeight(60),
+                borderRadius: 3,
+                zIndex: 10,
+              }}>
+              <TextInput
+                keyboardType="default"
+                placeholder="Other Details"
+                style={{
+                  top: Mixins.scaleHeight(5),
+                  left: Mixins.scaleWidth(3),
+                }}></TextInput>
             </View>
           </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(60),
-              borderRadius: 3,
-              zIndex: 10,
-            }}>
-            <TextInput
-              keyboardType="default"
-              placeholder="Other Details"
-              style={{
-                top: Mixins.scaleHeight(5),
-                left: Mixins.scaleWidth(3),
-              }}></TextInput>
-          </View>
         </View>
-      </View>
-
-      <TouchableOpacity
-        style={{
-          height: Mixins.scaleHeight(30),
-          width: Mixins.scaleWidth(150),
-          backgroundColor: Colors.LIGHT_BLUE,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 10,
-          position: 'absolute',
-          bottom: Mixins.scaleHeight(-190),
-          right: Mixins.scaleWidth(70),
-          shadowOffset: {
-            width: 0,
-            height: 5,
-          },
-          shadowOpacity: 5,
-          shadowRadius: 3,
-          shadowColor: 'grey',
-        }}
-        onPress={() => [addListing(), console.log('true')]}>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={[Typography.normal]}> Add Product</Text>
-          <View style={{right: Mixins.scaleWidth(-7)}}>
-            <Icon name="add-circle-outline" size={20} />
+        <TouchableOpacity
+          onPress={() => addListing()}
+          style={{
+            height: Mixins.scaleHeight(30),
+            width: Mixins.scaleWidth(150),
+            backgroundColor: Colors.LIGHT_BLUE,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 10,
+            position: 'absolute',
+            bottom: Mixins.scaleHeight(-190),
+            right: Mixins.scaleWidth(70),
+            shadowOffset: {
+              width: 0,
+              height: 5,
+            },
+            shadowOpacity: 5,
+            shadowRadius: 3,
+            shadowColor: 'grey',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={[Typography.normal]}> Add Product</Text>
+            <View style={{right: Mixins.scaleWidth(-7)}}>
+              <Icon name="add-circle-outline" size={20} />
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </DismissKeyboardView>
     </KeyboardAvoidingView>
   );
 };

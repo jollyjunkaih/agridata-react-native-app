@@ -15,6 +15,11 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Auth} from 'aws-amplify';
+import {heightPercentageToDP} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Verification = props => {
   const signOut = async () => {
@@ -29,35 +34,32 @@ export const Verification = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(200) : -180
-      }>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-40%') : -180}>
       <SafeAreaView>
-        <View style={{top: Mixins.scaleHeight(60), alignItems: 'center'}}>
+        <View style={{top: hp('10%'), alignItems: 'center'}}>
           <Image
             source={require('_assets/images/verifycard.png')}
             style={{
               resizeMode: 'contain',
-              width: Mixins.scaleWidth(170),
-              height: Mixins.scaleHeight(120),
+              width: wp('60%'),
+              height: hp('20%'),
             }}
           />
         </View>
 
         <View
           style={{
-            top: Mixins.scaleHeight(20),
+            top: hp('4%'),
             alignItems: 'center',
             zIndex: 20,
-
-            height: Mixins.scaleHeight(380),
+            height: hp('50%'),
           }}>
           <Text
             style={[
               Typography.welcome,
               {
                 fontSize: 25,
-                top: Mixins.scaleHeight(50),
+                top: hp('7%'),
                 textAlign: 'center',
               },
             ]}>
@@ -69,7 +71,7 @@ export const Verification = props => {
               {
                 fontSize: 25,
 
-                top: Mixins.scaleHeight(40),
+                top: hp('7%'),
                 textAlign: 'center',
               },
             ]}>
@@ -77,16 +79,16 @@ export const Verification = props => {
           </Text>
           <View
             style={{
-              top: Mixins.scaleHeight(70),
-              width: Mixins.scaleWidth(270),
-              height: Mixins.scaleHeight(100),
+              top: hp('10%'),
+              width: wp('75%'),
+              height: hp('20%'),
             }}>
             <Text style={[Typography.medium, {textAlign: 'center'}]}>
               Hang in there! It might take some time to verify your account.
             </Text>
             <View
               style={{
-                top: Mixins.scaleHeight(20),
+                top: hp('2%'),
               }}>
               <Text style={[Typography.medium, {textAlign: 'center'}]}>
                 For the meantime, you can try updating your company information.
@@ -97,10 +99,10 @@ export const Verification = props => {
             onPress={() => props.navigation.navigate('companyprofile')}
             style={{
               alignItems: 'center',
-              top: Mixins.scaleHeight(70),
+              top: hp('10%'),
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(150),
-              height: Mixins.scaleWidth(40),
+              width: wp('45%'),
+              height: hp('5.5%'),
               justifyContent: 'center',
               borderRadius: 10,
               shadowOffset: {
@@ -119,10 +121,10 @@ export const Verification = props => {
             onPress={() => signOut()}
             style={{
               alignItems: 'center',
-              top: Mixins.scaleHeight(85),
+              top: hp('13%'),
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(150),
-              height: Mixins.scaleWidth(40),
+              width: wp('45%'),
+              height: hp('5.5%'),
               justifyContent: 'center',
               borderRadius: 10,
               shadowOffset: {
@@ -141,23 +143,23 @@ export const Verification = props => {
 
         <View
           style={{
-            bottom: Mixins.scaleHeight(-120),
-            right: Mixins.scaleWidth(0),
+            top: hp('65%'),
+            right: wp('0%'),
             position: 'absolute',
           }}>
           <Image
             source={require('_assets/images/fruits1.png')}
             style={{
               resizeMode: 'cover',
-              width: Mixins.scaleWidth(230),
-              height: Mixins.scaleHeight(230),
+              width: wp('70%'),
+              height: hp('35%'),
             }}
           />
         </View>
         <View
           style={{
-            bottom: Mixins.scaleHeight(-310),
-            right: Mixins.scaleWidth(100),
+            top: hp('78%'),
+            right: wp('35%'),
             position: 'absolute',
             transform: [{scaleY: -1}],
           }}>
@@ -165,8 +167,8 @@ export const Verification = props => {
             source={require('_assets/images/fruits3.png')}
             style={{
               resizeMode: 'cover',
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(300),
+              width: wp('75%'),
+              height: hp('40%'),
             }}
           />
         </View>

@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -13,6 +14,10 @@ import {MarketplaceList, PurchaseOrderButton} from './components';
 import {NavBar, BackButton} from '_components';
 import {API, Storage} from 'aws-amplify';
 import {productListingByRetailer} from '../../../../graphql/queries';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Store = props => {
   const {itemId} = props.route.params; //supplierid
@@ -32,42 +37,42 @@ export const Store = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('100%'),
+        width: wp('100%'),
         alignItems: 'center',
       }}>
       <View
         style={{
           position: 'absolute',
-          left: Mixins.scaleWidth(Spacing.BackButtonLeft),
-          top: Mixins.scaleHeight(Spacing.BackButtonTop),
+          left: wp('5%'),
+          top: hp('4%'),
         }}>
         <BackButton navigation={props.navigation} />
       </View>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
+      <Text style={[Typography.header, {top: hp('4%')}]}>
         {props.name}Jane's Farm
       </Text>
-      <View style={{top: Mixins.scaleHeight(40)}}>
+      <View style={{top: hp('6%')}}>
         <Searchbar />
       </View>
-      <View
+      <ScrollView
         style={{
-          width: Mixins.scaleWidth(330),
-          height: Mixins.scaleHeight(425),
-          top: Mixins.scaleHeight(70),
+          width: wp('93%'),
+          height: hp('90%'),
+          top: hp('10%'),
         }}>
         <MarketplaceList productList={items} />
-      </View>
+      </ScrollView>
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(20),
-          bottom: Mixins.scaleHeight(80),
+          right: wp('5%'),
+          bottom: hp('13%'),
         }}>
         <PurchaseOrderButton />
       </View>
 
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
+      <View style={{position: 'absolute', bottom: hp('0%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>
