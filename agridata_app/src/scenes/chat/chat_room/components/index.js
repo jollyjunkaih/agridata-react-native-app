@@ -20,7 +20,8 @@ import {
 } from '../../../../graphql/mutations';
 import {listUsersInChat} from '../../../../graphql/queries';
 
-var dayjs = require('dayjs');
+import {abs} from 'react-native-reanimated';
+import {DismissKeyboardView} from '_components';
 
 const ChatBubble = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);

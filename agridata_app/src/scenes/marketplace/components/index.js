@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, TouchableOpacity} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {DismissKeyboardView} from '_components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

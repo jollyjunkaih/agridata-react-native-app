@@ -27,6 +27,7 @@ import {
   CreateCompany,
   Landing,
   Verification,
+  CreateAccountPopUp,
 } from './scenes';
 import {DataAnalytics} from './scenes/data_analytics/';
 /*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
@@ -36,7 +37,7 @@ import {getUser} from './graphql/queries';
 import {createUser} from './graphql/mutations';
 import {MarketplaceList} from '_scenes';
 
-/*Amplify.configure(config);*/
+//Amplify.configure(config);
 
 const AuthenticationStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -505,7 +506,7 @@ const Initializing = () => {
       )}
     </NavigationContainer>
   );
-};*/
+};
 
 export const App = () => {
   return (
@@ -514,5 +515,9 @@ export const App = () => {
     </NavigationContainer>
   );
 };
+*/
 
+export const App = () => {
+  return <SupplierTasks></SupplierTasks>;
+};
 export default App;
