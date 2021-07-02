@@ -18,6 +18,10 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {SuccesfulChangesModal} from '_components/modals';
 import Modal from 'react-native-modal';
 import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const EditCompany = props => {
   const [imageSource, setImageSource] = useState(null);

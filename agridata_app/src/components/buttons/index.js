@@ -3,15 +3,18 @@ import {TouchableOpacity, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Typography} from '_styles';
 import {Mixins, Colors} from '_styles';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const CloseButton = props => {
   return (
     <TouchableOpacity
       onPress={() => props.setModal(false)}
       style={{
-        height: Mixins.scaleWidth(30),
-        width: Mixins.scaleWidth(30),
-
+        height: hp('5%'),
+        width: wp('7%'),
         justifyContent: 'center',
         alignItems: 'center',
       }}>

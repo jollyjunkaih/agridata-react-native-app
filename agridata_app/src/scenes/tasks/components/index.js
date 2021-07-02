@@ -118,7 +118,7 @@ const SendTask = props => {
             Typography.small,
             {
               color: 'grey',
-              top: hp('6.5%'),
+              top: hp('6%'),
               right: hp('2%'),
               position: 'absolute',
             },
@@ -564,8 +564,9 @@ const InvoiceModal = props => {
             Typography.normal,
             {
               fontFamily: 'Poppins-SemiBold',
-              left: wp('60%'),
+              right: wp('5%'),
               marginTop: hp('1%'),
+              textAlign: 'right',
             },
           ]}>
           TOTAL: RM 3000
@@ -805,7 +806,7 @@ const ReceivePaymentTask = props => {
             Typography.small,
             {
               color: 'grey',
-              top: hp('6.5%'),
+              top: hp('6%'),
               right: hp('2%'),
               position: 'absolute',
             },
@@ -1262,7 +1263,7 @@ const Receive = props => {
             Typography.small,
             {
               color: 'grey',
-              top: hp('6.5%'),
+              top: hp('6%'),
               right: hp('2%'),
               position: 'absolute',
             },
@@ -1601,7 +1602,7 @@ const UploadReceipt = props => {
             Typography.small,
             {
               color: 'grey',
-              top: hp('6.5%'),
+              top: hp('6%'),
               right: hp('2%'),
               position: 'absolute',
             },
