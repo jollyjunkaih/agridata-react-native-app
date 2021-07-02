@@ -30,7 +30,7 @@ export const OwnerDashboard = props => {
           left: wp('8%'),
         }}>
         <MenuButton
-          userType={props.user.role}
+          userType={'owner'}
           updateAuthState={props.updateAuthState}
           navigation={props.navigation}></MenuButton>
       </View>
@@ -53,7 +53,7 @@ export const OwnerDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.retailerCompany.name}
+        {/*{props.user.retailerCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
         What would you like to do today

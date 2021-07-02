@@ -18,7 +18,6 @@ import {Auth} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
 import {ForgetPassword} from './components';
 import Modal from 'react-native-modal';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -180,7 +179,7 @@ export const Login = props => {
         <View
           style={{
             alignItems: 'center',
-            top: hp('25%'),
+            top: hp('23%'),
           }}>
           <TouchableOpacity
             onPress={async () => {

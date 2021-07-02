@@ -26,13 +26,13 @@ import {API, graphqlOperation} from 'aws-amplify';
 export const ChatRoom = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
 
-  const {itemID} = props.route.params; //chatgroupid
+  const {itemID} = 77777; //props.route.params; //chatgroupid
   const [messages, setMessages] = useState(null);
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
-  const fetchMessages = async () => {
+  /*const fetchMessages = async () => {
     try {
       const message = await API.graphql({
         query: messagesInChatByDate,
@@ -76,7 +76,7 @@ export const ChatRoom = props => {
 
     return () => subscription.unsubscribe();
   }, []);
-
+*/
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -185,7 +185,7 @@ export const ChatRoom = props => {
           style={{
             height: Mixins.scaleHeight(460),
           }}>
-          <ChatBubbleList data={messages} userID={userID} />
+          <ChatBubbleList data={[{}, {}]} userID={userID} />
         </View>
 
         <View style={{top: Mixins.scaleHeight(0)}}>

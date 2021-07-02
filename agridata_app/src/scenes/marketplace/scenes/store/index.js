@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -21,15 +22,15 @@ export const Store = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: hp('103%'),
+        height: hp('100%'),
         width: wp('100%'),
         alignItems: 'center',
       }}>
       <View
         style={{
           position: 'absolute',
-          left: Mixins.scaleWidth(Spacing.BackButtonLeft),
-          top: Mixins.scaleHeight(Spacing.BackButtonTop),
+          left: wp('5%'),
+          top: hp('4%'),
         }}>
         <BackButton navigation={props.navigation} />
       </View>
@@ -39,14 +40,14 @@ export const Store = props => {
       <View style={{top: hp('6%')}}>
         <Searchbar />
       </View>
-      <View
+      <ScrollView
         style={{
           width: wp('93%'),
           height: hp('90%'),
           top: hp('10%'),
         }}>
         <MarketplaceList productList={items} />
-      </View>
+      </ScrollView>
       <View
         style={{
           position: 'absolute',
@@ -56,7 +57,7 @@ export const Store = props => {
         <PurchaseOrderButton />
       </View>
 
-      <View style={{position: 'absolute', bottom: hp('-2%')}}>
+      <View style={{position: 'absolute', bottom: hp('0%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

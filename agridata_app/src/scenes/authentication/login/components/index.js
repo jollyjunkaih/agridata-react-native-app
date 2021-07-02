@@ -35,8 +35,8 @@ export const ForgetPassword = props => {
           <View
             style={{
               position: 'absolute',
-              top: hp('-1.5%'),
-              left: wp('80%'),
+              top: hp('0.5%'),
+              right: wp('6%'),
               zIndex: 1000,
               shadowColor: '#000',
               shadowOffset: {
@@ -147,8 +147,8 @@ export const ChangePassword = props => {
           <View
             style={{
               position: 'absolute',
-              top: hp('-1.5%'),
-              left: wp('82%'),
+              top: hp('0.5%'),
+              right: wp('4%'),
               zIndex: 1000,
               shadowColor: '#000',
               shadowOffset: {
@@ -164,7 +164,7 @@ export const ChangePassword = props => {
 
           <View
             style={{
-              height: hp('40%'),
+              height: hp('45%'),
               width: wp('85%'),
               backgroundColor: 'white',
               borderRadius: 20,
@@ -177,7 +177,7 @@ export const ChangePassword = props => {
                 {
                   textAlign: 'center',
                   margin: wp('3%'),
-                  top: hp('2%'),
+                  top: hp('4%'),
                 },
               ]}>
               Reset password by typing in your new password and auth code
@@ -187,7 +187,7 @@ export const ChangePassword = props => {
                 style={{
                   alignItems: 'flex-start',
                   width: wp('40%'),
-                  top: hp('2%'),
+                  top: hp('5%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
                   alignItems: 'center',
@@ -204,7 +204,7 @@ export const ChangePassword = props => {
                 style={{
                   alignItems: 'flex-start',
                   width: wp('40%'),
-                  top: hp('4%'),
+                  top: hp('6%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
                   alignItems: 'center',
@@ -220,7 +220,7 @@ export const ChangePassword = props => {
             </View>
             <TouchableOpacity
               onPress={() => setResendCodeModal(true)}
-              style={{top: hp('8%')}}>
+              style={{top: hp('9%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
                 Re-send Code
@@ -235,7 +235,7 @@ export const ChangePassword = props => {
                   ? setResendCodeSuccessModal(true)
                   : setResendCodeSuccessModal(false),
               ]}
-              style={{top: hp('12%')}}>
+              style={{top: hp('13%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
                 Change Password

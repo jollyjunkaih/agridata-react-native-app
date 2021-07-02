@@ -23,6 +23,7 @@ import {
   Verification,
   Landing,
   CreateAccountPopUp,
+  ConfirmSignUp,
 } from './authentication';
 
 export {
@@ -52,4 +53,5 @@ export {
   Verification,
   GeneralManagerDashboard,
   CreateAccountPopUp,
+  ConfirmSignUp,
 };

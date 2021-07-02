@@ -18,6 +18,10 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {SuccesfulChangesModal} from '_components/modals';
 import Modal from 'react-native-modal';
 import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const EditCompany = props => {
   const [imageSource, setImageSource] = useState(null);
@@ -51,7 +55,7 @@ export const EditCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(10) : -180
+        Platform.OS === 'ios' ? hp('5%') : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <DismissKeyboardView>
@@ -59,12 +63,12 @@ export const EditCompany = props => {
           <View
             style={{
               flexDirection: 'row',
-              top: Mixins.scaleHeight(20),
+              top: hp('2%'),
               alignItems: 'center',
               justifyContent: 'center',
-              width: Mixins.scaleWidth(360),
+              width: wp('100%'),
             }}>
-            <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
+            <View style={{left: wp('3%'), position: 'absolute'}}>
               <BackButton navigation={props.navigation} />
             </View>
             <View>
@@ -73,11 +77,11 @@ export const EditCompany = props => {
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(20),
+              top: hp('5%'),
               alignItems: 'center',
               justifyContent: 'center',
-              width: Mixins.scaleWidth(200),
-              height: Mixins.scaleHeight(150),
+              width: wp('50%'),
+              height: hp('20%'),
             }}>
             {imageSource === null ? (
               <View>
@@ -86,8 +90,7 @@ export const EditCompany = props => {
                   onPress={() => {
                     selectImage();
                   }}>
-                  <Text
-                    style={{textAlign: 'center', top: Mixins.scaleHeight(10)}}>
+                  <Text style={{textAlign: 'center', top: hp('2%')}}>
                     Change Image
                   </Text>
                 </TouchableOpacity>
@@ -98,8 +101,8 @@ export const EditCompany = props => {
                   source={{uri: imageSource}}
                   style={{
                     resizeMode: 'cover',
-                    width: Mixins.scaleWidth(100),
-                    height: Mixins.scaleWidth(100),
+                    width: wp('50%'),
+                    height: hp('20%'),
                     borderRadius: 100,
                   }}
                 />
@@ -108,33 +111,34 @@ export const EditCompany = props => {
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(60),
+              top: hp('10%'),
               backgroundColor: Colors.GRAY_MEDIUM,
-              width: Mixins.scaleWidth(300),
-              height: Mixins.scaleHeight(250),
+              width: wp('85%'),
+              height: hp('45%'),
               borderRadius: 10,
             }}>
             <View
               style={{
-                top: Mixins.scaleHeight(20),
-                left: Mixins.scaleWidth(20),
-                width: Mixins.scaleWidth(300),
-                height: Mixins.scaleHeight(30),
+                top: hp('3%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>Company Name</Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
                 }}></TextInput>
             </View>
             <View
               style={{
-                top: Mixins.scaleHeight(35),
-                left: Mixins.scaleWidth(20),
-                width: Mixins.scaleWidth(300),
-                height: Mixins.scaleHeight(30),
+                top: hp('6%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 Company Registration No.
@@ -142,16 +146,17 @@ export const EditCompany = props => {
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
                 }}></TextInput>
             </View>
             <View
               style={{
-                top: Mixins.scaleHeight(50),
-                left: Mixins.scaleWidth(20),
-                width: Mixins.scaleWidth(300),
-                height: Mixins.scaleHeight(30),
+                top: hp('9%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 Company Address{' '}
@@ -159,38 +164,41 @@ export const EditCompany = props => {
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
                 }}></TextInput>
             </View>
             <View
               style={{
-                top: Mixins.scaleHeight(65),
-                left: Mixins.scaleWidth(20),
-                width: Mixins.scaleWidth(300),
-                height: Mixins.scaleHeight(30),
+                top: hp('12%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
                 }}></TextInput>
             </View>
             <View
               style={{
-                top: Mixins.scaleHeight(80),
-                left: Mixins.scaleWidth(20),
-                width: Mixins.scaleWidth(300),
-                height: Mixins.scaleHeight(30),
+                top: hp('15%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>Email Address </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: Mixins.scaleWidth(1),
-                  width: Mixins.scaleWidth(260),
+                  borderBottomWidth: 1,
+                  width: wp('75%'),
+                  height: hp('3%'),
                 }}></TextInput>
             </View>
           </View>
@@ -198,9 +206,9 @@ export const EditCompany = props => {
           <TouchableOpacity
             onPress={() => setSuccesfulChangesModal(true)}
             style={{
-              top: Mixins.scaleHeight(100),
-              width: Mixins.scaleWidth(140),
-              height: Mixins.scaleHeight(30),
+              top: hp('15%'),
+              width: wp('40%'),
+              height: wp('11%'),
               backgroundColor: Colors.LIGHT_BLUE,
               alignItems: 'center',
               justifyContent: 'center',
@@ -219,8 +227,8 @@ export const EditCompany = props => {
             <Text>Save Changes</Text>
             <Icon
               name="checkmark-circle-outline"
-              size={Mixins.scaleWidth(20)}
-              style={{left: Mixins.scaleWidth(10)}}
+              size={wp('5%')}
+              style={{left: wp('3%')}}
             />
           </TouchableOpacity>
           <Modal
