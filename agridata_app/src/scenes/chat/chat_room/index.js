@@ -25,14 +25,13 @@ import {API, graphqlOperation} from 'aws-amplify';
 
 export const ChatRoom = props => {
   const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
-
-  const {itemID} = props.route.param; //props.route.params; //chatgroupid
+  const {itemID, chatName} = props.route.params; //props.route.params; //chatgroupid
   const [messages, setMessages] = useState(null);
   const [appState, setAppState] = useState(AppState.currentState);
   const handleAppStateChange = state => {
     setAppState(state);
   };
-  /*const fetchMessages = async () => {
+  const fetchMessages = async () => {
     try {
       const message = await API.graphql({
         query: messagesInChatByDate,
@@ -41,6 +40,7 @@ export const ChatRoom = props => {
           sortDirection: 'ASC',
         },
       });
+      console.log(message.data.messagesInChatByDate.items);
       var tempMessage = message.data.messagesInChatByDate.items;
       setMessages(tempMessage.reverse());
     } catch (e) {
@@ -65,18 +65,18 @@ export const ChatRoom = props => {
           console.log('Message is in another room!');
           return;
         }
-
-        messages = messages.reverse();
+        console.log('subscription');
+        console.log(newMessage);
+        /* messages = messages.reverse();
         messages.push(newMessage.data.newMessage);
         messages = messages.reverse();
         setMessages(messages);
-        // setMessages([newMessage, ...messages]);
+        setMessages([newMessage, ...messages]); */
       },
     });
 
     return () => subscription.unsubscribe();
   }, []);
-*/
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     return () => {
@@ -150,7 +150,7 @@ export const ChatRoom = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-          Matthew's Farm
+          {chatName}
         </Text>
         <View
           style={{
@@ -185,7 +185,7 @@ export const ChatRoom = props => {
           style={{
             height: Mixins.scaleHeight(460),
           }}>
-          <ChatBubbleList data={[{}, {}]} userID={userID} />
+          <ChatBubbleList data={messages} userID={userID} />
         </View>
 
         <View style={{top: Mixins.scaleHeight(0)}}>

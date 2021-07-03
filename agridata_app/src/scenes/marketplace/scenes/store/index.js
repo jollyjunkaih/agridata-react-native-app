@@ -104,6 +104,7 @@ export const Store = props => {
         <PurchaseOrderButton
           purchaseOrder={purchaseOrder}
           storeName={storeName}
+          storeID={itemId}
           POList={POList}
           setPOList={setPOList}
           user={props.user}

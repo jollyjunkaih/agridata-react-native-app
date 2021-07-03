@@ -15,6 +15,26 @@ export const onCreateUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -25,6 +45,16 @@ export const onCreateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -39,15 +69,54 @@ export const onCreateUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -59,6 +128,16 @@ export const onCreateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -73,18 +152,72 @@ export const onCreateUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -111,6 +244,26 @@ export const onUpdateUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -121,6 +274,16 @@ export const onUpdateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -135,15 +298,54 @@ export const onUpdateUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -155,6 +357,16 @@ export const onUpdateUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -169,18 +381,72 @@ export const onUpdateUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -207,6 +473,26 @@ export const onDeleteUser = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -217,6 +503,16 @@ export const onDeleteUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -231,15 +527,54 @@ export const onDeleteUser = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -251,6 +586,16 @@ export const onDeleteUser = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -265,18 +610,72 @@ export const onDeleteUser = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -301,7 +700,32 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -321,8 +745,36 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -332,7 +784,29 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -340,6 +814,15 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -347,8 +830,36 @@ export const onCreateRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -361,7 +872,35 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -388,7 +927,32 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -408,8 +972,36 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -419,7 +1011,29 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -427,6 +1041,15 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -434,8 +1057,36 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -448,7 +1099,35 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -475,7 +1154,32 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -495,8 +1199,36 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -506,7 +1238,29 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -514,6 +1268,15 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -521,8 +1284,36 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -535,7 +1326,35 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -562,7 +1381,32 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -582,6 +1426,17 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -600,8 +1455,36 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -611,7 +1494,29 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -619,6 +1524,15 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -626,8 +1540,36 @@ export const onCreateSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -640,7 +1582,35 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -667,7 +1637,32 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -687,6 +1682,17 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -705,8 +1711,36 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -716,7 +1750,29 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -724,6 +1780,15 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -731,8 +1796,36 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -745,7 +1838,35 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -772,7 +1893,32 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           role
           retailerCompanyID
           supplierCompanyID
+          chatGroup {
+            nextToken
+          }
           contactNumber
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -792,6 +1938,17 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       listings {
         items {
           id
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           productName
           variety
@@ -810,8 +1967,36 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       goodsTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           deliveryDate
           updatedAt
@@ -821,7 +2006,29 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       paymentTask {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
           paid
           amount
@@ -829,6 +2036,15 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           receipt
           createdAt
           invoiceID
+          invoice {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           updatedAt
         }
         nextToken
@@ -836,8 +2052,36 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
       invoice {
         items {
           id
+          retailer {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           retailerID
+          supplier {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          items {
+            name
+            quantity
+            price
+            siUnit
+          }
           createdAt
           paid
           receivedBy
@@ -850,7 +2094,35 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           id
           name
           retailerID
+          retailerCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
           supplierID
+          supplierCompany {
+            id
+            name
+            type
+            address
+            registrationNumber
+            verified
+            logo
+            createdAt
+            updatedAt
+          }
+          chatParticipants {
+            nextToken
+          }
+          messages {
+            nextToken
+          }
           updatedAt
           mostRecentMessage
           mostRecentMessageSender
@@ -875,6 +2147,16 @@ export const onCreateChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -889,15 +2171,54 @@ export const onCreateChatGroup = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -910,6 +2231,16 @@ export const onCreateChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -924,18 +2255,72 @@ export const onCreateChatGroup = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -949,6 +2334,26 @@ export const onCreateChatGroup = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -984,6 +2389,16 @@ export const onUpdateChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -998,15 +2413,54 @@ export const onUpdateChatGroup = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1019,6 +2473,16 @@ export const onUpdateChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1033,18 +2497,72 @@ export const onUpdateChatGroup = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1058,6 +2576,26 @@ export const onUpdateChatGroup = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1093,6 +2631,16 @@ export const onDeleteChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1107,15 +2655,54 @@ export const onDeleteChatGroup = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1128,6 +2715,16 @@ export const onDeleteChatGroup = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1142,18 +2739,72 @@ export const onDeleteChatGroup = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1167,6 +2818,26 @@ export const onDeleteChatGroup = /* GraphQL */ `
           userID
           chatGroupID
           lastOnline
+          chatGroup {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
+          user {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1248,9 +2919,32 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1260,18 +2954,62 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
           updatedAt
         }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
@@ -1286,15 +3024,46 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1303,9 +3072,35 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1333,9 +3128,32 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1345,18 +3163,62 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
           updatedAt
         }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
@@ -1371,15 +3233,46 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1388,9 +3281,35 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1418,9 +3337,32 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1430,18 +3372,62 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
           updatedAt
         }
         chatParticipants {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         messages {
+          items {
+            id
+            chatGroupID
+            type
+            content
+            senderID
+            sender
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         updatedAt
@@ -1456,15 +3442,46 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
         retailerCompanyID
         supplierCompanyID
         chatGroup {
+          items {
+            id
+            userID
+            chatGroupID
+            lastOnline
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         contactNumber
         retailerCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1473,9 +3490,35 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
         supplierCompany {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -1497,6 +3540,16 @@ export const onCreateProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1511,18 +3564,72 @@ export const onCreateProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1553,6 +3660,16 @@ export const onUpdateProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1567,18 +3684,72 @@ export const onUpdateProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1609,6 +3780,16 @@ export const onDeleteProductListing = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1623,18 +3804,72 @@ export const onDeleteProductListing = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1652,66 +3887,6 @@ export const onDeleteProductListing = /* GraphQL */ `
       productPicture
       grade
       siUnit
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePurchaseOrder = /* GraphQL */ `
-  subscription OnCreatePurchaseOrder {
-    onCreatePurchaseOrder {
-      id
-      items {
-        id
-        purchaseOrderID
-        name
-        quantity
-        createdAt
-        siUnit
-        variety
-        grade
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePurchaseOrder = /* GraphQL */ `
-  subscription OnUpdatePurchaseOrder {
-    onUpdatePurchaseOrder {
-      id
-      items {
-        id
-        purchaseOrderID
-        name
-        quantity
-        createdAt
-        siUnit
-        variety
-        grade
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePurchaseOrder = /* GraphQL */ `
-  subscription OnDeletePurchaseOrder {
-    onDeletePurchaseOrder {
-      id
-      items {
-        id
-        purchaseOrderID
-        name
-        quantity
-        createdAt
-        siUnit
-        variety
-        grade
-        updatedAt
-      }
       createdAt
       updatedAt
     }
@@ -1758,69 +3933,6 @@ export const onDeleteProducts = /* GraphQL */ `
       siUnit
       variety
       grade
-      updatedAt
-    }
-  }
-`;
-export const onCreateOrderQuotation = /* GraphQL */ `
-  subscription OnCreateOrderQuotation {
-    onCreateOrderQuotation {
-      id
-      items {
-        id
-        quotationID
-        name
-        variety
-        grade
-        quantity
-        createdAt
-        price
-        siUnit
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateOrderQuotation = /* GraphQL */ `
-  subscription OnUpdateOrderQuotation {
-    onUpdateOrderQuotation {
-      id
-      items {
-        id
-        quotationID
-        name
-        variety
-        grade
-        quantity
-        createdAt
-        price
-        siUnit
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteOrderQuotation = /* GraphQL */ `
-  subscription OnDeleteOrderQuotation {
-    onDeleteOrderQuotation {
-      id
-      items {
-        id
-        quotationID
-        name
-        variety
-        grade
-        quantity
-        createdAt
-        price
-        siUnit
-        updatedAt
-      }
-      createdAt
       updatedAt
     }
   }
@@ -1881,6 +3993,16 @@ export const onCreateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1895,15 +4017,54 @@ export const onCreateGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1916,6 +4077,16 @@ export const onCreateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1930,18 +4101,72 @@ export const onCreateGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -1970,6 +4195,16 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -1984,15 +4219,54 @@ export const onUpdateGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2005,6 +4279,16 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2019,18 +4303,72 @@ export const onUpdateGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2059,6 +4397,16 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2073,15 +4421,54 @@ export const onDeleteGoodsTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2094,6 +4481,16 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2108,18 +4505,72 @@ export const onDeleteGoodsTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2148,6 +4599,16 @@ export const onCreatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2162,15 +4623,54 @@ export const onCreatePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2183,6 +4683,16 @@ export const onCreatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2197,18 +4707,72 @@ export const onCreatePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2228,9 +4792,32 @@ export const onCreatePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2240,9 +4827,35 @@ export const onCreatePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2272,6 +4885,16 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2286,15 +4909,54 @@ export const onUpdatePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2307,6 +4969,16 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2321,18 +4993,72 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2352,9 +5078,32 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2364,9 +5113,35 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2396,6 +5171,16 @@ export const onDeletePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2410,15 +5195,54 @@ export const onDeletePaymentTask = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2431,6 +5255,16 @@ export const onDeletePaymentTask = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2445,18 +5279,72 @@ export const onDeletePaymentTask = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2476,9 +5364,32 @@ export const onDeletePaymentTask = /* GraphQL */ `
         retailer {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
           registrationNumber
+          favouriteStores {
+            id
+            name
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2488,9 +5399,35 @@ export const onDeletePaymentTask = /* GraphQL */ `
         supplier {
           id
           name
+          employees {
+            nextToken
+          }
           type
           address
+          rating {
+            numberOfRatings
+            CurrentRating
+          }
+          bankAccount {
+            bankName
+            accountNumber
+          }
           registrationNumber
+          listings {
+            nextToken
+          }
+          goodsTask {
+            nextToken
+          }
+          paymentTask {
+            nextToken
+          }
+          invoice {
+            nextToken
+          }
+          chatGroups {
+            nextToken
+          }
           verified
           logo
           createdAt
@@ -2520,6 +5457,16 @@ export const onCreateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2534,15 +5481,54 @@ export const onCreateInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2555,6 +5541,16 @@ export const onCreateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2569,18 +5565,72 @@ export const onCreateInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2610,6 +5660,16 @@ export const onUpdateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2624,15 +5684,54 @@ export const onUpdateInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2645,6 +5744,16 @@ export const onUpdateInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2659,18 +5768,72 @@ export const onUpdateInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2700,6 +5863,16 @@ export const onDeleteInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2714,15 +5887,54 @@ export const onDeleteInvoice = /* GraphQL */ `
           name
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified
@@ -2735,6 +5947,16 @@ export const onDeleteInvoice = /* GraphQL */ `
         id
         name
         employees {
+          items {
+            id
+            name
+            role
+            retailerCompanyID
+            supplierCompanyID
+            contactNumber
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         type
@@ -2749,18 +5971,72 @@ export const onDeleteInvoice = /* GraphQL */ `
         }
         registrationNumber
         listings {
+          items {
+            id
+            supplierID
+            productName
+            variety
+            quantityAvailable
+            lowPrice
+            highPrice
+            minimumQuantity
+            productPicture
+            grade
+            siUnit
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         goodsTask {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            deliveryDate
+            updatedAt
+          }
           nextToken
         }
         paymentTask {
+          items {
+            id
+            retailerID
+            supplierID
+            paid
+            amount
+            payBefore
+            receipt
+            createdAt
+            invoiceID
+            updatedAt
+          }
           nextToken
         }
         invoice {
+          items {
+            id
+            retailerID
+            supplierID
+            createdAt
+            paid
+            receivedBy
+            updatedAt
+          }
           nextToken
         }
         chatGroups {
+          items {
+            id
+            name
+            retailerID
+            supplierID
+            updatedAt
+            mostRecentMessage
+            mostRecentMessageSender
+            createdAt
+          }
           nextToken
         }
         verified

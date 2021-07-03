@@ -103,10 +103,20 @@ export const ChatList = props => {
         </View>
       }
       renderItem={({item}) => {
+        var nameArray = item.name.split('+');
+        var chatName = null;
+        if (props.companyType == 'supplier') {
+          chatName = nameArray[0];
+        } else {
+          chatName = nameArray[1];
+        }
+        var senderArray = item.mostRecentMessageSender.split(' ');
+        var firstName = senderArray[0];
         return (
           <ChatRoom
-            chatName={item.name}
+            chatName={chatName}
             mostRecentMessage={item.mostRecentMessage}
+            mostRecentMessageSender={firstName}
             updatedAt={item.updatedAt}
             chatGroupID={item.id}
             navigation={props.navigation}
@@ -123,7 +133,10 @@ const ChatRoom = props => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.navigate('chatroom', {itemID: props.chatGroupID});
+        props.navigation.navigate('chatroom', {
+          itemID: props.chatGroupID,
+          chatName: props.chatName,
+        });
       }}
       style={{
         height: Mixins.scaleHeight(60),
@@ -152,7 +165,9 @@ const ChatRoom = props => {
       </View>
       <View style={{left: Mixins.scaleWidth(25), top: Mixins.scaleHeight(10)}}>
         <Text style={Typography.normal}>{props.chatName}</Text>
-        <Text style={Typography.small}>{props.mostRecentMessage}</Text>
+        <Text style={Typography.small}>
+          {props.mostRecentMessageSender} : {props.mostRecentMessage}
+        </Text>
       </View>
       <View
         style={{

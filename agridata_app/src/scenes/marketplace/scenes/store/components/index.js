@@ -22,6 +22,8 @@ import {
   deleteProducts,
   updateProducts,
   createMessage,
+  createChatGroup,
+  updateChatGroup,
 } from '../../../../../graphql/mutations';
 
 const ProductCard = props => {
@@ -435,10 +437,11 @@ export const PurchaseOrderButton = props => {
 const PurchaseOrder = props => {
   const [poSuccessfulModal, setpoSuccessfulModal] = useState(false);
   const sendPO = async () => {
-    console.log('creating product inquiry');
-    console.log(props.user);
+    const chatGroups = props.user.retailerCompany.chatGroups.items;
+    const chatGroupExists = chatGroups.filter(
+      item => item.id == props.purchaseOrder,
+    );
 
-    console.log(props.purchaseOrder);
     const inquiry = {
       chatGroupID: props.purchaseOrder,
       type: 'purchaseorder',
@@ -446,12 +449,50 @@ const PurchaseOrder = props => {
       sender: props.user.name,
       senderID: props.user.id,
     };
+    if (!chatGroupExists.length) {
+      console.log(chatGroupExists + 'chat group does not exist');
+      try {
+        const chatGroup = {
+          id: props.purchaseOrder,
+          name: props.user.retailerCompany.name + '+' + props.storeName,
+          retailerID: props.user.retailerCompany.id,
+          supplierID: props.purchaseOrder.slice(36, 72),
+        };
+        console.log(chatGroup);
+        const createdChatGroup = await API.graphql({
+          query: createChatGroup,
+          variables: {input: chatGroup},
+        });
+        console.log(createdChatGroup);
+      } catch {
+        e => console.log(e);
+      }
+    } else {
+      console.log(chatGroupExists + 'chat group already exist');
+      try {
+        const updateChat = await API.graphql({
+          query: updateChatGroup,
+          variables: {
+            input: {
+              id: props.purchaseOrder,
+              mostRecentMessage: 'Purchase Order',
+              mostRecentMessageSender: props.user.name,
+            },
+          },
+        });
+      } catch {
+        e => console.log(e);
+      }
+    }
+
+    console.log('creating product inquiry');
     try {
       const message = await API.graphql({
         query: createMessage,
         variables: {input: inquiry},
       });
       console.log(message.data.createMessage);
+
       setpoSuccessfulModal(true);
     } catch {
       e => console.log(e);

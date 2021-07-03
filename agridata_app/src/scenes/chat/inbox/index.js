@@ -9,23 +9,50 @@ import {API} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
 
 export const Inbox = props => {
-  const userID = '461b570f-2557-4859-a450-76dd0e16ed35';
-  const companyID = '8ccd83c6-c59c-4248-ab14-2b13adad55a9';
+  console.log('inbox' + props.user);
+  const userID = props.user.id;
+
+  if (props.user.retailerCompanyID == null) {
+    var companyID = props.user.supplierCompany.id;
+    var companyType = 'supplier';
+  } else {
+    var companyID = props.user.retailerCompany.id;
+    var companyType = 'retailer';
+  }
+
   const [chatRooms, setChatRooms] = useState(null);
   const fetchChats = async () => {
     try {
       console.log(userID);
-      const chats = await API.graphql({
-        query: getChatGroupsContainingRetailersByUpdatedAt,
-        variables: {
-          retailerID: companyID,
-          sortDirection: 'ASC',
-        },
-      });
-      console.log(chats.data.getChatGroupsContainingRetailersByUpdatedAt.items);
-      setChatRooms(
-        chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
-      );
+      if (companyType == 'retailer') {
+        const chats = await API.graphql({
+          query: getChatGroupsContainingRetailersByUpdatedAt,
+          variables: {
+            retailerID: companyID,
+            sortDirection: 'ASC',
+          },
+        });
+        console.log(
+          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+        );
+        setChatRooms(
+          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+        );
+      } else {
+        const chats = await API.graphql({
+          query: getChatGroupsContainingSuppliersByUpdatedAt,
+          variables: {
+            supplierID: companyID,
+            sortDirection: 'ASC',
+          },
+        });
+        console.log(
+          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+        );
+        setChatRooms(
+          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+        );
+      }
     } catch (e) {
       console.log(e);
       console.log("there's a problem");
@@ -74,24 +101,9 @@ export const Inbox = props => {
           top: Mixins.scaleHeight(60),
         }}>
         <ChatList
-          data={[
-            {
-              name: "Matthew's Farm",
-              mostRecentMessage: 'Has the invoice been processed?',
-              updatedAt: '30-6-21',
-            },
-            {
-              name: "Jane's Farm",
-              mostRecentMessage: 'How are the pineapples?',
-              updatedAt: '30-6-21',
-            },
-            {
-              name: "Gina's Orchard",
-              mostRecentMessage: 'RM 5 okay?',
-              updatedAt: '30-6-21',
-            },
-          ]}
+          data={chatRooms}
           navigation={props.navigation}
+          companyType={companyType}
         />
       </View>
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>

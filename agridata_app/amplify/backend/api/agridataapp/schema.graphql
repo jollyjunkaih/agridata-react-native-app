@@ -74,17 +74,17 @@ type BankDetails {
 type ChatGroup @model
 @key(name: "chatGroupbyRetailer", fields: ["retailerID","updatedAt"], queryField: "getChatGroupsContainingRetailersByUpdatedAt")
 @key(name: "chatGroupbySupplier", fields: ["supplierID","updatedAt"], queryField: "getChatGroupsContainingSuppliersByUpdatedAt"){
-  id:ID! "CompanyX+CompanyY"
-  name: String!
-  retailerID: ID!
+  id:ID "CompanyX+CompanyY"
+  name: String
+  retailerID: ID
   retailerCompany: RetailerCompany
-  supplierID: ID!
+  supplierID: ID
   supplierCompany: SupplierCompany
   chatParticipants: [ChatGroupUsers] @connection(keyName:"gettingChatParticipantsByChatGroup", fields:["id"])
   messages: [Message]  @connection(keyName: "byChatGroup", fields: ["id"])
   updatedAt: String
-  mostRecentMessage: String!
-  mostRecentMessageSender: String!
+  mostRecentMessage: String
+  mostRecentMessageSender: String
 } 
 
 type Message @model 
@@ -126,16 +126,10 @@ type ProductListing @model
   siUnit: String
 }
 
-type PurchaseOrder @model{
-  id:ID "companyX+companyY"
-  items: [Products]
-  createdAt: String
-}
-
 type Products @model
 @key(name: "productsInPurchaseOrder", fields: ["purchaseOrderID"],queryField: "purchaseOrderItems"){
   id:ID
-  purchaseOrderID:ID
+  purchaseOrderID:ID "companyX+companyY"
   name: String
   quantity: Int
   createdAt: String
@@ -144,16 +138,11 @@ type Products @model
   grade: String
 }
 
-type OrderQuotation @model{
-  id: ID "companyX+companyY"
-  items: [QuotedProducts]
-  createdAt: String
-}
 
 type QuotedProducts @model
 @key(name: "productsInQuotation", fields: ["quotationID"],queryField: "QuotationItems"){
   id:ID
-  quotationID:ID
+  quotationID:ID "companyX+companyY"
   name: String
   variety: String
   grade: String

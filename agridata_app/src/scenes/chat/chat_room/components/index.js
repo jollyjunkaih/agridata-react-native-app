@@ -104,7 +104,7 @@ const ChatBubble = props => {
                 Typography.small,
                 {alignSelf: 'flex-end', right: Mixins.scaleWidth(10)},
               ]}>
-              createdAt
+              {props.createdAt}
             </Text>
           </View>
         </View>
@@ -199,7 +199,7 @@ const ChatBubble = props => {
         </View>
       </View>
     );
-  } else if (contentType == 'po') {
+  } else if (contentType == 'purchaseorder') {
     return (
       <View>
         <View>
@@ -284,7 +284,7 @@ const ChatBubble = props => {
                 top: Mixins.scaleHeight(10),
               },
             ]}>
-            createdAt
+            {props.createdAt}
           </Text>
         </View>
         <Modal
@@ -398,43 +398,7 @@ export const ChatBubbleList = props => {
       <FlatList
         inverted={true}
         keyExtractor={item => item.id}
-        data={[
-          {
-            sender: 'Jeremy',
-            content: 'When do you want me to deliver?',
-            type: 'text',
-          },
-          {
-            sender: 'me',
-            content: 'Tuesday can?',
-            type: 'text',
-          },
-          {
-            sender: 'May',
-            content: 'When do you want me to deliver?',
-            type: 'po',
-          },
-          {
-            sender: 'me',
-            content: 'May just sent the PO. Can check Jeremy? Got stock?',
-            type: 'text',
-          },
-          {
-            sender: 'Jeremy',
-            content: 'Got. Give me one sec, i send u the quotation',
-            type: 'text',
-          },
-          {
-            sender: 'Jeremy',
-            content: 'Got. Give me one sec, i send u the quotation',
-            type: 'quotation',
-          },
-          {
-            sender: 'May',
-            content: 'Thanks, just what we were looking for',
-            type: 'text',
-          },
-        ].reverse()}
+        data={props.data}
         numColumns={1}
         renderItem={item => {
           return (
