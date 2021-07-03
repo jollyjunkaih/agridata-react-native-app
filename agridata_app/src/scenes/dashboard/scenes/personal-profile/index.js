@@ -10,6 +10,11 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {BackButton} from '_components/buttons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  widthPercentageToDP,
+} from 'react-native-responsive-screen';
 
 export const PersonalProfile = props => {
   return (
@@ -17,12 +22,12 @@ export const PersonalProfile = props => {
       <View
         style={{
           flexDirection: 'row',
-          top: Mixins.scaleHeight(20),
+          top: hp('3%'),
           alignItems: 'center',
           justifyContent: 'center',
-          width: Mixins.scaleWidth(360),
+          width: wp('100%'),
         }}>
-        <View style={{left: Mixins.scaleWidth(10), position: 'absolute'}}>
+        <View style={{left: wp('4%'), position: 'absolute'}}>
           <BackButton navigation={props.navigation} />
         </View>
         <View>
@@ -30,85 +35,87 @@ export const PersonalProfile = props => {
         </View>
         <TouchableOpacity
           style={{
-            right: Mixins.scaleWidth(10),
+            right: wp('4%'),
             position: 'absolute',
           }}>
           <Icon
             name="create-outline"
-            size={Mixins.scaleWidth(25)}
+            size={wp('6%')}
             onPress={() => props.navigation.navigate('editprofile')}
           />
         </TouchableOpacity>
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(40),
+          top: hp('8%'),
           alignItems: 'center',
           justifyContent: 'center',
-          width: Mixins.scaleWidth(360),
-          height: Mixins.scaleHeight(200),
+          width: wp('80%'),
+          height: hp('25%'),
         }}>
         <Image
           source={require('_assets/images/company-logo.png')}
           style={{
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(300),
-            height: Mixins.scaleHeight(130),
+            width: wp('80%'),
+            height: hp('20%'),
           }}
         />
-        <Text style={[Typography.header, {top: Mixins.scaleHeight(10)}]}>
-          NAME
-        </Text>
+        <Text style={[Typography.header, {top: hp('2%')}]}>NAME</Text>
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(60),
+          top: hp('14%'),
           backgroundColor: Colors.GRAY_MEDIUM,
-          width: Mixins.scaleWidth(300),
-          height: Mixins.scaleHeight(250),
+          width: wp('85%'),
+          height: hp('38%'),
           borderRadius: 10,
         }}>
         <View
           style={{
-            top: Mixins.scaleHeight(25),
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(300),
+            top: hp('4%'),
+            left: wp('6%'),
+            width: wp('73%'),
+            height: hp('5%'),
           }}>
           <Text style={[Typography.placeholderSmall]}>Company Role</Text>
-          <View style={{top: Mixins.scaleHeight(5)}}>
+          <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>General Manager</Text>
           </View>
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(40),
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(300),
+            top: hp('6%'),
+            left: wp('6%'),
+            width: wp('73%'),
+            height: hp('5%'),
           }}>
           <Text style={[Typography.placeholderSmall]}>Address </Text>
-          <View style={{top: Mixins.scaleHeight(5)}}>
+          <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>STREET, CITY, STATE</Text>
           </View>
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(55),
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(300),
+            top: hp('8%'),
+            left: wp('6%'),
+            width: wp('73%'),
+            height: hp('5%'),
           }}>
           <Text style={[Typography.placeholderSmall]}>Email Address </Text>
-          <View style={{top: Mixins.scaleHeight(5)}}>
+          <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>email@gmail.com</Text>
           </View>
         </View>
         <View
           style={{
-            top: Mixins.scaleHeight(70),
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(300),
+            top: hp('10%'),
+            left: wp('6%'),
+            width: wp('73%'),
+            height: hp('5%'),
           }}>
           <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
-          <View style={{top: Mixins.scaleHeight(5)}}>
+          <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>+60 11 6569 1999 </Text>
           </View>
         </View>

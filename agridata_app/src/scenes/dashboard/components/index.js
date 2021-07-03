@@ -19,6 +19,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const MarketplaceButton = props => (
   <TouchableOpacity
@@ -42,7 +43,7 @@ export const MarketplaceButton = props => (
       }}
       source={require('_assets/images/groceries-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      marketplace
+      {Strings.marketplace}
     </Text>
   </TouchableOpacity>
 );
@@ -69,7 +70,7 @@ export const ChatButton = props => (
       }}
       source={require('_assets/images/chat-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      chats
+      {Strings.chats}
     </Text>
   </TouchableOpacity>
 );
@@ -96,7 +97,7 @@ export const InvoiceButton = props => (
       }}
       source={require('_assets/images/planner-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      invoices
+      {Strings.invoices}
     </Text>
   </TouchableOpacity>
 );
@@ -123,7 +124,7 @@ export const ToDoButton = props => (
       }}
       source={require('_assets/images/calendar-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      to do
+      {Strings.todo}
     </Text>
   </TouchableOpacity>
 );
@@ -253,7 +254,9 @@ export const MenuButtonModal = props => {
                   justifyContent: 'center',
                   left: wp('3%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Company Profile</Text>
+                <Text style={[Typography.placeholder]}>
+                  {Strings.companyProfile}
+                </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -277,7 +280,9 @@ export const MenuButtonModal = props => {
                   justifyContent: 'center',
                   left: wp('3%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Personal Profile</Text>
+                <Text style={[Typography.placeholder]}>
+                  {Strings.personalProfile}
+                </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -300,7 +305,9 @@ export const MenuButtonModal = props => {
                   justifyContent: 'center',
                   left: wp('3%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Human Resource</Text>
+                <Text style={[Typography.placeholder]}>
+                  {Strings.humanResource}
+                </Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -321,7 +328,7 @@ export const MenuButtonModal = props => {
                   justifyContent: 'center',
                   left: wp('3%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Logout</Text>
+                <Text style={[Typography.placeholder]}>{Strings.logOut}</Text>
               </View>
             </View>
           </TouchableOpacity>

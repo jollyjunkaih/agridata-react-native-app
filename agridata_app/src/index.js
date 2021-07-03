@@ -2,16 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
-  AccountsDashboard,
-  RetailManagerDashboard,
-  GeneralManagerDashboard,
+  AccountsDashboard, //done
+  RetailManagerDashboard, // done
+  GeneralManagerDashboard, //done
   Marketplace,
   Store,
-  Inbox,
+  Inbox, //done
   ChatRoom,
-  EmployeeDashboard,
-  OwnerDashboard,
-  Orders,
+  EmployeeDashboard, //done
+  OwnerDashboard, //done
+  Orders, //Done
   SupplierStore,
   SupplierTasks,
   RetailerTasks,
@@ -23,13 +23,14 @@ import {
   //DataAnalytics,
   Registration,
   SupplierDashboard,
-  Login,
-  CreateCompany,
+  Login, //done except forgot password
+  CreateCompany, //done
   Landing,
   Verification,
-  CreateAccountPopUp,
+  CreateAccountPopUp, //done
   ConfirmSignUp,
 } from './scenes';
+import {SuccessfulModal, UnsuccessfulModal} from '_components';
 import {DataAnalytics} from './scenes/data_analytics/';
 /*import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
 import config from './aws-exports';*/
@@ -519,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierStore></SupplierStore>;
+  return <CreateAccountPopUp></CreateAccountPopUp>;
 };
 export default App;

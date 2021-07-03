@@ -33,9 +33,9 @@ export const CreateCompany = props => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Wholesaler', value: 'wholesaler'},
-    {label: 'Supermarket', value: 'supermarket'},
-    {label: 'Farm', value: 'farm'},
+    {label: Strings.wholesaler, value: 'wholesaler'},
+    {label: Strings.supermarket, value: 'supermarket'},
+    {label: Strings.farm, value: 'farm'},
   ]);
   const [createAccountButton, setCreateAccountButton] = useState(false);
   const [companyName, setCompanyName] = useState('');
@@ -134,7 +134,7 @@ export const CreateCompany = props => {
               resizeMode: 'cover',
             }}
           />
-          <View style={{top: hp('6%')}}>
+          <View style={{top: hp('8%')}}>
             <View>
               <Text
                 style={[
@@ -142,27 +142,17 @@ export const CreateCompany = props => {
                   {
                     width: wp('80%'),
                     left: wp('8%'),
+                    lineHeight: hp('5.5%'),
                   },
                 ]}>
-                REGISTER
-              </Text>
-              <Text
-                style={[
-                  Typography.largestSize,
-                  {
-                    width: wp('80%'),
-                    left: wp('8%'),
-                    top: hp('-1%'),
-                  },
-                ]}>
-                COMPANY
+                {Strings.registerCompany}
               </Text>
             </View>
           </View>
 
           <View
             style={{
-              top: hp('7%'),
+              top: hp('9%'),
               left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>{Strings.companyName}</Text>
@@ -186,7 +176,7 @@ export const CreateCompany = props => {
 
           <View
             style={{
-              top: hp('8%'),
+              top: hp('11%'),
               left: wp('8%'),
             }}>
             <Text style={[Typography.placeholder]}>
@@ -212,10 +202,12 @@ export const CreateCompany = props => {
 
           <View
             style={{
-              top: hp('9%'),
+              top: hp('13%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Company Address</Text>
+            <Text style={[Typography.placeholder]}>
+              {Strings.companyAddress}
+            </Text>
             <TextInput
               keyboardType="default"
               placeholder="eg. Lot3, Jalan Bendera, Penampang"
@@ -236,12 +228,12 @@ export const CreateCompany = props => {
 
           <View
             style={{
-              top: hp('10%'),
+              top: hp('15%'),
               left: wp('8%'),
             }}>
             <View>
               <Text style={[Typography.placeholder, {fontSize: 12}]}>
-                What type of company are you running?
+                {Strings.companyType}
               </Text>
             </View>
             <View
@@ -278,7 +270,7 @@ export const CreateCompany = props => {
           <View
             style={{
               alignItems: 'center',
-              top: hp('25%'),
+              top: hp('33%'),
             }}>
             <TouchableOpacity
               style={{
@@ -308,7 +300,7 @@ export const CreateCompany = props => {
                 }
               }}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={[Typography.large]}>REGISTER</Text>
+                <Text style={[Typography.large]}>{Strings.register}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -355,7 +347,7 @@ export const CreateAccountPopUp = props => {
         </View>
         <Text
           style={[
-            Typography.welcome,
+            Typography.header,
             {
               width: wp('70%'),
               alignSelf: 'center',
@@ -363,7 +355,7 @@ export const CreateAccountPopUp = props => {
               top: hp('5%'),
             },
           ]}>
-          YOUR ACCOUNT IS BEING VERIFIED
+          {Strings.verification}
         </Text>
 
         <Text
@@ -375,8 +367,7 @@ export const CreateAccountPopUp = props => {
               top: hp('7%'),
             },
           ]}>
-          Thank you for registering your company. We will review it shortly and
-          approve it once verification is complete
+          {Strings.thanksVerification}
         </Text>
       </View>
     </View>

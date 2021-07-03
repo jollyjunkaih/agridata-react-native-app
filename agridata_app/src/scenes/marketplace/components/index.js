@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Searchbar = props => {
   return (
@@ -21,19 +22,14 @@ export const Searchbar = props => {
       }}>
       {/* Add searchable dropdown */}
       <TextInput
+        placeholder={Strings.search}
         style={{
           position: 'absolute',
           height: hp('3%'),
           left: wp('13%'),
+          color: 'black',
         }}></TextInput>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          bottom: hp('1.5%'),
-          left: wp('70%'),
-        }}>
-        <Text style={[Typography.small]}>Search</Text>
-      </TouchableOpacity>
+
       <View style={{position: 'absolute', left: wp('5%')}}>
         <Icon name="search" size={wp('7%')} color={Colors.GRAY_DARK} />
       </View>

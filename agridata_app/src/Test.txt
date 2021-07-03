@@ -1,2 +1,0 @@
-1. scenes/authentication/create-company
-2. scenes/authentication/login

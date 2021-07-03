@@ -22,6 +22,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 //import {PDFDocument} from 'pdf-lib';
 
 const logoUri = Image.resolveAssetSource(logo).uri;
@@ -158,7 +159,9 @@ export const SortModal = props => {
           <Icon name="time-outline" size={wp('6%')} />
           <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Oldest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.oldest}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -174,7 +177,9 @@ export const SortModal = props => {
           <Icon name="time-outline" size={wp('6%')} />
           <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Newest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.latest}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -190,7 +195,9 @@ export const SortModal = props => {
           <Icon name="pricetags-outline" size={wp('6%')} />
           <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Cheapest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.leastExpensive}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -206,7 +213,9 @@ export const SortModal = props => {
           <Icon name="pricetags-outline" size={wp('6%')} />
           <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Priciest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.mostExpensive}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -249,7 +258,7 @@ const InvoiceModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Invoice #1214
+        {Strings.invoice} #1214
       </Text>
       <Text
         style={[
@@ -316,7 +325,7 @@ const InvoiceModal = props => {
               right: hp('2%'),
             },
           ]}>
-          TOTAL: RM 600
+          {Strings.total}: RM 600
         </Text>
       </View>
 

@@ -22,6 +22,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Login = props => {
   const [secure, setSecure] = useState(true);
@@ -72,27 +73,17 @@ export const Login = props => {
               style={[
                 Typography.largestSize,
                 {
-                  width: wp('80%'),
+                  width: wp('60%'),
                   left: wp('8%'),
                   top: hp('4%'),
+                  lineHeight: hp('5.5%'),
                 },
               ]}>
-              Welcome
-            </Text>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
-                  width: wp('50%'),
-                  left: wp('8%'),
-                  top: hp('2%'),
-                },
-              ]}>
-              Back
+              {Strings.welcome}
             </Text>
           </View>
-          <View style={{top: hp('3%'), left: wp('8%')}}>
-            <Text style={[Typography.large]}>Login to your account now!</Text>
+          <View style={{top: hp('4%'), left: wp('8%'), width: wp('70%')}}>
+            <Text style={[Typography.large]}>{Strings.logIntoAcc}</Text>
           </View>
         </View>
         <View>
@@ -101,7 +92,7 @@ export const Login = props => {
               top: hp('12%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Phone Number / Email</Text>
+            <Text style={[Typography.placeholder]}>{Strings.phoneEmail}</Text>
             <TextInput
               keyboardType="default"
               placeholder="+60123456 or example@example.com"
@@ -124,9 +115,9 @@ export const Login = props => {
               top: hp('14%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Password</Text>
+            <Text style={[Typography.placeholder]}>{Strings.password}</Text>
             <TextInput
-              placeholder="Password"
+              placeholder={Strings.password}
               secureTextEntry={secure}
               keyboardType="default"
               underlineColorAndroid="transparent"
@@ -169,7 +160,7 @@ export const Login = props => {
                   fontSize: 12,
                 },
               ]}>
-              Forgot Password?
+              {Strings.forgotPassword}
             </Text>
           </TouchableOpacity>
           <Modal isVisible={forgetPassword}>
@@ -203,9 +194,9 @@ export const Login = props => {
               shadowRadius: 3,
               shadowColor: 'grey',
             }}>
-            <View style={{flexDirection: 'row', left: wp('7%')}}>
-              <Text style={[Typography.large]}>LOG IN</Text>
-              <View style={{left: wp('8%')}}>
+            <View style={{flexDirection: 'row', left: wp('6%')}}>
+              <Text style={[Typography.large]}>{Strings.logIn}</Text>
+              <View style={{position: 'absolute', left: wp('25%')}}>
                 <Icon name="arrow-forward-outline" size={wp('6%')} />
               </View>
             </View>
@@ -227,7 +218,7 @@ export const Login = props => {
             <Icon name="finger-print-outline" size={wp('12%')} />
           </View>
 
-          <Text style={[Typography.normal]}>Log In Using Fingerprint</Text>
+          <Text style={[Typography.normal]}>{Strings.logInFinger}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -238,7 +229,7 @@ export const Login = props => {
             alignSelf: 'center',
           }}>
           <Text style={[Typography.welcome, {fontSize: 12}]}>
-            Having any trouble?
+            {Strings.havingTrouble}
           </Text>
         </TouchableOpacity>
       </SafeAreaView>
