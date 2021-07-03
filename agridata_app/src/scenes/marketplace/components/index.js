@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity, Text} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {DismissKeyboardView} from '_components';
@@ -20,7 +20,20 @@ export const Searchbar = props => {
         justifyContent: 'center',
       }}>
       {/* Add searchable dropdown */}
-      <TextInput style={{height: hp('5%')}}></TextInput>
+      <TextInput
+        style={{
+          position: 'absolute',
+          height: hp('3%'),
+          left: wp('13%'),
+        }}></TextInput>
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: hp('1.5%'),
+          left: wp('70%'),
+        }}>
+        <Text style={[Typography.small]}>Search</Text>
+      </TouchableOpacity>
       <View style={{position: 'absolute', left: wp('5%')}}>
         <Icon name="search" size={wp('7%')} color={Colors.GRAY_DARK} />
       </View>

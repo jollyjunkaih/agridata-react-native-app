@@ -256,13 +256,13 @@ PODS:
   - React-jsinspector (0.64.2)
   - react-native-background-timer (2.4.1):
     - React-Core
-  - react-native-camera (3.44.1):
+  - react-native-camera (3.44.2):
     - React-Core
-    - react-native-camera/RCT (= 3.44.1)
-    - react-native-camera/RN (= 3.44.1)
-  - react-native-camera/RCT (3.44.1):
+    - react-native-camera/RCT (= 3.44.2)
+    - react-native-camera/RN (= 3.44.2)
+  - react-native-camera/RCT (3.44.2):
     - React-Core
-  - react-native-camera/RN (3.44.1):
+  - react-native-camera/RN (3.44.2):
     - React-Core
   - react-native-image-picker (4.0.4):
     - React-Core
@@ -602,7 +602,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
   react-native-background-timer: 17ea5e06803401a379ebf1f20505b793ac44d0fe
-  react-native-camera: 7bf59f2728ffb019fa25e60a225d2c57e1a8f0f6
+  react-native-camera: 192bd9dbe71c4e6cfb0d29d2974c6dfb9f8e4689
   react-native-image-picker: c07b072faa83f3480b473a15ea3c19cc39b3d6fa
   react-native-netinfo: e849fc21ca2f4128a5726c801a82fc6f4a6db50d
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
