@@ -65,7 +65,7 @@ export const AccountsDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.retailerCompany.name}
+        {/*{props.user.retailerCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
         {Strings.whatToDo}

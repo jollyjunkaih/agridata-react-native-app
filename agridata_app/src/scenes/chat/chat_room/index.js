@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 import {API, graphqlOperation} from 'aws-amplify';
 
@@ -126,45 +127,42 @@ export const ChatRoom = props => {
         style={{
           position: 'absolute',
           backgroundColor: 'white',
-          top: Mixins.scaleHeight(-5),
-          height: Mixins.scaleHeight(40),
-          width: Mixins.scaleWidth(360),
+          top: hp('-1%'),
+          height: hp('7%'),
+          width: wp('100%'),
           zIndex: 5,
         }}></View>
 
       <View
         style={{
           zIndex: 2,
-          height: Mixins.scaleHeight(65),
-          width: Mixins.scaleWidth(360),
+          height: hp('10%'),
+          width: wp('100%'),
           backgroundColor: 'white',
           alignItems: 'center',
         }}>
         <View
           style={{
             position: 'absolute',
-            left: Mixins.scaleWidth(Spacing.BackButtonLeft),
-            top: Mixins.scaleHeight(Spacing.BackButtonTop),
-            backgroundColor: 'white',
+            left: wp('6%'),
+            top: hp('3.5%'),
           }}>
           <BackButton navigation={props.navigation} />
         </View>
-        <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-          {chatName}
-        </Text>
+        <Text style={[Typography.header, {top: hp('3%')}]}>{chatName}</Text>
         <View
           style={{
             position: 'absolute',
-            top: Mixins.scaleHeight(30),
-            right: Mixins.scaleWidth(15),
+            top: hp('3%'),
+            right: wp('5%'),
           }}>
           <ChatInfo chatGroupID={itemID} />
         </View>
 
         <View
           style={{
-            top: Mixins.scaleHeight(35),
-            width: Mixins.scaleWidth(360),
+            top: hp('6%'),
+            width: wp('100%'),
             borderBottomWidth: 1,
             height: 0,
             borderColor: Colors.GRAY_MEDIUM,
@@ -173,22 +171,20 @@ export const ChatRoom = props => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : 'position'}
         keyboardVerticalOffset={
-          Platform.OS === 'ios'
-            ? Mixins.scaleHeight(10)
-            : Mixins.scaleHeight(40)
+          Platform.OS === 'ios' ? hp('3%') : Mixins.scaleHeight(40)
         } /* Keyboard Offset needs to be tested against multiple phones */
         style={{
-          top: Mixins.scaleHeight(10),
-          width: Mixins.scaleWidth(340),
+          top: hp('4%'),
+          width: wp('95%'),
         }}>
         <View
           style={{
-            height: Mixins.scaleHeight(460),
+            height: hp('72%'),
           }}>
           <ChatBubbleList data={messages} userID={userID} />
         </View>
 
-        <View style={{top: Mixins.scaleHeight(0)}}>
+        <View style={{top: hp('0%')}}>
           <MessageInput
             userID={userID}
             chatGroupID={itemID}

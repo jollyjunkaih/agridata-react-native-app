@@ -48,7 +48,7 @@ export const Registration = props => {
         },
       });
       console.log(user.userSub);
-      props.navigation.navigate('signin');
+      props.navigation.navigate('confirmsignup');
       return user.userSub;
     } catch (error) {
       console.log('❌ Error signing up...', error);
@@ -57,161 +57,161 @@ export const Registration = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-20%') : -180}>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-20%') : hp('-20%')}>
       <SafeAreaView
         style={{
           backgroundColor: 'white',
           height: hp('100%'),
           width: wp('100%'),
         }}>
-        <DismissKeyboardView>
-          <View
-            style={{
-              position: 'absolute',
-              top: Spacing.BackButtonTop,
-              left: Spacing.BackButtonLeft,
-            }}>
-            <BackButton navigation={props.navigation} />
+        <View
+          style={{
+            position: 'absolute',
+            top: Spacing.BackButtonTop,
+            left: Spacing.BackButtonLeft,
+          }}>
+          <BackButton navigation={props.navigation} />
+        </View>
+        <Image
+          source={require('_assets/images/fruits.png')}
+          style={{
+            position: 'absolute',
+            right: 0,
+            width: wp('50%'),
+            height: hp('30%'),
+            resizeMode: 'cover',
+            top: hp('-8%'),
+          }}
+        />
+        <View style={{top: hp('3%')}}>
+          <View>
+            <Text
+              style={[
+                Typography.largestSize,
+                {
+                  width: wp('70%'),
+                  left: wp('8%'),
+                  top: hp('3%'),
+                  lineHeight: hp('6%'),
+                },
+              ]}>
+              CREATE ACCOUNT
+            </Text>
           </View>
-          <Image
-            source={require('_assets/images/fruits.png')}
-            style={{
-              position: 'absolute',
-              right: 0,
-              width: wp('50%'),
-              height: hp('30%'),
-              resizeMode: 'cover',
-              top: hp('-8%'),
-            }}
-          />
-          <View style={{top: hp('3%')}}>
-            <View>
-              <Text
-                style={[
-                  Typography.largestSize,
-                  {width: wp('80%'), left: wp('8%'), top: hp('3%')},
-                ]}>
-                CREATE
-              </Text>
-              <Text
-                style={[
-                  Typography.largestSize,
-                  {
-                    width: wp('80%'),
-                    left: wp('8%'),
-                    top: hp('2%'),
-                  },
-                ]}>
-                ACCOUNT
-              </Text>
+          <View style={{top: hp('2%'), left: wp('8%')}}>
+            <Text style={[Typography.large]}>Begin your journey with us!</Text>
+          </View>
+          <View style={{top: hp('4%'), height: hp('65%')}}>
+            <View
+              style={{
+                left: wp('8%'),
+              }}>
+              <Text style={[Typography.placeholder]}>Name</Text>
+              <TextInput
+                keyboardType="default"
+                placeholder="John Doe"
+                underlineColorAndroid="transparent"
+                onChangeText={item => setName(item)}
+                value={name}
+                style={{
+                  width: wp('80%'),
+                  height: hp('6%'),
+                  color: 'black',
+                  borderBottomColor: 'transparent',
+                }}></TextInput>
+              <View
+                style={{
+                  bottom: hp('1.5%'),
+                  width: wp('85%'),
+                  borderBottomWidth: 1,
+                  borderColor: Colors.GRAY_DARK,
+                }}></View>
             </View>
-            <View style={{top: hp('2%'), left: wp('8%')}}>
-              <Text style={[Typography.large]}>
-                Begin your journey with us!
-              </Text>
+            <View
+              style={{
+                top: hp('0.5%'),
+                left: wp('8%'),
+              }}>
+              <Text style={[Typography.placeholder]}>Phone Number</Text>
+              <TextInput
+                keyboardType="default"
+                placeholder="+60109336377"
+                underlineColorAndroid="transparent"
+                onChangeText={item => setPhone(item)}
+                value={phone}
+                style={{
+                  width: wp('50%'),
+                  height: hp('6%'),
+                  color: 'black',
+                  borderBottomColor: 'transparent',
+                }}></TextInput>
+              <View
+                style={{
+                  bottom: hp('1.5%'),
+                  width: wp('85%'),
+                  borderBottomWidth: 1,
+                  borderColor: Colors.GRAY_DARK,
+                }}></View>
             </View>
-            <View>
+            <View
+              style={{
+                top: hp('0.5%'),
+                left: wp('8%'),
+              }}>
+              <Text style={[Typography.placeholder]}>Email Address</Text>
+              <TextInput
+                keyboardType="default"
+                placeholder="example@example.com"
+                underlineColorAndroid="transparent"
+                onChangeText={item => setEmail(item)}
+                value={email}
+                style={{
+                  width: wp('50%'),
+                  height: hp('6%'),
+                  color: 'black',
+                  borderBottomColor: 'transparent',
+                }}></TextInput>
               <View
                 style={{
-                  top: hp('4%'),
-                  left: wp('8%'),
-                }}>
-                <Text style={[Typography.placeholder]}>Name</Text>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="John Doe"
-                  underlineColorAndroid="transparent"
-                  onChangeText={item => setName(item)}
-                  value={name}
-                  style={{
-                    width: wp('80%'),
-                    height: hp('6%'),
-                  }}></TextInput>
-                <View
-                  style={{
-                    width: wp('85%'),
-                    borderBottomWidth: 1,
-                    borderColor: Colors.GRAY_DARK,
-                  }}></View>
-              </View>
+                  bottom: hp('1.5%'),
+                  width: wp('85%'),
+                  borderBottomWidth: 1,
+                  borderColor: Colors.GRAY_DARK,
+                }}></View>
+            </View>
+            <View
+              style={{
+                top: hp('0.5%'),
+                left: wp('8%'),
+              }}>
+              <Text style={[Typography.placeholder]}>Password</Text>
+              <TextInput
+                keyboardType="default"
+                placeholder="password"
+                underlineColorAndroid="transparent"
+                onChangeText={item => setPassword(item)}
+                value={password}
+                style={{
+                  width: wp('50%'),
+                  height: hp('6%'),
+                  color: 'black',
+                  borderBottomColor: 'transparent',
+                }}></TextInput>
               <View
                 style={{
-                  top: hp('5%'),
-                  left: wp('8%'),
-                }}>
-                <Text style={[Typography.placeholder]}>Phone Number</Text>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="+60109336377"
-                  underlineColorAndroid="transparent"
-                  onChangeText={item => setPhone(item)}
-                  value={phone}
-                  style={{
-                    width: wp('50%'),
-                    height: hp('6%'),
-                  }}></TextInput>
-                <View
-                  style={{
-                    width: wp('85%'),
-                    borderBottomWidth: 1,
-                    borderColor: Colors.GRAY_DARK,
-                  }}></View>
-              </View>
-              <View
-                style={{
-                  top: hp('6%'),
-                  left: wp('8%'),
-                }}>
-                <Text style={[Typography.placeholder]}>Email Address</Text>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="example@example.com"
-                  underlineColorAndroid="transparent"
-                  onChangeText={item => setEmail(item)}
-                  value={email}
-                  style={{
-                    width: wp('50%'),
-                    height: hp('6%'),
-                  }}></TextInput>
-                <View
-                  style={{
-                    width: wp('85%'),
-                    borderBottomWidth: 1,
-                    borderColor: Colors.GRAY_DARK,
-                  }}></View>
-              </View>
-              <View
-                style={{
-                  top: hp('6%'),
-                  left: wp('8%'),
-                }}>
-                <Text style={[Typography.placeholder]}>Password</Text>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="password"
-                  underlineColorAndroid="transparent"
-                  onChangeText={item => setPassword(item)}
-                  value={password}
-                  style={{
-                    width: wp('50%'),
-                    height: hp('6%'),
-                  }}></TextInput>
-                <View
-                  style={{
-                    width: wp('85%'),
-                    borderBottomWidth: 1,
-                    borderColor: Colors.GRAY_DARK,
-                  }}></View>
-              </View>
+                  bottom: hp('1.5%'),
+                  width: wp('85%'),
+                  borderBottomWidth: 1,
+                  borderColor: Colors.GRAY_DARK,
+                }}></View>
             </View>
             <View
               style={{
                 left: wp('8%'),
-                top: hp('8%'),
+
                 height: hp('20%'),
-                zIndex: 2,
+
                 width: wp('80%'),
-                backgroundColor: 'red',
                 height: hp('7%'),
               }}>
               <DropDownPicker
@@ -230,14 +230,16 @@ export const Registration = props => {
                   backgroundColor: Colors.GRAY_LIGHT,
                 }}
                 dropDownDirection="BOTTOM"
-                listItemContainerStyle={{height: Mixins.scaleHeight(25)}}
+                listItemContainerStyle={{height: hp('5%')}}
                 dropDownContainerStyle={{
                   borderWidth: 1,
+
                   width: wp('85%'),
                   backgroundColor: Colors.GRAY_LIGHT,
                 }}></DropDownPicker>
             </View>
-            {/*   <View
+          </View>
+          {/*   <View
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -288,60 +290,60 @@ export const Registration = props => {
                 </Text>
               </TouchableOpacity>
             </View> */}
-            <TouchableOpacity
-              onPress={async () => {
-                if (
-                  value == null ||
-                  email == '' ||
-                  phone == '' ||
-                  name == '' ||
-                  password == ''
-                ) {
-                  console.log('error');
-                } else {
-                  try {
-                    const userID = await signUp();
-                  } catch {
-                    e => console.log('error ' + e);
-                  }
+          <TouchableOpacity
+            onPress={async () => {
+              if (
+                value == null ||
+                email == '' ||
+                phone == '' ||
+                name == '' ||
+                password == ''
+              ) {
+                console.log('error');
+              } else {
+                try {
+                  const userID = await signUp();
+                } catch {
+                  e => console.log('error ' + e);
                 }
-              }}
-              style={{
-                backgroundColor: Colors.LIGHT_BLUE,
-                top: hp('15%'),
-                width: wp('30%'),
-                height: hp('4%'),
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'center',
-                borderRadius: 10,
-                flexDirection: 'row',
-                shadowOffset: {
-                  width: 1,
-                  height: 2,
-                },
-                shadowOpacity: 2,
-                shadowRadius: 3,
-                shadowColor: 'grey',
-                elevation: 3,
-                zIndex: 2,
-              }}>
-              <Text
-                style={[
-                  Typography.large,
-                  {position: 'absolute', left: wp('3%')},
-                ]}>
-                NEXT
-              </Text>
+              }
+            }}
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
 
-              <Icon
-                name="arrow-forward-outline"
-                size={wp('6%')}
-                style={{left: wp('10%')}}
-              />
-            </TouchableOpacity>
-          </View>
-        </DismissKeyboardView>
+              top: hp('0%'),
+              width: wp('30%'),
+              height: hp('5%'),
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignSelf: 'center',
+              borderRadius: 10,
+              flexDirection: 'row',
+              shadowOffset: {
+                width: 1,
+                height: 2,
+              },
+              shadowOpacity: 2,
+              shadowRadius: 3,
+              shadowColor: 'grey',
+              elevation: 3,
+              zIndex: 2,
+            }}>
+            <Text
+              style={[
+                Typography.large,
+                {position: 'absolute', left: wp('3%')},
+              ]}>
+              NEXT
+            </Text>
+
+            <Icon
+              name="arrow-forward-outline"
+              size={wp('6%')}
+              style={{left: wp('10%')}}
+            />
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

@@ -90,14 +90,13 @@ export const Landing = props => {
 
       <View
         style={{
-          position: 'absolute',
-          top: hp('45%'),
+          top: hp('30%'),
         }}>
         <Image
           source={require('_assets/images/greenproduce.png')}
           style={{
             resizeMode: 'contain',
-            width: wp('90%'),
+            width: wp('80%'),
           }}
         />
       </View>

@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Searchbar = props => {
   return (
@@ -23,10 +24,15 @@ export const Searchbar = props => {
       <TextInput
         value={props.searchValue}
         onChangeText={item => props.setSearchValue(item)}
+        placeholder={Strings.search}
+        underlineColorAndroid="transparent"
         style={{
+          top: hp('0.2%'),
           position: 'absolute',
-          height: hp('3%'),
+          borderBottomColor: 'transparent',
+          height: hp('6%'),
           left: wp('13%'),
+          color: 'black',
         }}></TextInput>
 
       <View style={{position: 'absolute', left: wp('5%')}}>
@@ -43,7 +49,7 @@ export const Searchbar = props => {
             props.setSearchPressed(true);
           }
         }}>
-        <Text style={[Typography.small]}>Search</Text>
+        <Text style={[Typography.normal, {top: hp('0.2%')}]}>Search</Text>
       </TouchableOpacity>
     </View>
   );

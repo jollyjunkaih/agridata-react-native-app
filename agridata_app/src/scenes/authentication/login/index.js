@@ -22,10 +22,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Login = props => {
   const [secure, setSecure] = useState(true);
   const [forgetPassword, setForgetPassword] = useState(false);
+  const [verified, setVerified] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const signIn = async () => {
@@ -34,8 +36,10 @@ export const Login = props => {
       console.log('Successful sign in');
       props.updateUserID(user.attributes.sub);
       props.setUserAttributes(user.attributes);
-      props.updateAuthState('loggedIn'); //added this else it wont trigger the run
     } catch (error) {
+      if (error.code == 'UserNotConfirmedException') {
+        setVerified(true);
+      }
       console.log('Error signing in...', error);
     }
   };
@@ -73,27 +77,17 @@ export const Login = props => {
               style={[
                 Typography.largestSize,
                 {
-                  width: wp('80%'),
-                  left: wp('8%'),
-                  top: hp('4%'),
-                },
-              ]}>
-              Welcome
-            </Text>
-            <Text
-              style={[
-                Typography.largestSize,
-                {
                   width: wp('50%'),
                   left: wp('8%'),
-                  top: hp('2%'),
+                  top: hp('4%'),
+                  lineHeight: hp('5.5%'),
                 },
               ]}>
-              Back
+              {Strings.welcome}
             </Text>
           </View>
-          <View style={{top: hp('3%'), left: wp('8%')}}>
-            <Text style={[Typography.large]}>Login to your account now!</Text>
+          <View style={{top: hp('4%'), left: wp('8%'), width: wp('70%')}}>
+            <Text style={[Typography.large]}>{Strings.logIntoAcc}</Text>
           </View>
         </View>
         <View>
@@ -102,7 +96,7 @@ export const Login = props => {
               top: hp('12%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Phone Number / Email</Text>
+            <Text style={[Typography.placeholder]}>{Strings.phoneEmail}</Text>
             <TextInput
               keyboardType="default"
               placeholder="+60123456 or example@example.com"
@@ -127,9 +121,9 @@ export const Login = props => {
               top: hp('14%'),
               left: wp('8%'),
             }}>
-            <Text style={[Typography.placeholder]}>Password</Text>
+            <Text style={[Typography.placeholder]}>{Strings.password}</Text>
             <TextInput
-              placeholder="Password"
+              placeholder={Strings.password}
               secureTextEntry={secure}
               keyboardType="default"
               underlineColorAndroid="transparent"
@@ -174,7 +168,7 @@ export const Login = props => {
                   fontSize: 12,
                 },
               ]}>
-              Forgot Password?
+              {Strings.forgotPassword}
             </Text>
           </TouchableOpacity>
           <Modal isVisible={forgetPassword}>
@@ -208,9 +202,9 @@ export const Login = props => {
               shadowRadius: 3,
               shadowColor: 'grey',
             }}>
-            <View style={{flexDirection: 'row', left: wp('7%')}}>
-              <Text style={[Typography.large]}>LOG IN</Text>
-              <View style={{left: wp('8%')}}>
+            <View style={{flexDirection: 'row', left: wp('6%')}}>
+              <Text style={[Typography.large]}>{Strings.logIn}</Text>
+              <View style={{position: 'absolute', left: wp('25%')}}>
                 <Icon name="arrow-forward-outline" size={wp('6%')} />
               </View>
             </View>
@@ -232,7 +226,7 @@ export const Login = props => {
             <Icon name="finger-print-outline" size={wp('12%')} />
           </View>
 
-          <Text style={[Typography.normal]}>Log In Using Fingerprint</Text>
+          <Text style={[Typography.normal]}>{Strings.logInFinger}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -243,10 +237,62 @@ export const Login = props => {
             alignSelf: 'center',
           }}>
           <Text style={[Typography.welcome, {fontSize: 12}]}>
-            Having any trouble?
+            {Strings.havingTrouble}
           </Text>
         </TouchableOpacity>
       </SafeAreaView>
+      <Modal isVisible={verified}>
+        <VerificationModal
+          navigation={props.navigation}
+          setVerified={setVerified}
+        />
+      </Modal>
     </KeyboardAvoidingView>
+  );
+};
+
+const VerificationModal = props => {
+  return (
+    <SafeAreaView
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: hp('50%'),
+          width: wp('90%'),
+          backgroundColor: 'white',
+          borderRadius: 20,
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}>
+        <Text
+          style={[
+            Typography.large,
+            {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
+          ]}>
+          Your phone number has not been verified yet
+        </Text>
+        <View style={{top: hp('2%'), justifyContent: 'center'}}>
+          <Icon name="warning" color={'red'} size={wp('45%')} />
+        </View>
+        <TouchableOpacity
+          onPress={() => [
+            props.setVerified(false),
+            props.navigation.navigate('confirmsignup'),
+          ]}
+          style={{
+            height: hp('5%'),
+            width: wp('25%'),
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: Colors.LIGHT_BLUE,
+            borderRadius: 10,
+          }}>
+          <Text style={[Typography.large]}>Verify</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };

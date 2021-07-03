@@ -7,6 +7,11 @@ import {NavBar, BackButton} from '_components';
 import {getChatGroupsContainingRetailersByUpdatedAt} from '../../../graphql/queries';
 import {API} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
+import Strings from '_utils';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const Inbox = props => {
   console.log('inbox' + props.user);
@@ -66,39 +71,34 @@ export const Inbox = props => {
     <SafeAreaView
       style={{
         backgroundColor: 'white',
-        height: Mixins.scaleHeight(640),
-        width: Mixins.scaleWidth(360),
+        height: hp('100%'),
+        width: wp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: Mixins.scaleHeight(30)}]}>
-        Inbox
-      </Text>
+      <Text style={[Typography.header, {top: hp('4%')}]}>{Strings.inbox}</Text>
       <Text
-        style={[
-          Typography.normal,
-          {color: Colors.GRAY_DARK, top: Mixins.scaleHeight(25)},
-        ]}>
-        5 New Messages
+        style={[Typography.normal, {color: Colors.GRAY_DARK, top: hp('4%')}]}>
+        5 {Strings.newMessages}
       </Text>
       <View
         style={{
-          top: Mixins.scaleHeight(30),
-          width: Mixins.scaleWidth(360),
+          top: hp('5%'),
+          width: wp('85%'),
           borderBottomWidth: 1,
           height: 0,
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
       <DismissKeyboardView>
-        <View style={{top: Mixins.scaleHeight(40)}}>
+        <View style={{top: hp('7%')}}>
           <Searchbar />
         </View>
       </DismissKeyboardView>
 
       <View
         style={{
-          height: Mixins.scaleHeight(420),
-          width: Mixins.scaleWidth(340),
-          top: Mixins.scaleHeight(60),
+          height: hp('62%'),
+          width: wp('95%'),
+          top: hp('9%'),
         }}>
         <ChatList
           data={chatRooms}
@@ -106,7 +106,7 @@ export const Inbox = props => {
           companyType={companyType}
         />
       </View>
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
+      <View style={{position: 'absolute', top: hp('90%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

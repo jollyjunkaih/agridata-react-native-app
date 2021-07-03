@@ -6,15 +6,17 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  StyleSheet,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Typography, Spacing, Colors} from '_styles';
+import {BackButton} from '_components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Modal from 'react-native-modal';
+import {Auth} from 'aws-amplify';
 
 export const ConfirmSignUp = props => {
   const [username, setPhone] = useState('');
@@ -30,10 +32,10 @@ export const ConfirmSignUp = props => {
     try {
       const user = await Auth.confirmSignUp(username, authCode);
       console.log('✅ Code confirmed' + user);
+      setSuccessfulModal(true);
       setTimeout(() => {
-        setSuccessfulModal(true);
+        props.navigation.navigate('signin');
       }, 3000);
-      navigation.navigate('signin');
     } catch (error) {
       setError(true);
       setWrongCode(true);
@@ -45,16 +47,26 @@ export const ConfirmSignUp = props => {
   }
 
   async function resendConfirmationCode() {
+    setResendCode(true); /*
     try {
       await Auth.resendSignUp(username);
       console.log('code resent successfully');
+      
     } catch (err) {
       console.log('error resending code: ', err);
-    }
+    }*/
   }
 
   return (
     <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View
+        style={{
+          position: 'absolute',
+          top: Spacing.BackButtonTop,
+          left: Spacing.BackButtonLeft,
+        }}>
+        <BackButton navigation={props.navigation} />
+      </View>
       <View
         style={{
           position: 'absolute',
@@ -73,7 +85,7 @@ export const ConfirmSignUp = props => {
       <View
         style={{
           width: wp('100%'),
-          height: hp('80%'),
+          height: hp('90%'),
           top: hp('15%'),
           borderRadius: 40,
           backgroundColor: '#CDDCF3',
@@ -104,14 +116,18 @@ export const ConfirmSignUp = props => {
           <TextInput
             style={{
               width: wp('80%'),
-              height: hp('3%'),
+              height: hp('5%'),
+              color: 'black',
+              borderBottomColor: 'transparent',
             }}
+            underlineColorAndroid="transparent"
             onChangeText={text => setPhone(text)}
             placeholder="##########"
           />
           <View
             style={{
               width: wp('80%'),
+              bottom: hp('1.5%'),
               borderBottomWidth: 1,
               borderColor: Colors.GRAY_DARK,
             }}></View>
@@ -121,13 +137,18 @@ export const ConfirmSignUp = props => {
           <TextInput
             style={{
               width: wp('80%'),
-              height: hp('3%'),
+
+              height: hp('5%'),
+              color: 'black',
+              borderBottomColor: 'transparent',
             }}
+            underlineColorAndroid="transparent"
             onChangeText={text => setAuthCode(text)}
             placeholder="######"
           />
           <View
             style={{
+              bottom: hp('1.5%'),
               width: wp('80%'),
               borderBottomWidth: 1,
               borderColor: Colors.GRAY_DARK,
@@ -157,7 +178,6 @@ export const ConfirmSignUp = props => {
                 setUnsuccessfulModal2(true);
               } else {
                 resendConfirmationCode();
-                setResendCode(true);
               }
             }}>
             <Text style={[Typography.normal]}>RESEND CODE</Text>
@@ -190,6 +210,24 @@ export const ConfirmSignUp = props => {
             <Text style={[Typography.normal]}>VERIFY</Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <View style={{alignItems: 'center', top: hp('0%')}}>
+        <TouchableOpacity
+          onPress={() => {
+            let url =
+              'https://wa.me/601165691998?text=Hi%20I%20am%20experiencing%20problems%20verifying%20my%20phone%20number.%20Please%20help!%20Thank%20you';
+            Linking.openURL(url)
+              .then(data => {
+                console.log('WhatsApp Opened successfully ' + data); //<---Success
+              })
+              .catch(() => {
+                alert('Make sure WhatsApp installed on your device'); //<---Error
+              });
+          }}>
+          <Text style={[Typography.small]}>
+            Having trouble receiving SMS verification?
+          </Text>
+        </TouchableOpacity>
       </View>
       <Modal
         isVisible={unsuccessfulModal}

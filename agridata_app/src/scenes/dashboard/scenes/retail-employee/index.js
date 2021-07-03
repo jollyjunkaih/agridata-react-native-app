@@ -10,6 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const EmployeeDashboard = props => {
   return (
@@ -41,7 +42,9 @@ export const EmployeeDashboard = props => {
         }}
         source={require('_assets/images/agridata.png')}
       />
-      <Text style={[Typography.welcome, {top: hp('10%')}]}>Welcome Back,</Text>
+      <Text style={[Typography.welcome, {top: hp('10%')}]}>
+        {Strings.welcome}
+      </Text>
       <Text
         style={[
           Typography.largestSize,
@@ -51,10 +54,10 @@ export const EmployeeDashboard = props => {
             textTransform: 'uppercase',
           },
         ]}>
-        {props.user.retailerCompany.name}
+        {/* {props.user.retailerCompany.name}*/}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
-        What would you like to do today
+        {Strings.whatToDo}
       </Text>
       <ToDoButton top={90} navigation={props.navigation}></ToDoButton>
     </SafeAreaView>

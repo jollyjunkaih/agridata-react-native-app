@@ -22,6 +22,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {purchaseOrderItems} from '../../../../graphql/queries';
+import Strings from '_utils';
 
 export const Store = props => {
   const {itemId} = props.route.params; //supplierid
@@ -84,7 +85,7 @@ export const Store = props => {
       <View
         style={{
           width: wp('93%'),
-          height: hp('90%'),
+          height: hp('70%'),
           top: hp('10%'),
         }}>
         <MarketplaceList

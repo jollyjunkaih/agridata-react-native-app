@@ -22,6 +22,11 @@ import {listUsersInChat} from '../../../../graphql/queries';
 
 var dayjs = require('dayjs');
 import {DismissKeyboardView} from '_components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 const ChatBubble = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);
@@ -51,15 +56,15 @@ const ChatBubble = props => {
   const contentType = props.contentType;
   if (contentType == 'text') {
     return (
-      <View style={{margin: Mixins.scaleWidth(5)}}>
+      <View style={{margin: wp('2%')}}>
         {!isMyMessage() && (
           <View
             style={{
-              top: Mixins.scaleHeight(22),
+              top: hp('5%'),
               borderColor: 'white',
-              borderWidth: Mixins.scaleWidth(0.2),
-              width: Mixins.scaleWidth(28),
-              height: Mixins.scaleWidth(28),
+              borderWidth: 0.2,
+              width: wp('8%'),
+              height: wp('8%'),
               position: 'absolute',
               borderRadius: 100,
               justifyContent: 'center',
@@ -87,22 +92,20 @@ const ChatBubble = props => {
         <View
           style={{
             backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_LIGHT,
-            marginLeft: isMyMessage() ? Mixins.scaleWidth(50) : 0,
-            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(50),
+            marginLeft: isMyMessage() ? wp('13%') : wp('2%'),
+
             borderRadius: 15,
-            left: isMyMessage() ? Mixins.scaleWidth(75) : Mixins.scaleWidth(35),
-            width: isMyMessage()
-              ? Mixins.scaleWidth(200)
-              : Mixins.scaleWidth(180),
+            left: isMyMessage() ? wp('20%') : wp('9%'),
+            width: isMyMessage() ? wp('60%') : wp('50%'),
           }}>
-          <View style={{marginTop: Mixins.scaleHeight(10)}}>
-            <Text style={[Typography.normal, {margin: Mixins.scaleWidth(5)}]}>
+          <View style={{marginTop: hp('2%')}}>
+            <Text style={[Typography.normal, {margin: wp('1%')}]}>
               {props.content}
             </Text>
             <Text
               style={[
                 Typography.small,
-                {alignSelf: 'flex-end', right: Mixins.scaleWidth(10)},
+                {alignSelf: 'flex-end', right: wp('3%')},
               ]}>
               {props.createdAt}
             </Text>
@@ -117,12 +120,12 @@ const ChatBubble = props => {
           {!isMyMessage() && (
             <View
               style={{
-                left: Mixins.scaleWidth(5),
-                top: Mixins.scaleHeight(60),
+                left: wp('1%'),
+                top: hp('8%'),
                 borderColor: 'white',
-                borderWidth: Mixins.scaleWidth(0.2),
-                width: Mixins.scaleWidth(28),
-                height: Mixins.scaleWidth(28),
+                borderWidth: 0.2,
+                width: wp('8%'),
+                height: wp('8%'),
                 position: 'absolute',
                 borderRadius: 100,
                 justifyContent: 'center',
@@ -153,25 +156,26 @@ const ChatBubble = props => {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-            width: Mixins.scaleWidth(180),
-            height: Mixins.scaleHeight(80),
-            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
-            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
-            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            width: wp('50%'),
+            height: hp('13%'),
+            marginLeft: isMyMessage() ? wp('40%') : 0,
+            marginRight: isMyMessage() ? 0 : wp('33%'),
+            left: isMyMessage() ? 0 : wp('12%'),
             borderRadius: 15,
-            marginTop: Mixins.scaleHeight(15),
+            marginTop: hp('1%'),
           }}>
           <Text style={[Typography.large]}>Product Inquiry</Text>
 
           <TouchableOpacity
+            onPress={() => setPurchaseOrderModal(true)}
             style={{
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 10,
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(120),
-              height: Mixins.scaleHeight(20),
-              top: Mixins.scaleHeight(5),
+              width: wp('33%'),
+              height: hp('3%'),
+              top: hp('1%'),
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -182,7 +186,7 @@ const ChatBubble = props => {
 
               elevation: 5,
             }}>
-            <Text style={[Typography.small]}>Inspect</Text>
+            <Text style={[Typography.small]}>{Strings.inspect}</Text>
           </TouchableOpacity>
 
           <Text
@@ -190,13 +194,18 @@ const ChatBubble = props => {
               Typography.small,
               {
                 alignSelf: 'flex-end',
-                right: Mixins.scaleWidth(10),
-                top: Mixins.scaleHeight(10),
+                right: wp('3%'),
+                top: hp('1.5%'),
               },
             ]}>
             createdAt
           </Text>
         </View>
+        <Modal
+          isVisible={purchaseOrderModal}
+          onBackdropPress={() => setPurchaseOrderModal(false)}>
+          <PurchaseOrder></PurchaseOrder>
+        </Modal>
       </View>
     );
   } else if (contentType == 'purchaseorder') {
@@ -206,12 +215,12 @@ const ChatBubble = props => {
           {!isMyMessage() && (
             <View
               style={{
-                left: Mixins.scaleWidth(5),
-                top: Mixins.scaleHeight(60),
+                left: wp('1%'),
+                top: hp('8%'),
                 borderColor: 'white',
-                borderWidth: Mixins.scaleWidth(0.2),
-                width: Mixins.scaleWidth(28),
-                height: Mixins.scaleWidth(28),
+                borderWidth: 0.2,
+                width: wp('8%'),
+                height: wp('8%'),
                 position: 'absolute',
                 borderRadius: 100,
                 justifyContent: 'center',
@@ -242,15 +251,15 @@ const ChatBubble = props => {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-            width: Mixins.scaleWidth(180),
-            height: Mixins.scaleHeight(80),
-            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
-            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
-            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            width: wp('50%'),
+            height: hp('13%'),
+            marginLeft: isMyMessage() ? wp('40%') : 0,
+            marginRight: isMyMessage() ? 0 : wp('33%'),
+            left: isMyMessage() ? 0 : wp('12%'),
             borderRadius: 15,
-            marginTop: Mixins.scaleHeight(15),
+            marginTop: hp('1%'),
           }}>
-          <Text style={[Typography.large]}>Purchase Order</Text>
+          <Text style={[Typography.large]}>{Strings.purchaseOrder}</Text>
 
           <TouchableOpacity
             onPress={() => setPurchaseOrderModal(true)}
@@ -259,9 +268,9 @@ const ChatBubble = props => {
               alignItems: 'center',
               borderRadius: 10,
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(120),
-              height: Mixins.scaleHeight(20),
-              top: Mixins.scaleHeight(5),
+              width: wp('33%'),
+              height: hp('3%'),
+              top: hp('1%'),
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -272,7 +281,7 @@ const ChatBubble = props => {
 
               elevation: 5,
             }}>
-            <Text style={[Typography.small]}>Inspect</Text>
+            <Text style={[Typography.small]}>{Strings.inspect}</Text>
           </TouchableOpacity>
 
           <Text
@@ -280,8 +289,8 @@ const ChatBubble = props => {
               Typography.small,
               {
                 alignSelf: 'flex-end',
-                right: Mixins.scaleWidth(10),
-                top: Mixins.scaleHeight(10),
+                right: wp('3%'),
+                top: hp('1.5%'),
               },
             ]}>
             {props.createdAt}
@@ -301,12 +310,12 @@ const ChatBubble = props => {
           {!isMyMessage() && (
             <View
               style={{
-                left: Mixins.scaleWidth(5),
-                top: Mixins.scaleHeight(60),
+                left: wp('1%'),
+                top: hp('8%'),
                 borderColor: 'white',
-                borderWidth: Mixins.scaleWidth(0.2),
-                width: Mixins.scaleWidth(28),
-                height: Mixins.scaleWidth(28),
+                borderWidth: 0.2,
+                width: wp('8%'),
+                height: wp('8%'),
                 position: 'absolute',
                 borderRadius: 100,
                 justifyContent: 'center',
@@ -337,13 +346,13 @@ const ChatBubble = props => {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-            width: Mixins.scaleWidth(180),
-            height: Mixins.scaleHeight(80),
-            marginLeft: isMyMessage() ? Mixins.scaleWidth(150) : 0,
-            marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
-            left: isMyMessage() ? 0 : Mixins.scaleWidth(40),
+            width: wp('50%'),
+            height: hp('13%'),
+            marginLeft: isMyMessage() ? wp('40%') : 0,
+            marginRight: isMyMessage() ? 0 : wp('33%'),
+            left: isMyMessage() ? 0 : wp('12%'),
             borderRadius: 15,
-            marginTop: Mixins.scaleHeight(15),
+            marginTop: hp('1%'),
           }}>
           <Text style={[Typography.large]}>Order Quotation</Text>
 
@@ -354,9 +363,9 @@ const ChatBubble = props => {
               alignItems: 'center',
               borderRadius: 10,
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(120),
-              height: Mixins.scaleHeight(20),
-              top: Mixins.scaleHeight(5),
+              width: wp('33%'),
+              height: hp('3%'),
+              top: hp('1%'),
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -367,7 +376,7 @@ const ChatBubble = props => {
 
               elevation: 5,
             }}>
-            <Text style={[Typography.small]}>Inspect</Text>
+            <Text style={[Typography.small]}>{Strings.inspect}</Text>
           </TouchableOpacity>
 
           <Text
@@ -375,8 +384,8 @@ const ChatBubble = props => {
               Typography.small,
               {
                 alignSelf: 'flex-end',
-                right: Mixins.scaleWidth(10),
-                top: Mixins.scaleHeight(10),
+                right: wp('3%'),
+                top: hp('1.5%'),
               },
             ]}>
             createdAt
@@ -458,22 +467,23 @@ export const MessageInput = props => {
     <View style={{flexDirection: 'row', justifyContent: 'center'}}>
       <View
         style={{
-          height: Mixins.scaleHeight(40),
+          height: hp('7%'),
           borderRadius: 40,
           backgroundColor: Colors.GRAY_LIGHT,
-          top: Mixins.scaleHeight(5),
+
+          justifyContent: 'center',
         }}>
         <TextInput
-          placeholder={'Type a message'}
+          placeholder={Strings.typeMessage}
           underlineColorAndroid={'transparent'}
           multiline={true}
           onChangeText={text => setMessage(text)}
           value={message}
           style={{
-            width: Mixins.scaleWidth(260),
-            height: Mixins.scaleHeight(40),
-            marginHorizontal: Mixins.scaleWidth(10),
-            top: Mixins.scaleHeight(10),
+            width: wp('74%'),
+            height: hp('4%'),
+            marginHorizontal: wp('3%'),
+            color: 'black',
           }}
         />
       </View>
@@ -484,18 +494,26 @@ export const MessageInput = props => {
           }
         }}
         style={{
-          height: Mixins.scaleWidth(40),
-          width: Mixins.scaleWidth(40),
+          height: hp('5.5%'),
+          width: hp('5.5%'),
           borderRadius: 100,
-          top: Mixins.scaleHeight(8),
-          left: Mixins.scaleWidth(10),
+          top: hp('1%'),
+          left: wp('3%'),
           backgroundColor: Colors.PALE_BLUE,
           justifyContent: 'center',
           alignItems: 'center',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
         }}>
         <Icon
           name="paper-plane-outline"
-          size={Mixins.scaleWidth(25)}
+          size={wp('6%')}
           color={Colors.LIGHT_BLUE}
         />
       </TouchableOpacity>
@@ -533,7 +551,7 @@ export const ChatInfo = props => {
       <Icon
         color={Colors.GRAY_DARK}
         name="information-circle-outline"
-        size={Mixins.scaleWidth(30)}></Icon>
+        size={wp('9%')}></Icon>
       <Modal
         isVisible={chatInfoModal}
         onBackdropPress={() => setChatInfoModal(false)}>
@@ -554,50 +572,44 @@ const ChatInfoModal = props => {
   return (
     <View
       style={{
-        left: Mixins.scaleWidth(100),
-        width: Mixins.scaleWidth(250),
-        height: Mixins.scaleHeight(650),
+        left: wp('32%'),
+        width: wp('70%'),
+        height: hp('100%'),
         backgroundColor: Colors.PALE_GREEN,
         borderRadius: 20,
-        top: Mixins.scaleHeight(0),
+        alignItems: 'center',
       }}>
-      <View style={{top: Mixins.scaleHeight(20), alignItems: 'center'}}>
+      <View style={{top: hp('4%')}}>
         <Image
           source={require('_assets/images/agridata.png')}
-          style={{width: Mixins.scaleWidth(130), resizeMode: 'contain'}}
+          style={{width: wp('30%'), resizeMode: 'contain'}}
         />
       </View>
 
-      <Text
-        style={[
-          Typography.normal,
-          {alignSelf: 'center', top: Mixins.scaleHeight(0)},
-        ]}>
+      <Text style={[Typography.normal, {alignSelf: 'center'}]}>
         GINGER TEAM
       </Text>
 
       <View
         style={{
           borderBottomWidth: 1,
-          borderBottomColor: Colors.GRAY_MEDIUM,
-          top: Mixins.scaleHeight(10),
-        }}></View>
-      <Text
-        style={[
-          Typography.placeholder,
-          {top: Mixins.scaleHeight(30), left: Mixins.scaleWidth(20)},
-        ]}>
-        Participants (No)
-      </Text>
+          borderBottomColor: Colors.GRAY_DARK,
+          width: wp('70%'),
+          alignItems: 'flex-start',
+        }}>
+        <Text style={[Typography.placeholder, {top: hp('5%'), left: wp('5%')}]}>
+          {Strings.member}
+        </Text>
+      </View>
       <View
         style={{
-          alignSelf: 'center',
-          top: Mixins.scaleHeight(30),
+          top: hp('5%'),
+          height: hp('8%'),
         }}>
         <View
           style={{
-            maxHeight: Mixins.scaleHeight(180),
-            width: Mixins.scaleWidth(240),
+            maxHeight: hp('25%'),
+            width: wp('70%'),
           }}>
           <ChatParticipantList
             data={props.chatParticipants}
@@ -614,50 +626,45 @@ const ChatInfoModal = props => {
           ]}
           style={{
             backgroundColor: Colors.GRAY_MEDIUM,
-            height: Mixins.scaleHeight(30),
-            width: Mixins.scaleWidth(160),
-            top: Mixins.scaleHeight(10),
+            height: hp('6%'),
+            width: wp('45%'),
+            top: hp('9%'),
             flexDirection: 'row',
             borderRadius: 30,
             alignItems: 'center',
             justifyContent: 'center',
             elevation: 2,
-            left: Mixins.scaleWidth(50),
+            left: wp('5%'),
           }}>
-          <Icon name="add" size={Mixins.scaleWidth(25)} />
+          <Icon name="add" size={wp('6%')} />
           <Text
             style={[
               Typography.normal,
               {
-                marginRight: Mixins.scaleWidth(10),
-                top: Mixins.scaleHeight(1),
                 color: Colors.LIME_GREEN,
-                left: Mixins.scaleWidth(10),
               },
             ]}>
-            Add Participants
+            {Strings.addMembers}
           </Text>
         </TouchableOpacity>
       </View>
 
       <View
         style={{
-          bottom: Mixins.scaleHeight(140),
-          width: Mixins.scaleWidth(200),
+          top: hp('78%'),
+          width: wp('70%'),
           position: 'absolute',
+
+          alignItems: 'flex-start',
+          height: hp('20%'),
+          left: wp('5%'),
         }}>
-        <Text
-          style={[
-            Typography.placeholder,
-            {top: Mixins.scaleHeight(80), left: Mixins.scaleWidth(20)},
-          ]}>
-          Attachments
-        </Text>
+        <Text style={[Typography.placeholder]}>{Strings.attachment}</Text>
         <View
           style={{
-            top: Mixins.scaleHeight(90),
-            left: Mixins.scaleWidth(-15),
-            maxHeight: Mixins.scaleHeight(120),
+            maxHeight: hp('18%'),
+            width: wp('70%'),
+            top: hp('2%'),
           }}>
           <InvoiceList></InvoiceList>
         </View>
@@ -682,8 +689,8 @@ const ChatParticipantList = props => {
         style={{
           height: 0,
           alignSelf: 'center',
-          width: Mixins.scaleWidth(250),
-          marginVertical: Mixins.scaleHeight(1),
+          width: wp('70%'),
+          top: hp('1%'),
         }}></View>
     );
   };
@@ -909,14 +916,6 @@ export const ProductInquiry2 = props => {
       </View>
     </View>
   );
-};
-
-const ProductInquiry = props => {
-  const isMyMessage = () => {
-    if (props.userID == props.senderID) return true;
-    else return false;
-  };
-  return <View></View>;
 };
 
 export const PurchaseOrder2 = props => {
@@ -1172,21 +1171,18 @@ const OrderQuotationModal = props => {
     <View
       style={{
         flexDirection: 'column',
-        left: Mixins.scaleWidth(5),
-        width: Mixins.scaleWidth(310),
-        height: Mixins.scaleHeight(510),
+        width: wp('90%'),
+        height: hp('85%'),
         backgroundColor: Colors.GRAY_LIGHT,
         borderRadius: 15,
         alignItems: 'center',
       }}>
       <View
         style={{
-          top: Mixins.scaleHeight(25),
+          top: hp('4%'),
           alignItems: 'center',
         }}>
-        <Text style={[Typography.large, {top: Mixins.scaleHeight(5)}]}>
-          Order Quotation From
-        </Text>
+        <Text style={[Typography.large, {}]}>{Strings.orderQuotationFrom}</Text>
         <Text style={[Typography.header]}>
           <Text style={{color: '#8EAB3D'}}>Hinsou WholeSale</Text>
         </Text>
@@ -1195,14 +1191,14 @@ const OrderQuotationModal = props => {
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-8),
-          top: Mixins.scaleHeight(-8),
+          right: wp('2%'),
+          top: hp('1%'),
         }}>
         <CloseButton setModal={props.setOrderQuotationModal} />
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(125),
+          top: hp('20%'),
           alignItems: 'center',
           position: 'absolute',
         }}>
@@ -1210,25 +1206,24 @@ const OrderQuotationModal = props => {
       </View>
       <View
         style={{
-          top: Mixins.scaleHeight(230),
+          top: hp('40%'),
           alignItems: 'center',
-          height: Mixins.scaleHeight(95),
-          width: Mixins.scaleWidth(270),
+          height: hp('15%'),
+          width: wp('75%'),
           backgroundColor: 'white',
           borderRadius: 10,
           flexDirection: 'row',
           justifyContent: 'center',
         }}>
-        <Text style={[Typography.small, {right: Mixins.scaleWidth(20)}]}>
-          Total Cost:{'\n'}Delivery Date:{'\n'}Delivery Method:{'\n'}Payment
-          Method:
+        <Text style={[Typography.small, {right: wp('6%')}]}>
+          {Strings.orderQuotationList}
         </Text>
         <Text
           style={[
             Typography.small,
             {
               textAlign: 'right',
-              left: Mixins.scaleWidth(20),
+              left: wp('6%'),
             },
           ]}>
           RM 6,400{'\n'}June 30,2021{'\n'}Supplier's Fleet{'\n'}Cash On Pick-Up
@@ -1237,7 +1232,7 @@ const OrderQuotationModal = props => {
       <View
         style={{
           flexDirection: 'row',
-          top: Mixins.scaleHeight(280),
+          top: hp('48%'),
         }}>
         <TouchableOpacity
           style={{
@@ -1249,16 +1244,15 @@ const OrderQuotationModal = props => {
             },
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
-
             elevation: 5,
-            right: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(90),
-            height: Mixins.scaleHeight(20),
+            right: wp('5%'),
+            width: wp('25%'),
+            height: hp('4%'),
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 10,
           }}>
-          <Text style={[Typography.small]}>Accept</Text>
+          <Text style={[Typography.small]}>{Strings.accept}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -1272,14 +1266,14 @@ const OrderQuotationModal = props => {
             shadowRadius: 3.84,
 
             elevation: 5,
-            left: Mixins.scaleWidth(20),
-            width: Mixins.scaleWidth(90),
-            height: Mixins.scaleHeight(20),
+            left: wp('5%'),
+            width: wp('25%'),
+            height: hp('4%'),
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 10,
           }}>
-          <Text style={[Typography.small]}>Decline</Text>
+          <Text style={[Typography.small]}>{Strings.decline}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -1293,7 +1287,7 @@ const OrderList = props => {
         style={{
           height: 0,
           alignSelf: 'center',
-          width: Mixins.scaleWidth(260),
+          width: wp('70%'),
         }}></View>
     );
   };
@@ -1314,12 +1308,11 @@ const OrderCard = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(35),
-        width: Mixins.scaleWidth(260),
-        marginBottom: Mixins.scaleHeight(1),
-        marginTop: Mixins.scaleHeight(1),
+        height: hp('6%'),
+        width: wp('75%'),
+        marginBottom: hp('0.5%'),
         borderBottomColor: Colors.GRAY_DARK,
-        borderBottomWidth: Mixins.scaleWidth(1),
+        borderBottomWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
@@ -1329,7 +1322,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(5),
+            left: wp('1%'),
             position: 'absolute',
           },
         ]}>
@@ -1340,7 +1333,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            left: Mixins.scaleWidth(70),
+            left: wp('19%'),
             position: 'absolute',
           },
         ]}>
@@ -1351,7 +1344,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            right: Mixins.scaleWidth(125),
+            right: wp('36%'),
             position: 'absolute',
           },
         ]}>
@@ -1362,7 +1355,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'left',
-            right: Mixins.scaleWidth(70),
+            right: wp('19%'),
             position: 'absolute',
           },
         ]}>
@@ -1374,7 +1367,7 @@ const OrderCard = props => {
           Typography.small,
           {
             textAlign: 'right',
-            right: Mixins.scaleWidth(5),
+            right: wp('1%'),
             position: 'absolute',
           },
         ]}>
@@ -1383,6 +1376,7 @@ const OrderCard = props => {
     </View>
   );
 };
+
 const InvoiceList = props => {
   return (
     <View>
@@ -1399,22 +1393,16 @@ const InvoiceList = props => {
 
 const InvoiceCard = props => {
   return (
-    <TouchableOpacity
-      style={{
-        left: Mixins.scaleWidth(20),
-        height: Mixins.scaleHeight(30),
-        justifyContent: 'center',
-      }}>
+    <TouchableOpacity>
       <Text
         style={[
           Typography.normal,
           {
-            left: Mixins.scaleWidth(20),
-            height: Mixins.scaleHeight(30),
+            height: hp('5%'),
             justifyContent: 'center',
           },
         ]}>
-        Invoice
+        {Strings.invoices}
       </Text>
     </TouchableOpacity>
   );
@@ -1424,11 +1412,11 @@ const PurchaseOrder = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(385),
-        width: Mixins.scaleWidth(290),
+        height: hp('65%'),
+        width: wp('80%'),
         backgroundColor: Colors.GRAY_LIGHT,
         borderRadius: 10,
-        left: Mixins.scaleWidth(15),
+        left: wp('5%'),
         alignItems: 'center',
       }}>
       <View style={{alignItems: 'center'}}>
@@ -1437,10 +1425,10 @@ const PurchaseOrder = props => {
             Typography.large,
             {
               fontFamily: 'Poppins-SemiBold',
-              top: Mixins.scaleHeight(15),
+              top: hp('3%'),
             },
           ]}>
-          Purchase Order For
+          {Strings.purchaseOrderFrom}
         </Text>
         <Text
           style={[
@@ -1448,7 +1436,7 @@ const PurchaseOrder = props => {
             {
               fontFamily: 'Poppins-Bold',
               color: Colors.LIME_GREEN,
-              top: Mixins.scaleHeight(10),
+              top: hp('3%'),
             },
           ]}>
           Jane's Farm
@@ -1457,8 +1445,8 @@ const PurchaseOrder = props => {
       <View
         style={{
           backgroundColor: Colors.GRAY_WHITE,
-          height: Mixins.scaleHeight(220),
-          top: Mixins.scaleHeight(30),
+          height: hp('50%'),
+          top: hp('5%'),
           borderRadius: 10,
         }}>
         <PurchaseOrderList></PurchaseOrderList>
@@ -1466,14 +1454,15 @@ const PurchaseOrder = props => {
       <View
         style={{
           position: 'absolute',
-          right: Mixins.scaleWidth(-10),
-          top: Mixins.scaleHeight(-10),
+          right: wp('2%'),
+          top: hp('0.5%'),
         }}>
         <CloseButton setModal={props.setPurchaseOrderModal} />
       </View>
     </View>
   );
 };
+
 const PurchaseOrderList = props => {
   const Seperator = () => {
     return (
@@ -1481,7 +1470,7 @@ const PurchaseOrderList = props => {
         style={{
           height: 0,
           borderBottomWidth: 1,
-          width: Mixins.scaleWidth(200),
+          width: wp('70%'),
           borderColor: Colors.GRAY_MEDIUM,
         }}></View>
     );
@@ -1501,10 +1490,9 @@ const PurchaseOrderList = props => {
       ListEmptyComponent={
         <View
           style={{
-            width: Mixins.scaleWidth(330),
-            height: Mixins.scaleHeight(420),
-            top: Mixins.scaleHeight(30),
-            alignItems: 'center',
+            width: wp('80%'),
+            height: hp('60%'),
+            top: hp('2%'),
           }}></View>
       }
       renderItem={({item}) => {
@@ -1520,31 +1508,29 @@ const PurchaseOrderComponent = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(30),
+        height: hp('5%'),
+        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: Colors.GRAY_WHITE,
+        width: wp('70%'),
       }}>
-      <View style={{flexDirection: 'row'}}>
-        <View>
-          <Text
-            style={[
-              Typography.small,
-              {position: 'absolute', left: Mixins.scaleWidth(5)},
-            ]}>
-            {props.name}
-          </Text>
-        </View>
-        <View>
-          <Text style={[Typography.small, {left: Mixins.scaleWidth(60)}]}>
-            {' '}
-            |{'\t'}
-            {props.quantity}kg
-          </Text>
-        </View>
+      <View style={{flexDirection: 'row', right: wp('7%')}}>
+        <Text
+          style={[Typography.small, {position: 'absolute', right: wp('6%')}]}>
+          {props.name}
+        </Text>
+        <Text style={[Typography.small, {position: 'absolute'}]}>
+          {'\t'}|{'\t'}
+        </Text>
+        <Text
+          style={[Typography.small, {position: 'absolute', left: wp('20%')}]}>
+          {props.quantity}kg
+        </Text>
       </View>
     </View>
   );
 };
+
 const DATA = [
   {name: 'Ginger', quantity: '30'},
   {name: 'Bananas', quantity: '40'},

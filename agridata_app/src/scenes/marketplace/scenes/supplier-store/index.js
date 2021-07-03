@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
@@ -13,8 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 
 export const SupplierStore = props => {
-  const [productsList, setProducts] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
+  const [productList, setProducts] = useState([]);
 
   const fetchProducts = async () => {
     try {
@@ -38,11 +37,6 @@ export const SupplierStore = props => {
     fetchProducts();
     console.log('Refreshing...');
   }, []);
-  const onRefresh = async () => {
-    setRefreshing(true);
-    await fetchProducts();
-    setRefreshing(false);
-  };
   return (
     <SafeAreaView
       style={{
@@ -60,17 +54,15 @@ export const SupplierStore = props => {
         <BackButton />
       </View>
       <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
-      <View style={{top: hp('6%')}}>
-        <Searchbar />
-      </View>
       <View
         style={{
           width: wp('90%'),
-          height: hp('80%'),
+          height: hp('70%'),
           top: hp('12%'),
+          marginBottom: hp('30%'),
         }}>
         <SupplierplaceList
-          productList={productsList}
+          productList={productList}
           setProducts={setProducts}
         />
       </View>
@@ -80,7 +72,11 @@ export const SupplierStore = props => {
           right: wp('8%'),
           bottom: hp('14%'),
         }}>
-        <AddItemsButton setProducts={setProducts} user={props.user} />
+        <AddItemsButton
+          setProducts={setProducts}
+          productList={productList}
+          user={props.user}
+        />
       </View>
 
       <View style={{position: 'absolute', bottom: hp('-3%')}}>

@@ -22,42 +22,40 @@ export const SuccessfulModal = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(330),
-        width: Mixins.scaleWidth(290),
+        height: hp('50%'),
+        width: wp('85%'),
         backgroundColor: Colors.PALE_GREEN,
         borderRadius: 20,
         alignItems: 'center',
         alignSelf: 'center',
       }}>
-      <View style={{top: Mixins.scaleWidth(30)}}>
+      <View style={{top: hp('2%')}}>
         <Image
           source={require('_assets/images/Good-Vege.png')}
           style={{
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
+            width: wp('55%'),
+            height: hp('25%'),
           }}
         />
       </View>
-      <View style={{top: Mixins.scaleHeight(15)}}>
+      <View style={{top: hp('2%')}}>
         <Text style={[Typography.header]}>SUCCESS!</Text>
       </View>
-      <View
-        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(25)}}>
+      <View style={{width: wp('70%'), top: hp('4%')}}>
         <Text
           style={[
-            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
+            {textAlign: 'center', lineHeight: wp('3%')},
             Typography.small,
           ]}>
           You have successfully added your crops! We'll send you a notification
           as soon as retailers buy your produce!
         </Text>
       </View>
-      <View
-        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(50)}}>
+      <View style={{width: wp('50%'), top: hp('8%')}}>
         <Text
           style={[
-            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
+            {textAlign: 'center', lineHeight: hp('3%')},
             Typography.small,
           ]}>
           Keep adding for more!
@@ -71,31 +69,30 @@ export const UnsuccessfulModal = props => {
   return (
     <View
       style={{
-        height: Mixins.scaleHeight(330),
-        width: Mixins.scaleWidth(290),
+        height: hp('50%'),
+        width: wp('85%'),
         backgroundColor: Colors.LIGHT_RED,
         borderRadius: 20,
         alignItems: 'center',
         alignSelf: 'center',
       }}>
-      <View style={{top: Mixins.scaleWidth(20)}}>
+      <View style={{top: hp('4%')}}>
         <Image
           source={require('_assets/images/Bad-Vege.png')}
           style={{
             resizeMode: 'contain',
-            width: Mixins.scaleWidth(200),
-            height: Mixins.scaleHeight(150),
+            width: wp('55%'),
+            height: hp('23%'),
           }}
         />
       </View>
-      <View style={{top: Mixins.scaleHeight(20)}}>
+      <View style={{top: hp('7%')}}>
         <Text style={[Typography.header]}>OOPS!</Text>
       </View>
-      <View
-        style={{width: Mixins.scaleWidth(260), top: Mixins.scaleHeight(25)}}>
+      <View style={{width: wp('50%'), top: hp('9%')}}>
         <Text
           style={[
-            {textAlign: 'center', lineHeight: Mixins.scaleHeight(15)},
+            {textAlign: 'center', lineHeight: hp('3%')},
             Typography.small,
           ]}>
           Something went wrong while you're

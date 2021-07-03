@@ -180,7 +180,7 @@ export const ChangePassword = props => {
                   top: hp('4%'),
                 },
               ]}>
-              Reset password by typing in your new password and auth code
+              Reset password by entering in your new password and auth code
             </Text>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <View

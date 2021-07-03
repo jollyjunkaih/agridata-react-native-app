@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Orders = props => {
   const [sortModal, setSortModal] = useState(false);
@@ -25,10 +26,10 @@ export const Orders = props => {
         flex: 1,
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: hp('4%')}]}>Orders</Text>
+      <Text style={[Typography.header, {top: hp('4%')}]}>{Strings.orders}</Text>
       <Text
         style={[Typography.normal, {color: Colors.GRAY_DARK, top: hp('4%')}]}>
-        Digital Invoices
+        {Strings.digitalInvoices}
       </Text>
       <View
         style={{
@@ -46,7 +47,7 @@ export const Orders = props => {
           flexDirection: 'row',
         }}>
         <Text style={[Typography.normal, {textTransform: 'uppercase'}]}>
-          All Results
+          {Strings.results}
         </Text>
         <TouchableOpacity
           onPress={() => setSortModal(true)}

@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const GeneralManagerDashboard = props => {
   return (
@@ -52,7 +53,7 @@ export const GeneralManagerDashboard = props => {
         source={require('_assets/images/agridata.png')}
       />
       <Text style={[Typography.welcome, {top: Mixins.scaleHeight(60)}]}>
-        Welcome Back,
+        {Strings.welcome}
       </Text>
       <Text
         style={[
@@ -66,7 +67,7 @@ export const GeneralManagerDashboard = props => {
         {props.user.retailerCompany.name}
       </Text>
       <Text style={[Typography.normal, {top: hp('10%')}]}>
-        What would you like to do today
+        {Strings.whatToDo}
       </Text>
       <View style={{height: hp('45%'), top: hp('15%')}}>
         <ScrollView>
