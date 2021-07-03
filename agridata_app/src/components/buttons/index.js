@@ -13,12 +13,10 @@ export const CloseButton = props => {
     <TouchableOpacity
       onPress={() => props.setModal(false)}
       style={{
-        height: hp('5%'),
-        width: wp('7%'),
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Icon name="close" size={Mixins.scaleWidth(20)}></Icon>
+      <Icon name="close" size={wp('9%')}></Icon>
     </TouchableOpacity>
   );
 };

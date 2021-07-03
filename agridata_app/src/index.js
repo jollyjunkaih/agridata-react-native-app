@@ -519,6 +519,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierStore></SupplierStore>;
+  return <Store></Store>;
 };
 export default App;

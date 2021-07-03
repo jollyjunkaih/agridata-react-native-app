@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View, ScrollView} from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Searchbar} from '../../components';
@@ -35,7 +35,7 @@ export const SupplierStore = props => {
     }
   };
   useEffect(() => {
-    fetchProducts();
+    //fetchProducts();
     console.log('Refreshing...');
   }, []);
   const onRefresh = async () => {
@@ -60,19 +60,14 @@ export const SupplierStore = props => {
         <BackButton />
       </View>
       <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
-      <View style={{top: hp('6%')}}>
-        <Searchbar />
-      </View>
       <View
         style={{
           width: wp('90%'),
-          height: hp('80%'),
+          height: hp('70%'),
           top: hp('12%'),
+          marginBottom: hp('30%'),
         }}>
-        <SupplierplaceList
-          productList={productsList}
-          setProducts={setProducts}
-        />
+        <SupplierplaceList productList={[]} setProducts={setProducts} />
       </View>
       <View
         style={{
