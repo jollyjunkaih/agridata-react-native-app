@@ -93,15 +93,15 @@ export const ProductPopUp = props => {
       keyboardVerticalOffset={
         Platform.OS === 'ios' ? 100 : -180
       } /* Keyboard Offset needs to be tested against multiple phones */
-      style={{
-        height: hp('70%'),
-        width: wp('80%'),
-        alignSelf: 'center',
-        backgroundColor: 'white',
-
-        borderRadius: 10,
-      }}>
-      <DismissKeyboardView>
+    >
+      <View
+        style={{
+          height: hp('90%'),
+          width: wp('90%'),
+          alignItems: 'center',
+          backgroundColor: 'white',
+          borderRadius: 10,
+        }}>
         <View
           style={{
             position: 'absolute',
@@ -110,87 +110,73 @@ export const ProductPopUp = props => {
           }}>
           <CloseButton setModal={props.setAddItemsButton} />
         </View>
-        <View>
+
+        <View
+          style={{
+            top: hp('4%'),
+
+            alignItems: 'center',
+            width: wp('90%'),
+          }}>
           <View
             style={{
-              alignItems: 'center',
-
-              width: wp('50%'),
-              height: hp('0%'),
+              borderWidth: 1,
+              width: wp('35%'),
+              height: wp('35%'),
+              borderRadius: 100,
+              borderStyle: 'dashed',
             }}>
-            <View
-              style={{
-                borderWidth: 0.5,
-                width: wp('30%'),
-                height: wp('30%'),
-                borderRadius: 100,
-                top: hp('5%'),
-                left: wp('15%'),
-              }}>
-              {imageSource === null ? (
-                <View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      selectImage();
-                    }}>
-                    <Icon
-                      name="add-outline"
-                      size={150}
-                      style={{
-                        resizeMode: 'cover',
-                        width: wp('30%'),
-                        height: hp('30%'),
-                        borderRadius: 100,
-                        bottom: hp('2.5%'),
-                        right: wp('3%'),
-                      }}
-                    />
-                  </TouchableOpacity>
-                  <View style={{bottom: hp('15%'), alignSelf: 'center'}}>
-                    <Text style={[Typography.large]}>Add Photo</Text>
-                  </View>
-                </View>
-              ) : (
-                <View>
-                  <Image
-                    source={{uri: imageSource}}
-                    style={{
-                      resizeMode: 'cover',
-                      width: wp('30%'),
-                      height: hp('14%'),
-                      borderRadius: 100,
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={() => {
-                      selectImage();
-                    }}
-                    style={{
-                      borderRadius: 100,
-                      height: hp('5%'),
-                      width: wp('10%'),
-                      backgroundColor: Colors.LIGHT_BLUE,
-                      bottom: hp('4%'),
-                      left: Mixins.scaleWidth(75),
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      shadowOffset: {
-                        width: 1,
-                        height: 1,
-                      },
-                      shadowOpacity: 2,
-                      shadowRadius: 3,
-                      shadowColor: 'grey',
-                    }}>
-                    <Icon type="ionicon" name="pencil" size={25} />
-                  </TouchableOpacity>
-                </View>
-              )}
-            </View>
+            {imageSource === null ? (
+              <View style={{alignItems: 'center'}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    selectImage();
+                  }}
+                  style={{left: wp('1%'), bottom: hp('1%')}}>
+                  <Icon name="add-outline" size={wp('35%')} />
+                </TouchableOpacity>
+                <Text style={[Typography.large]}>Add Photo</Text>
+              </View>
+            ) : (
+              <View>
+                <Image
+                  source={{uri: imageSource}}
+                  style={{
+                    resizeMode: 'cover',
+                    width: wp('35%'),
+                    height: wp('35%'),
+                    borderRadius: 100,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    selectImage();
+                  }}
+                  style={{
+                    borderRadius: 100,
+                    height: hp('5%'),
+                    width: wp('10%'),
+                    backgroundColor: Colors.LIGHT_BLUE,
+                    bottom: hp('4%'),
+                    left: wp('25%'),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    shadowOffset: {
+                      width: 1,
+                      height: 1,
+                    },
+                    shadowOpacity: 2,
+                    shadowRadius: 3,
+                    shadowColor: 'grey',
+                  }}>
+                  <Icon type="ionicon" name="pencil" size={25} />
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
 
-          <View>
-            {/*<Text
+          {/*<View>
+            <Text
             style={
               ([Typography.small],
               {
@@ -200,16 +186,15 @@ export const ProductPopUp = props => {
               })
             }>
             You can only add up to 8 images
-          </Text>*/}
-          </View>
+          </Text>
+          </View>*/}
         </View>
         <View
           style={{
-            top: hp('25%'),
+            top: hp('12%'),
             backgroundColor: Colors.GRAY,
-            height: hp('35%'),
-            width: wp('70%'),
-            left: wp('5%'),
+            height: hp('45%'),
+            width: wp('80%'),
             borderRadius: 15,
             shadowOffset: {
               width: 0,
@@ -228,149 +213,126 @@ export const ProductPopUp = props => {
               left: wp('6%'),
               top: hp('2%'),
             }}>
-            <View
+            <TextInput
+              keyboardType="default"
+              placeholder="Product Name"
+              underlineColorAndroid="transparent"
               style={{
+                left: wp('1%'),
                 backgroundColor: 'white',
-                width: wp('55%'),
-                height: hp('3%'),
+                width: wp('65%'),
+                height: hp('6%'),
                 borderRadius: 3,
                 justifyContent: 'center',
-                marginBottom: 8,
-                marginTop: 5,
-              }}>
-              <TextInput
-                keyboardType="default"
-                placeholder="Product Name"
-                style={{left: wp('1%')}}></TextInput>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View>
-                <Text
-                  style={
-                    ([Typography.large],
-                    {bottom: hp('0.5%'), marginRight: wp('1%')})
-                  }>
-                  RM
-                </Text>
-              </View>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  width: wp('22.3%'),
-                  height: hp('3%'),
-                  borderRadius: 3,
-                  justifyContent: 'center',
-                  marginBottom: 8,
-                  marginRight: 10,
-                }}>
-                <TextInput
-                  keyboardType="default"
-                  placeholder=" Min Price"
-                  style={{left: wp('1%')}}></TextInput>
-              </View>
-              <View
-                style={{
-                  height: 0,
-                  width: wp('1.5%'),
-                  borderWidth: wp('0.2%'),
-                  borderColor: 'black',
-                  bottom: Mixins.scaleHeight(4),
-                  left: Mixins.scaleWidth(-5),
-                }}></View>
-              <View
-                style={{
-                  backgroundColor: 'white',
-                  width: wp('22.3%'),
-                  height: hp('3%'),
-                  borderRadius: 3,
-                  justifyContent: 'center',
-                  marginBottom: 8,
-                }}>
-                <TextInput
-                  keyboardType="default"
-                  placeholder=" Max Price"
-                  style={{left: wp('1%')}}></TextInput>
-              </View>
-            </View>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: Mixins.scaleWidth(200),
-                height: Mixins.scaleHeight(18),
-                borderRadius: 3,
-                justifyContent: 'center',
-                marginBottom: 8,
-              }}>
-              <TextInput
-                keyboardType="default"
-                placeholder="Variety"
-                style={{left: wp('1%')}}></TextInput>
-            </View>
+                marginBottom: hp('1%'),
+                marginTop: hp('0.5%'),
+                borderBottomColor: 'black',
+                color: 'black',
+              }}></TextInput>
             <View
               style={{
                 flexDirection: 'row',
-                zIndex: 1001,
-                width: Mixins.scaleWidth(200),
-                height: Mixins.scaleHeight(25),
+                alignItems: 'center',
               }}>
-              <View
+              <Text
+                style={[
+                  Typography.large,
+                  {bottom: hp('0.5%'), marginRight: wp('1%'), left: wp('1%')},
+                ]}>
+                RM
+              </Text>
+              <TextInput
+                keyboardType="default"
+                placeholder=" Min Price"
+                underlineColorAndroid="transparent"
                 style={{
+                  left: wp('3%'),
                   backgroundColor: 'white',
-                  width: Mixins.scaleWidth(110),
-                  height: Mixins.scaleHeight(18),
+                  width: wp('22.3%'),
+                  height: hp('6%'),
                   borderRadius: 3,
                   justifyContent: 'center',
-                  marginBottom: 8,
-                }}>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="Quantity Available"
-                  style={{left: wp('1%')}}></TextInput>
-              </View>
+                  marginBottom: hp('1%'),
+                  borderBottomColor: 'black',
+                  color: 'black',
+                }}></TextInput>
               <View
                 style={{
-                  width: Mixins.scaleWidth(80),
-                  marginLeft: 10,
-                  height: Mixins.scaleHeight(20),
-                }}>
-                <DropDownPicker
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={setOpen}
-                  setValue={setValue}
-                  setItems={setItems}
-                  defaultValue="kg"
-                  style={{
-                    width: Mixins.scaleWidth(80),
-                    height: Mixins.scaleHeight(18),
-
-                    borderColor: 'white',
-                    borderRadius: 3,
-                  }}
-                  containerStyle={{
-                    width: Mixins.scaleWidth(80),
-                  }}
-                  dropDownContainerStyle={{borderWidth: 0}}
-                  placeholder="kg"></DropDownPicker>
-              </View>
+                  width: wp('3%'),
+                  borderWidth: wp('0.2%'),
+                  borderColor: 'black',
+                  bottom: hp('1%'),
+                  left: wp('7%'),
+                  zIndex: 10,
+                }}></View>
+              <TextInput
+                keyboardType="default"
+                placeholder=" Max Price"
+                underlineColorAndroid="transparent"
+                style={{
+                  left: wp('11%'),
+                  backgroundColor: 'white',
+                  width: wp('22.3%'),
+                  height: hp('6%'),
+                  borderRadius: 3,
+                  justifyContent: 'center',
+                  marginBottom: hp('1%'),
+                  borderBottomColor: 'black',
+                  color: 'black',
+                }}></TextInput>
             </View>
-            <View style={{flexDirection: 'row', zIndex: 1000}}>
-              <View
+            <TextInput
+              keyboardType="default"
+              placeholder="Variety"
+              underlineColorAndroid="transparent"
+              style={{
+                backgroundColor: 'white',
+                width: wp('65%'),
+                height: hp('6%'),
+                borderRadius: 3,
+                justifyContent: 'center',
+                marginBottom: hp('1%'),
+                left: wp('1%'),
+                borderBottomColor: 'black',
+                color: 'black',
+              }}></TextInput>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <TextInput
+                keyboardType="default"
+                placeholder="Quantity Available"
+                underlineColorAndroid="transparent"
                 style={{
+                  left: wp('1%'),
                   backgroundColor: 'white',
-                  width: Mixins.scaleWidth(110),
-                  height: Mixins.scaleHeight(18),
+                  width: wp('40%'),
+                  height: hp('6%'),
                   borderRadius: 3,
                   justifyContent: 'center',
-                  marginBottom: 8,
-                }}>
-                <TextInput
-                  keyboardType="default"
-                  placeholder="Minimum Order"
-                  style={{left: Mixins.scaleWidth(3)}}></TextInput>
-              </View>
-              <View style={{marginLeft: 10}}>
+                  marginBottom: hp('1%'),
+                  borderBottomColor: 'black',
+                  color: 'black',
+                }}></TextInput>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <TextInput
+                keyboardType="default"
+                placeholder="Minimum Order"
+                underlineColorAndroid="transparent"
+                style={{
+                  left: wp('1%'),
+                  backgroundColor: 'white',
+                  width: wp('40%'),
+                  height: hp('6%'),
+                  borderRadius: 3,
+                  justifyContent: 'center',
+                  marginBottom: hp('1%'),
+                  borderBottomColor: 'black',
+                  color: 'black',
+                }}></TextInput>
+              <View style={{marginLeft: 10, bottom: hp('3%')}}>
                 <DropDownPicker
                   open={open2}
                   value={value2}
@@ -380,48 +342,25 @@ export const ProductPopUp = props => {
                   setItems={setItems2}
                   defaultValue="kg"
                   style={{
-                    width: Mixins.scaleWidth(80),
-                    height: Mixins.scaleHeight(18),
+                    width: wp('24%'),
+                    height: hp('5%'),
                     borderRadius: 3,
                     borderColor: 'white',
-                  }}
-                  containerStyle={{
-                    width: Mixins.scaleWidth(80),
                   }}
                   dropDownContainerStyle={{borderWidth: 0}}
                   placeholder="kg"
                 />
               </View>
             </View>
-            <View
-              style={{
-                backgroundColor: 'white',
-                width: Mixins.scaleWidth(200),
-                height: Mixins.scaleHeight(60),
-                borderRadius: 3,
-                zIndex: 10,
-              }}>
-              <TextInput
-                keyboardType="default"
-                placeholder="Other Details"
-                style={{
-                  top: Mixins.scaleHeight(5),
-                  left: Mixins.scaleWidth(3),
-                }}></TextInput>
-            </View>
           </View>
         </View>
-        <View
+        <TouchableOpacity
           style={{
-            height: Mixins.scaleHeight(30),
-            width: Mixins.scaleWidth(150),
+            height: hp('5%'),
+            height: hp('7%'),
+            width: wp('37%'),
             backgroundColor: Colors.LIGHT_BLUE,
-            justifyContent: 'center',
-            alignItems: 'center',
             borderRadius: 10,
-            position: 'absolute',
-            bottom: Mixins.scaleHeight(-190),
-            right: Mixins.scaleWidth(70),
             shadowOffset: {
               width: 0,
               height: 5,
@@ -429,17 +368,15 @@ export const ProductPopUp = props => {
             shadowOpacity: 5,
             shadowRadius: 3,
             shadowColor: 'grey',
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: hp('15%'),
+            flexDirection: 'row',
           }}>
-          <TouchableOpacity>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={[Typography.normal]}> Add Product</Text>
-              <View style={{right: Mixins.scaleWidth(-7)}}>
-                <Icon name="add-circle-outline" size={20} />
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </DismissKeyboardView>
+          <Text style={[Typography.normal]}>Add Product{'\t'}</Text>
+          <Icon name="add-circle-outline" size={wp('5%')} />
+        </TouchableOpacity>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -449,15 +386,15 @@ export const AddItemsButton = props => {
   return (
     <TouchableOpacity
       style={{
-        height: Mixins.scaleHeight(50),
-        width: Mixins.scaleWidth(130),
+        height: hp('8%'),
+        width: wp('30%'),
         backgroundColor: 'grey',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
       }}
       onPress={() => setAddItemsButton(true)}>
-      <Text style={[Typography.normal]}>Add Items</Text>
+      <Text style={[Typography.large]}>Add Items</Text>
       <Modal isVisible={addItemsButton}>
         <ProductPopUp
           setAddItemsButton={setAddItemsButton}
@@ -469,12 +406,10 @@ export const AddItemsButton = props => {
 };
 
 export const ProductModal = props => {
-  const [lowPrice, setLowPrice] = useState(props.item.priceMin.toString());
-  const [highPrice, setHighPrice] = useState(props.item.priceMax.toString());
-  const [available, setAvailable] = useState(
-    props.item.availableQuantity.toString(),
-  );
-  const [moq, setMOQ] = useState(props.item.moq.toString());
+  const [lowPrice, setLowPrice] = useState('5'); //props.item.priceMin.toString()
+  const [highPrice, setHighPrice] = useState('7'); //props.item.priceMax.toString()
+  const [available, setAvailable] = useState('20'); //props.item.availableQuantity.toString()
+  const [moq, setMOQ] = useState('123'); //props.item.moq.toString()
 
   const [successfulModal, setSuccessfulModal] = useState(false);
   const [unsuccessfulModal, setUnsuccessfulModal] = useState(false);
@@ -525,53 +460,47 @@ export const ProductModal = props => {
         keyboardVerticalOffset={
           Platform.OS === 'ios' ? Mixins.scaleHeight(-230) : -180
         } /* Keyboard Offset needs to be tested against multiple phones */
-        style={{
-          height: Mixins.scaleHeight(640),
-          width: Mixins.scaleWidth(360),
-        }}>
+      >
         <View
           style={{
-            height: Mixins.scaleHeight(500),
-            width: Mixins.scaleWidth(310),
+            height: hp('90%'),
+            width: wp('90%'),
             backgroundColor: 'white',
             borderRadius: 20,
             alignItems: 'center',
-            left: Mixins.scaleWidth(
-              7.5,
-            ) /* taking into account the margin from Product Card */,
-            top: Mixins.scaleHeight(80),
+            /* taking into account the margin from Product Card */
           }}>
           <View
             style={{
               position: 'absolute',
-              right: Mixins.scaleWidth(-10),
-              top: Mixins.scaleHeight(-10),
+              right: wp('1%'),
+              top: hp('1%'),
             }}>
             <CloseButton setModal={props.setProductModal}></CloseButton>
           </View>
           <View
-            style={{top: Mixins.scaleHeight(25), right: Mixins.scaleWidth(75)}}>
-            <Text style={[Typography.normal]}>{props.item.productName}</Text>
+            style={{top: hp('5%'), alignSelf: 'flex-start', left: wp('5%')}}>
+            <Text style={[Typography.welcome]}>Banana</Text>
+            {/*{props.item.productName} */}
           </View>
-          <View style={{top: Mixins.scaleHeight(30)}}>
+          <View style={{top: hp('5%')}}>
             <Image
               source={require('_assets/images/produce.png')}
               style={{
                 resizeMode: 'contain',
-                width: Mixins.scaleWidth(150),
-                height: Mixins.scaleHeight(120),
+                width: wp('50%'),
+                height: hp('30%'),
               }}
             />
           </View>
           <View
             style={{
-              top: Mixins.scaleHeight(30),
+              top: hp('5%'),
               backgroundColor: Colors.GRAY_LIGHT,
               borderRadius: 15,
-              width: Mixins.scaleWidth(270),
-              height: Mixins.scaleHeight(180),
+              width: wp('80%'),
+              height: hp('30%'),
               alignItems: 'center',
-
               zIndex: 10,
               shadowColor: '#000',
               shadowOffset: {
@@ -586,14 +515,14 @@ export const ProductModal = props => {
               style={{
                 alignItems: 'flex-start',
                 justifyContent: 'center',
-                margin: Mixins.scaleWidth(5),
+                margin: wp('1%'),
               }}>
-              <View style={{margin: Mixins.scaleWidth(5)}}>
-                <Text>Enter Product Details</Text>
+              <View style={{margin: wp('1%')}}>
+                <Text>Edit Product Details</Text>
               </View>
               <View
                 style={{
-                  margin: Mixins.scaleWidth(5),
+                  margin: wp('1%'),
                 }}>
                 <Text>Price Range</Text>
               </View>
@@ -601,38 +530,40 @@ export const ProductModal = props => {
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(80),
-                    height: Mixins.scaleHeight(20),
-                    margin: Mixins.scaleWidth(5),
+                    width: wp('25%'),
+                    height: hp('4%'),
+                    margin: wp('1%'),
                     justifyContent: 'center',
                     borderRadius: 5,
                   }}>
                   <TextInput
                     underlineColorAndroid="transparent"
                     style={{
-                      left: Mixins.scaleWidth(10),
-                      height: Mixins.scaleHeight(40),
-                      borderBottomColor: 'transparent',
+                      left: wp('3%'),
+                      height: hp('6%'),
+                      borderBottomColor: 'black',
+                      color: 'black',
                     }}
                     value={lowPrice}
                     onChangeText={item => setLowPrice(item)}></TextInput>
                 </View>
-                <Text style={{top: Mixins.scaleHeight(5)}}>-</Text>
+                <Text style={{top: hp('1%')}}>-</Text>
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(80),
-                    height: Mixins.scaleHeight(20),
-                    margin: Mixins.scaleWidth(5),
+                    width: wp('25%'),
+                    height: hp('4%'),
+                    margin: wp('1%'),
                     justifyContent: 'center',
                     borderRadius: 5,
                   }}>
                   <TextInput
                     underlineColorAndroid="transparent"
                     style={{
-                      left: Mixins.scaleWidth(10),
-                      height: Mixins.scaleHeight(40),
-                      borderBottomColor: 'transparent',
+                      left: wp('3%'),
+                      height: hp('6%'),
+                      borderBottomColor: 'black',
+                      color: 'black',
                     }}
                     value={highPrice}
                     onChangeText={item => setHighPrice(item)}></TextInput>
@@ -641,34 +572,35 @@ export const ProductModal = props => {
 
               <View
                 style={{
-                  margin: Mixins.scaleWidth(5),
+                  margin: wp('1%'),
                   flexDirection: 'row',
                 }}>
-                <Text style={{top: Mixins.scaleHeight(3)}}>Available</Text>
+                <Text style={{top: hp('1%')}}>Available</Text>
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(60),
-                    height: Mixins.scaleHeight(20),
-                    margin: Mixins.scaleWidth(5),
+                    width: wp('18%'),
+                    height: hp('4%'),
+                    margin: wp('1%'),
                     justifyContent: 'center',
                     borderRadius: 5,
-                    left: Mixins.scaleWidth(10),
+                    left: wp('2%'),
                   }}>
                   <TextInput
                     underlineColorAndroid="transparent"
                     style={{
-                      left: Mixins.scaleWidth(10),
-                      height: Mixins.scaleHeight(40),
-                      borderBottomColor: 'transparent',
+                      left: wp('3%'),
+                      height: hp('6%'),
+                      borderBottomColor: 'black',
+                      color: 'black',
                     }}
                     value={available}
                     onChangeText={item => setAvailable(item)}></TextInput>
                 </View>
                 <Text
                   style={{
-                    top: Mixins.scaleHeight(3),
-                    left: Mixins.scaleWidth(10),
+                    top: hp('1%'),
+                    left: wp('5%'),
                   }}>
                   kg
                 </Text>
@@ -676,34 +608,35 @@ export const ProductModal = props => {
 
               <View
                 style={{
-                  margin: Mixins.scaleWidth(5),
+                  margin: wp('1%'),
                   flexDirection: 'row',
                 }}>
-                <Text style={{top: Mixins.scaleHeight(3)}}>MOQ</Text>
+                <Text style={{top: hp('1%')}}>MOQ</Text>
                 <View
                   style={{
                     backgroundColor: 'white',
-                    width: Mixins.scaleWidth(60),
-                    height: Mixins.scaleHeight(20),
-                    margin: Mixins.scaleWidth(5),
+                    width: wp('18%'),
+                    height: hp('4%'),
+                    margin: wp('1%'),
                     justifyContent: 'center',
                     borderRadius: 5,
-                    left: Mixins.scaleWidth(10),
+                    left: wp('2%'),
                   }}>
                   <TextInput
                     underlineColorAndroid="transparent"
                     style={{
-                      left: Mixins.scaleWidth(10),
-                      height: Mixins.scaleHeight(40),
-                      borderBottomColor: 'transparent',
+                      left: wp('2%'),
+                      height: hp('6%'),
+                      borderBottomColor: 'black',
+                      color: 'black',
                     }}
                     value={moq}
                     onChangeText={item => setMOQ(item)}></TextInput>
                 </View>
                 <Text
                   style={{
-                    top: Mixins.scaleHeight(3),
-                    left: Mixins.scaleWidth(10),
+                    top: hp('1%'),
+                    left: wp('5%'),
                   }}>
                   kg
                 </Text>
@@ -714,10 +647,10 @@ export const ProductModal = props => {
             onPress={() => updateListing()}
             style={{
               backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(120),
-              height: Mixins.scaleHeight(30),
+              width: wp('30%'),
+              height: hp('5%'),
               borderRadius: 10,
-              top: Mixins.scaleHeight(60),
+              top: hp('9%'),
               zIndex: 0,
               shadowColor: '#000',
               shadowOffset: {
@@ -738,8 +671,8 @@ export const ProductModal = props => {
               <Text style={[Typography.small]}>Edit Listing</Text>
               <Icon
                 name="create-outline"
-                size={Mixins.scaleWidth(15)}
-                style={{left: Mixins.scaleWidth(10)}}></Icon>
+                size={wp('5%')}
+                style={{left: wp('3%')}}></Icon>
             </View>
           </TouchableOpacity>
           <Modal
@@ -752,10 +685,10 @@ export const ProductModal = props => {
             onPress={() => setUnsuccessfulModal(true)}
             style={{
               backgroundColor: Colors.LIGHT_RED,
-              width: Mixins.scaleWidth(150),
-              height: Mixins.scaleHeight(30),
+              width: wp('40%'),
+              height: hp('5%'),
               borderRadius: 10,
-              top: Mixins.scaleHeight(70),
+              top: hp('10%'),
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -775,8 +708,8 @@ export const ProductModal = props => {
               <Text style={[Typography.small]}>Remove Listing</Text>
               <Icon
                 name="remove-circle-outline"
-                size={Mixins.scaleWidth(15)}
-                style={{left: Mixins.scaleWidth(10)}}></Icon>
+                size={wp('5%')}
+                style={{left: wp('3%')}}></Icon>
             </View>
           </TouchableOpacity>
           <Modal
@@ -797,28 +730,24 @@ const ProductCard = props => {
       onPress={() => setProductModal(true)}
       style={{
         backgroundColor: Colors.GRAY_LIGHT,
-        width: Mixins.scaleWidth(130),
-        height: Mixins.scaleHeight(155),
-        margin: Mixins.scaleWidth(17.5),
+        width: wp('36%'),
+        height: hp('25%'),
+        margin: wp('5%'),
         borderRadius: 20,
         elevation: 3,
         alignItems: 'center',
       }}>
       <Image
         style={{
-          height: Mixins.scaleHeight(70),
-          width: Mixins.scaleHeight(70),
+          height: wp('18%'),
+          width: wp('18%'),
           borderRadius: 100,
-          top: Mixins.scaleHeight(10),
+          top: hp('2%'),
         }}></Image>
-      <Text style={[Typography.normal, {top: Mixins.scaleHeight(20)}]}>
-        {props.productName}
+      <Text style={[Typography.normal, {top: hp('3%')}]}>
+        Banana{/*{props.productName}*/}
       </Text>
-      <Text
-        style={[
-          Typography.small,
-          {top: Mixins.scaleHeight(20), width: Mixins.scaleWidth(100)},
-        ]}>
+      <Text style={[Typography.small, {top: hp('3%'), width: wp('30%')}]}>
         Price: {props.priceMin} - {props.priceMax}
         {'\n'}MOQ: {props.moq}
         {'\n'}Quantity: {props.availableQuantity}
@@ -849,14 +778,24 @@ export const SupplierplaceList = props => {
       ListEmptyComponent={
         <View
           style={{
-            width: Mixins.scaleWidth(330),
-            height: Mixins.scaleHeight(420),
-            top: Mixins.scaleHeight(30),
+            width: wp('80%'),
+            height: hp('15%'),
             alignItems: 'center',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            backgroundColor: Colors.LIGHT_BLUE,
           }}>
-          <Image
-            style={{resizeMode: 'cover', width: Mixins.scaleWidth(340)}}
-            source={require('_assets/images/produce.png')}></Image>
+          <Text
+            style={[
+              Typography.large,
+              {
+                textAlign: 'center',
+                width: wp('70%'),
+              },
+            ]}>
+            You have 0 item in your store right now, start adding them by
+            clicking on the button
+          </Text>
         </View>
       }
       renderItem={({item}) => {

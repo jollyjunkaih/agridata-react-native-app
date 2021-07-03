@@ -520,6 +520,10 @@ export const App = () => {
 */
 
 export const App = () => {
+<<<<<<< HEAD
   return <CreateAccountPopUp></CreateAccountPopUp>;
+=======
+  return <Store></Store>;
+>>>>>>> aef721c3694e7afc69f14d15fe935f5d74ed9d42
 };
 export default App;

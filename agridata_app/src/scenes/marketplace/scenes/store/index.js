@@ -41,14 +41,14 @@ export const Store = props => {
       <View style={{top: hp('6%')}}>
         <Searchbar />
       </View>
-      <ScrollView
+      <View
         style={{
           width: wp('93%'),
-          height: hp('90%'),
+          height: hp('70%'),
           top: hp('10%'),
         }}>
         <MarketplaceList productList={items} />
-      </ScrollView>
+      </View>
       <View
         style={{
           position: 'absolute',
