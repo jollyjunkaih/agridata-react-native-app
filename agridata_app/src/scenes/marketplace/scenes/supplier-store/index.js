@@ -45,14 +45,6 @@ export const SupplierStore = props => {
         width: wp('100%'),
         alignItems: 'center',
       }}>
-      <View
-        style={{
-          position: 'absolute',
-          left: Mixins.scaleWidth(Spacing.BackButtonLeft),
-          top: Mixins.scaleHeight(Spacing.BackButtonTop),
-        }}>
-        <BackButton />
-      </View>
       <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
       <View
         style={{

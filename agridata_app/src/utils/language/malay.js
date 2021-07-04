@@ -30,8 +30,11 @@ export default {
   purchaseOrderFrom: 'Pembelian untuk',
   orderQuotation: 'Sebut Harga Pesanan',
   orderQuotationFrom: 'Sebut Harga Pesana Daripada',
-  orderQuotationList:
-    'Jumlah Kos:\nTarikh Penghantaran:\nKaedah Penghantaran:\nKaedah Pembayaran:',
+  totalCost: 'Jumlah Kos',
+  deliveryMethod: 'Kaedah Penghantaran',
+  paymentMethod: 'Kaedah Pembayaran',
+  deliveryDate: 'Tarikh Penghantaran',
+
   accept: 'Terima',
   decline: 'Tolak',
   orders: 'Pesanan',

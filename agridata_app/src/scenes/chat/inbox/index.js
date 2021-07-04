@@ -4,7 +4,10 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import {ChatList} from './components';
 import {Searchbar} from './components';
 import {NavBar, BackButton} from '_components';
-import {getChatGroupsContainingRetailersByUpdatedAt} from '../../../graphql/queries';
+import {
+  getChatGroupsContainingRetailersByUpdatedAt,
+  getChatGroupsContainingSuppliersByUpdatedAt,
+} from '../../../graphql/queries';
 import {API} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
 import Strings from '_utils';
@@ -52,10 +55,10 @@ export const Inbox = props => {
           },
         });
         console.log(
-          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+          chats.data.getChatGroupsContainingSuppliersByUpdatedAt.items,
         );
         setChatRooms(
-          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
+          chats.data.getChatGroupsContainingSuppliersByUpdatedAt.items,
         );
       }
     } catch (e) {
@@ -104,6 +107,7 @@ export const Inbox = props => {
           data={chatRooms}
           navigation={props.navigation}
           companyType={companyType}
+          userID={props.user.id}
         />
       </View>
       <View style={{position: 'absolute', top: hp('90%')}}>

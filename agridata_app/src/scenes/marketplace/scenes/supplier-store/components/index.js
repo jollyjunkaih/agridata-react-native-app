@@ -82,8 +82,10 @@ export const ProductPopUp = props => {
         variables: {input: listing},
       });
 
+      listing.productPicture = photo.uri;
+
       var products = props.productList;
-      products.push(productListing.data.createProductListing);
+      products.push(listing);
       props.setProducts(products);
       console.log('Added product');
       setSuccessfulModal(true);
@@ -474,25 +476,30 @@ export const AddItemsButton = props => {
 };
 
 export const ProductModal = props => {
-  const [lowPrice, setLowPrice] = useState('5'); //props.item.priceMin.toString()
-  const [highPrice, setHighPrice] = useState('7'); //props.item.priceMax.toString()
-  const [available, setAvailable] = useState('20'); //props.item.availableQuantity.toString()
-  const [moq, setMOQ] = useState('123'); //props.item.moq.toString()
-
+  const [lowPrice, setLowPrice] = useState(props.lowPrice.toString());
+  const [highPrice, setHighPrice] = useState(props.highPrice.toString());
+  const [available, setAvailable] = useState(
+    props.quantityAvailable.toString(),
+  );
+  const [moq, setMOQ] = useState(props.minimumQuantity.toString());
   const [successfulModal, setSuccessfulModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [unsuccessfulModal, setUnsuccessfulModal] = useState(false);
 
   const deleteListing = async () => {
     const deletedListing = await API.graphql({
       query: deleteProductListing,
-      variables: {input: {id: props.item.id}},
+      variables: {input: {id: props.id}},
     });
     var products = props.productList;
+    console.log(products.length);
     for (let [i, product] of products.entries()) {
-      if (product.id == props.item.id) {
+      if (product.id == props.id) {
         products.splice(i, 1);
       }
     }
+    console.log(products.length);
+    console.log(deletedListing);
     props.setProducts(products);
   };
   const updateListing = async () => {
@@ -501,22 +508,34 @@ export const ProductModal = props => {
       query: updateProductListing,
       variables: {
         input: {
-          id: props.item.id,
+          id: props.id,
           lowPrice: parseFloat(lowPrice),
           highPrice: parseFloat(highPrice),
           quantityAvailable: parseInt(available),
           minimumQuantity: parseInt(moq),
-          productName: props.item.productName,
         },
       },
     });
     var products = props.productList;
+    console.log(products);
     for (let [i, product] of products.entries()) {
-      if (product.id == props.item.id) {
+      if (product.id == props.id) {
         products.splice(i, 1);
       }
     }
-    products.push(updatedListing.data.updateProductListing);
+    var item = {
+      id: props.id,
+      lowPrice: parseFloat(lowPrice),
+      highPrice: parseFloat(highPrice),
+      quantityAvailable: parseInt(available),
+      minimumQuantity: parseInt(moq),
+      grade: props.grade,
+      variety: props.variety,
+      productPicture: props.productPicture,
+      siUnit: props.siUnit,
+    };
+    products.push(item);
+    console.log(products);
     props.setProducts(products);
     setSuccessfulModal(true);
   };
@@ -548,12 +567,11 @@ export const ProductModal = props => {
           </View>
           <View
             style={{top: hp('5%'), alignSelf: 'flex-start', left: wp('5%')}}>
-            <Text style={[Typography.welcome]}>Banana</Text>
-            {/*{props.item.productName} */}
+            <Text style={[Typography.welcome]}>{props.productName}</Text>
           </View>
           <View style={{top: hp('5%')}}>
             <Image
-              source={require('_assets/images/produce.png')}
+              source={props.productPicture}
               style={{
                 resizeMode: 'contain',
                 width: wp('50%'),
@@ -579,211 +597,277 @@ export const ProductModal = props => {
               shadowRadius: 2.62,
               elevation: 3,
             }}>
-            <View
-              style={{
-                alignItems: 'flex-start',
-                justifyContent: 'center',
-                margin: wp('1%'),
-              }}>
-              <View style={{margin: wp('1%')}}>
-                <Text>Edit Product Details</Text>
-              </View>
+            {editMode ? (
               <View
                 style={{
+                  alignItems: 'flex-start',
+                  justifyContent: 'center',
                   margin: wp('1%'),
                 }}>
-                <Text>Price Range</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <View
-                  style={{
-                    backgroundColor: 'white',
-                    width: wp('25%'),
-                    height: hp('4%'),
-                    margin: wp('1%'),
-                    justifyContent: 'center',
-                    borderRadius: 5,
-                  }}>
-                  <TextInput
-                    underlineColorAndroid="transparent"
-                    style={{
-                      left: wp('3%'),
-                      height: hp('6%'),
-                      borderBottomColor: 'black',
-                      color: 'black',
-                    }}
-                    value={lowPrice}
-                    onChangeText={item => setLowPrice(item)}></TextInput>
-                </View>
-                <Text style={{top: hp('1%')}}>-</Text>
-                <View
-                  style={{
-                    backgroundColor: 'white',
-                    width: wp('25%'),
-                    height: hp('4%'),
-                    margin: wp('1%'),
-                    justifyContent: 'center',
-                    borderRadius: 5,
-                  }}>
-                  <TextInput
-                    underlineColorAndroid="transparent"
-                    style={{
-                      left: wp('3%'),
-                      height: hp('6%'),
-                      borderBottomColor: 'black',
-                      color: 'black',
-                    }}
-                    value={highPrice}
-                    onChangeText={item => setHighPrice(item)}></TextInput>
-                </View>
-              </View>
-
-              <View
-                style={{
-                  margin: wp('1%'),
-                  flexDirection: 'row',
-                }}>
-                <Text style={{top: hp('1%')}}>Available</Text>
-                <View
-                  style={{
-                    backgroundColor: 'white',
-                    width: wp('18%'),
-                    height: hp('4%'),
-                    margin: wp('1%'),
-                    justifyContent: 'center',
-                    borderRadius: 5,
-                    left: wp('2%'),
-                  }}>
-                  <TextInput
-                    underlineColorAndroid="transparent"
-                    style={{
-                      left: wp('3%'),
-                      height: hp('6%'),
-                      borderBottomColor: 'black',
-                      color: 'black',
-                    }}
-                    value={available}
-                    onChangeText={item => setAvailable(item)}></TextInput>
-                </View>
-                <Text
-                  style={{
-                    top: hp('1%'),
-                    left: wp('5%'),
-                  }}>
-                  kg
+                <Text style={[Typography.large, {margin: wp('1%')}]}>
+                  Edit Product Details
                 </Text>
-              </View>
-
-              <View
-                style={{
-                  margin: wp('1%'),
-                  flexDirection: 'row',
-                }}>
-                <Text style={{top: hp('1%')}}>MOQ</Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Grade: {props.grade}
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Variety: {props.variety}
+                </Text>
                 <View
                   style={{
-                    backgroundColor: 'white',
-                    width: wp('18%'),
-                    height: hp('4%'),
                     margin: wp('1%'),
-                    justifyContent: 'center',
-                    borderRadius: 5,
-                    left: wp('2%'),
+                    flexDirection: 'row',
                   }}>
-                  <TextInput
-                    underlineColorAndroid="transparent"
+                  <Text style={[Typography.normal]}>Price Range: RM</Text>
+                  <View
                     style={{
+                      backgroundColor: 'white',
+                      width: wp('14%'),
+                      height: hp('4%'),
+                      marginHorizontal: wp('1%'),
+                      justifyContent: 'center',
+                      borderRadius: 5,
+                      bottom: hp('0.5%'),
+                    }}>
+                    <TextInput
+                      underlineColorAndroid="transparent"
+                      style={{
+                        left: wp('1%'),
+                        height: hp('6%'),
+                        borderBottomColor: 'black',
+                        color: 'black',
+                      }}
+                      value={lowPrice}
+                      onChangeText={item => setLowPrice(item)}></TextInput>
+                  </View>
+                  <Text style={{top: hp('1%')}}>-</Text>
+                  <View
+                    style={{
+                      backgroundColor: 'white',
+                      width: wp('14%'),
+                      height: hp('4%'),
+                      marginHorizontal: wp('1%'),
+                      justifyContent: 'center',
+                      borderRadius: 5,
+                      bottom: hp('0.5%'),
+                    }}>
+                    <TextInput
+                      underlineColorAndroid="transparent"
+                      style={{
+                        left: wp('1%'),
+                        height: hp('6%'),
+                        borderBottomColor: 'black',
+                        color: 'black',
+                      }}
+                      value={highPrice}
+                      onChangeText={item => setHighPrice(item)}></TextInput>
+                  </View>
+                </View>
+
+                <View
+                  style={{
+                    margin: wp('1%'),
+                    flexDirection: 'row',
+                  }}>
+                  <Text
+                    style={[Typography.normal, {marginHorizontal: wp('1%')}]}>
+                    Available:
+                  </Text>
+                  <View
+                    style={{
+                      backgroundColor: 'white',
+                      width: wp('18%'),
+                      height: hp('4%'),
+                      margin: wp('1%'),
+                      justifyContent: 'center',
+                      borderRadius: 5,
                       left: wp('2%'),
-                      height: hp('6%'),
-                      borderBottomColor: 'black',
-                      color: 'black',
-                    }}
-                    value={moq}
-                    onChangeText={item => setMOQ(item)}></TextInput>
+                      bottom: hp('0.5%'),
+                    }}>
+                    <TextInput
+                      underlineColorAndroid="transparent"
+                      style={{
+                        left: wp('3%'),
+                        height: hp('6%'),
+                        borderBottomColor: 'black',
+                        color: 'black',
+                      }}
+                      value={available}
+                      onChangeText={item => setAvailable(item)}></TextInput>
+                  </View>
+                  <Text
+                    style={{
+                      top: hp('0.5%'),
+                      left: wp('5%'),
+                    }}>
+                    {props.siUnit}
+                  </Text>
                 </View>
-                <Text
+
+                <View
                   style={{
-                    top: hp('1%'),
-                    left: wp('5%'),
+                    margin: wp('1%'),
+                    flexDirection: 'row',
                   }}>
-                  kg
+                  <Text
+                    style={[Typography.normal, {marginHorizontal: wp('1%')}]}>
+                    MOQ
+                  </Text>
+                  <View
+                    style={{
+                      backgroundColor: 'white',
+                      width: wp('18%'),
+                      height: hp('4%'),
+                      marginHorizontal: wp('1%'),
+                      justifyContent: 'center',
+                      borderRadius: 5,
+                      left: wp('2%'),
+                      bottom: hp('0.5%'),
+                    }}>
+                    <TextInput
+                      underlineColorAndroid="transparent"
+                      style={{
+                        left: wp('2%'),
+                        height: hp('6%'),
+                        borderBottomColor: 'black',
+                        color: 'black',
+                      }}
+                      value={moq}
+                      onChangeText={item => setMOQ(item)}></TextInput>
+                  </View>
+                  <Text
+                    style={{
+                      top: hp('0.5%'),
+                      left: wp('5%'),
+                    }}>
+                    {props.siUnit}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View
+                style={{
+                  alignItems: 'flex-start',
+                  justifyContent: 'center',
+                  margin: wp('1%'),
+                }}>
+                <Text style={[Typography.large, {margin: wp('1%')}]}>
+                  Product Details
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Grade: {props.grade}
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Variety: {props.variety}
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Price Range: RM {lowPrice} - {highPrice}
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  Available: {available} {props.siUnit}
+                </Text>
+                <Text style={[Typography.normal, {margin: wp('1%')}]}>
+                  MOQ: {moq} {props.siUnit}
                 </Text>
               </View>
-            </View>
+            )}
           </View>
-          <TouchableOpacity
-            onPress={() => updateListing()}
-            style={{
-              backgroundColor: Colors.LIGHT_BLUE,
-              width: wp('30%'),
-              height: hp('5%'),
-              borderRadius: 10,
-              top: hp('9%'),
-              zIndex: 0,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.23,
-              shadowRadius: 2.62,
-              elevation: 4,
-            }}>
-            <View
+          {editMode ? (
+            <TouchableOpacity
+              onPress={() => updateListing()}
               style={{
-                flex: 1,
+                backgroundColor: Colors.LIGHT_BLUE,
+                width: wp('45%'),
+                height: hp('5%'),
+                borderRadius: 10,
+                top: hp('9%'),
+                zIndex: 0,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.23,
+                shadowRadius: 2.62,
+                elevation: 4,
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Text style={[Typography.small]}>Edit Listing</Text>
-              <Icon
-                name="create-outline"
-                size={wp('5%')}
-                style={{left: wp('3%')}}></Icon>
-            </View>
-          </TouchableOpacity>
-          <Modal
-            isVisible={successfulModal}
-            onBackdropPress={() => setSuccessfulModal(false)}>
-            <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
-          </Modal>
+              <Text style={[Typography.normal]}>Save Changes</Text>
+            </TouchableOpacity>
+          ) : (
+            <View style={{alignItems: 'center'}}>
+              <TouchableOpacity
+                onPress={() => setEditMode(true)}
+                style={{
+                  backgroundColor: Colors.LIGHT_BLUE,
+                  width: wp('45%'),
+                  height: hp('5%'),
+                  borderRadius: 10,
+                  top: hp('9%'),
+                  zIndex: 0,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.23,
+                  shadowRadius: 2.62,
+                  elevation: 4,
 
-          <TouchableOpacity
-            onPress={() => setUnsuccessfulModal(true)}
-            style={{
-              backgroundColor: Colors.LIGHT_RED,
-              width: wp('40%'),
-              height: hp('5%'),
-              borderRadius: 10,
-              top: hp('10%'),
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.23,
-              shadowRadius: 2.62,
-              elevation: 4,
-            }}>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text style={[Typography.small]}>Remove Listing</Text>
-              <Icon
-                name="remove-circle-outline"
-                size={wp('5%')}
-                style={{left: wp('3%')}}></Icon>
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text style={[Typography.normal]}>Edit Listing</Text>
+                <Icon
+                  name="create-outline"
+                  size={wp('5%')}
+                  style={{left: wp('3%')}}></Icon>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => deleteListing()}
+                style={{
+                  backgroundColor: Colors.LIGHT_RED,
+                  width: wp('60%'),
+                  height: hp('5%'),
+                  borderRadius: 10,
+                  top: hp('10%'),
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.23,
+                  shadowRadius: 2.62,
+                  elevation: 4,
+
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text style={[Typography.normal]}>Remove Listing</Text>
+                <Icon
+                  name="remove-circle-outline"
+                  size={wp('5%')}
+                  style={{left: wp('3%')}}></Icon>
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          )}
           <Modal
             isVisible={unsuccessfulModal}
             onBackdropPress={() => setUnsuccessfulModal(false)}>
             <UnsuccessfulModal setUnsuccessfulModal={setUnsuccessfulModal} />
+          </Modal>
+          <Modal
+            isVisible={successfulModal}
+            onBackdropPress={() => [
+              setSuccessfulModal(false),
+              setEditMode(false),
+            ]}>
+            <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
           </Modal>
         </View>
       </KeyboardAvoidingView>
@@ -796,11 +880,16 @@ const ProductCard = props => {
   const [imageSource, setImageSource] = useState(null);
   const getImage = async () => {
     try {
-      const imageURL = await Storage.get(props.image);
-      setImageSource({
-        uri: imageURL,
-      });
-      console.log(imageSource);
+      if (typeof props.productPicture == 'string') {
+        console.log(props.productPicture);
+        const imageURL = await Storage.get(props.productPicture);
+        setImageSource({
+          uri: imageURL,
+        });
+        console.log(imageSource);
+      } else {
+        setImageSource({uri: props.productPicture});
+      }
     } catch (e) {
       console.log(e);
     }
@@ -840,10 +929,19 @@ const ProductCard = props => {
       </Text>
       <Modal isVisible={productModal}>
         <ProductModal
+          setProductModal={setProductModal}
           setProducts={props.setProducts}
           productList={props.productList}
-          setProductModal={setProductModal}
-          item={props}></ProductModal>
+          productName={props.productName}
+          variety={props.variety}
+          quantityAvailable={props.quantityAvailable}
+          productPicture={imageSource}
+          lowPrice={props.lowPrice}
+          highPrice={props.highPrice}
+          minimumQuantity={props.minimumQuantity}
+          siUnit={props.siUnit}
+          grade={props.grade}
+          id={props.id}></ProductModal>
       </Modal>
     </TouchableOpacity>
   );
@@ -854,6 +952,7 @@ export const SupplierplaceList = props => {
     <FlatList
       keyExtractor={item => item.id}
       data={props.productList}
+      extraData={props.productList.length}
       numColumns={2}
       ListEmptyComponent={
         <View
@@ -884,12 +983,12 @@ export const SupplierplaceList = props => {
             setProducts={props.setProducts}
             productList={props.productList}
             productName={item.productName}
-            type={item.variety}
-            availableQuantity={item.quantityAvailable}
-            image={item.productPicture}
-            priceMin={item.lowPrice}
-            priceMax={item.highPrice}
-            moq={item.minimumQuantity}
+            variety={item.variety}
+            quantityAvailable={item.quantityAvailable}
+            productPicture={item.productPicture}
+            lowPrice={item.lowPrice}
+            highPrice={item.highPrice}
+            minimumQuantity={item.minimumQuantity}
             siUnit={item.siUnit}
             grade={item.grade}
             id={item.id}

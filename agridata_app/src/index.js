@@ -328,6 +328,7 @@ const AppNavigator = props => {
       props.user.supplierCompany.verified != undefined
     ) {
       console.log('Supplier \n');
+      const type = 'supplier';
       return (
         <AppStack.Navigator headerMode="none">
           <AppStack.Screen name="dashboard">
@@ -345,10 +346,14 @@ const AppNavigator = props => {
             )}
           </AppStack.Screen>
           <AppStack.Screen name="chatroom">
-            {screenProps => <ChatRoom {...screenProps} user={props.user} />}
+            {screenProps => (
+              <ChatRoom {...screenProps} user={props.user} type={type} />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="inbox">
-            {screenProps => <Inbox {...screenProps} user={props.user} />}
+            {screenProps => (
+              <Inbox {...screenProps} user={props.user} type={type} />
+            )}
           </AppStack.Screen>
           <AppStack.Screen name="tasks">
             {screenProps => (

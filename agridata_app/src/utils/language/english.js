@@ -30,8 +30,10 @@ export default {
   purchaseOrderFrom: 'Purchase Order For',
   orderQuotation: 'Order Quotation',
   orderQuotationFrom: 'Order Quotation From',
-  orderQuotationList:
-    'Total Cost:\nDelivery Date:\nDelivery Method:\nPayment Method:',
+  totalCost: 'Total Cost',
+  deliveryMethod: 'Delivery Method',
+  paymentMethod: 'Payment Method',
+  deliveryDate: 'Delivery Date',
   accept: 'Accept',
   decline: 'Decline',
   orders: 'Orders',

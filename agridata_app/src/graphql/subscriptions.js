@@ -3937,50 +3937,62 @@ export const onDeleteProducts = /* GraphQL */ `
     }
   }
 `;
-export const onCreateQuotedProducts = /* GraphQL */ `
-  subscription OnCreateQuotedProducts {
-    onCreateQuotedProducts {
+export const onCreateOrderQuotation = /* GraphQL */ `
+  subscription OnCreateOrderQuotation {
+    onCreateOrderQuotation {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }
 `;
-export const onUpdateQuotedProducts = /* GraphQL */ `
-  subscription OnUpdateQuotedProducts {
-    onUpdateQuotedProducts {
+export const onUpdateOrderQuotation = /* GraphQL */ `
+  subscription OnUpdateOrderQuotation {
+    onUpdateOrderQuotation {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }
 `;
-export const onDeleteQuotedProducts = /* GraphQL */ `
-  subscription OnDeleteQuotedProducts {
-    onDeleteQuotedProducts {
+export const onDeleteOrderQuotation = /* GraphQL */ `
+  subscription OnDeleteOrderQuotation {
+    onDeleteOrderQuotation {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }

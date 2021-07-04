@@ -74,7 +74,7 @@ type BankDetails {
 type ChatGroup @model
 @key(name: "chatGroupbyRetailer", fields: ["retailerID","updatedAt"], queryField: "getChatGroupsContainingRetailersByUpdatedAt")
 @key(name: "chatGroupbySupplier", fields: ["supplierID","updatedAt"], queryField: "getChatGroupsContainingSuppliersByUpdatedAt"){
-  id:ID "CompanyX+CompanyY"
+  id:ID "retailerID+supplierID"
   name: String
   retailerID: ID
   retailerCompany: RetailerCompany
@@ -90,7 +90,7 @@ type ChatGroup @model
 type Message @model 
 @key(name: "byChatGroup", fields: ["chatGroupID","createdAt"], queryField: "messagesInChatByDate"){
   id:ID
-  chatGroupID: ID!
+  chatGroupID: ID! "retailerID+supplierID"
   type: String! "Text, Product Inquiry, PO, Quotation"
   content: String!
   senderID: ID!
@@ -101,9 +101,9 @@ type Message @model
 type ChatGroupUsers @model
 @key(name:"gettingChatParticipantsByChatGroup", fields:["chatGroupID", "userID"])
 @key(name:"gettingChatGroupsByUser", fields:["userID", "chatGroupID"]){
-  id: ID
+  id: ID "userID + chatRoomID"
   userID: ID
-  chatGroupID: ID
+  chatGroupID: ID "retailerID+supplierID"
   lastOnline: String
   chatGroup: ChatGroup @connection(fields:["chatGroupID"])
   user: User @connection(fields:["userID"])
@@ -129,7 +129,7 @@ type ProductListing @model
 type Products @model
 @key(name: "productsInPurchaseOrder", fields: ["purchaseOrderID"],queryField: "purchaseOrderItems"){
   id:ID
-  purchaseOrderID:ID "companyX+companyY"
+  purchaseOrderID:ID "retailerID+supplierID"
   name: String
   quantity: Int
   createdAt: String
@@ -139,19 +139,22 @@ type Products @model
 }
 
 
-type QuotedProducts @model
-@key(name: "productsInQuotation", fields: ["quotationID"],queryField: "QuotationItems"){
-  id:ID
-  quotationID:ID "companyX+companyY"
-  name: String
-  variety: String
+type OrderQuotation @model{
+  id:ID "retailerID+supplierID"
+  items: [Items]
+  sum: Float
+  logisticsProvided: Boolean
+  paymentTerms: String
+}
+
+type Items{
+  name:String
+  quantity:Int
+  siUnit: String
+  variety:String
   grade: String
-  quantity: Int
-  createdAt: String
   price: Float
-  siUnit: String
 }
-
 
 
 type GoodsTask @model

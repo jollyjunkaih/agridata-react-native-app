@@ -1944,39 +1944,47 @@ export const listProductss = /* GraphQL */ `
     }
   }
 `;
-export const getQuotedProducts = /* GraphQL */ `
-  query GetQuotedProducts($id: ID!) {
-    getQuotedProducts(id: $id) {
+export const getOrderQuotation = /* GraphQL */ `
+  query GetOrderQuotation($id: ID!) {
+    getOrderQuotation(id: $id) {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }
 `;
-export const listQuotedProductss = /* GraphQL */ `
-  query ListQuotedProductss(
-    $filter: ModelQuotedProductsFilterInput
+export const listOrderQuotations = /* GraphQL */ `
+  query ListOrderQuotations(
+    $filter: ModelOrderQuotationFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuotedProductss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listOrderQuotations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        quotationID
-        name
-        variety
-        grade
-        quantity
+        items {
+          name
+          quantity
+          siUnit
+          variety
+          grade
+          price
+        }
+        sum
+        logisticsProvided
+        paymentTerms
         createdAt
-        price
-        siUnit
         updatedAt
       }
       nextToken
@@ -3451,37 +3459,6 @@ export const purchaseOrderItems = /* GraphQL */ `
         siUnit
         variety
         grade
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const quotationItems = /* GraphQL */ `
-  query QuotationItems(
-    $quotationID: ID
-    $sortDirection: ModelSortDirection
-    $filter: ModelQuotedProductsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    QuotationItems(
-      quotationID: $quotationID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        quotationID
-        name
-        variety
-        grade
-        quantity
-        createdAt
-        price
-        siUnit
         updatedAt
       }
       nextToken

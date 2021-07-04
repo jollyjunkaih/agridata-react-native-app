@@ -4009,59 +4009,71 @@ export const deleteProducts = /* GraphQL */ `
     }
   }
 `;
-export const createQuotedProducts = /* GraphQL */ `
-  mutation CreateQuotedProducts(
-    $input: CreateQuotedProductsInput!
-    $condition: ModelQuotedProductsConditionInput
+export const createOrderQuotation = /* GraphQL */ `
+  mutation CreateOrderQuotation(
+    $input: CreateOrderQuotationInput!
+    $condition: ModelOrderQuotationConditionInput
   ) {
-    createQuotedProducts(input: $input, condition: $condition) {
+    createOrderQuotation(input: $input, condition: $condition) {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }
 `;
-export const updateQuotedProducts = /* GraphQL */ `
-  mutation UpdateQuotedProducts(
-    $input: UpdateQuotedProductsInput!
-    $condition: ModelQuotedProductsConditionInput
+export const updateOrderQuotation = /* GraphQL */ `
+  mutation UpdateOrderQuotation(
+    $input: UpdateOrderQuotationInput!
+    $condition: ModelOrderQuotationConditionInput
   ) {
-    updateQuotedProducts(input: $input, condition: $condition) {
+    updateOrderQuotation(input: $input, condition: $condition) {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }
 `;
-export const deleteQuotedProducts = /* GraphQL */ `
-  mutation DeleteQuotedProducts(
-    $input: DeleteQuotedProductsInput!
-    $condition: ModelQuotedProductsConditionInput
+export const deleteOrderQuotation = /* GraphQL */ `
+  mutation DeleteOrderQuotation(
+    $input: DeleteOrderQuotationInput!
+    $condition: ModelOrderQuotationConditionInput
   ) {
-    deleteQuotedProducts(input: $input, condition: $condition) {
+    deleteOrderQuotation(input: $input, condition: $condition) {
       id
-      quotationID
-      name
-      variety
-      grade
-      quantity
+      items {
+        name
+        quantity
+        siUnit
+        variety
+        grade
+        price
+      }
+      sum
+      logisticsProvided
+      paymentTerms
       createdAt
-      price
-      siUnit
       updatedAt
     }
   }

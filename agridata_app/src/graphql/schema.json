@@ -511,7 +511,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getQuotedProducts",
+          "name" : "getOrderQuotation",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -529,20 +529,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listQuotedProductss",
+          "name" : "listOrderQuotations",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsFilterInput",
+              "name" : "ModelOrderQuotationFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -567,7 +567,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelQuotedProductsConnection",
+            "name" : "ModelOrderQuotationConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1135,62 +1135,6 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "ModelProductsConnection",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "QuotationItems",
-          "description" : null,
-          "args" : [ {
-            "name" : "quotationID",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "sortDirection",
-            "description" : null,
-            "type" : {
-              "kind" : "ENUM",
-              "name" : "ModelSortDirection",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "filter",
-            "description" : null,
-            "type" : {
-              "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsFilterInput",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "limit",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "nextToken",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "ModelQuotedProductsConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6357,7 +6301,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "QuotedProducts",
+        "name" : "OrderQuotation",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -6371,73 +6315,22 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "quotationID",
+          "name" : "items",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "OBJECT",
+              "name" : "Items",
+              "ofType" : null
+            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "name",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "variety",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "grade",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "quantity",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "createdAt",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "price",
+          "name" : "sum",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -6448,13 +6341,39 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "siUnit",
+          "name" : "logisticsProvided",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "paymentTerms",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
             "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "createdAt",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "AWSDateTime",
+              "ofType" : null
+            }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -6480,7 +6399,82 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelQuotedProductsConnection",
+        "name" : "Items",
+        "description" : null,
+        "fields" : [ {
+          "name" : "name",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "quantity",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "siUnit",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "variety",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "grade",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "price",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "ModelOrderQuotationConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -6491,7 +6485,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "QuotedProducts",
+              "name" : "OrderQuotation",
               "ofType" : null
             }
           },
@@ -6515,7 +6509,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelQuotedProductsFilterInput",
+        "name" : "ModelOrderQuotationFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -6528,61 +6522,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "quotationID",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "variety",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "grade",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "quantity",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "createdAt",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "price",
+          "name" : "sum",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -6591,7 +6531,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "siUnit",
+          "name" : "logisticsProvided",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelBooleanInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "paymentTerms",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -6607,7 +6556,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsFilterInput",
+              "name" : "ModelOrderQuotationFilterInput",
               "ofType" : null
             }
           },
@@ -6620,7 +6569,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsFilterInput",
+              "name" : "ModelOrderQuotationFilterInput",
               "ofType" : null
             }
           },
@@ -6630,7 +6579,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelQuotedProductsFilterInput",
+            "name" : "ModelOrderQuotationFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -7502,7 +7451,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createQuotedProducts",
+          "name" : "createOrderQuotation",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -7512,7 +7461,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateQuotedProductsInput",
+                "name" : "CreateOrderQuotationInput",
                 "ofType" : null
               }
             },
@@ -7522,20 +7471,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsConditionInput",
+              "name" : "ModelOrderQuotationConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateQuotedProducts",
+          "name" : "updateOrderQuotation",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -7545,7 +7494,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateQuotedProductsInput",
+                "name" : "UpdateOrderQuotationInput",
                 "ofType" : null
               }
             },
@@ -7555,20 +7504,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsConditionInput",
+              "name" : "ModelOrderQuotationConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteQuotedProducts",
+          "name" : "deleteOrderQuotation",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -7578,7 +7527,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteQuotedProductsInput",
+                "name" : "DeleteOrderQuotationInput",
                 "ofType" : null
               }
             },
@@ -7588,14 +7537,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsConditionInput",
+              "name" : "ModelOrderQuotationConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10256,7 +10205,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateQuotedProductsInput",
+        "name" : "CreateOrderQuotationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -10269,34 +10218,56 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "quotationID",
+          "name" : "items",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ItemsInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "sum",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "ID",
+            "name" : "Float",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
+          "name" : "logisticsProvided",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "paymentTerms",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ItemsInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
           "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "variety",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "grade",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -10314,7 +10285,25 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "createdAt",
+          "name" : "siUnit",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "variety",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "grade",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -10331,80 +10320,17 @@
             "ofType" : null
           },
           "defaultValue" : null
-        }, {
-          "name" : "siUnit",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
         } ],
         "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelQuotedProductsConditionInput",
+        "name" : "ModelOrderQuotationConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "quotationID",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "variety",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "grade",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "quantity",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelIntInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "createdAt",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "price",
+          "name" : "sum",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -10413,7 +10339,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "siUnit",
+          "name" : "logisticsProvided",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelBooleanInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "paymentTerms",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -10429,7 +10364,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsConditionInput",
+              "name" : "ModelOrderQuotationConditionInput",
               "ofType" : null
             }
           },
@@ -10442,7 +10377,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelQuotedProductsConditionInput",
+              "name" : "ModelOrderQuotationConditionInput",
               "ofType" : null
             }
           },
@@ -10452,7 +10387,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelQuotedProductsConditionInput",
+            "name" : "ModelOrderQuotationConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -10462,7 +10397,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateQuotedProductsInput",
+        "name" : "UpdateOrderQuotationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -10479,61 +10414,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "quotationID",
+          "name" : "items",
           "description" : null,
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "ID",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "ItemsInput",
+              "ofType" : null
+            }
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "variety",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "grade",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "quantity",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "createdAt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "price",
+          "name" : "sum",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -10542,7 +10436,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "siUnit",
+          "name" : "logisticsProvided",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "paymentTerms",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -10556,7 +10459,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteQuotedProductsInput",
+        "name" : "DeleteOrderQuotationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -11719,34 +11622,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateQuotedProducts",
+          "name" : "onCreateOrderQuotation",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateQuotedProducts",
+          "name" : "onUpdateOrderQuotation",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteQuotedProducts",
+          "name" : "onDeleteOrderQuotation",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "QuotedProducts",
+            "name" : "OrderQuotation",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -12681,23 +12584,6 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -12773,6 +12659,23 @@
         "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

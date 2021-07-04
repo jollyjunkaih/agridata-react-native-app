@@ -11,11 +11,17 @@ import {
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import dayjs from 'dayjs';
+import {useEffect} from 'react/cjs/react.development';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
 var relativeTime = require('dayjs/plugin/relativeTime');
 dayjs.extend(relativeTime);
+var utc = require('dayjs/plugin/utc');
+var timezone = require('dayjs/plugin/timezone'); // dependent on utc plugin
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Singapore');
 
 const now = () => {
   const now = dayjs().format('YYYY-MM-DD');
@@ -112,6 +118,7 @@ export const ChatList = props => {
         }
         var senderArray = item.mostRecentMessageSender.split(' ');
         var firstName = senderArray[0];
+        console.log(item.chatParticipants.items);
         return (
           <ChatRoom
             chatName={chatName}
@@ -120,6 +127,8 @@ export const ChatList = props => {
             updatedAt={item.updatedAt}
             chatGroupID={item.id}
             navigation={props.navigation}
+            chatParticipants={item.chatParticipants.items}
+            userID={props.userID}
           />
         );
       }}
@@ -128,8 +137,28 @@ export const ChatList = props => {
 };
 
 const ChatRoom = props => {
-  const lastOnline = dayjs(props.lastOnline);
-  const lastUpdated = dayjs(props.updatedAt);
+  const lastUpdated = dayjs(props.updatedAt).add(8, 'hour');
+  var listOfParticipants = props.chatParticipants;
+  console.log(props.chatParticipants, props.userID);
+  var tempList = listOfParticipants.filter(item => {
+    return item.userID == props.userID;
+  });
+  console.log(tempList.length);
+  if (tempList.length == 0) {
+    var lastSeen = dayjs().subtract(1, 'month');
+  } else {
+    var lastSeen = dayjs(tempList[0].lastOnline).add(8, 'hour');
+  }
+
+  {
+    /* listOfParticipants.forEach((item, index, array) => {
+    if (item.userID == props.userID) {
+      console.log(item.lastOnline);
+      lastSeen = dayjs(item.lastOnline).add(8, 'hour');
+    }
+  });*/
+  }
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -182,15 +211,17 @@ const ChatRoom = props => {
         lastUpdated.fromNow().includes('year') ||
         lastUpdated.fromNow().includes('years') ? (
           <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
-            {dayjs(props.updatedAt.slice(0, 10)).format('DD-MM-YYYY')}
+            {lastUpdated.format('DD-MM-YYYY')}
           </Text>
         ) : (
           <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
-            {lastUpdated.fromNow()}
+            {lastUpdated.subtract(8, 'hour').fromNow()}
+            {lastUpdated.format('DD-HH-mm')}
+            {lastSeen.format('DD-HH-mm')}
           </Text>
         )}
       </View>
-      {lastUpdated.from(lastOnline).includes('ago') ? (
+      {!lastUpdated.from(lastSeen).includes('ago') ? (
         <View
           style={{
             position: 'absolute',
