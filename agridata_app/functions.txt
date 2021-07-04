@@ -44,6 +44,8 @@
     display team members ❌
     add/remove team members ❌
     accept quotation => create a GoodsTask
+    update last seen on back button onPress ✔️
+    update last seen on app background
     on decline, send an automatic message 
 8. Tasks 
     displaying goods task and payment tasks on click
@@ -62,3 +64,4 @@
 10. Updating profile
     Company profile ❌
     User Profile ❌
+    .
