@@ -18,8 +18,8 @@ import {
   CompanyProfile, //done
   EditCompany, //done
   HumanResource, //done
-  PersonalProfile, //done
-  EditPersonal, //done
+  PersonalProfile, //done.
+  EditPersonal, //done.
   //DataAnalytics,
   Registration,
   SupplierDashboard,
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <ConfirmSignUp></ConfirmSignUp>;
+  return <PersonalProfile></PersonalProfile>;
 };
 export default App;
