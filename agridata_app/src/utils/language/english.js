@@ -141,4 +141,13 @@ export default {
     'You have 0 item in your store right now. Start adding them by clicking on the button',
   myStore: 'My Store',
   addItems: 'Add Items',
+  addPhoto: 'Add Photo',
+  enterProductDetails: 'Enter Product Details',
+  productName: 'Product Name',
+  minPrice: 'Min Price',
+  maxPrice: 'Max Price',
+  variety: 'Variety',
+  quantityAvailable: 'Quantity Available',
+  minimumOrder: 'Minimum Order',
+  addProduct: 'Add Product',
 };

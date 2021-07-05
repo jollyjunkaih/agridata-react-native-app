@@ -136,7 +136,13 @@ export const ProductPopUp = props => {
                   style={{left: wp('1%'), bottom: hp('1%')}}>
                   <Icon name="add-outline" size={wp('35%')} />
                 </TouchableOpacity>
-                <Text style={[Typography.large]}>Add Photo</Text>
+                <Text
+                  style={[
+                    Typography.large,
+                    {width: wp('40%'), textAlign: 'center'},
+                  ]}>
+                  {Strings.addPhoto}
+                </Text>
               </View>
             ) : (
               <View>
@@ -207,7 +213,7 @@ export const ProductPopUp = props => {
           }}>
           <Text
             style={([Typography.normal], {left: wp('6%'), top: hp('1.5%')})}>
-            Enter product details
+            {Strings.enterProductDetails}
           </Text>
           <View
             style={{
@@ -216,7 +222,7 @@ export const ProductPopUp = props => {
             }}>
             <TextInput
               keyboardType="default"
-              placeholder="Product Name"
+              placeholder={Strings.productName}
               underlineColorAndroid="transparent"
               style={{
                 left: wp('1%'),
@@ -244,7 +250,7 @@ export const ProductPopUp = props => {
               </Text>
               <TextInput
                 keyboardType="default"
-                placeholder=" Min Price"
+                placeholder={Strings.minPrice}
                 underlineColorAndroid="transparent"
                 style={{
                   left: wp('3%'),
@@ -268,7 +274,7 @@ export const ProductPopUp = props => {
                 }}></View>
               <TextInput
                 keyboardType="default"
-                placeholder=" Max Price"
+                placeholder={Strings.maxPrice}
                 underlineColorAndroid="transparent"
                 style={{
                   left: wp('11%'),
@@ -284,7 +290,7 @@ export const ProductPopUp = props => {
             </View>
             <TextInput
               keyboardType="default"
-              placeholder="Variety"
+              placeholder={Strings.variety}
               underlineColorAndroid="transparent"
               style={{
                 backgroundColor: 'white',
@@ -303,7 +309,7 @@ export const ProductPopUp = props => {
               }}>
               <TextInput
                 keyboardType="default"
-                placeholder="Quantity Available"
+                placeholder={Strings.quantityAvailable}
                 underlineColorAndroid="transparent"
                 style={{
                   left: wp('1%'),
@@ -320,7 +326,7 @@ export const ProductPopUp = props => {
             <View style={{flexDirection: 'row'}}>
               <TextInput
                 keyboardType="default"
-                placeholder="Minimum Order"
+                placeholder={Strings.minimumOrder}
                 underlineColorAndroid="transparent"
                 style={{
                   left: wp('1%'),
@@ -374,7 +380,10 @@ export const ProductPopUp = props => {
             top: hp('15%'),
             flexDirection: 'row',
           }}>
-          <Text style={[Typography.normal]}>Add Product{'\t'}</Text>
+          <Text style={[Typography.normal]}>
+            {Strings.addProduct}
+            {'\t'}
+          </Text>
           <Icon name="add-circle-outline" size={wp('5%')} />
         </TouchableOpacity>
       </View>
@@ -395,7 +404,9 @@ export const AddItemsButton = props => {
         borderRadius: 10,
       }}
       onPress={() => setAddItemsButton(true)}>
-      <Text style={[Typography.large]}>{Strings.addItems}</Text>
+      <Text style={[Typography.large, {textAlign: 'center'}]}>
+        {Strings.addItems}
+      </Text>
       <Modal isVisible={addItemsButton}>
         <ProductPopUp
           setAddItemsButton={setAddItemsButton}

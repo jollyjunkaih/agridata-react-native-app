@@ -12,7 +12,7 @@ import {
   EmployeeDashboard, //done
   OwnerDashboard, //done
   Orders, //Done
-  SupplierStore,
+  SupplierStore, // done most
   SupplierTasks, //done
   RetailerTasks, //done
   CompanyProfile, //done

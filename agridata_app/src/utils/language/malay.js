@@ -141,4 +141,13 @@ export default {
 
   myStore: 'Kedai Anda',
   addItems: 'Tambah Produk',
+  addPhoto: 'Tambah Gambar',
+  enterProductDetails: 'Isikan Butiran Produk',
+  productName: 'Nama Produk',
+  minPrice: 'Harga Min',
+  maxPrice: 'Harga Max',
+  variety: 'Jenis',
+  quantityAvailable: 'Kuantiti Tersedia',
+  minimumOrder: 'Minimum Pesanan',
+  addProduct: 'Tambah Produk',
 };
