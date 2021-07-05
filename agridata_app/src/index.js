@@ -23,7 +23,7 @@ import {
   //DataAnalytics,
   Registration,
   SupplierDashboard,
-  Login, //done except forgot password
+  Login, //done
   CreateCompany, //done
   Landing, //done
   Verification, //done
