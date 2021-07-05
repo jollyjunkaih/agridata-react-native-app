@@ -21,9 +21,9 @@ import {
   PersonalProfile, //done.
   EditPersonal, //done.
   //DataAnalytics,
-  Registration,
-  SupplierDashboard,
-  Login, //done except forgot password
+  Registration, //done
+  SupplierDashboard, //done
+  Login, //done
   CreateCompany, //done
   Landing, //done
   Verification, //done
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <Login></Login>;
+  return <Registration></Registration>;
 };
 export default App;
