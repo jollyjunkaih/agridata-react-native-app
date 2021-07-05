@@ -131,4 +131,13 @@ export default {
   dateOfPayment: 'Date of Payment',
   reference: 'Reference',
   recieved: 'Recieved',
+  toRecieve: 'To Recieve',
+  toPay: 'To Pay',
+  paymentTo: 'Payment To',
+  uploadReciept: 'Upload Reciept',
+  deliveryDate: 'Delivery Date',
+  youHaveZeroItems:
+    'You have 0 item in your store right now. Start adding them by clicking on the button',
+  myStore: 'My Store',
+  addItems: 'Add Items',
 };

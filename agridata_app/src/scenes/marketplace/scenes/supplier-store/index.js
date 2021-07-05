@@ -11,6 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const SupplierStore = props => {
   const [productsList, setProducts] = useState([]);
@@ -53,13 +54,20 @@ export const SupplierStore = props => {
       }}>
       <View
         style={{
-          position: 'absolute',
-          left: Mixins.scaleWidth(Spacing.BackButtonLeft),
-          top: Mixins.scaleHeight(Spacing.BackButtonTop),
+          alignItems: 'center',
+          justifyContent: 'center',
+          top: hp('3%'),
+          flexDirection: 'row',
+          width: wp('100%'),
         }}>
-        <BackButton />
+        <View style={{position: 'absolute', left: wp('5%')}}>
+          <BackButton />
+        </View>
+        <Text style={[Typography.header, {right: wp('2%')}]}>
+          {Strings.myStore}
+        </Text>
       </View>
-      <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
+
       <View
         style={{
           width: wp('90%'),

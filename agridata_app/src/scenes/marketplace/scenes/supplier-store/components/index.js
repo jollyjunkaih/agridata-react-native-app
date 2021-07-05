@@ -34,6 +34,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const ProductPopUp = props => {
   const addListing = async () => {
@@ -394,7 +395,7 @@ export const AddItemsButton = props => {
         borderRadius: 10,
       }}
       onPress={() => setAddItemsButton(true)}>
-      <Text style={[Typography.large]}>Add Items</Text>
+      <Text style={[Typography.large]}>{Strings.addItems}</Text>
       <Modal isVisible={addItemsButton}>
         <ProductPopUp
           setAddItemsButton={setAddItemsButton}
@@ -779,7 +780,7 @@ export const SupplierplaceList = props => {
         <View
           style={{
             width: wp('80%'),
-            height: hp('15%'),
+            height: hp('25%'),
             alignItems: 'center',
             alignSelf: 'center',
             justifyContent: 'center',
@@ -793,8 +794,7 @@ export const SupplierplaceList = props => {
                 width: wp('70%'),
               },
             ]}>
-            You have 0 item in your store right now, start adding them by
-            clicking on the button
+            {Strings.youHaveZeroItems}
           </Text>
         </View>
       }
