@@ -63,9 +63,7 @@ export const SupplierStore = props => {
         <View style={{position: 'absolute', left: wp('5%')}}>
           <BackButton />
         </View>
-        <Text style={[Typography.header, {right: wp('2%')}]}>
-          {Strings.myStore}
-        </Text>
+        <Text style={[Typography.header]}>{Strings.myStore}</Text>
       </View>
 
       <View
