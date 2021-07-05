@@ -84,4 +84,19 @@ export default {
   inTheMeantime:
     'In the meantime, you can try updating your company information.',
   updateCompany: 'Update Company',
+  verificationWord: 'VERIFICATION',
+  sendCodeToPhone:
+    'Enter phone number to recieve a code in order to verify your number',
+  authenticationCode: 'Authentication Code',
+  resendCode: 'Re-send Code',
+  verify: 'VERIFY',
+  enterPhoneResetPass: 'Enter Phone Number to Reset Password',
+  phoneNumber: 'Phone Number',
+  resetPasswordByEntering:
+    'Reset password by entering in your new password and authentication code',
+  pleaseEnterPhoneNum: 'Please Enter Your Phone Number!',
+  pleaseEnterBothAuth:
+    ' Please Enter Both Authentification Code and New Password!',
+  logInScreen: 'LogIn Screen',
+  codeSent: 'Code Sent!',
 };

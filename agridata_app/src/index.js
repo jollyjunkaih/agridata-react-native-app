@@ -28,7 +28,7 @@ import {
   Landing, //done
   Verification, //done
   CreateAccountPopUp, //done
-  ConfirmSignUp,
+  ConfirmSignUp, //done
 } from './scenes';
 import {SuccessfulModal, UnsuccessfulModal} from '_components';
 import {DataAnalytics} from './scenes/data_analytics/';
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <ConfirmSignUp></ConfirmSignUp>;
+  return <Login></Login>;
 };
 export default App;

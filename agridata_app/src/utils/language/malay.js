@@ -64,7 +64,7 @@ export default {
   changeImage: 'Tukar Gambar',
   removeMemberConfirm1: 'Adakah annda pasti akan',
   removeMemberConfirm2: 'KELUARKAN AHLI?',
-  confirm: 'Setuju',
+  confirm: 'Mengesahkan',
   cancel: 'Batal',
   addNewMember: 'Tambah Ahli Baru',
   fullName: 'Nama Penuh',
@@ -84,4 +84,18 @@ export default {
   hangInThere: 'Tunngu Sebentar! Akaun anda perlu masa sebelum disahkan.',
   inTheMeantime: 'Sambil menunggu, anda boleh menukar informasi syarikat anda.',
   updateCompany: 'Tukar Informasi Syarikat',
+  verificationWord: 'PENGESAHAN',
+  sendCodeToPhone:
+    'Masukkan nombor telefon anda untuk mendapatkan kod untuk mengesahkan telefon nombor anda.',
+  authenticationCode: 'Kod Pengesahan',
+  resendCode: 'Hantar Semula Kod',
+  verify: 'MENGESAHKAN',
+  enterPhoneResetPass: 'Massukkan nombor telefon anda untuk tukar kata laluan.',
+  phoneNumber: 'Nombor Telefon',
+  resetPasswordByEntering:
+    'Masukkan kod pengesahan dan kata laluan baru untuk tukar kata laluan anda.',
+  pleaseEnterPhoneNum: 'Sila Masukkan Nombor Telefon Anda!',
+  pleaseEnterBothAuth: 'Sila Masukkan Semua Ruangan Kosong!',
+  logInScreen: 'Laman Log Masuk',
+  codeSent: 'Kod Dihantar!',
 };
