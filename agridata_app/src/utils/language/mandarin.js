@@ -127,4 +127,12 @@ export default {
   reference: '参考',
   recieved: '收到',
   bank: '银行',
+  toRecieve: '接收',
+  toPay: '支付',
+  paymentTo: '支付',
+  uploadReciept: '上传收据',
+  deliveryDate: '交货日期',
+  youHaveZeroItems: '您的商店现在没有商品。单击按钮开始添加它们',
+  myStore: '我的商店',
+  addItems: '添加商品',
 };
