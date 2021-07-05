@@ -1077,7 +1077,7 @@ const ReceiveModal = props => {
             left: wp('8%'),
           },
         ]}>
-        Sunday
+        {Strings.sunday}
       </Text>
       <Text
         style={[
@@ -1089,7 +1089,7 @@ const ReceiveModal = props => {
             fontStyle: 'italic',
           },
         ]}>
-        Order #12345
+        {Strings.order} #12345
       </Text>
       <Text
         style={[
@@ -1120,7 +1120,7 @@ const ReceiveModal = props => {
             left: wp('8%'),
           },
         ]}>
-        Items:
+        {Strings.items}:
       </Text>
       <View
         style={{
@@ -1139,7 +1139,7 @@ const ReceiveModal = props => {
             left: wp('8%'),
           },
         ]}>
-        Delivery Date:
+        {Strings.deliveryDate}:
       </Text>
       <Text
         style={[
@@ -1161,7 +1161,7 @@ const ReceiveModal = props => {
             left: wp('8%'),
           },
         ]}>
-        Buyer:
+        {Strings.buyer}:
       </Text>
       <Text
         style={[
@@ -1177,9 +1177,10 @@ const ReceiveModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('30%'),
+          width: wp('40%'),
           height: hp('5%'),
           alignSelf: 'center',
+          alignItems: 'center',
           justifyContent: 'center',
           elevation: 5,
           position: 'absolute',
@@ -1193,11 +1194,13 @@ const ReceiveModal = props => {
           shadowOpacity: 0.22,
           shadowRadius: 2.22,
           elevation: 3,
+          flexDirection: 'row',
         }}>
-        <Text style={[Typography.normal, {textAlign: 'center'}]}>
-          Receive{'\t\t'}
-          <Icon name="checkmark-circle-outline" size={wp('5%')}></Icon>
+        <Text style={[Typography.normal, {}]}>
+          {Strings.recieved}
+          {'\t\t'}
         </Text>
+        <Icon name="checkmark-circle-outline" size={wp('5%')}></Icon>
       </TouchableOpacity>
     </View>
   );
@@ -1271,7 +1274,7 @@ const Receive = props => {
               position: 'absolute',
             },
           ]}>
-          {props.items} items
+          {props.items} {Strings.items}
         </Text>
         <Text
           style={[
@@ -1283,7 +1286,7 @@ const Receive = props => {
               position: 'absolute',
             },
           ]}>
-          Date Created:
+          {Strings.dateCreated}:
         </Text>
         <Text
           style={[
@@ -1352,7 +1355,7 @@ const UploadReceiptModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: hp('7%'),
+            top: hp('12%'),
             right: wp('4%'),
           },
         ]}>
@@ -1364,7 +1367,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             right: wp('4%'),
-            top: hp('10%'),
+            top: hp('15%'),
             fontStyle: 'italic',
           },
         ]}>
@@ -1380,7 +1383,7 @@ const UploadReceiptModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Payment Alert
+        {Strings.paymentAlert}
       </Text>
       <View
         style={{
@@ -1400,7 +1403,7 @@ const UploadReceiptModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Payment To:
+        {Strings.paymentTo}:
       </Text>
       <Text
         style={[
@@ -1408,7 +1411,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             top: hp('23%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         Matthew's Farm
@@ -1422,7 +1425,7 @@ const UploadReceiptModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Order #:
+        {Strings.order} #:
       </Text>
       <Text
         style={[
@@ -1430,7 +1433,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             top: hp('28%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         #12345
@@ -1444,7 +1447,7 @@ const UploadReceiptModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Date of Payment:
+        {Strings.dateOfPayment}:
       </Text>
       <Text
         style={[
@@ -1452,7 +1455,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             top: hp('33%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         22 July, 2021
@@ -1474,7 +1477,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             top: hp('38%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         MayBank
@@ -1488,7 +1491,7 @@ const UploadReceiptModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Reference #:
+        {Strings.reference} #:
       </Text>
       <Text
         style={[
@@ -1496,7 +1499,7 @@ const UploadReceiptModal = props => {
           {
             position: 'absolute',
             top: hp('43%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         9065 7756 8989
@@ -1504,7 +1507,7 @@ const UploadReceiptModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('40%'),
+          width: wp('45%'),
           height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
@@ -1529,7 +1532,7 @@ const UploadReceiptModal = props => {
             flexDirection: 'row',
           }}>
           <Text style={[Typography.normal, {textAlign: 'center'}]}>
-            Upload Receipt
+            {Strings.uploadReciept}
           </Text>
           <Icon
             name="receipt-outline"
@@ -1610,7 +1613,7 @@ const UploadReceipt = props => {
               position: 'absolute',
             },
           ]}>
-          {props.items} items
+          {props.items} {Strings.items}
         </Text>
         <Text
           style={[
@@ -1622,7 +1625,7 @@ const UploadReceipt = props => {
               position: 'absolute',
             },
           ]}>
-          Date Created:
+          {Strings.dateCreated}:
         </Text>
         <Text
           style={[

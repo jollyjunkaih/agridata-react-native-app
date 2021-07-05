@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const RetailerTasks = props => {
   const [sortModal, setSortModal] = useState(false);
@@ -28,7 +29,7 @@ export const RetailerTasks = props => {
         height: hp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: hp('5%')}]}>Tasks</Text>
+      <Text style={[Typography.header, {top: hp('3%')}]}>{Strings.tasks}</Text>
       <View style={{flexDirection: 'row'}}>
         {task == 'receive' ? (
           <View
@@ -45,7 +46,7 @@ export const RetailerTasks = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              To Receive
+              {Strings.toRecieve}
             </Text>
           </View>
         ) : (
@@ -55,7 +56,7 @@ export const RetailerTasks = props => {
               right: wp('15%'),
               top: hp('4%'),
             }}>
-            <Text style={[Typography.normal]}>To Receive</Text>
+            <Text style={[Typography.normal]}>{Strings.toRecieve}</Text>
           </TouchableOpacity>
         )}
         {task == 'pay' ? (
@@ -73,7 +74,7 @@ export const RetailerTasks = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              To Pay
+              {Strings.toPay}
             </Text>
           </View>
         ) : (
@@ -83,7 +84,7 @@ export const RetailerTasks = props => {
               top: hp('4%'),
               left: wp('15%'),
             }}>
-            <Text style={[Typography.normal]}>To Pay</Text>
+            <Text style={[Typography.normal]}>{Strings.toPay}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -99,11 +100,11 @@ export const RetailerTasks = props => {
         style={{
           width: wp('80%'),
           height: hp('5%'),
-          top: hp('6%'),
+          top: hp('7%'),
           flexDirection: 'row',
         }}>
         <Text style={[Typography.normal, {textTransform: 'uppercase'}]}>
-          All Results
+          {Strings.allResults}
         </Text>
         <TouchableOpacity
           onPress={() => setSortModal(true)}

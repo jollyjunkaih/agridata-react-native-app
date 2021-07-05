@@ -131,4 +131,14 @@ export default {
   reference: 'Rujukan',
   recieved: 'Diterima',
   bank: 'Bank',
+  toRecieve: 'Untuk Diterima',
+  toPay: 'Untuk Dibayar',
+  paymentTo: 'Bayaran Kepada',
+  uploadReciept: 'Muat Naik Resit',
+  deliveryDate: 'Tarikh Hantar',
+  youHaveZeroItems:
+    'Anda tidak mempunyai produk dalam kedai anda sekarang. Mula menambahkan produk anda dengan menekan butang tersebut.',
+
+  myStore: 'Kedai Anda',
+  addItems: 'Tambah Produk',
 };

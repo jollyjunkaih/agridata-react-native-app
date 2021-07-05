@@ -13,8 +13,8 @@ import {
   OwnerDashboard, //done
   Orders, //Done
   SupplierStore,
-  SupplierTasks,
-  RetailerTasks,
+  SupplierTasks, //done
+  RetailerTasks, //done
   CompanyProfile, //done
   EditCompany, //done
   HumanResource, //done
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierTasks></SupplierTasks>;
+  return <SupplierStore></SupplierStore>;
 };
 export default App;

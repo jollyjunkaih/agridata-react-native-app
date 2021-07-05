@@ -132,4 +132,13 @@ export default {
   reference: 'Reference',
   recieved: 'Recieved',
   bank: 'Bank',
+  toRecieve: 'To Recieve',
+  toPay: 'To Pay',
+  paymentTo: 'Payment To',
+  uploadReciept: 'Upload Reciept',
+  deliveryDate: 'Delivery Date',
+  youHaveZeroItems:
+    'You have 0 item in your store right now. Start adding them by clicking on the button',
+  myStore: 'My Store',
+  addItems: 'Add Items',
 };
