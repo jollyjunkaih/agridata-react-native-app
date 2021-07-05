@@ -21,8 +21,8 @@ import {
   PersonalProfile, //done.
   EditPersonal, //done.
   //DataAnalytics,
-  Registration,
-  SupplierDashboard,
+  Registration, //done
+  SupplierDashboard, //done
   Login, //done
   CreateCompany, //done
   Landing, //done
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <Login></Login>;
+  return <Registration></Registration>;
 };
 export default App;

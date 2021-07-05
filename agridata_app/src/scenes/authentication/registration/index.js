@@ -21,6 +21,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 import {DismissKeyboardView} from '_components';
 
 export const Registration = props => {
@@ -31,9 +32,9 @@ export const Registration = props => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'General Manager', value: 'generalmanager'},
-    {label: 'Owner', value: 'owner'},
-    {label: 'Retail Manager', value: 'retailmanager'},
+    {label: Strings.generalManager, value: 'generalmanager'},
+    {label: Strings.owner, value: 'owner'},
+    {label: Strings.retailManager, value: 'retailmanager'},
   ]);
   const signUp = async () => {
     try {
@@ -81,26 +82,18 @@ export const Registration = props => {
               <Text
                 style={[
                   Typography.largestSize,
-                  {width: wp('80%'), left: wp('8%'), top: hp('3%')},
-                ]}>
-                CREATE
-              </Text>
-              <Text
-                style={[
-                  Typography.largestSize,
                   {
-                    width: wp('80%'),
+                    width: wp('70%'),
                     left: wp('8%'),
-                    top: hp('2%'),
+                    top: hp('3%'),
+                    lineHeight: hp('5.5%'),
                   },
                 ]}>
-                ACCOUNT
+                {Strings.createAccount}
               </Text>
             </View>
-            <View style={{top: hp('2%'), left: wp('8%')}}>
-              <Text style={[Typography.large]}>
-                Begin your journey with us!
-              </Text>
+            <View style={{top: hp('3%'), left: wp('8%'), width: wp('70%')}}>
+              <Text style={[Typography.large]}>{Strings.beginJourney}</Text>
             </View>
             <View>
               <View
@@ -108,7 +101,7 @@ export const Registration = props => {
                   top: hp('4%'),
                   left: wp('8%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Name</Text>
+                <Text style={[Typography.placeholder]}>{Strings.name}</Text>
                 <TextInput
                   keyboardType="default"
                   placeholder="John Doe"
@@ -131,7 +124,9 @@ export const Registration = props => {
                   top: hp('5%'),
                   left: wp('8%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Phone Number</Text>
+                <Text style={[Typography.placeholder]}>
+                  {Strings.contactNumber}
+                </Text>
                 <TextInput
                   keyboardType="default"
                   placeholder="+60109336377"
@@ -154,7 +149,7 @@ export const Registration = props => {
                   top: hp('6%'),
                   left: wp('8%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Email Address</Text>
+                <Text style={[Typography.placeholder]}>{Strings.email}</Text>
                 <TextInput
                   keyboardType="default"
                   placeholder="example@example.com"
@@ -174,10 +169,10 @@ export const Registration = props => {
               </View>
               <View
                 style={{
-                  top: hp('6%'),
+                  top: hp('7%'),
                   left: wp('8%'),
                 }}>
-                <Text style={[Typography.placeholder]}>Password</Text>
+                <Text style={[Typography.placeholder]}>{Strings.password}</Text>
                 <TextInput
                   keyboardType="default"
                   placeholder="password"
@@ -209,7 +204,7 @@ export const Registration = props => {
                 open={open}
                 value={value}
                 items={items}
-                placeholder={'Role in Company'}
+                placeholder={Strings.roleInCompany}
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
@@ -238,7 +233,7 @@ export const Registration = props => {
                 top: hp('10%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
-                By continuing, you are agreeing to our {'\n'}
+                {Strings.byContinuing}
               </Text>
               <View
                 style={{
@@ -251,7 +246,7 @@ export const Registration = props => {
                       Typography.placeholderSmall,
                       {textDecorationLine: 'underline'},
                     ]}>
-                    Terms of Service
+                    {Strings.termsOfService}
                   </Text>
                 </TouchableOpacity>
                 <Text
@@ -259,7 +254,7 @@ export const Registration = props => {
                     Typography.placeholderSmall,
                     {marginLeft: wp('1%'), marginRight: wp('1%')},
                   ]}>
-                  and
+                  {Strings.and}
                 </Text>
                 <TouchableOpacity>
                   <Text
@@ -267,7 +262,7 @@ export const Registration = props => {
                       Typography.placeholderSmall,
                       {textDecorationLine: 'underline'},
                     ]}>
-                    Privacy Policy
+                    {Strings.privacyPolicy}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -275,7 +270,7 @@ export const Registration = props => {
             <View style={{alignItems: 'center', top: hp('12%')}}>
               <TouchableOpacity>
                 <Text style={[Typography.placeholderSmall]}>
-                  Having any trouble?
+                  {Strings.havingTrouble}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -300,7 +295,7 @@ export const Registration = props => {
               style={{
                 backgroundColor: Colors.LIGHT_BLUE,
                 top: hp('15%'),
-                width: wp('30%'),
+                width: wp('45%'),
                 height: hp('4%'),
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -319,15 +314,15 @@ export const Registration = props => {
               <Text
                 style={[
                   Typography.large,
-                  {position: 'absolute', left: wp('3%')},
+                  {textAlign: 'center', right: wp('1%')},
                 ]}>
-                NEXT
+                {Strings.next}
               </Text>
 
               <Icon
                 name="arrow-forward-outline"
                 size={wp('6%')}
-                style={{left: wp('10%')}}
+                style={{left: wp('3%')}}
               />
             </TouchableOpacity>
           </View>

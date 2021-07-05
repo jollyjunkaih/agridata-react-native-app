@@ -152,12 +152,13 @@ export const Login = props => {
 
           <TouchableOpacity
             onPress={() => setForgetPassword(true)}
-            style={{top: hp('15%'), left: wp('63%')}}>
+            style={{top: hp('15%'), right: wp('7%')}}>
             <Text
               style={[
                 Typography.welcome,
                 {
                   fontSize: 12,
+                  textAlign: 'right',
                 },
               ]}>
               {Strings.forgotPassword}
