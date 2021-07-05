@@ -8,25 +8,25 @@ import {
   Marketplace,
   Store,
   Inbox, //done
-  ChatRoom,
+  ChatRoom, //done but no modal
   EmployeeDashboard, //done
   OwnerDashboard, //done
   Orders, //Done
   SupplierStore,
   SupplierTasks,
   RetailerTasks,
-  CompanyProfile,
-  EditCompany,
-  HumanResource,
-  PersonalProfile,
-  EditPersonal,
+  CompanyProfile, //done
+  EditCompany, //done
+  HumanResource, //done
+  PersonalProfile, //done
+  EditPersonal, //done
   //DataAnalytics,
   Registration,
   SupplierDashboard,
   Login, //done except forgot password
   CreateCompany, //done
-  Landing,
-  Verification,
+  Landing, //done
+  Verification, //done
   CreateAccountPopUp, //done
   ConfirmSignUp,
 } from './scenes';
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <CreateAccountPopUp></CreateAccountPopUp>;
+  return <ConfirmSignUp></ConfirmSignUp>;
 };
 export default App;

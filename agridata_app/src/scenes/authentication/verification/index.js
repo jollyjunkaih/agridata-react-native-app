@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Verification = props => {
   const signOut = async () => {
@@ -61,22 +62,12 @@ export const Verification = props => {
                 fontSize: 25,
                 top: hp('7%'),
                 textAlign: 'center',
+                width: wp('70%'),
               },
             ]}>
-            YOUR ACCOUNT IS
+            {Strings.verification}
           </Text>
-          <Text
-            style={[
-              Typography.welcome,
-              {
-                fontSize: 25,
 
-                top: hp('7%'),
-                textAlign: 'center',
-              },
-            ]}>
-            BEING VERIFIED
-          </Text>
           <View
             style={{
               top: hp('10%'),
@@ -84,14 +75,14 @@ export const Verification = props => {
               height: hp('20%'),
             }}>
             <Text style={[Typography.medium, {textAlign: 'center'}]}>
-              Hang in there! It might take some time to verify your account.
+              {Strings.hangInThere}
             </Text>
             <View
               style={{
                 top: hp('2%'),
               }}>
               <Text style={[Typography.medium, {textAlign: 'center'}]}>
-                For the meantime, you can try updating your company information.
+                {Strings.inTheMeantime}
               </Text>
             </View>
           </View>
@@ -115,7 +106,7 @@ export const Verification = props => {
               zIndex: 22,
               elevation: 2,
             }}>
-            <Text style={[Typography.normal]}>UPDATE COMPANY</Text>
+            <Text style={[Typography.normal]}>{Strings.updateCompany}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => signOut()}
@@ -137,7 +128,7 @@ export const Verification = props => {
               elevation: 2,
               zIndex: 22,
             }}>
-            <Text style={[Typography.normal]}>LOG OUT</Text>
+            <Text style={[Typography.normal]}>{Strings.logOut}</Text>
           </TouchableOpacity>
         </View>
 

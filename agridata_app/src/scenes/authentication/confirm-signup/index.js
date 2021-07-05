@@ -15,6 +15,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Modal from 'react-native-modal';
+import Strings from '_utils';
 
 export const ConfirmSignUp = props => {
   const [username, setPhone] = useState('');

@@ -6,6 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Landing = props => {
   return (
@@ -47,7 +48,7 @@ export const Landing = props => {
               marginLeft: wp('4%'),
             },
           ]}>
-          SIGN UP
+          {Strings.signUp}
         </Text>
         <View style={{position: 'absolute', right: wp('3%')}}>
           <Icon size={wp('6%')} name="arrow-forward-outline" />
@@ -74,7 +75,7 @@ export const Landing = props => {
               marginLeft: wp('4%'),
             },
           ]}>
-          LOG IN
+          {Strings.logIn}
         </Text>
         <View style={{position: 'absolute', right: wp('3%')}}>
           <Icon size={wp('6%')} name="arrow-forward-outline" />

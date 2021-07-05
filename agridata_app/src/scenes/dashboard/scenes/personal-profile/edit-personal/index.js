@@ -18,11 +18,11 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import Modal from 'react-native-modal';
 import {SuccesfulChangesModal} from '_components/modals';
 import {DismissKeyboardView} from '_components';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const EditPersonal = props => {
   const [imageSource, setImageSource] = useState(null);
@@ -57,7 +57,7 @@ export const EditPersonal = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? Mixins.scaleHeight(25) : Mixins.scaleHeight(50)
+        Platform.OS === 'ios' ? hp('0%') : Mixins.scaleHeight(50)
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -73,7 +73,9 @@ export const EditPersonal = props => {
             <BackButton navigation={props.navigation} />
           </View>
           <View>
-            <Text style={[Typography.header]}>Edit Personal Profile</Text>
+            <Text style={[Typography.header]}>
+              Edit {Strings.personalProfile}
+            </Text>
           </View>
         </View>
 
@@ -97,7 +99,7 @@ export const EditPersonal = props => {
                     Typography.normal,
                     {textAlign: 'center', top: hp('2%')},
                   ]}>
-                  Change Image
+                  {Strings.changeImage}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -115,75 +117,81 @@ export const EditPersonal = props => {
             </View>
           )}
         </View>
-        <View
-          style={{
-            top: hp('10%'),
-            backgroundColor: Colors.GRAY_MEDIUM,
-            width: wp('85%'),
-            height: hp('30%'),
-            borderRadius: 10,
-          }}>
+        <DismissKeyboardView>
           <View
             style={{
-              top: hp('3%'),
-              left: wp('5%'),
-              width: wp('75%'),
-              height: hp('5%'),
+              top: hp('10%'),
+              backgroundColor: Colors.GRAY_MEDIUM,
+              width: wp('85%'),
+              height: hp('30%'),
+              borderRadius: 10,
             }}>
-            <Text style={[Typography.placeholderSmall]}>Name</Text>
-            <TextInput
-              placeholder="John Smith"
-              underlineColorAndroid="transparent"
+            <View
               style={{
+                top: hp('3%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.fullName}
+              </Text>
+              <TextInput
+                placeholder="John Smith"
+                underlineColorAndroid="transparent"
+                style={{
+                  width: wp('75%'),
+                  height: hp('4%'),
+                  color: 'black',
+                }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
+            </View>
+            <View
+              style={{
+                top: hp('6%'),
+                left: wp('5%'),
+                width: wp('75%'),
+                height: hp('5%'),
+              }}>
+              <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
+              <TextInput
+                placeholder="email@gmail.com"
+                underlineColorAndroid="transparent"
+                style={{
+                  width: wp('75%'),
+                  height: hp('4%'),
+                  color: 'black',
+                }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
+            </View>
+            <View
+              style={{
+                top: hp('9%'),
+                left: wp('5%'),
                 width: wp('75%'),
                 height: hp('4%'),
-                color: 'black',
-              }}></TextInput>
-            <View
-              style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
-            />
+              }}>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.contactNumber}
+              </Text>
+              <TextInput
+                underlineColorAndroid="transparent"
+                placeholder="+60 11 6569 1999"
+                style={{
+                  width: wp('75%'),
+                  height: hp('3%'),
+                  color: 'black',
+                }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
+            </View>
           </View>
-          <View
-            style={{
-              top: hp('6%'),
-              left: wp('5%'),
-              width: wp('75%'),
-              height: hp('5%'),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Email Address</Text>
-            <TextInput
-              placeholder="email@gmail.com"
-              underlineColorAndroid="transparent"
-              style={{
-                width: wp('75%'),
-                height: hp('4%'),
-                color: 'black',
-              }}></TextInput>
-            <View
-              style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
-            />
-          </View>
-          <View
-            style={{
-              top: hp('9%'),
-              left: wp('5%'),
-              width: wp('75%'),
-              height: hp('4%'),
-            }}>
-            <Text style={[Typography.placeholderSmall]}>Contact Number</Text>
-            <TextInput
-              underlineColorAndroid="transparent"
-              placeholder="+60 11 6569 1999"
-              style={{
-                width: wp('75%'),
-                height: hp('3%'),
-                color: 'black',
-              }}></TextInput>
-            <View
-              style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
-            />
-          </View>
-        </View>
+        </DismissKeyboardView>
         <TouchableOpacity
           onPress={() => setChangePassword(true)}
           style={{
@@ -206,14 +214,14 @@ export const EditPersonal = props => {
             zIndex: 5,
             elevation: 4,
           }}>
-          <Text>Change Password</Text>
+          <Text>{Strings.changePass}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setSuccesfulChangesModal(true)}
           style={{
             alignSelf: 'center',
             top: hp('18%'),
-            width: wp('40%'),
+            width: wp('55%'),
             height: hp('5%'),
             backgroundColor: Colors.LIGHT_BLUE,
             alignItems: 'center',
@@ -230,7 +238,7 @@ export const EditPersonal = props => {
             zIndex: 5,
             elevation: 4,
           }}>
-          <Text>Save Changes</Text>
+          <Text>{Strings.saveChanges}</Text>
           <Icon
             name="checkmark-circle-outline"
             size={wp('5.5%')}
@@ -305,13 +313,13 @@ export const ChangePassword = props => {
                   top: hp('4%'),
                 },
               ]}>
-              Reset Password by Entering Old and New Passwords!
+              {Strings.resetPassword}
             </Text>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: wp('50%'),
+                  width: wp('60%'),
                   top: hp('5%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
@@ -323,7 +331,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setOld(value);
                   }}
-                  placeholder="Old Password"
+                  placeholder={Strings.oldPassword}
                   style={{
                     height: hp('5%'),
                     color: 'black',
@@ -334,7 +342,7 @@ export const ChangePassword = props => {
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: wp('50%'),
+                  width: wp('60%'),
                   top: hp('6%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
@@ -346,7 +354,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword2(value);
                   }}
-                  placeholder="New Password"
+                  placeholder={Strings.newPassword}
                   style={{
                     height: hp('5%'),
                     color: 'black',
@@ -356,7 +364,7 @@ export const ChangePassword = props => {
               <View
                 style={{
                   alignItems: 'flex-start',
-                  width: wp('50%'),
+                  width: wp('60%'),
                   top: hp('7%'),
                   borderBottomColor: Colors.GRAY_DARK,
                   borderBottomWidth: 1,
@@ -368,7 +376,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword(value);
                   }}
-                  placeholder="Re-enter New Password"
+                  placeholder={Strings.reEnterNewPassword}
                   style={{
                     height: hp('5%'),
                     color: 'black',
@@ -392,7 +400,7 @@ export const ChangePassword = props => {
               style={{top: hp('13%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
-                Change Password
+                {Strings.changePass}
               </Text>
             </TouchableOpacity>
           </View>
@@ -441,7 +449,7 @@ export const PasswordCodeModal = props => {
             Typography.large,
             {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
-          Please Enter All Empty Fields!
+          {Strings.enterEmptyField}
         </Text>
         <View style={{top: hp('8%'), justifyContent: 'center'}}>
           <Icon name="warning" color={'red'} size={wp('45%')} />
@@ -465,8 +473,11 @@ export const ResendCodeSuccessModal = props => {
             alignSelf: 'center',
           }}>
           <Text
-            style={[Typography.header, {top: hp('3%'), textAlign: 'center'}]}>
-            Password Successfuly Changed!
+            style={[
+              Typography.header,
+              {top: hp('3%'), textAlign: 'center', width: wp('85%')},
+            ]}>
+            {Strings.passwordSuccess}
           </Text>
           <View style={{top: hp('4%'), justifyContent: 'center'}}>
             <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
@@ -498,7 +509,7 @@ export const PasswordDiffModal = props => {
             Typography.header,
             {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
-          Passwords Do Not Match
+          {Strings.passwordsNotMatching}
         </Text>
         <View style={{top: hp('7%'), justifyContent: 'center'}}>
           <Icon name="warning" color={'red'} size={wp('40%')} />

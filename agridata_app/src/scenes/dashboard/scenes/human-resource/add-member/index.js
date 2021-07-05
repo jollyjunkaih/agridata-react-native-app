@@ -25,7 +25,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {SuccesfulChangesModal} from '_components/modals';
 import {DismissKeyboardView} from '_components';
-
+import Strings from '_utils';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -50,7 +50,7 @@ export const AddEmployeeButton = props => {
       <Icon name="add-circle-outline" size={wp('5.5%')} />
       <Text
         style={[Typography.normal, {left: wp('4%'), color: Colors.LIME_GREEN}]}>
-        Add New Team Member
+        {Strings.addNewTeamMember}
       </Text>
 
       <Modal
@@ -76,32 +76,6 @@ export const AddEmployeeButton = props => {
 };
 
 export const AddEmployeeButtonModal = props => {
-  const [imageSource, setImageSource] = useState(null);
-
-  function selectImage() {
-    let options = {
-      mediaType: 'photo',
-      maxWidth: 256,
-      maxHeight: 256,
-    };
-
-    launchImageLibrary(options, response => {
-      console.log({response});
-
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        let photo = {uri: response.uri};
-        console.log({photo});
-        console.log(response.assets[0].uri);
-        setImageSource(response.assets[0].uri);
-      }
-    });
-  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
@@ -127,7 +101,7 @@ export const AddEmployeeButtonModal = props => {
             <CloseButton setModal={props.setAddEmployeeButtonModal} />
           </View>
           <View style={{alignItems: 'center'}}>
-            <Text style={[Typography.header]}>Add New Member</Text>
+            <Text style={[Typography.header]}>{Strings.addNewMember}</Text>
           </View>
           <View
             style={{
@@ -142,7 +116,9 @@ export const AddEmployeeButtonModal = props => {
                 left: wp('6%'),
                 width: wp('70%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Full Name</Text>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.fullName}
+              </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -157,7 +133,9 @@ export const AddEmployeeButtonModal = props => {
                 left: wp('6%'),
                 width: wp('70%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Company Role </Text>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.companyRole}
+              </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -172,7 +150,7 @@ export const AddEmployeeButtonModal = props => {
                 left: wp('6%'),
                 width: wp('70%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+              <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -187,7 +165,9 @@ export const AddEmployeeButtonModal = props => {
                 left: wp('6%'),
                 width: wp('70%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.contactNumber}
+              </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -225,7 +205,7 @@ export const AddEmployeeButtonModal = props => {
 
               elevation: 4,
             }}>
-            <Text>ADD</Text>
+            <Text>{Strings.add}</Text>
             <Icon
               name="checkmark-circle-outline"
               size={wp('5.5%')}

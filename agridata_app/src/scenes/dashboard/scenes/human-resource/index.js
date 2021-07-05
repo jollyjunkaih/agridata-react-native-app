@@ -18,6 +18,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const HumanResource = props => {
   const [succesfulChangesModal, setSuccesfulChangesModal] = useState(false);
@@ -35,31 +36,30 @@ export const HumanResource = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <View>
-          <Text style={[Typography.header]}>Human Resource</Text>
+          <Text style={[Typography.header]}>{Strings.humanResource}</Text>
         </View>
       </View>
       <View style={{top: hp('6%')}}>
         <View
           style={{
-            top: hp('2%'),
             alignItems: 'center',
             justifyContent: 'center',
-            width: wp('80%'),
-            height: hp('20%'),
+            width: wp('100%'),
+            height: hp('30%'),
           }}>
           <Image source={require('_assets/images/company-logo.png')} />
           <Text style={[Typography.header, {top: hp('2%')}]}>City Grocer</Text>
         </View>
         <View
           style={{
-            top: hp('8%'),
             backgroundColor: Colors.GRAY_MEDIUM,
             width: wp('85%'),
             height: hp('38%'),
             borderRadius: 10,
+            alignSelf: 'center',
           }}>
           <View style={{top: hp('3%'), left: wp('5%')}}>
-            <Text style={[Typography.placeholderSmall]}>Team</Text>
+            <Text style={[Typography.placeholderSmall]}>{Strings.team}</Text>
           </View>
           <ParticipantList />
           <AddEmployeeButton />
@@ -67,7 +67,7 @@ export const HumanResource = props => {
             onPress={() => setSuccesfulChangesModal(true)}
             style={{
               top: hp('8%'),
-              width: wp('40%'),
+              width: wp('55%'),
               height: hp('5%'),
               backgroundColor: Colors.LIGHT_BLUE,
               alignItems: 'center',
@@ -84,7 +84,7 @@ export const HumanResource = props => {
               alignSelf: 'center',
               elevation: 4,
             }}>
-            <Text>Save Changes</Text>
+            <Text>{Strings.saveChanges}</Text>
             <Icon
               name="checkmark-circle-outline"
               size={wp('5.5%')}
@@ -120,7 +120,7 @@ const Participant = props => {
         }}>
         <Text style={[Typography.normal]}>Carey Beck</Text>
         <Text style={[Typography.placeholderSmall, {fontStyle: 'italic'}]}>
-          Owner
+          {Strings.owner}
         </Text>
       </View>
       <TouchableOpacity
@@ -167,14 +167,14 @@ const ConfirmRemoveModal = props => {
           top: hp('3%'),
         }}>
         <Text style={[Typography.large, {textAlign: 'center'}]}>
-          Are you sure you want to
+          {Strings.removeMemberConfirm1}
         </Text>
         <Text
           style={[
             Typography.large,
             {fontFamily: 'Poppins-Bold', textAlign: 'center'},
           ]}>
-          REMOVE A MEMBER?
+          {Strings.removeMemberConfirm2}
         </Text>
       </View>
       <View style={{flexDirection: 'row'}}>
@@ -196,7 +196,9 @@ const ConfirmRemoveModal = props => {
             elevation: 5,
             right: wp('3%'),
           }}>
-          <Text style={[Typography.normal, {textAlign: 'center'}]}>Cancel</Text>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>
+            {Strings.cancel}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -217,7 +219,7 @@ const ConfirmRemoveModal = props => {
             left: wp('3%'),
           }}>
           <Text style={[Typography.normal, {textAlign: 'center'}]}>
-            Confirm
+            {Strings.confirm}
           </Text>
         </TouchableOpacity>
       </View>
