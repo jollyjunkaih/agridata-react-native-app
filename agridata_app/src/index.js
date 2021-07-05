@@ -18,8 +18,8 @@ import {
   CompanyProfile, //done
   EditCompany, //done
   HumanResource, //done
-  PersonalProfile, //done
-  EditPersonal, //done
+  PersonalProfile, //done.
+  EditPersonal, //done.
   //DataAnalytics,
   Registration,
   SupplierDashboard,

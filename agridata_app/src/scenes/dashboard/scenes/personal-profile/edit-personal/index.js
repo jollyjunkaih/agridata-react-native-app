@@ -141,7 +141,7 @@ export const EditPersonal = props => {
                 underlineColorAndroid="transparent"
                 style={{
                   width: wp('75%'),
-                  height: hp('4%'),
+                  height: hp('6%'),
                   color: 'black',
                 }}></TextInput>
               <View
@@ -150,7 +150,7 @@ export const EditPersonal = props => {
             </View>
             <View
               style={{
-                top: hp('6%'),
+                top: hp('7%'),
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
@@ -161,7 +161,7 @@ export const EditPersonal = props => {
                 underlineColorAndroid="transparent"
                 style={{
                   width: wp('75%'),
-                  height: hp('4%'),
+                  height: hp('6%'),
                   color: 'black',
                 }}></TextInput>
               <View
@@ -170,7 +170,7 @@ export const EditPersonal = props => {
             </View>
             <View
               style={{
-                top: hp('9%'),
+                top: hp('11%'),
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('4%'),
@@ -183,7 +183,7 @@ export const EditPersonal = props => {
                 placeholder="+60 11 6569 1999"
                 style={{
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('6%'),
                   color: 'black',
                 }}></TextInput>
               <View
