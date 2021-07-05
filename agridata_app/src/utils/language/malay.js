@@ -130,4 +130,5 @@ export default {
   dateOfPayment: 'Tarikh Pembayaran',
   reference: 'Rujukan',
   recieved: 'Diterima',
+  bank: 'Bank',
 };

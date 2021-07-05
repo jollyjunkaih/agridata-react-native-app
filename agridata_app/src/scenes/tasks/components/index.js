@@ -981,7 +981,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Bank:
+        {Strings.bank}
       </Text>
       <Text
         style={[
@@ -1044,7 +1044,7 @@ const ReceivePaymentModal = props => {
         <Icon
           name="checkmark-circle-outline"
           size={wp('5.5%')}
-          style={{right: wp('3%')}}></Icon>
+          style={{left: wp('3%')}}></Icon>
       </TouchableOpacity>
     </View>
   );

@@ -131,4 +131,5 @@ export default {
   dateOfPayment: 'Date of Payment',
   reference: 'Reference',
   recieved: 'Recieved',
+  bank: 'Bank',
 };
