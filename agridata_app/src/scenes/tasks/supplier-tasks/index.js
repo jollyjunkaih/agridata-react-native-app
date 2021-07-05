@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const SupplierTasks = props => {
   const [sortModal, setSortModal] = useState(false);
@@ -27,7 +28,7 @@ export const SupplierTasks = props => {
         height: hp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: hp('5%')}]}>Tasks</Text>
+      <Text style={[Typography.header, {top: hp('3%')}]}>{Strings.tasks}</Text>
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={{
@@ -35,7 +36,7 @@ export const SupplierTasks = props => {
             top: hp('4%'),
           }}>
           <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            Send
+            {Strings.send}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -44,7 +45,7 @@ export const SupplierTasks = props => {
             left: wp('15%'),
           }}>
           <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            Claim
+            {Strings.claim}
           </Text>
         </TouchableOpacity>
       </View>
@@ -60,11 +61,11 @@ export const SupplierTasks = props => {
         style={{
           width: wp('80%'),
           height: hp('5%'),
-          top: hp('6%'),
+          top: hp('7%'),
           flexDirection: 'row',
         }}>
         <Text style={[Typography.normal, {textTransform: 'uppercase'}]}>
-          All Results
+          {Strings.allResults}
         </Text>
         <TouchableOpacity
           onPress={() => setSortModal(true)}

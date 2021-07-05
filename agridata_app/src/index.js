@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <Registration></Registration>;
+  return <SupplierTasks></SupplierTasks>;
 };
 export default App;

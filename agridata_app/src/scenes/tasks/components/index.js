@@ -19,6 +19,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 import {DismissKeyboard} from '_components';
 
 const now = () => {
@@ -111,7 +112,7 @@ const SendTask = props => {
               position: 'absolute',
             },
           ]}>
-          4 items
+          4 {Strings.items}
         </Text>
         <Text
           style={[
@@ -123,7 +124,7 @@ const SendTask = props => {
               position: 'absolute',
             },
           ]}>
-          Date Created:
+          {Strings.dateCreated}
         </Text>
         <Text
           style={[
@@ -160,7 +161,7 @@ export const SortModal = props => {
       style={{
         position: 'absolute',
         right: wp('7%'),
-        top: hp('15%'),
+        top: hp('17%'),
         backgroundColor: Colors.GRAY_MEDIUM,
         borderRadius: 5,
         width: wp('50%'),
@@ -180,7 +181,9 @@ export const SortModal = props => {
           <Icon name="time-outline" size={wp('6%')} />
           <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Oldest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.oldest}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -196,7 +199,9 @@ export const SortModal = props => {
           <Icon name="time-outline" size={wp('6%')} />
           <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Newest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.latest}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -212,7 +217,9 @@ export const SortModal = props => {
           <Icon name="pricetags-outline" size={wp('6%')} />
           <Icon name="arrow-up-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Cheapest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.leastExpensive}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -228,7 +235,9 @@ export const SortModal = props => {
           <Icon name="pricetags-outline" size={wp('6%')} />
           <Icon name="arrow-down-outline" size={wp('4%')} />
         </View>
-        <Text style={[Typography.normal, {left: wp('6%')}]}>From Priciest</Text>
+        <Text style={[Typography.normal, {left: wp('6%')}]}>
+          {Strings.mostExpensive}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -273,7 +282,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Sunday
+          {Strings.sunday}
         </Text>
         <Text
           style={[
@@ -285,7 +294,7 @@ const SendTaskModal = props => {
               fontStyle: 'italic',
             },
           ]}>
-          Order #12345
+          {Strings.order} #12345
         </Text>
         <Text
           style={[
@@ -316,7 +325,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Items:
+          {Strings.items}:
         </Text>
         <View
           style={{
@@ -335,7 +344,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Delivery Date:
+          {Strings.dateCreated}:
         </Text>
         {confirmedDate ? (
           <View>
@@ -419,7 +428,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Buyer:
+          {Strings.buyer}:
         </Text>
         <Text
           style={[
@@ -435,7 +444,7 @@ const SendTaskModal = props => {
         <TouchableOpacity
           style={{
             backgroundColor: Colors.LIGHT_BLUE,
-            width: wp('30%'),
+            width: wp('35%'),
             height: hp('5%'),
             alignSelf: 'center',
             justifyContent: 'center',
@@ -455,7 +464,7 @@ const SendTaskModal = props => {
             Switch();
           }}>
           <Text style={[Typography.normal, {textAlign: 'center'}]}>
-            Create Invoice
+            {Strings.createInvoice}
           </Text>
         </TouchableOpacity>
       </View>
@@ -799,7 +808,7 @@ const ReceivePaymentTask = props => {
               position: 'absolute',
             },
           ]}>
-          4 items
+          4 {Strings.items}
         </Text>
         <Text
           style={[
@@ -811,7 +820,7 @@ const ReceivePaymentTask = props => {
               position: 'absolute',
             },
           ]}>
-          Date Created:
+          {Strings.dateCreated}:
         </Text>
         <Text
           style={[
@@ -858,7 +867,7 @@ const ReceivePaymentModal = props => {
           Typography.placeholder,
           {
             position: 'absolute',
-            top: hp('7%'),
+            top: hp('12%'),
             right: wp('4%'),
           },
         ]}>
@@ -870,7 +879,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             right: wp('4%'),
-            top: hp('10%'),
+            top: hp('15%'),
             fontStyle: 'italic',
           },
         ]}>
@@ -886,7 +895,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Payment Alert
+        {Strings.paymentAlert}
       </Text>
       <View
         style={{
@@ -906,7 +915,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Payment From:
+        {Strings.paymentFrom}:
       </Text>
       <Text
         style={[
@@ -914,7 +923,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             top: hp('23%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         CITY GROCER
@@ -928,7 +937,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Order #:
+        {Strings.order} #:
       </Text>
       <Text
         style={[
@@ -936,7 +945,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             top: hp('28%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         #12345
@@ -950,7 +959,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Date of Payment:
+        {Strings.dateOfPayment}:
       </Text>
       <Text
         style={[
@@ -958,7 +967,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             top: hp('33%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         22 July, 2021
@@ -980,7 +989,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             top: hp('38%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         MayBank
@@ -994,7 +1003,7 @@ const ReceivePaymentModal = props => {
             left: wp('5%'),
           },
         ]}>
-        Reference #:
+        {Strings.reference} #:
       </Text>
       <Text
         style={[
@@ -1002,7 +1011,7 @@ const ReceivePaymentModal = props => {
           {
             position: 'absolute',
             top: hp('43%'),
-            left: wp('41%'),
+            left: wp('43%'),
           },
         ]}>
         9065 7756 8989
@@ -1010,10 +1019,11 @@ const ReceivePaymentModal = props => {
       <TouchableOpacity
         style={{
           backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('30%'),
+          width: wp('40%'),
           height: hp('5%'),
           alignSelf: 'center',
           justifyContent: 'center',
+          flexDirection: 'row',
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
@@ -1025,11 +1035,16 @@ const ReceivePaymentModal = props => {
           position: 'absolute',
           bottom: hp('10%'),
           borderRadius: 10,
+          alignItems: 'center',
         }}>
-        <Text style={[Typography.normal, {textAlign: 'center'}]}>
-          Received{'\t\t'}
-          <Icon name="checkmark-circle-outline" size={wp('5%')}></Icon>
+        <Text style={[Typography.normal, {left: wp('3%')}]}>
+          {Strings.recieved}
+          {'\t\t'}
         </Text>
+        <Icon
+          name="checkmark-circle-outline"
+          size={wp('5.5%')}
+          style={{right: wp('3%')}}></Icon>
       </TouchableOpacity>
     </View>
   );
