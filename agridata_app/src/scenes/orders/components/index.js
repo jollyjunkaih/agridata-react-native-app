@@ -23,9 +23,8 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Strings from '_utils';
+import agridataLogo from '_styles/image';
 //import {PDFDocument} from 'pdf-lib';
-
-const logoUri = Image.resolveAssetSource(logo).uri;
 
 export const OrderList = props => {
   return (
@@ -444,6 +443,9 @@ const writepdf = () => {
 };
 */
 const createPDF = async () => {
+  const base64img = agridataLogo;
+  const logoPath = RNFS.DocumentDirectoryPath + '/logo.png';
+  await RNFS.writeFile(logoPath, base64img, 'base64');
   const listOfProducts = [
     {name: 'walnut', price: '10', quantity: '150'},
     {name: 'pinkwalnut', price: '10', quantity: '120'},
@@ -455,6 +457,12 @@ const createPDF = async () => {
   const page1 = PDFPage.create().setMediaBox(2480, 3508);
   const page2 = PDFPage.create().setMediaBox(2480, 3508);
   page1
+    .drawImage(logoPath, 'png', {
+      x: 1800,
+      y: 2500,
+      width: 500,
+      height: 500,
+    })
     .drawText('Thanks For Your Order!', {
       x: 100,
       y: 3100,
@@ -469,8 +477,8 @@ const createPDF = async () => {
       fontSize: 80,
     })
     .drawText('Date : 22-07-2021', {
-      x: 1500,
-      y: 2900,
+      x: 100,
+      y: 2600,
       fontName: 'Poppins-Regular',
       fontSize: 80,
     })
