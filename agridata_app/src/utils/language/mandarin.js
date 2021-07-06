@@ -135,4 +135,13 @@ export default {
   youHaveZeroItems: '您的商店现在没有商品。单击按钮开始添加它们',
   myStore: '我的商店',
   addItems: '添加商品',
+  addPhoto: '添加照片',
+  enterProductDetails: '输入商品详情',
+  productName: '商品名字',
+  minPrice: '最低价格',
+  maxPrice: '最高价格',
+  variety: '种类',
+  quantityAvailable: '可用数量',
+  minimumOrder: '最低订单',
+  addProduct: '添加商品',
 };
