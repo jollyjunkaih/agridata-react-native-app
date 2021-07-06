@@ -5,7 +5,7 @@ import {
   AccountsDashboard, //done
   RetailManagerDashboard, // done
   GeneralManagerDashboard, //done
-  Marketplace,
+  Marketplace, //done
   Store,
   Inbox, //done
   ChatRoom, //done but no modal

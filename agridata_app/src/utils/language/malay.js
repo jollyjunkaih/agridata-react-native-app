@@ -150,4 +150,18 @@ export default {
   quantityAvailable: 'Kuantiti Tersedia',
   minimumOrder: 'Minimum Pesanan',
   addProduct: 'Tambah Produk',
+  localMarketplace: 'Pasar Raya Lokal',
+  product: 'Produk',
+  favourites: 'Kegemaran',
+  sorryYouHaveNot:
+    'Maaf, anda tidak mempunyai pembekal kegemaran dalam senarai ini. Anda boleh melakukan penambahan tersebut dalam halaman pasar raya masing-masing',
+  sorryTheItem: 'Maaf, produk yang anda mencari',
+  doesNotExist: 'tidak wujud. Sila',
+  whatsappUs: 'whatsapp kami',
+  soWeCanSource: 'agar kami boleh mendapatkannya untuk anda.',
+  price: 'Harga',
+  grade: 'Gred',
+  visitStore: 'Lawat Kedai',
+  available: 'Ada Stock',
+  otherDetails: 'Butiran Lainan',
 };

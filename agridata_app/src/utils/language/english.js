@@ -150,4 +150,18 @@ export default {
   quantityAvailable: 'Quantity Available',
   minimumOrder: 'Minimum Order',
   addProduct: 'Add Product',
+  localMarketplace: 'Local Marketplace',
+  product: 'Product',
+  favourites: 'Favourites',
+  sorryYouHaveNot:
+    'Sorry you have not added any suppliers to your favourites. You can do so by going to their store.',
+  sorryTheItem: 'Sorry the item you are looking for',
+  doesNotExist: 'does not exist. Please',
+  whatsappUs: 'whatsapp us',
+  soWeCanSource: 'so we can source it for you.',
+  price: 'Price',
+  grade: 'Grade',
+  visitStore: 'Visit Store',
+  available: 'Available',
+  otherDetails: 'Other Details',
 };
