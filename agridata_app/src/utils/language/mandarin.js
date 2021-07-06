@@ -144,4 +144,18 @@ export default {
   quantityAvailable: '可用数量',
   minimumOrder: '最低订单',
   addProduct: '添加商品',
+  localMarketplace: '本地市场',
+  product: '商品',
+  favourites: '收藏夹',
+  sorryYouHaveNot:
+    '抱歉，您尚未将任何供应商添加到您的收藏夹。您可以去他们的商店把他们列进您的收藏夹。',
+  sorryTheItem: '抱歉，您正在寻找的商品',
+  doesNotExist: '不存在. 请使用',
+  whatsappUs: 'whatsapp联络我们',
+  soWeCanSource: '以方便我们帮您采购。',
+  price: '价钱',
+  grade: '等级',
+  visitStore: '参观商店',
+  available: '有货',
+  otherDetails: '其他详情',
 };
