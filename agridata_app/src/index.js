@@ -5,7 +5,7 @@ import {
   AccountsDashboard, //done
   RetailManagerDashboard, // done
   GeneralManagerDashboard, //done
-  Marketplace,
+  Marketplace, //done
   Store,
   Inbox, //done
   ChatRoom, //done but no modal
@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <SupplierStore></SupplierStore>;
+  return <Store></Store>;
 };
 export default App;

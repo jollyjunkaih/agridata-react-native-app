@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -46,9 +47,11 @@ export const ProductCard = props => {
         {props.productName}
       </Text>
       <Text style={[Typography.small, {top: hp('4%'), width: wp('25%')}]}>
-        Variety: shiunyee
-        {'\n'}Price: {props.priceMin} - {props.priceMax}
-        {'\n'}Grade: A
+        {Strings.variety}: shiunyee
+        {'\n'}
+        {Strings.price}: {props.priceMin} - {props.priceMax}
+        {'\n'}
+        {Strings.grade}: A
       </Text>
       <Modal isVisible={productModal}>
         <ProductPopUp
@@ -96,29 +99,30 @@ export const MarketplaceList = props => {
           </View>
           <View style={{width: wp('70%'), bottom: hp('8%')}}>
             <Text style={[Typography.normal, {textAlign: 'center'}]}>
-              Sorry the item you are looking for
+              {Strings.sorryTheItem}
             </Text>
           </View>
           <View
-            style={{width: wp('70%'), bottom: hp('8%'), flexDirection: 'row'}}>
-            <Text style={[Typography.normal, {textAlign: 'center'}]}>
-              does not exist. Please
-            </Text>
+            style={{
+              width: wp('70%'),
+              bottom: hp('8%'),
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text style={[Typography.normal]}>{Strings.doesNotExist}</Text>
             <TouchableOpacity
               style={{marginLeft: wp('1%')}}
               onPress={() => OpenWhatsapp()}>
               <Text
-                style={[
-                  Typography.normal,
-                  {textAlign: 'center', textDecorationLine: 'underline'},
-                ]}>
-                whatsapp us
+                style={[Typography.normal, {textDecorationLine: 'underline'}]}>
+                {Strings.whatsappUs}
               </Text>
             </TouchableOpacity>
           </View>
           <View style={{width: wp('70%'), bottom: hp('8%')}}>
             <Text style={[Typography.normal, {textAlign: 'center'}]}>
-              so we can source it for you.
+              {Strings.soWeCanSource}
             </Text>
           </View>
         </View>
@@ -172,8 +176,8 @@ export const ProductPopUp = props => {
         <View
           style={{
             position: 'absolute',
-            right: wp('-2%'),
-            top: hp('-1%'),
+            right: wp('1%'),
+            top: hp('1%'),
           }}>
           <CloseButton setModal={props.setProductModal}></CloseButton>
         </View>
@@ -197,7 +201,6 @@ export const ProductPopUp = props => {
             height: hp('18%'),
             width: wp('38%'),
             borderRadius: 100,
-            backgroundColor: 'red',
           }}
           source={require('_assets/images/agridata.png')}></Image>
         <View
@@ -237,7 +240,7 @@ export const ProductPopUp = props => {
                     width: wp('30%'),
                   },
                 ]}>
-                Visit store
+                {Strings.visitStore}
               </Text>
             </TouchableOpacity>
           </View>
@@ -281,10 +284,13 @@ export const ProductPopUp = props => {
                 position: 'absolute',
               },
             ]}>
-            Variety:{props.item.type} hi
-            {'\n'}Grade: a{'\n'}Available: {props.item.availableQuantity} yes
+            {Strings.variety}:{props.item.type} hi
+            {'\n'}
+            {Strings.grade}: a{'\n'}
+            {Strings.available}: {props.item.availableQuantity} yes
             {'\n'}MOQ: {props.item.moq} 30
-            {'\n'}Other Details: blablabla
+            {'\n'}
+            {Strings.otherDetails}: blablabla
           </Text>
         </View>
       </View>
@@ -317,8 +323,7 @@ export const FavouritesList = props => {
           </View>
           <View style={{width: wp('70%'), bottom: hp('8%')}}>
             <Text style={[Typography.normal, {textAlign: 'center'}]}>
-              Sorry you have not added any suppliers to your favourites. You can
-              do so by going to their store.
+              {Strings.sorryYouHaveNot}
             </Text>
           </View>
         </View>
