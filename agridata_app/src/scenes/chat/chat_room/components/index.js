@@ -164,7 +164,7 @@ const ChatBubble = props => {
             borderRadius: 15,
             marginTop: hp('1%'),
           }}>
-          <Text style={[Typography.large]}>Product Inquiry</Text>
+          <Text style={[Typography.large]}>{Strings.productInquiry}</Text>
 
           <TouchableOpacity
             onPress={() => setPurchaseOrderModal(true)}
@@ -354,7 +354,7 @@ const ChatBubble = props => {
             borderRadius: 15,
             marginTop: hp('1%'),
           }}>
-          <Text style={[Typography.large]}>Order Quotation</Text>
+          <Text style={[Typography.large]}>{Strings.orderQuotation}</Text>
 
           <TouchableOpacity
             onPress={() => setOrderQuotationModal(true)}
@@ -886,7 +886,7 @@ const AddPersonModal = props => {
           Typography.large,
           {alignSelf: 'center', top: Mixins.scaleHeight(20)},
         ]}>
-        Who would you like to add?
+        {Strings.whoWouldYouLikeToAdd}
       </Text>
       <EmployeeList></EmployeeList>
       <View style={{top: Mixins.scaleHeight(50)}}></View>
@@ -934,9 +934,9 @@ export const ProductInquiry2 = props => {
               marginTop: Mixins.scaleHeight(-3),
             },
           ]}>
-          Price: <Text style={{color: 'red'}}> RM5-8/kg</Text> {'\n'}
+          {Strings.price}: <Text style={{color: 'red'}}> RM5-8/kg</Text> {'\n'}
           MOQ: 50 {'\n'}
-          Available: 1000
+          {Strings.available}: 1000
         </Text>
         <Text
           style={[
@@ -1009,7 +1009,7 @@ export const PurchaseOrder2 = props => {
           left: isMyMessage() ? 0 : Mixins.scaleWidth(50),
           marginTop: Mixins.scaleHeight(15),
         }}>
-        <Text style={[Typography.large]}>Purchase Order</Text>
+        <Text style={[Typography.large]}>{Strings.purchaseOrder}</Text>
         <View
           style={{
             flexDirection: 'row',
@@ -1034,7 +1034,7 @@ export const PurchaseOrder2 = props => {
 
               elevation: 5,
             }}>
-            <Text style={[Typography.small]}>Inspect</Text>
+            <Text style={[Typography.small]}>{Strings.inspect}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -1055,7 +1055,7 @@ export const PurchaseOrder2 = props => {
 
               elevation: 5,
             }}>
-            <Text style={[Typography.small]}>Download</Text>
+            <Text style={[Typography.small]}>{Strings.download}</Text>
           </TouchableOpacity>
         </View>
         <Text
