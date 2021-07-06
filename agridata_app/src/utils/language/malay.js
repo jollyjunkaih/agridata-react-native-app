@@ -28,7 +28,7 @@ export default {
   purchaseOrder: 'Pembelian',
   inspect: 'Memeriksa',
   purchaseOrderFrom: 'Pembelian untuk',
-  orderQuotation: 'Sebut Harga Pesanan',
+  orderQuotation: 'Harga Pesanan',
   orderQuotationFrom: 'Sebut Harga Pesana Daripada',
   orderQuotationList:
     'Jumlah Kos:\nTarikh Penghantaran:\nKaedah Penghantaran:\nKaedah Pembayaran:',
@@ -167,4 +167,7 @@ export default {
   quantityToBuy: 'Kuantiti untuk dibeli',
   purchaseOrderFor: 'Pembelian Untuk',
   sendPOtoSupplier: 'Hantar Pembelian Ke Pembekal',
+  whoWouldYouLikeToAdd: 'Sesiapa yang anda ingin tambah?',
+  download: 'Muat Turun',
+  productInquiry: 'Pertanyaan Produk',
 };

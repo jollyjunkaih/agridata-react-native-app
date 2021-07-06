@@ -167,4 +167,7 @@ export default {
   quantityToBuy: 'Quantity To Buy',
   purchaseOrderFor: 'Purchase Order For',
   sendPOtoSupplier: 'Send P.O. To Supplier',
+  whoWouldYouLikeToAdd: 'Who would you like to add?',
+  download: 'Download',
+  productInquiry: 'Product Inquiry',
 };
