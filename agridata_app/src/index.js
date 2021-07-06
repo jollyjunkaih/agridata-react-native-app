@@ -520,6 +520,6 @@ export const App = () => {
 */
 
 export const App = () => {
-  return <ChatRoom></ChatRoom>;
+  return <Orders></Orders>;
 };
 export default App;

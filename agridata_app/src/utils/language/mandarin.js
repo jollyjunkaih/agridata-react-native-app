@@ -156,6 +156,12 @@ export default {
   price: '价钱',
   grade: '等级',
   visitStore: '参观商店',
-  available: '有货',
+  available: '现货',
   otherDetails: '其他详情',
+  quantityToBuy: '购买数量',
+  purchaseOrderFor: '采购订单',
+  sendPOtoSupplier: '发送采购订单致供应商',
+  whoWouldYouLikeToAdd: '您希望把谁加进来?',
+  download: '下载',
+  productInquiry: '商品详情',
 };
