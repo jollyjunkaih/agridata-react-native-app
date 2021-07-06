@@ -164,4 +164,7 @@ export default {
   visitStore: 'Lawat Kedai',
   available: 'Ada Stock',
   otherDetails: 'Butiran Lainan',
+  quantityToBuy: 'Kuantiti untuk dibeli',
+  purchaseOrderFor: 'Pembelian Untuk',
+  sendPOtoSupplier: 'Hantar Pembelian Ke Pembekal',
 };

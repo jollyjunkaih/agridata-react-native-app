@@ -164,4 +164,7 @@ export default {
   visitStore: 'Visit Store',
   available: 'Available',
   otherDetails: 'Other Details',
+  quantityToBuy: 'Quantity To Buy',
+  purchaseOrderFor: 'Purchase Order For',
+  sendPOtoSupplier: 'Send P.O. To Supplier',
 };
