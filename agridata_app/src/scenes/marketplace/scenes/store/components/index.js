@@ -21,6 +21,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 const ProductCard = props => {
   const [productModal, setProductModal] = useState(false);
@@ -47,9 +48,10 @@ const ProductCard = props => {
         {props.productName}
       </Text>
       <Text style={[Typography.small, {top: hp('4%'), width: wp('20%')}]}>
-        Price: 3{props.priceMin} - 8{props.priceMax}
+        {Strings.price}: 3{props.priceMin} - 8{props.priceMax}
         {'\n'}MOQ: {props.moq}
-        {'\n'}Available: {props.availableQuantity}
+        {'\n'}
+        {Strings.available}: {props.availableQuantity}
       </Text>
       <Modal isVisible={productModal}>
         <ProductPopUp setProductModal={setProductModal}></ProductPopUp>
@@ -132,13 +134,15 @@ const ProductPopUp = props => {
         </View>
         <View
           style={{
-            left: wp('1%'),
+            left: wp('0%'),
             top: hp('1.5%'),
             position: 'absolute',
             width: wp('77%'),
             flexDirection: 'row',
           }}>
-          <Text style={[Typography.header]}>{props.productName}Ginger</Text>
+          <Text style={[Typography.header, {left: wp('5%')}]}>
+            {props.productName}Ginger
+          </Text>
           <View style={{position: 'absolute', right: wp('2%')}}>
             <ChatButton size={wp('8%')}></ChatButton>
           </View>
@@ -192,7 +196,9 @@ const ProductPopUp = props => {
                 position: 'absolute',
               },
             ]}>
-            Variety:{'\n'}Available:{'\n'}MOQ:{'\n'}Other Details:
+            {Strings.variety}:{'\n'}
+            {Strings.available}:{'\n'}MOQ:{'\n'}
+            {Strings.otherDetails}:
           </Text>
           <Text
             style={[
@@ -205,7 +211,7 @@ const ProductPopUp = props => {
                 textAlign: 'right',
               },
             ]}>
-            Variety:{'\n'}Available:{'\n'}MOQ:
+            1{'\n'}30{'\n'}10
           </Text>
           <View
             style={{
@@ -228,7 +234,7 @@ const ProductPopUp = props => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <Text style={Typography.normal}>Quantity to buy:</Text>
+          <Text style={Typography.normal}>{Strings.quantityToBuy}:</Text>
           <TextInput
             keyboardType="number-pad"
             underlineColorAndroid="transparent"
@@ -249,22 +255,28 @@ const ProductPopUp = props => {
           <TouchableOpacity
             onPress={() => console.log('add to purchase order')}
             style={{
-              width: wp('40%'),
+              width: wp('50%'),
               backgroundColor: Colors.GRAY_LIGHT,
               borderRadius: 20,
               alignItems: 'center',
+              justifyContent: 'center',
               flexDirection: 'row',
               height: hp('5%'),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
             }}>
-            <View
-              style={{
-                left: wp('2%'),
-                bottom: hp('0.2%'),
-              }}>
-              <Icon name="add-outline" size={wp('5%')}></Icon>
+            <View>
+              <Icon name="add-outline" size={wp('5.5%')}></Icon>
             </View>
             <Text style={[Typography.normal, {left: wp('3%')}]}>
-              Purchase Order
+              {Strings.purchaseOrder}
             </Text>
           </TouchableOpacity>
         </View>
@@ -286,7 +298,7 @@ export const PurchaseOrderButton = props => {
         borderRadius: 10,
       }}
       onPress={() => setPurchaseOrderModal(true)}>
-      <Text style={[Typography.normal]}>Purchase Order</Text>
+      <Text style={[Typography.normal]}>{Strings.purchaseOrder}</Text>
       <Modal isVisible={purchaseOrderModal}>
         <PurchaseOrder
           setPurchaseOrderModal={setPurchaseOrderModal}></PurchaseOrder>
@@ -314,7 +326,7 @@ const PurchaseOrder = props => {
               top: hp('2%'),
             },
           ]}>
-          Purchase Order For
+          {Strings.purchaseOrderFor}
         </Text>
         <Text
           style={[
@@ -334,6 +346,7 @@ const PurchaseOrder = props => {
           height: hp('30%'),
           top: hp('5%'),
           borderRadius: 10,
+          width: wp('60%'),
         }}>
         <PurchaseOrderList></PurchaseOrderList>
       </View>
@@ -341,7 +354,7 @@ const PurchaseOrder = props => {
         style={{
           bottom: hp('2%'),
           backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('60%'),
+          width: wp('65%'),
           alignItems: 'center',
           justifyContent: 'center',
           height: hp('5%'),
@@ -354,7 +367,7 @@ const PurchaseOrder = props => {
         }}
         onPress={() => console.log('Button')}>
         <View style={{flexDirection: 'row'}}>
-          <Text style={[Typography.normal]}>Send P.O. To Supplier</Text>
+          <Text style={[Typography.normal]}>{Strings.sendPOtoSupplier}</Text>
           <View style={{right: wp('-2%')}}>
             <Icon name="paper-plane-outline" size={wp('5%')}></Icon>
           </View>
