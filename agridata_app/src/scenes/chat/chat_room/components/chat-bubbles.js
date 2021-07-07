@@ -29,12 +29,10 @@ import {
 import Strings from '_utils';
 import {OrderQuotationModal} from './order-quotation';
 import {PurchaseOrder} from './purchase-order';
-import {ProductInquiry2} from './product-inquiry';
 
 export const ChatBubble = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);
   const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
-  const [productInquiry, setProductInquiry] = useState(false);
 
   console.log(props);
   const getInitials = name => {
@@ -126,7 +124,7 @@ export const ChatBubble = props => {
             <View
               style={{
                 left: wp('1%'),
-                top: hp('8%'),
+                top: hp('16%'),
                 borderColor: 'white',
                 borderWidth: 0.2,
                 width: wp('8%'),
@@ -161,38 +159,47 @@ export const ChatBubble = props => {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-            width: wp('50%'),
-            height: hp('13%'),
             marginLeft: isMyMessage() ? wp('40%') : 0,
             marginRight: isMyMessage() ? 0 : wp('33%'),
             left: isMyMessage() ? 0 : wp('12%'),
-            borderRadius: 15,
             marginTop: hp('1%'),
+            width: wp('45%'),
+            height: hp('19%'),
+            borderRadius: 10,
           }}>
-          <Text style={[Typography.large]}>{Strings.productInquiry}</Text>
-
-          <TouchableOpacity
-            onPress={() => setProductInquiry(true)}
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 10,
-              backgroundColor: Colors.LIGHT_BLUE,
-              width: wp('33%'),
-              height: hp('3%'),
-              top: hp('1%'),
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
+          <Text
+            style={[
+              Typography.normal,
+              {
+                top: hp('0%'),
+                textAlign: 'center',
               },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
+            ]}>
+            Banana
+          </Text>
+          <View
+            style={{
+              backgroundColor: Colors.GRAY_LIGHT,
+              width: wp('40%'),
+              height: hp('11%'),
+              alignItems: 'center',
+              top: hp('0%'),
+              borderRadius: 10,
             }}>
-            <Text style={[Typography.small]}>{Strings.inspect}</Text>
-          </TouchableOpacity>
+            <Text
+              style={[
+                Typography.small,
+                {
+                  top: hp('1%'),
+                },
+              ]}>
+              {Strings.grade}: A+{'\n'}
+              {Strings.variety}: 1000{'\n'}
+              {Strings.price}: <Text style={{color: 'red'}}> RM5-8/kg</Text>
+              {'\n'}
+              MOQ: 50
+            </Text>
+          </View>
 
           <Text
             style={[
@@ -200,18 +207,12 @@ export const ChatBubble = props => {
               {
                 alignSelf: 'flex-end',
                 right: wp('3%'),
-                top: hp('1.5%'),
+                top: hp('1%'),
               },
             ]}>
             createdAt
           </Text>
         </View>
-        <Modal
-          isVisible={productInquiry}
-          onBackdropPress={() => setProductInquiry(false)}>
-          <ProductInquiry2
-            setProductInquiry={setProductInquiry}></ProductInquiry2>
-        </Modal>
       </View>
     );
   } else if (contentType == 'po') {
