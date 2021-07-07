@@ -195,7 +195,7 @@ const AppNavigator = props => {
             </AppStack.Screen>
             <AppStack.Screen name="orders">
               {screenProps => <Orders {...screenProps} user={props.user} />}
-            </AppStack.Screen>{' '}
+            </AppStack.Screen>
             <AppStack.Screen name="companyprofile">
               {screenProps => (
                 <CompanyProfile {...screenProps} user={props.user} />
