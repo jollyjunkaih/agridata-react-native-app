@@ -12,6 +12,10 @@ import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import {CloseButton} from '_components';
+import {
+  QuotationItemsContext,
+  QuotationItemsProvider,
+} from './quotationContext';
 import {API} from 'aws-amplify';
 import {
   createMessage,
@@ -19,8 +23,13 @@ import {
   deleteChatGroupUsers,
   updateOrderQuotation,
   updateChatGroup,
+  createGoodsTask,
 } from '../../../../graphql/mutations';
-import {listUsersInChat, purchaseOrderItems} from '../../../../graphql/queries';
+import {
+  getOrderQuotation,
+  listUsersInChat,
+  purchaseOrderItems,
+} from '../../../../graphql/queries';
 
 var dayjs = require('dayjs');
 import {DismissKeyboardView} from '_components';
@@ -35,7 +44,6 @@ const ChatBubble = props => {
   const [orderQuotationModal, setOrderQuotationModal] = useState(false);
   const [purchaseOrderModal, setPurchaseOrderModal] = useState(false);
   const [inquiryModal, setInquiryModal] = useState(false);
-  console.log("printing what's in the chat bubble (per render)");
   const getInitials = name => {
     if (name) {
       let initials = name.split(' ');
@@ -309,6 +317,8 @@ const ChatBubble = props => {
             setPurchaseOrderModal={setPurchaseOrderModal}
             chatGroupID={props.chatGroupID}
             userID={props.userID}
+            setMessages={props.setMessages}
+            messages={props.messages}
             userName={props.userName}></PurchaseOrder>
         </Modal>
       </View>
@@ -407,6 +417,9 @@ const ChatBubble = props => {
           <OrderQuotationModal
             chatName={props.chatName}
             type={props.type}
+            userID={props.userID}
+            userName={props.userName}
+            setOrderQuotationModal={setOrderQuotationModal}
             chatGroupID={props.chatGroupID}></OrderQuotationModal>
         </Modal>
       </View>
@@ -433,9 +446,11 @@ export const ChatBubbleList = props => {
               contentType={item.item.type}
               contentID={item.item.uniqueContentID}
               chatName={props.chatName}
-              chatGroupID={item.item.chatGroupID}
+              chatGroupID={props.chatGroupID}
               type={props.type}
               userName={props.userName}
+              setMessages={props.setMessages}
+              messages={props.messages}
             />
           );
         }}
@@ -471,11 +486,11 @@ export const MessageInput = props => {
           },
         },
       });
-      var messages = props.messages;
+      /*var messages = props.messages;
       messages = messages.reverse();
       messages.push(newMessage.data.createMessage);
       messages = messages.reverse();
-      props.setMessages(messages);
+      props.setMessages(messages); */
       setMessage('');
     } catch (e) {
       console.log(e);
@@ -540,6 +555,1184 @@ export const MessageInput = props => {
   );
 };
 
+export const OrderQuotation = props => {
+  const [orderQuotationModal, setOrderQuotationModal] = useState(false);
+  const isMyMessage = () => {
+    if (props.userID == props.senderID) return true;
+    else return false;
+  };
+  return (
+    <View>
+      <View>
+        {!isMyMessage() && (
+          <View
+            style={{
+              left: Mixins.scaleWidth(5),
+              top: Mixins.scaleHeight(50),
+              borderColor: 'white',
+              borderWidth: Mixins.scaleWidth(0.2),
+              width: Mixins.scaleWidth(28),
+              height: Mixins.scaleWidth(28),
+              position: 'absolute',
+              borderRadius: 100,
+              justifyContent: 'center',
+              backgroundColor: Colors.GRAY_WHITE,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text
+              style={{
+                color: Colors.GRAY_DARK,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              {props.sender}JK
+            </Text>
+          </View>
+        )}
+      </View>
+      <View
+        style={{
+          marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
+          marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
+          width: Mixins.scaleWidth(170),
+          height: Mixins.scaleHeight(65),
+          borderRadius: 10,
+          left: isMyMessage() ? 0 : Mixins.scaleWidth(50),
+          marginTop: Mixins.scaleHeight(15),
+          height: Mixins.scaleHeight(70),
+        }}>
+        <Text style={[Typography.large, {top: Mixins.scaleHeight(-8)}]}>
+          Order Quotation
+        </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            top: Mixins.scaleHeight(-5),
+          }}>
+          <TouchableOpacity
+            onPress={() => setOrderQuotationModal(true)}
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(60),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              right: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Inspect</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.LIGHT_BLUE,
+              width: Mixins.scaleWidth(70),
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              left: Mixins.scaleWidth(3),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Text style={[Typography.small]}>Download</Text>
+          </TouchableOpacity>
+        </View>
+        <Text
+          style={[
+            Typography.small,
+            {
+              alignSelf: 'flex-end',
+              top: Mixins.scaleHeight(5),
+              right: Mixins.scaleWidth(10),
+            },
+          ]}>
+          {props.createdAt}
+        </Text>
+      </View>
+
+      <Modal isVisible={orderQuotationModal}>
+        <OrderQuotationModal setOrderQuotationModal={setOrderQuotationModal} />
+      </Modal>
+    </View>
+  );
+};
+
+const OrderQuotationModal = props => {
+  const [orderDetails, setOrderDetails] = useState(null);
+  useEffect(() => {
+    fetchQuotation();
+  }, []);
+  console.log('quotation' + props.chatGroupID);
+  const fetchQuotation = async () => {
+    try {
+      const quotation = await API.graphql({
+        query: getOrderQuotation,
+        variables: {id: props.chatGroupID},
+      });
+      setOrderDetails(quotation.data.getOrderQuotation);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const reject = async () => {
+    try {
+      const rejectionMessage = await API.graphql({
+        query: createMessage,
+        variables: {
+          input: {
+            chatGroupID: props.chatGroupID,
+            type: 'text',
+            content: 'The quotation has been rejected. Please re-negotiate',
+            senderID: props.userID,
+            sender: props.userName,
+          },
+        },
+      });
+      console.log('message sent');
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      const updatedChatGroup = await API.graphql({
+        query: updateChatGroup,
+        variables: {
+          input: {
+            id: props.chatGroupID,
+            mostRecentMessage:
+              'The quotation has been rejected. Please re-negotiate',
+            mostRecentMessageSender: props.userName,
+          },
+        },
+      });
+      console.log('chat group update successful');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const accept = async () => {
+    try {
+      const acceptanceMessage = await API.graphql({
+        query: createMessage,
+        variables: {
+          input: {
+            chatGroupID: props.chatGroupID,
+            type: 'text',
+            content:
+              'The quotation has been accepted. Task has been added to to-do',
+            senderID: props.userID,
+            sender: props.userName,
+          },
+        },
+      });
+      console.log('message sent');
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      const updatedChatGroup = await API.graphql({
+        query: updateChatGroup,
+        variables: {
+          input: {
+            id: props.chatGroupID,
+            mostRecentMessage:
+              'The quotation has been accepted. Task has been added to to-do',
+            mostRecentMessageSender: props.userName,
+          },
+        },
+      });
+      console.log('chat group update successful');
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      const goodsTask = await API.graphql({
+        query: createGoodsTask,
+        variables: {
+          input: {
+            items: orderDetails.items,
+            retailerID: props.chatGroupID.slice(0, 36),
+            supplierID: props.chatGroupID.slice(36, 72),
+          },
+        },
+      });
+      console.log('goods task created');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  return (
+    <View>
+      {orderDetails != null ? (
+        <View
+          style={{
+            flexDirection: 'column',
+            width: wp('90%'),
+            height: hp('95%'),
+            backgroundColor: Colors.GRAY_LIGHT,
+            borderRadius: 15,
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              top: hp('4%'),
+              alignItems: 'center',
+            }}>
+            <Text style={[Typography.large, {}]}>
+              {Strings.orderQuotationFrom}
+            </Text>
+            <Text style={[Typography.header]}>
+              <Text style={{color: '#8EAB3D'}}>{props.chatName}</Text>
+            </Text>
+            <Text style={[Typography.small]}>
+              #{orderDetails.id.slice(0, 8)}
+            </Text>
+          </View>
+          <View
+            style={{
+              position: 'absolute',
+              right: wp('2%'),
+              top: hp('1%'),
+            }}>
+            <CloseButton setModal={props.setOrderQuotationModal} />
+          </View>
+          <View
+            style={{
+              top: hp('20%'),
+              alignItems: 'center',
+              position: 'absolute',
+
+              height: hp('40%'),
+            }}>
+            <QuotationList data={orderDetails.items}></QuotationList>
+          </View>
+          <Text style={[Typography.large, {top: hp('48%'), left: wp('20%')}]}>
+            Total: RM {orderDetails.sum}
+          </Text>
+          <View
+            style={{
+              top: hp('50%'),
+
+              height: hp('10%'),
+              width: wp('75%'),
+              backgroundColor: 'white',
+              borderRadius: 10,
+
+              justifyContent: 'center',
+            }}>
+            <Text style={[Typography.normal, {left: wp('10%')}]}>
+              Logistics Provided: {'\t'}
+              {'\t'}
+              {'\t'}
+              <Text style={{left: wp('20%')}}>
+                {orderDetails.logisticsProvided ? 'Provided' : 'Not Provided'}
+              </Text>
+            </Text>
+            <Text style={[Typography.normal, {left: wp('10%')}]}>
+              Payment Terms:{'\t'}
+              {'\t'}
+              {'\t'}
+              <Text style={{left: wp('20%')}}>{orderDetails.paymentTerms}</Text>
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              top: hp('55%'),
+            }}>
+            <TouchableOpacity
+              onPress={() => accept()}
+              style={{
+                backgroundColor: Colors.LIGHT_BLUE,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+                right: wp('5%'),
+                width: wp('25%'),
+                height: hp('4%'),
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+              }}>
+              <Text style={[Typography.small]}>{Strings.accept}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => reject()}
+              style={{
+                backgroundColor: Colors.LIGHT_BLUE,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+
+                elevation: 5,
+                left: wp('5%'),
+                width: wp('25%'),
+                height: hp('4%'),
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+              }}>
+              <Text style={[Typography.small]}>{Strings.decline}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : (
+        <View></View>
+      )}
+    </View>
+  );
+};
+
+const QuotationList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: wp('70%'),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        data={props.data}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return (
+            <QuotationCard
+              name={item.name}
+              variety={item.variety}
+              grade={item.grade}
+              quantity={item.quantity}
+              price={item.price}
+              siUnit={item.siUnit}
+            />
+          );
+        }}></FlatList>
+    </View>
+  );
+};
+const QuotationCard = props => {
+  return (
+    <View
+      style={{
+        height: hp('8%'),
+        width: wp('80%'),
+        marginBottom: hp('0.5%'),
+        borderBottomColor: Colors.GRAY_DARK,
+        borderBottomWidth: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+      }}>
+      <View style={{left: wp('1%'), width: wp('32%')}}>
+        <Text style={[Typography.normal, {}]}>
+          {props.name}
+          {'\t'}
+          <Text style={[Typography.small]}>Grade: {props.grade}</Text>
+        </Text>
+
+        <Text style={[Typography.small]}>{props.variety}</Text>
+      </View>
+      <View style={{flexDirection: 'row', left: wp('5%')}}>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          {props.quantity}
+          {props.siUnit}
+        </Text>
+      </View>
+      <View style={{flexDirection: 'row', left: wp('8%')}}>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          RM
+        </Text>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          {props.price}/{props.siUnit}
+        </Text>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              textAlign: 'right',
+              top: hp('1%'),
+              left: wp('18%'),
+              position: 'absolute',
+            },
+          ]}>
+          RM
+          {parseInt(parseInt(props.quantity) * parseFloat(props.price) * 100) /
+            100}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const OrderList = props => {
+  const [quotationItems, setQuotationItems] = useContext(QuotationItemsContext);
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: wp('70%'),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        data={quotationItems}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return (
+            <OrderCard
+              name={item.name}
+              variety={item.variety}
+              grade={item.grade}
+              quantity={item.quantity}
+              siUnit={item.siUnit}
+              index={item.index}
+              products={props.products}
+              setProducts={props.setProducts}
+            />
+          );
+        }}></FlatList>
+    </View>
+  );
+};
+
+const OrderCard = props => {
+  const [quotationItems, setQuotationItems] = useContext(QuotationItemsContext);
+  const [quantity, setQuantity] = useState(props.quantity.toString());
+  const [price, setPrice] = useState('');
+  const updatePrice = item2 => {
+    var tempList = quotationItems;
+    try {
+      tempList.forEach((item, index, array) => {
+        if (index == props.index) {
+          item['price'] = parseFloat(item2);
+          array[index] = item;
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    console.log('updating Price to the list');
+    setQuotationItems(tempList);
+    setPrice(item2);
+  };
+  const updateQuantity = item2 => {
+    var tempList = quotationItems;
+    tempList.forEach((item, index, array) => {
+      if (index == props.index) {
+        item['quantity'] = parseInt(item2);
+        array[index] = item;
+      }
+    });
+    console.log('updating quantity to the list');
+    setQuotationItems(tempList);
+    setQuantity(item2);
+  };
+  return (
+    <View
+      style={{
+        height: hp('8%'),
+        width: wp('80%'),
+        marginBottom: hp('0.5%'),
+        borderBottomColor: Colors.GRAY_DARK,
+        borderBottomWidth: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
+      }}>
+      <View style={{left: wp('1%'), width: wp('22%')}}>
+        <Text style={[Typography.normal, {}]}>{props.name} </Text>
+        <Text style={[Typography.small]}>Grade: {props.grade}</Text>
+
+        <Text style={[Typography.small]}>{props.variety}</Text>
+      </View>
+      <View style={{flexDirection: 'row', left: wp('3%')}}>
+        <TextInput
+          value={quantity}
+          underlineColorAndroid="transparent"
+          onChangeText={item => updateQuantity(item)}
+          keyboardType="numeric"
+          style={{
+            width: wp('10%'),
+            top: hp('0.5%'),
+            borderBottomColor: 'transparent',
+          }}></TextInput>
+        <Text
+          style={[
+            Typography.small,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          {props.siUnit}
+        </Text>
+      </View>
+      <View style={{flexDirection: 'row', left: wp('5%')}}>
+        <Text
+          style={[
+            Typography.small,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          RM
+        </Text>
+        <TextInput
+          value={price}
+          underlineColorAndroid="transparent"
+          onChangeText={item => updatePrice(item)}
+          keyboardType="numeric"
+          style={{
+            top: hp('0.5%'),
+            left: wp('1%'),
+            width: wp('9%'),
+            borderBottomColor: 'transparent',
+          }}></TextInput>
+        <Text
+          style={[
+            Typography.small,
+            {
+              top: hp('1%'),
+              left: wp('1%'),
+            },
+          ]}>
+          /{props.siUnit}
+        </Text>
+      </View>
+
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'right',
+            right: wp('1%'),
+            position: 'absolute',
+          },
+        ]}>
+        RM {parseInt(parseInt(quantity) * parseFloat(price) * 100) / 100}
+      </Text>
+    </View>
+  );
+};
+
+const PurchaseOrder = props => {
+  const [orderQuotation, setOrderQuotation] = useState(false);
+  const [successfulModal, setSuccessfulModal] = useState(false);
+
+  return (
+    <QuotationItemsProvider>
+      <View
+        style={{
+          height: hp('80%'),
+          width: wp('90%'),
+          backgroundColor: Colors.GRAY_MEDIUM,
+          borderRadius: 10,
+          alignItems: 'center',
+        }}>
+        <View style={{alignItems: 'center'}}>
+          <Text
+            style={[
+              Typography.large,
+              {
+                fontFamily: 'Poppins-SemiBold',
+                top: hp('3%'),
+              },
+            ]}>
+            {Strings.purchaseOrderFrom}
+          </Text>
+          <Text
+            style={[
+              Typography.header,
+              {
+                fontFamily: 'Poppins-Bold',
+                color: Colors.LIME_GREEN,
+                top: hp('3%'),
+              },
+            ]}>
+            {props.chatName}
+          </Text>
+        </View>
+        <View
+          style={{
+            height: hp('50%'),
+            top: hp('5%'),
+            borderRadius: 10,
+          }}>
+          <PurchaseOrderList chatGroupID={props.chatGroupID} />
+        </View>
+        <View
+          style={{
+            position: 'absolute',
+            right: wp('2%'),
+            top: hp('0.5%'),
+          }}>
+          <CloseButton setModal={props.setPurchaseOrderModal} />
+        </View>
+        {props.type == 'supplier' ? (
+          <TouchableOpacity
+            onPress={() => setOrderQuotation(true)}
+            style={{
+              position: 'absolute',
+              borderRadius: 15,
+              bottom: hp('7%'),
+              height: hp('5%'),
+              width: wp('50%'),
+              backgroundColor: Colors.LIGHT_BLUE,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={Typography.normal}>Create Order Quotation</Text>
+          </TouchableOpacity>
+        ) : (
+          <View></View>
+        )}
+        <Modal isVisible={orderQuotation}>
+          <NewOrderQuotation
+            chatName={props.chatName}
+            chatGroupID={props.chatGroupID}
+            setOrderQuotation={setOrderQuotation}
+            setSuccessfulModal={setSuccessfulModal}
+            type={props.type}
+            userName={props.userName}
+            userID={props.userID}
+            setMessages={props.setMessages}
+            messages={props.messages}
+          />
+        </Modal>
+        <Modal
+          isVisible={successfulModal}
+          onBackdropPress={() => setSuccessfulModal(false)}>
+          <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
+        </Modal>
+      </View>
+    </QuotationItemsProvider>
+  );
+};
+
+const NewOrderQuotation = props => {
+  const [openDelivery, setOpenDelivery] = useState(false);
+  const [quotationItems, setQuotationItems] = useContext(QuotationItemsContext);
+  const [trigger, setTrigger] = useState(true);
+  const [sum, setSum] = useState('');
+  const [deliveryValue, setDeliveryValue] = useState(true);
+  const [deliveryMethod, setDeliveryMethod] = useState([
+    {label: 'No', value: false},
+    {label: 'Yes', value: true},
+  ]);
+  const [openPayment, setOpenPayment] = useState(false);
+  const [paymentValue, setPaymentValue] = useState('creditTerm');
+  const [paymentMethod, setPaymentMethod] = useState([
+    {label: 'Cash', value: 'cashOnDelivery'},
+    {label: 'Credit Term', value: 'creditTerm'},
+  ]);
+
+  var productsWIndex = quotationItems;
+  productsWIndex.forEach((item, index, arr) => {
+    console.log('adding index to check back later');
+    item['index'] = index;
+    arr[index] = item;
+  });
+  setQuotationItems(productsWIndex);
+  console.log('printing productsWIndex');
+
+  useEffect(() => {
+    console.log('useEffect to calculate sum Triggered');
+    var tempSum = 0;
+    quotationItems.forEach((item, index, arr) => {
+      tempSum = tempSum + item.price * item.quantity;
+    });
+    tempSum = parseInt(tempSum * 100) / 100;
+    setSum(tempSum);
+  }, [trigger, quotationItems]);
+
+  const sendQuotation = async () => {
+    var tempList = quotationItems;
+    tempList.forEach((item, index, array) => {
+      delete item.createdAt;
+      delete item.id;
+      delete item.index;
+      delete item.purchaseOrderID, delete item.updatedAt;
+      array[index] = item;
+    });
+    console.log('removing key and value pairs like index for order quotation');
+    try {
+      const updatedValue = await API.graphql({
+        query: updateOrderQuotation,
+        variables: {
+          input: {
+            id: props.chatGroupID,
+            items: tempList,
+            sum: parseFloat(sum),
+            logisticsProvided: deliveryValue,
+            paymentTerms: paymentValue,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      if (e.errors[0].errorType == 'DynamoDB:ConditionalCheckFailedException') {
+        console.log('order quotation has not been created, creating now');
+        const createdValue = await API.graphql({
+          query: createOrderQuotation,
+          variables: {
+            input: {
+              id: props.chatGroupID,
+              items: tempList,
+              sum: sum,
+              logisticsProvided: deliveryValue,
+              paymentTerms: paymentValue,
+            },
+          },
+        });
+      }
+    }
+    try {
+      console.log('sending order quotation');
+      const createdMessage = await API.graphql({
+        query: createMessage,
+        variables: {
+          input: {
+            chatGroupID: props.chatGroupID,
+            type: 'quotation',
+            content: props.chatGroupID,
+            sender: props.userName,
+            senderID: props.userID,
+          },
+        },
+      });
+      console.log('message created');
+      const updatedChat = await API.graphql({
+        query: updateChatGroup,
+        variables: {
+          input: {
+            id: props.chatGroupID,
+            mostRecentMessage: 'Quotation',
+            mostRecentMessageSender: props.userName,
+          },
+        },
+      });
+      console.log('Updated chat');
+      /*messages = props.messages;
+      messages = messages.reverse();
+      messages.push(input);
+      messages = messages.reverse();
+      setMessages = {messages};*/
+
+      props.setSuccessfulModal(true);
+      props.setOrderQuotation(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        width: wp('90%'),
+        height: hp('95%'),
+        backgroundColor: Colors.GRAY_LIGHT,
+        borderRadius: 15,
+        alignItems: 'center',
+      }}>
+      <View
+        style={{
+          top: hp('4%'),
+          alignItems: 'center',
+        }}>
+        <Text style={[Typography.large]}>{Strings.orderQuotationFrom}</Text>
+
+        <Text
+          style={[
+            Typography.header,
+            {color: Colors.LIME_GREEN, bottom: hp('1%')},
+          ]}>
+          {props.chatName}
+        </Text>
+
+        <Text style={[Typography.small, {bottom: hp('1%')}]}>
+          #{props.chatGroupID.slice(0, 8)}
+        </Text>
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          right: wp('2%'),
+          top: hp('1%'),
+        }}>
+        <CloseButton setModal={props.setOrderQuotation} />
+      </View>
+      <View
+        style={{
+          height: hp('40%'),
+          top: hp('17%'),
+          alignItems: 'center',
+          position: 'absolute',
+        }}>
+        <OrderList></OrderList>
+      </View>
+      <TouchableOpacity
+        style={{position: 'absolute', left: wp('50%'), top: hp('57%')}}
+        onPress={() => {
+          if (trigger) {
+            setTrigger(false);
+          } else {
+            setTrigger(true);
+          }
+        }}>
+        <Text
+          style={[
+            Typography.normal,
+            {
+              fontFamily: 'Poppins-SemiBold',
+            },
+          ]}>
+          {Strings.totalCost}: RM {sum}
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={{
+          top: hp('50%'),
+          alignItems: 'center',
+          height: hp('24%'),
+          width: wp('80%'),
+          backgroundColor: 'white',
+          borderRadius: 10,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+
+            height: wp('20%'),
+
+            width: wp('70%'),
+            top: hp('2%'),
+          }}>
+          <Text style={[Typography.small]}>Logistics Provided:</Text>
+          <DropDownPicker
+            open={openDelivery}
+            value={deliveryValue}
+            items={deliveryMethod}
+            placeholder={'Yes'}
+            setOpen={setOpenDelivery}
+            setValue={setDeliveryValue}
+            setItems={setDeliveryMethod}
+            style={{
+              width: wp('25%'),
+              left: wp('17%'),
+
+              height: hp('4%'),
+              borderColor: 'white',
+              borderRadius: 3,
+              backgroundColor: Colors.GRAY_LIGHT,
+            }}
+            text
+            dropDownDirection="BOTTOM"
+            listItemContainerStyle={{height: hp('3%')}}
+            dropDownContainerStyle={{
+              borderWidth: 1,
+              left: wp('17%'),
+              width: wp('25%'),
+              backgroundColor: Colors.GRAY_LIGHT,
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            height: wp('20%'),
+
+            width: wp('70%'),
+            top: hp('1%'),
+          }}>
+          <Text style={[Typography.small]}>Payment Terms:</Text>
+          <DropDownPicker
+            open={openPayment}
+            value={paymentValue}
+            items={paymentMethod}
+            placeholder={'Credit Term'}
+            setOpen={setOpenPayment}
+            setValue={setPaymentValue}
+            setItems={setPaymentMethod}
+            style={{
+              width: wp('35%'),
+              left: wp('10%'),
+              height: hp('4%'),
+              borderColor: 'white',
+              borderRadius: 3,
+              backgroundColor: Colors.GRAY_LIGHT,
+            }}
+            dropDownDirection="BOTTOM"
+            listItemContainerStyle={{height: hp('3%')}}
+            dropDownContainerStyle={{
+              borderWidth: 1,
+              left: wp('10%'),
+              width: wp('35%'),
+              backgroundColor: Colors.GRAY_LIGHT,
+            }}
+          />
+        </View>
+      </View>
+      <View
+        style={{
+          top: hp('52%'),
+        }}>
+        <TouchableOpacity
+          onPress={() => sendQuotation()}
+          style={{
+            backgroundColor: Colors.LIGHT_BLUE,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
+
+            width: wp('55%'),
+            height: hp('4%'),
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 10,
+          }}>
+          <Text style={[Typography.small]}>Send Quotation to Retailer</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const PurchaseOrderList = props => {
+  const [quotationItems, setQuotationItems] = useContext(QuotationItemsContext);
+  const fetchPO = async () => {
+    const prodList = await API.graphql({
+      query: purchaseOrderItems,
+      variables: {purchaseOrderID: props.chatGroupID},
+    });
+
+    console.log('successful fetch for PO items');
+    setQuotationItems(prodList.data.purchaseOrderItems.items);
+  };
+  useEffect(() => {
+    fetchPO();
+  }, []);
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          borderBottomWidth: 1,
+          borderRadius: 10,
+          width: wp('70%'),
+          borderColor: Colors.GRAY_MEDIUM,
+        }}></View>
+    );
+  };
+  return (
+    <FlatList
+      keyExtractor={item => item.id}
+      data={quotationItems}
+      numColumns={1}
+      ItemSeparatorComponent={Seperator}
+      ListEmptyComponent={
+        <View
+          style={{
+            width: wp('80%'),
+            height: hp('60%'),
+            top: hp('2%'),
+          }}></View>
+      }
+      renderItem={({item}) => {
+        return (
+          <PurchaseOrderComponent
+            name={item.name}
+            quantity={item.quantity}
+            siUnit={item.siUnit}
+            variety={item.variety}
+            grade={item.grade}
+          />
+        );
+      }}
+    />
+  );
+};
+
+const PurchaseOrderComponent = props => {
+  return (
+    <View
+      style={{
+        height: hp('5%'),
+        borderRadius: 10,
+        backgroundColor: Colors.GRAY_WHITE,
+        width: wp('85%'),
+      }}>
+      <View style={{flexDirection: 'row', top: hp('1.5%')}}>
+        <Text
+          style={[Typography.small, {position: 'absolute', left: wp('2%')}]}>
+          {props.name}
+        </Text>
+        <Text
+          style={[Typography.small, {position: 'absolute', left: wp('45%')}]}>
+          {props.variety}
+        </Text>
+        <Text
+          style={[Typography.small, {position: 'absolute', left: wp('27%')}]}>
+          Grade: {props.grade}
+        </Text>
+
+        <Text
+          style={[Typography.small, {position: 'absolute', right: wp('5%')}]}>
+          {props.quantity}
+          {props.siUnit}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const SuccessfulModal = props => {
+  return (
+    <View
+      style={{
+        height: hp('50%'),
+        width: wp('85%'),
+        backgroundColor: Colors.PALE_GREEN,
+        borderRadius: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+      }}>
+      <View style={{top: hp('2%')}}>
+        <Image
+          source={require('_assets/images/Good-Vege.png')}
+          style={{
+            resizeMode: 'contain',
+            width: wp('55%'),
+            height: hp('25%'),
+          }}
+        />
+      </View>
+      <View style={{top: hp('2%')}}>
+        <Text style={[Typography.header]}>SUCCESS!</Text>
+      </View>
+      <View style={{width: wp('70%'), top: hp('4%')}}>
+        <Text
+          style={[
+            {textAlign: 'center', lineHeight: wp('3%')},
+            Typography.small,
+          ]}>
+          You have successfully added your crops! We'll send you a notification
+          as soon as retailers buy your produce!
+        </Text>
+      </View>
+      <View style={{width: wp('50%'), top: hp('8%')}}>
+        <Text
+          style={[
+            {textAlign: 'center', lineHeight: hp('3%')},
+            Typography.small,
+          ]}>
+          Keep adding for more!
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const AttachmentList = props => {
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
+        renderItem={({item}) => {
+          return <Attachment name={item.name} />;
+        }}
+      />
+    </View>
+  );
+};
+
+const Attachment = props => {
+  return (
+    <TouchableOpacity>
+      <Text
+        style={[
+          Typography.normal,
+          {
+            height: hp('5%'),
+            justifyContent: 'center',
+          },
+        ]}>
+        {Strings.invoices}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
 export const ChatInfo = props => {
   const [chatInfoModal, setChatInfoModal] = useState(false);
   const [chatParticipants, setChatParticipants] = useState(null);
@@ -551,7 +1744,7 @@ export const ChatInfo = props => {
           filter: {chatGroupID: {eq: props.chatGroupID}},
         },
       });
-      console.log(products.data.listChatGroupUserss.items);
+      //console.log(products.data.listChatGroupUserss.items);
       if (products.data) {
         setChatParticipants(products.data.listChatGroupUserss.items);
       }
@@ -684,7 +1877,7 @@ const ChatInfoModal = props => {
             width: wp('70%'),
             top: hp('2%'),
           }}>
-          <InvoiceList></InvoiceList>
+          <AttachmentList />
         </View>
       </View>
 
@@ -1050,950 +2243,6 @@ export const PurchaseOrder2 = props => {
             },
           ]}>
           props.createdAt
-        </Text>
-      </View>
-    </View>
-  );
-};
-
-export const OrderQuotation = props => {
-  const [orderQuotationModal, setOrderQuotationModal] = useState(false);
-  const isMyMessage = () => {
-    if (props.userID == props.senderID) return true;
-    else return false;
-  };
-  return (
-    <View>
-      <View>
-        {!isMyMessage() && (
-          <View
-            style={{
-              left: Mixins.scaleWidth(5),
-              top: Mixins.scaleHeight(50),
-              borderColor: 'white',
-              borderWidth: Mixins.scaleWidth(0.2),
-              width: Mixins.scaleWidth(28),
-              height: Mixins.scaleWidth(28),
-              position: 'absolute',
-              borderRadius: 100,
-              justifyContent: 'center',
-              backgroundColor: Colors.GRAY_WHITE,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}>
-            <Text
-              style={{
-                color: Colors.GRAY_DARK,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
-              {props.sender}JK
-            </Text>
-          </View>
-        )}
-      </View>
-      <View
-        style={{
-          marginLeft: isMyMessage() ? Mixins.scaleWidth(120) : 0,
-          marginRight: isMyMessage() ? 0 : Mixins.scaleWidth(120),
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: isMyMessage() ? '#DCF8C5' : Colors.GRAY_MEDIUM,
-          width: Mixins.scaleWidth(170),
-          height: Mixins.scaleHeight(65),
-          borderRadius: 10,
-          left: isMyMessage() ? 0 : Mixins.scaleWidth(50),
-          marginTop: Mixins.scaleHeight(15),
-          height: Mixins.scaleHeight(70),
-        }}>
-        <Text style={[Typography.large, {top: Mixins.scaleHeight(-8)}]}>
-          Order Quotation
-        </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            top: Mixins.scaleHeight(-5),
-          }}>
-          <TouchableOpacity
-            onPress={() => setOrderQuotationModal(true)}
-            style={{
-              backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(60),
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 5,
-              right: Mixins.scaleWidth(3),
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}>
-            <Text style={[Typography.small]}>Inspect</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              backgroundColor: Colors.LIGHT_BLUE,
-              width: Mixins.scaleWidth(70),
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 5,
-              left: Mixins.scaleWidth(3),
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-            }}>
-            <Text style={[Typography.small]}>Download</Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={[
-            Typography.small,
-            {
-              alignSelf: 'flex-end',
-              top: Mixins.scaleHeight(5),
-              right: Mixins.scaleWidth(10),
-            },
-          ]}>
-          {props.createdAt}
-        </Text>
-      </View>
-
-      <Modal isVisible={orderQuotationModal}>
-        <OrderQuotationModal setOrderQuotationModal={setOrderQuotationModal} />
-      </Modal>
-    </View>
-  );
-};
-
-const OrderQuotationModal = props => {
-  return (
-    <View
-      style={{
-        flexDirection: 'column',
-        width: wp('90%'),
-        height: hp('85%'),
-        backgroundColor: Colors.GRAY_LIGHT,
-        borderRadius: 15,
-        alignItems: 'center',
-      }}>
-      <View
-        style={{
-          top: hp('4%'),
-          alignItems: 'center',
-        }}>
-        <Text style={[Typography.large, {}]}>{Strings.orderQuotationFrom}</Text>
-        <Text style={[Typography.header]}>
-          <Text style={{color: '#8EAB3D'}}>Hinsou WholeSale</Text>
-        </Text>
-        <Text style={[Typography.small]}>#PQ12345678T</Text>
-      </View>
-      <View
-        style={{
-          position: 'absolute',
-          right: wp('2%'),
-          top: hp('1%'),
-        }}>
-        <CloseButton setModal={props.setOrderQuotationModal} />
-      </View>
-      <View
-        style={{
-          top: hp('20%'),
-          alignItems: 'center',
-          position: 'absolute',
-        }}>
-        <OrderList></OrderList>
-      </View>
-      <View
-        style={{
-          top: hp('40%'),
-          alignItems: 'center',
-          height: hp('15%'),
-          width: wp('75%'),
-          backgroundColor: 'white',
-          borderRadius: 10,
-          flexDirection: 'row',
-          justifyContent: 'center',
-        }}>
-        <Text style={[Typography.small, {right: wp('6%')}]}>
-          {Strings.orderQuotationList}
-        </Text>
-        <Text
-          style={[
-            Typography.small,
-            {
-              textAlign: 'right',
-              left: wp('6%'),
-            },
-          ]}>
-          RM 6,400{'\n'}June 30,2021{'\n'}Supplier's Fleet{'\n'}Cash On Pick-Up
-        </Text>
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          top: hp('48%'),
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: Colors.LIGHT_BLUE,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-            right: wp('5%'),
-            width: wp('25%'),
-            height: hp('4%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 10,
-          }}>
-          <Text style={[Typography.small]}>{Strings.accept}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            backgroundColor: Colors.LIGHT_BLUE,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5,
-            left: wp('5%'),
-            width: wp('25%'),
-            height: hp('4%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 10,
-          }}>
-          <Text style={[Typography.small]}>{Strings.decline}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
-
-const OrderList = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          alignSelf: 'center',
-          width: wp('70%'),
-        }}></View>
-    );
-  };
-  return (
-    <View>
-      <FlatList
-        numColumns={1}
-        data={props.products}
-        ItemSeparatorComponent={Seperator}
-        renderItem={({item}) => {
-          return (
-            <OrderCard
-              name={item.name}
-              variety={item.variety}
-              grade={item.grade}
-              quantity={item.quantity}
-              siUnit={item.siUnit}
-              index={item.index}
-              products={props.products}
-              setProducts={props.setProducts}
-            />
-          );
-        }}></FlatList>
-    </View>
-  );
-};
-
-const OrderCard = props => {
-  const [quantity, setQuantity] = useState(props.quantity.toString());
-  const [price, setPrice] = useState('');
-  const updatePrice = item2 => {
-    var tempList = props.products;
-    try {
-      tempList.forEach((item, index, array) => {
-        if (index == props.index) {
-          item['price'] = parseFloat(item2);
-          array[index] = item;
-        }
-      });
-    } catch (e) {
-      console.log(e);
-    }
-    console.log('updating Price to the list');
-    props.setProducts(tempList);
-    setPrice(item2);
-  };
-  const updateQuantity = item2 => {
-    var tempList = props.products;
-    tempList.forEach((item, index, array) => {
-      if (index == props.index) {
-        item['quantity'] = parseInt(item2);
-        array[index] = item;
-      }
-    });
-    console.log('updating quantity to the list');
-    props.setProducts(tempList);
-    setQuantity(item2);
-  };
-  return (
-    <View
-      style={{
-        height: hp('8%'),
-        width: wp('80%'),
-        marginBottom: hp('0.5%'),
-        borderBottomColor: Colors.GRAY_DARK,
-        borderBottomWidth: 1,
-        alignItems: 'center',
-        flexDirection: 'row',
-      }}>
-      <View style={{left: wp('1%'), width: wp('22%')}}>
-        <Text style={[Typography.normal, {}]}>{props.name} </Text>
-        <Text style={[Typography.small]}>Grade: {props.grade}</Text>
-
-        <Text style={[Typography.small]}>{props.variety}</Text>
-      </View>
-      <View style={{flexDirection: 'row', left: wp('3%')}}>
-        <TextInput
-          value={quantity}
-          underlineColorAndroid="transparent"
-          onChangeText={item => updateQuantity(item)}
-          keyboardType="numeric"
-          style={{
-            width: wp('10%'),
-            top: hp('0.5%'),
-            borderBottomColor: 'transparent',
-          }}></TextInput>
-        <Text
-          style={[
-            Typography.small,
-            {
-              top: hp('1%'),
-              left: wp('1%'),
-            },
-          ]}>
-          {props.siUnit}
-        </Text>
-      </View>
-      <View style={{flexDirection: 'row', left: wp('5%')}}>
-        <Text
-          style={[
-            Typography.small,
-            {
-              top: hp('1%'),
-              left: wp('1%'),
-            },
-          ]}>
-          RM
-        </Text>
-        <TextInput
-          value={price}
-          underlineColorAndroid="transparent"
-          onChangeText={item => updatePrice(item)}
-          keyboardType="numeric"
-          style={{
-            top: hp('0.5%'),
-            left: wp('1%'),
-            width: wp('9%'),
-            borderBottomColor: 'transparent',
-          }}></TextInput>
-        <Text
-          style={[
-            Typography.small,
-            {
-              top: hp('1%'),
-              left: wp('1%'),
-            },
-          ]}>
-          /{props.siUnit}
-        </Text>
-      </View>
-
-      <Text
-        style={[
-          Typography.small,
-          {
-            textAlign: 'right',
-            right: wp('1%'),
-            position: 'absolute',
-          },
-        ]}>
-        RM {parseInt(quantity) * parseFloat(price)}
-      </Text>
-    </View>
-  );
-};
-
-const InvoiceList = props => {
-  return (
-    <View>
-      <FlatList
-        numColumns={1}
-        data={[{name: '1'}, {name: '1'}, {name: '1'}, {name: '1'}]}
-        renderItem={({item}) => {
-          return <InvoiceCard name={item.name} />;
-        }}
-      />
-    </View>
-  );
-};
-
-const InvoiceCard = props => {
-  return (
-    <TouchableOpacity>
-      <Text
-        style={[
-          Typography.normal,
-          {
-            height: hp('5%'),
-            justifyContent: 'center',
-          },
-        ]}>
-        {Strings.invoices}
-      </Text>
-    </TouchableOpacity>
-  );
-};
-
-const PurchaseOrder = props => {
-  const [products, setProducts] = useState([]);
-  const [orderQuotation, setOrderQuotation] = useState(false);
-  const [successfulModal, setSuccessfulModal] = useState(false);
-  const fetchPO = async () => {
-    const prodList = await API.graphql({
-      query: purchaseOrderItems,
-      variables: {purchaseOrderID: props.chatGroupID},
-    });
-
-    console.log('successful fetch for PO items');
-    setProducts(prodList.data.purchaseOrderItems.items);
-  };
-  useEffect(() => {
-    fetchPO();
-  }, []);
-  return (
-    <View
-      style={{
-        height: hp('80%'),
-        width: wp('90%'),
-        backgroundColor: Colors.GRAY_MEDIUM,
-        borderRadius: 10,
-        alignItems: 'center',
-      }}>
-      <View style={{alignItems: 'center'}}>
-        <Text
-          style={[
-            Typography.large,
-            {
-              fontFamily: 'Poppins-SemiBold',
-              top: hp('3%'),
-            },
-          ]}>
-          {Strings.purchaseOrderFrom}
-        </Text>
-        <Text
-          style={[
-            Typography.header,
-            {
-              fontFamily: 'Poppins-Bold',
-              color: Colors.LIME_GREEN,
-              top: hp('3%'),
-            },
-          ]}>
-          {props.chatName}
-        </Text>
-      </View>
-      <View
-        style={{
-          height: hp('50%'),
-          top: hp('5%'),
-          borderRadius: 10,
-        }}>
-        <PurchaseOrderList products={products}></PurchaseOrderList>
-      </View>
-      <View
-        style={{
-          position: 'absolute',
-          right: wp('2%'),
-          top: hp('0.5%'),
-        }}>
-        <CloseButton setModal={props.setPurchaseOrderModal} />
-      </View>
-      {props.type == 'supplier' ? (
-        <TouchableOpacity
-          onPress={() => setOrderQuotation(true)}
-          style={{
-            position: 'absolute',
-            borderRadius: 15,
-            bottom: hp('7%'),
-            height: hp('5%'),
-            width: wp('50%'),
-            backgroundColor: Colors.LIGHT_BLUE,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text style={Typography.normal}>Create Order Quotation</Text>
-        </TouchableOpacity>
-      ) : (
-        <View></View>
-      )}
-      <Modal isVisible={orderQuotation}>
-        <NewOrderQuotation
-          chatName={props.chatName}
-          chatGroupID={props.chatGroupID}
-          setOrderQuotation={setOrderQuotation}
-          products={products}
-          setSuccessfulModal={setSuccessfulModal}
-          type={props.type}
-          userName={props.userName}
-          userID={props.userID}
-        />
-      </Modal>
-      <Modal
-        isVisible={successfulModal}
-        onBackdropPress={() => setSuccessfulModal(false)}>
-        <SuccessfulModal setSuccessfulModal={setSuccessfulModal} />
-      </Modal>
-    </View>
-  );
-};
-
-const NewOrderQuotation = props => {
-  const [openDelivery, setOpenDelivery] = useState(false);
-  const [sum, setSum] = useState('');
-  const [deliveryValue, setDeliveryValue] = useState(null);
-  const [deliveryMethod, setDeliveryMethod] = useState([
-    {label: 'No', value: false},
-    {label: 'Yes', value: true},
-  ]);
-  const [openPayment, setOpenPayment] = useState(false);
-  const [paymentValue, setPaymentValue] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState([
-    {label: 'Cash', value: 'cashOnDelivery'},
-    {label: 'Credit Term', value: 'creditTerm'},
-  ]);
-
-  var productsWIndex = props.products;
-  productsWIndex.forEach((item, index, arr) => {
-    console.log('adding index to check back later');
-    item['index'] = index;
-    arr[index] = item;
-  });
-  console.log('printing productsWIndex');
-
-  const [products, setProducts] = useState(productsWIndex);
-  const [trigger, setTrigger] = useState(true);
-
-  useEffect(() => {
-    console.log('useEffect to calculate sum Triggered');
-    var tempSum = 0;
-    products.forEach((item, index, arr) => {
-      tempSum = tempSum + item.price * item.quantity;
-    });
-    setSum(tempSum);
-  }, [trigger, products]);
-
-  const sendQuotation = async () => {
-    var tempList = products;
-    tempList.forEach((item, index, array) => {
-      delete item.createdAt;
-      delete item.id;
-      delete item.index;
-      delete item.purchaseOrderID, delete item.updatedAt;
-      array[index] = item;
-    });
-    console.log('removing key and value pairs like index for order quotation');
-    try {
-      const updatedValue = await API.graphql({
-        query: updateOrderQuotation,
-        variables: {
-          input: {
-            id: props.chatGroupID,
-            items: tempList,
-            sum: sum,
-            logisticsProvided: deliveryValue,
-            paymentTerms: paymentValue,
-          },
-        },
-      });
-    } catch (e) {
-      if (e.errors[0].errorType == 'DynamoDB:ConditionalCheckFailedException') {
-        console.log('order quotation has not been created, creating now');
-        const createdValue = await API.graphql({
-          query: createOrderQuotation,
-          variables: {
-            input: {
-              id: props.chatGroupID,
-              items: tempList,
-              sum: sum,
-              logisticsProvided: deliveryValue,
-              paymentTerms: paymentValue,
-            },
-          },
-        });
-      }
-    }
-    try {
-      console.log('sending order quotation');
-      const createdMessage = await API.graphql({
-        query: createMessage,
-        variables: {
-          input: {
-            chatGroupID: props.chatGroupID,
-            type: 'quotation',
-            content: props.chatGroupID,
-            sender: props.userName,
-            senderID: props.userID,
-          },
-        },
-      });
-      console.log('message created');
-      const updatedChat = await API.graphql({
-        query: updateChatGroup,
-        variables: {
-          input: {
-            id: props.chatGroupID,
-            mostRecentMessage: 'Order Quotation',
-            mostRecentMessageSender: props.userName,
-          },
-        },
-      });
-      console.log('Updated chat');
-      props.setSuccessfulModal(true);
-      props.setOrderQuotation(false);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  return (
-    <View
-      style={{
-        flexDirection: 'column',
-        width: wp('90%'),
-        height: hp('95%'),
-        backgroundColor: Colors.GRAY_LIGHT,
-        borderRadius: 15,
-        alignItems: 'center',
-      }}>
-      <View
-        style={{
-          top: hp('4%'),
-          alignItems: 'center',
-        }}>
-        <Text style={[Typography.large]}>{Strings.orderQuotationFrom}</Text>
-
-        <Text
-          style={[
-            Typography.header,
-            {color: Colors.LIME_GREEN, bottom: hp('1%')},
-          ]}>
-          {props.chatName}
-        </Text>
-
-        <Text style={[Typography.small, {bottom: hp('1%')}]}>
-          #{props.chatGroupID.slice(0, 8)}
-        </Text>
-      </View>
-      <View
-        style={{
-          position: 'absolute',
-          right: wp('2%'),
-          top: hp('1%'),
-        }}>
-        <CloseButton setModal={props.setOrderQuotation} />
-      </View>
-      <View
-        style={{
-          height: hp('40%'),
-          top: hp('17%'),
-          alignItems: 'center',
-          position: 'absolute',
-        }}>
-        <OrderList products={products} setProducts={setProducts}></OrderList>
-      </View>
-      <TouchableOpacity
-        style={{position: 'absolute', left: wp('50%'), top: hp('57%')}}
-        onPress={() => {
-          if (trigger) {
-            setTrigger(false);
-          } else {
-            setTrigger(true);
-          }
-        }}>
-        <Text
-          style={[
-            Typography.normal,
-            {
-              fontFamily: 'Poppins-SemiBold',
-            },
-          ]}>
-          {Strings.totalCost}: RM {sum}
-        </Text>
-      </TouchableOpacity>
-      <View
-        style={{
-          top: hp('50%'),
-          alignItems: 'center',
-          height: hp('24%'),
-          width: wp('80%'),
-          backgroundColor: 'white',
-          borderRadius: 10,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-
-            height: wp('20%'),
-
-            width: wp('70%'),
-            top: hp('2%'),
-          }}>
-          <Text style={[Typography.small]}>Logistics Provided:</Text>
-          <DropDownPicker
-            open={openDelivery}
-            value={deliveryValue}
-            items={deliveryMethod}
-            placeholder={'Yes'}
-            setOpen={setOpenDelivery}
-            setValue={setDeliveryValue}
-            setItems={setDeliveryMethod}
-            style={{
-              width: wp('25%'),
-              left: wp('17%'),
-
-              height: hp('4%'),
-              borderColor: 'white',
-              borderRadius: 3,
-              backgroundColor: Colors.GRAY_LIGHT,
-            }}
-            text
-            dropDownDirection="BOTTOM"
-            listItemContainerStyle={{height: hp('3%')}}
-            dropDownContainerStyle={{
-              borderWidth: 1,
-              left: wp('20%'),
-              width: wp('20%'),
-              backgroundColor: Colors.GRAY_LIGHT,
-            }}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            height: wp('20%'),
-
-            width: wp('70%'),
-            top: hp('3%'),
-          }}>
-          <Text style={[Typography.small]}>Payment Terms:</Text>
-          <DropDownPicker
-            open={openPayment}
-            value={paymentValue}
-            items={paymentMethod}
-            placeholder={'Credit Term'}
-            setOpen={setOpenPayment}
-            setValue={setPaymentValue}
-            setItems={setPaymentMethod}
-            style={{
-              width: wp('35%'),
-              left: wp('10%'),
-              height: hp('4%'),
-              borderColor: 'white',
-              borderRadius: 3,
-              backgroundColor: Colors.GRAY_LIGHT,
-            }}
-            dropDownDirection="BOTTOM"
-            listItemContainerStyle={{height: hp('3%')}}
-            dropDownContainerStyle={{
-              borderWidth: 1,
-              left: wp('10%'),
-              width: wp('35%'),
-              backgroundColor: Colors.GRAY_LIGHT,
-            }}
-          />
-        </View>
-      </View>
-      <View
-        style={{
-          top: hp('52%'),
-        }}>
-        <TouchableOpacity
-          onPress={() => sendQuotation()}
-          style={{
-            backgroundColor: Colors.LIGHT_BLUE,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5,
-
-            width: wp('55%'),
-            height: hp('4%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 10,
-          }}>
-          <Text style={[Typography.small]}>Send Quotation to Retailer</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
-
-const PurchaseOrderList = props => {
-  const Seperator = () => {
-    return (
-      <View
-        style={{
-          height: 0,
-          borderBottomWidth: 1,
-          borderRadius: 10,
-          width: wp('70%'),
-          borderColor: Colors.GRAY_MEDIUM,
-        }}></View>
-    );
-  };
-  return (
-    <FlatList
-      refreshControl={
-        <RefreshControl
-          refreshing={props.refreshing}
-          onRefresh={props.onRefresh}
-        />
-      }
-      keyExtractor={item => item.id}
-      data={props.products}
-      numColumns={1}
-      ItemSeparatorComponent={Seperator}
-      ListEmptyComponent={
-        <View
-          style={{
-            width: wp('80%'),
-            height: hp('60%'),
-            top: hp('2%'),
-          }}></View>
-      }
-      renderItem={({item}) => {
-        return (
-          <PurchaseOrderComponent
-            name={item.name}
-            quantity={item.quantity}
-            siUnit={item.siUnit}
-            variety={item.variety}
-            grade={item.grade}
-          />
-        );
-      }}
-    />
-  );
-};
-
-const PurchaseOrderComponent = props => {
-  return (
-    <View
-      style={{
-        height: hp('5%'),
-        borderRadius: 10,
-        backgroundColor: Colors.GRAY_WHITE,
-        width: wp('85%'),
-      }}>
-      <View style={{flexDirection: 'row', top: hp('1.5%')}}>
-        <Text
-          style={[Typography.small, {position: 'absolute', left: wp('2%')}]}>
-          {props.name}
-        </Text>
-        <Text
-          style={[Typography.small, {position: 'absolute', left: wp('45%')}]}>
-          {props.variety}
-        </Text>
-        <Text
-          style={[Typography.small, {position: 'absolute', left: wp('27%')}]}>
-          Grade: {props.grade}
-        </Text>
-
-        <Text
-          style={[Typography.small, {position: 'absolute', right: wp('5%')}]}>
-          {props.quantity}
-          {props.siUnit}
-        </Text>
-      </View>
-    </View>
-  );
-};
-
-const SuccessfulModal = props => {
-  return (
-    <View
-      style={{
-        height: hp('50%'),
-        width: wp('85%'),
-        backgroundColor: Colors.PALE_GREEN,
-        borderRadius: 20,
-        alignItems: 'center',
-        alignSelf: 'center',
-      }}>
-      <View style={{top: hp('2%')}}>
-        <Image
-          source={require('_assets/images/Good-Vege.png')}
-          style={{
-            resizeMode: 'contain',
-            width: wp('55%'),
-            height: hp('25%'),
-          }}
-        />
-      </View>
-      <View style={{top: hp('2%')}}>
-        <Text style={[Typography.header]}>SUCCESS!</Text>
-      </View>
-      <View style={{width: wp('70%'), top: hp('4%')}}>
-        <Text
-          style={[
-            {textAlign: 'center', lineHeight: wp('3%')},
-            Typography.small,
-          ]}>
-          You have successfully added your crops! We'll send you a notification
-          as soon as retailers buy your produce!
-        </Text>
-      </View>
-      <View style={{width: wp('50%'), top: hp('8%')}}>
-        <Text
-          style={[
-            {textAlign: 'center', lineHeight: hp('3%')},
-            Typography.small,
-          ]}>
-          Keep adding for more!
         </Text>
       </View>
     </View>

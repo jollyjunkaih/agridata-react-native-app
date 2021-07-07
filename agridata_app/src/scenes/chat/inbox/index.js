@@ -8,18 +8,17 @@ import {
   getChatGroupsContainingRetailersByUpdatedAt,
   getChatGroupsContainingSuppliersByUpdatedAt,
 } from '../../../graphql/queries';
-import {API} from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import {DismissKeyboardView} from '_components';
 import Strings from '_utils';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {onUpdateChatGroup} from '../../../graphql/subscriptions';
 
 export const Inbox = props => {
-  console.log('inbox' + props.user);
-  const userID = props.user.id;
-
+  const [chatRooms, setChatRooms] = useState(null);
   if (props.user.retailerCompanyID == null) {
     var companyID = props.user.supplierCompany.id;
     var companyType = 'supplier';
@@ -28,21 +27,93 @@ export const Inbox = props => {
     var companyType = 'retailer';
   }
 
-  const [chatRooms, setChatRooms] = useState(null);
+  useEffect(() => {
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      console.log('Refreshed!');
+      fetchChats();
+    });
+    return unsubscribe;
+  }, [props.navigation]);
+
+  useEffect(() => {
+    console.log(chatRooms);
+    const subscription = API.graphql(
+      graphqlOperation(onUpdateChatGroup),
+    ).subscribe({
+      next: data => {
+        const newMessage = data.value.data.onUpdateChatGroup;
+        fetchChats();
+        /*try {
+          console.log(chatRooms);
+          var chatList = chatRooms;
+          if (companyType == 'supplier') {
+            if (chatRooms) {
+              var removedList = chatList.filter(item => {
+                console.log(item.id + '     ' + newMessage.id);
+                return item.id != newMessage.id;
+              });
+              console.log('Updating chat');
+              console.log(removedList);
+              removedList = removedList.reverse();
+              removedList.push(newMessage);
+              removedList = removedList.reverse();
+              console.log(removedList);
+              setChatRooms(removedList);
+            } else {
+              console.log('chatroom is null');
+            }
+          } else {
+            if (chatRooms) {
+              var removedList = chatList.filter(item => {
+                console.log(item.id + '     ' + newMessage.id);
+                return item.id != newMessage.id;
+              });
+              console.log('Updating chat');
+              console.log(removedList);
+              removedList = removedList.reverse();
+              removedList.push(newMessage);
+              removedList = removedList.reverse();
+              console.log(removedList);
+              setChatRooms(removedList);
+            } else {
+              console.log('chatroom is null');
+            }
+          }
+        } catch (e) {
+          console.log(e);
+        }*/
+        /* 
+      
+        if (newMessage.id != itemID) {
+          console.log('Message is in another room!');
+          return;
+        }
+        console.log(newMessage.senderID, props.user.id);
+        &*/
+
+        /*var messageList = messages;
+
+        messageList = messageList.reverse();
+        messageList.push(newMessage);
+        messageList = messageList.reverse();
+        setMessages(messageList);*/
+      },
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   const fetchChats = async () => {
     try {
-      console.log(userID);
       if (companyType == 'retailer') {
         const chats = await API.graphql({
           query: getChatGroupsContainingRetailersByUpdatedAt,
           variables: {
             retailerID: companyID,
-            sortDirection: 'ASC',
+            sortDirection: 'DESC',
           },
         });
-        console.log(
-          chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
-        );
+        console.log('fetching chats');
         setChatRooms(
           chats.data.getChatGroupsContainingRetailersByUpdatedAt.items,
         );
@@ -51,12 +122,10 @@ export const Inbox = props => {
           query: getChatGroupsContainingSuppliersByUpdatedAt,
           variables: {
             supplierID: companyID,
-            sortDirection: 'ASC',
+            sortDirection: 'DESC',
           },
         });
-        console.log(
-          chats.data.getChatGroupsContainingSuppliersByUpdatedAt.items,
-        );
+        console.log('fetching chats');
         setChatRooms(
           chats.data.getChatGroupsContainingSuppliersByUpdatedAt.items,
         );
@@ -66,9 +135,6 @@ export const Inbox = props => {
       console.log("there's a problem");
     }
   };
-  useEffect(() => {
-    fetchChats();
-  }, []);
 
   return (
     <SafeAreaView

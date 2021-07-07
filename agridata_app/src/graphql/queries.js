@@ -21,9 +21,9 @@ export const getUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -113,9 +113,9 @@ export const getUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -214,9 +214,9 @@ export const getUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -417,8 +417,10 @@ export const getRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -502,8 +504,10 @@ export const getRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -547,9 +551,9 @@ export const getRetailerCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -643,9 +647,9 @@ export const listRetailerCompanys = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -771,8 +775,10 @@ export const getSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -856,8 +862,10 @@ export const getSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -901,9 +909,9 @@ export const getSupplierCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -1015,9 +1023,9 @@ export const listSupplierCompanys = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -1108,9 +1116,9 @@ export const getChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -1210,9 +1218,9 @@ export const getChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -1233,9 +1241,9 @@ export const getChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -1266,9 +1274,9 @@ export const getChatGroup = /* GraphQL */ `
         nextToken
       }
       updatedAt
+      createdAt
       mostRecentMessage
       mostRecentMessageSender
-      createdAt
     }
   }
 `;
@@ -1380,9 +1388,9 @@ export const listChatGroups = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       nextToken
     }
@@ -1531,9 +1539,9 @@ export const getChatGroupUsers = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       user {
         id
@@ -1678,9 +1686,9 @@ export const listChatGroupUserss = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         user {
           id
@@ -1818,9 +1826,9 @@ export const getProductListing = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2067,9 +2075,9 @@ export const getGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2169,9 +2177,9 @@ export const getGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2184,8 +2192,10 @@ export const getGoodsTask = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       deliveryDate
@@ -2278,8 +2288,10 @@ export const listGoodsTasks = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         deliveryDate
@@ -2365,9 +2377,9 @@ export const getPaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2467,9 +2479,9 @@ export const getPaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2563,8 +2575,10 @@ export const getPaymentTask = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -2692,8 +2706,10 @@ export const listPaymentTasks = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -2782,9 +2798,9 @@ export const getInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2884,9 +2900,9 @@ export const getInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2899,8 +2915,10 @@ export const getInvoice = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       paid
@@ -2994,8 +3012,10 @@ export const listInvoices = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -3124,9 +3144,9 @@ export const getChatGroupsContainingRetailersByUpdatedAt = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       nextToken
     }
@@ -3250,9 +3270,9 @@ export const getChatGroupsContainingSuppliersByUpdatedAt = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       nextToken
     }
@@ -3560,8 +3580,10 @@ export const goodsTaskForRetailerByDate = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         deliveryDate
@@ -3666,8 +3688,10 @@ export const goodsTaskForSupplierByDate = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         deliveryDate
@@ -3804,8 +3828,10 @@ export const paymentsTaskForRetailerByDate = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -3945,8 +3971,10 @@ export const paymentsTaskForSupplierByDate = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -4054,8 +4082,10 @@ export const invoiceForRetailerByDate = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -4161,8 +4191,10 @@ export const invoiceForSupplierByDate = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid

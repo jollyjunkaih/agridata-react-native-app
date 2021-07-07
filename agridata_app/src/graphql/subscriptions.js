@@ -21,9 +21,9 @@ export const onCreateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -113,9 +113,9 @@ export const onCreateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -214,9 +214,9 @@ export const onCreateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -250,9 +250,9 @@ export const onUpdateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -342,9 +342,9 @@ export const onUpdateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -443,9 +443,9 @@ export const onUpdateUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -479,9 +479,9 @@ export const onDeleteUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -571,9 +571,9 @@ export const onDeleteUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -672,9 +672,9 @@ export const onDeleteUser = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -772,8 +772,10 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -857,8 +859,10 @@ export const onCreateRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -902,9 +906,9 @@ export const onCreateRetailerCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -999,8 +1003,10 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -1084,8 +1090,10 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -1129,9 +1137,9 @@ export const onUpdateRetailerCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -1226,8 +1234,10 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -1311,8 +1321,10 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -1356,9 +1368,9 @@ export const onDeleteRetailerCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -1482,8 +1494,10 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -1567,8 +1581,10 @@ export const onCreateSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -1612,9 +1628,9 @@ export const onCreateSupplierCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -1738,8 +1754,10 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -1823,8 +1841,10 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -1868,9 +1888,9 @@ export const onUpdateSupplierCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -1994,8 +2014,10 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           deliveryDate
@@ -2079,8 +2101,10 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
           items {
             name
             quantity
-            price
             siUnit
+            variety
+            grade
+            price
           }
           createdAt
           paid
@@ -2124,9 +2148,9 @@ export const onDeleteSupplierCompany = /* GraphQL */ `
             nextToken
           }
           updatedAt
+          createdAt
           mostRecentMessage
           mostRecentMessageSender
-          createdAt
         }
         nextToken
       }
@@ -2215,9 +2239,9 @@ export const onCreateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2317,9 +2341,9 @@ export const onCreateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2340,9 +2364,9 @@ export const onCreateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -2373,9 +2397,9 @@ export const onCreateChatGroup = /* GraphQL */ `
         nextToken
       }
       updatedAt
+      createdAt
       mostRecentMessage
       mostRecentMessageSender
-      createdAt
     }
   }
 `;
@@ -2457,9 +2481,9 @@ export const onUpdateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2559,9 +2583,9 @@ export const onUpdateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2582,9 +2606,9 @@ export const onUpdateChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -2615,9 +2639,9 @@ export const onUpdateChatGroup = /* GraphQL */ `
         nextToken
       }
       updatedAt
+      createdAt
       mostRecentMessage
       mostRecentMessageSender
-      createdAt
     }
   }
 `;
@@ -2699,9 +2723,9 @@ export const onDeleteChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2801,9 +2825,9 @@ export const onDeleteChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -2824,9 +2848,9 @@ export const onDeleteChatGroup = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           user {
             id
@@ -2857,9 +2881,9 @@ export const onDeleteChatGroup = /* GraphQL */ `
         nextToken
       }
       updatedAt
+      createdAt
       mostRecentMessage
       mostRecentMessageSender
-      createdAt
     }
   }
 `;
@@ -3013,9 +3037,9 @@ export const onCreateChatGroupUsers = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       user {
         id
@@ -3222,9 +3246,9 @@ export const onUpdateChatGroupUsers = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       user {
         id
@@ -3431,9 +3455,9 @@ export const onDeleteChatGroupUsers = /* GraphQL */ `
           nextToken
         }
         updatedAt
+        createdAt
         mostRecentMessage
         mostRecentMessageSender
-        createdAt
       }
       user {
         id
@@ -3626,9 +3650,9 @@ export const onCreateProductListing = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -3746,9 +3770,9 @@ export const onUpdateProductListing = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -3866,9 +3890,9 @@ export const onDeleteProductListing = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4073,9 +4097,9 @@ export const onCreateGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4175,9 +4199,9 @@ export const onCreateGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4190,8 +4214,10 @@ export const onCreateGoodsTask = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       deliveryDate
@@ -4275,9 +4301,9 @@ export const onUpdateGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4377,9 +4403,9 @@ export const onUpdateGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4392,8 +4418,10 @@ export const onUpdateGoodsTask = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       deliveryDate
@@ -4477,9 +4505,9 @@ export const onDeleteGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4579,9 +4607,9 @@ export const onDeleteGoodsTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4594,8 +4622,10 @@ export const onDeleteGoodsTask = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       deliveryDate
@@ -4679,9 +4709,9 @@ export const onCreatePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4781,9 +4811,9 @@ export const onCreatePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -4877,8 +4907,10 @@ export const onCreatePaymentTask = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -4965,9 +4997,9 @@ export const onUpdatePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5067,9 +5099,9 @@ export const onUpdatePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5163,8 +5195,10 @@ export const onUpdatePaymentTask = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -5251,9 +5285,9 @@ export const onDeletePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5353,9 +5387,9 @@ export const onDeletePaymentTask = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5449,8 +5483,10 @@ export const onDeletePaymentTask = /* GraphQL */ `
         items {
           name
           quantity
-          price
           siUnit
+          variety
+          grade
+          price
         }
         createdAt
         paid
@@ -5537,9 +5573,9 @@ export const onCreateInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5639,9 +5675,9 @@ export const onCreateInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5654,8 +5690,10 @@ export const onCreateInvoice = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       paid
@@ -5740,9 +5778,9 @@ export const onUpdateInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5842,9 +5880,9 @@ export const onUpdateInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -5857,8 +5895,10 @@ export const onUpdateInvoice = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       paid
@@ -5943,9 +5983,9 @@ export const onDeleteInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -6045,9 +6085,9 @@ export const onDeleteInvoice = /* GraphQL */ `
             retailerID
             supplierID
             updatedAt
+            createdAt
             mostRecentMessage
             mostRecentMessageSender
-            createdAt
           }
           nextToken
         }
@@ -6060,8 +6100,10 @@ export const onDeleteInvoice = /* GraphQL */ `
       items {
         name
         quantity
-        price
         siUnit
+        variety
+        grade
+        price
       }
       createdAt
       paid

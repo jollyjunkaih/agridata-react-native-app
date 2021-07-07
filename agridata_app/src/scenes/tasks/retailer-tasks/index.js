@@ -143,6 +143,12 @@ export const RetailerTasks = props => {
                 createdAt: '29 June 2021',
                 id: 4,
               },
+              {
+                supplierName: "Gina's Avacadoes",
+                items: 2,
+                createdAt: '29 June 2021',
+                id: 5,
+              },
             ]}
           />
         ) : (

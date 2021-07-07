@@ -46,7 +46,7 @@ export const ChatRoom = props => {
           sortDirection: 'ASC',
         },
       });
-      console.log(message.data.messagesInChatByDate.items);
+      console.log('fetching messages');
       var tempMessage = message.data.messagesInChatByDate.items;
       setMessages(tempMessage.reverse());
     } catch (e) {
@@ -72,16 +72,14 @@ export const ChatRoom = props => {
           return;
         }
         console.log(newMessage.senderID, props.user.id);
-        if (newMessage.senderID == props.user.id) {
-          console.log('Message is sent by me!');
-          return;
-        }
-        var messageList = messages;
+
+        setMessages(messages => [newMessage, ...messages]);
+        /*var messageList = messages;
 
         messageList = messageList.reverse();
         messageList.push(newMessage);
         messageList = messageList.reverse();
-        setMessages(messageList);
+        setMessages(messageList);*/
       },
     });
 
@@ -131,7 +129,8 @@ export const ChatRoom = props => {
         query: updateChatGroupUsers,
         variables: {input: {id: uniqueID, lastOnline: dayjs()}},
       });
-      props.navigation.goBack();
+      console.log('updated last seen');
+      props.navigation.navigate('inbox');
     } catch (e) {
       if (e.errors[0].errorType == 'DynamoDB:ConditionalCheckFailedException') {
         console.log('no special connection created, creating one now');
@@ -146,7 +145,7 @@ export const ChatRoom = props => {
             },
           },
         });
-        props.navigation.goBack();
+        props.navigation.navigate('inbox');
       }
     }
   };
@@ -234,6 +233,8 @@ export const ChatRoom = props => {
             chatName={chatName}
             chatGroupID={itemID}
             type={type}
+            setMessages={setMessages}
+            messages={messages}
           />
         </View>
 

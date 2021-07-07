@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -8,16 +8,67 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {SendTaskList, ReceivePaymentTaskList, SortModal} from '../components';
+import {SortModal} from '../components';
+import {SendTaskList, ReceivePaymentTaskList} from './components';
 import {NavBar} from '_components';
 import Modal from 'react-native-modal';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {API} from 'aws-amplify';
+import {
+  goodsTaskForSupplierByDate,
+  paymentsTaskForSupplierByDate,
+} from '../../../graphql/queries';
 
 export const SupplierTasks = props => {
+  const [sendTask, setSendTask] = useState([]);
+  const [claimTask, setClaimTask] = useState([]);
   const [sortModal, setSortModal] = useState(false);
+  const [task, setTask] = useState('send');
+
+  useEffect(() => {
+    if (task == 'send') {
+      getSendTask();
+    } else if (task == 'claim') {
+      getClaimTask();
+    }
+  }, [task]);
+  const getSendTask = async () => {
+    try {
+      const task = await API.graphql({
+        query: goodsTaskForSupplierByDate,
+        variables: {
+          supplierID: props.user.supplierCompanyID,
+          sortDirection: 'ASC',
+        },
+      });
+      setSendTask(task.data.goodsTaskForSupplierByDate.items);
+      console.log(task.data.goodsTaskForSupplierByDate.items);
+      console.log('goods task');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getClaimTask = async () => {
+    try {
+      const task = await API.graphql({
+        query: paymentsTaskForSupplierByDate,
+        variables: {
+          supplierID: props.user.supplierCompanyID,
+          sortDirection: 'ASC',
+        },
+      });
+      setClaimTask(task.data.paymentsTaskForSupplierByDate.items);
+      console.log(task.data.paymentsTaskForSupplierByDate.items);
+      console.log('payment task');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -29,24 +80,62 @@ export const SupplierTasks = props => {
       }}>
       <Text style={[Typography.header, {top: hp('5%')}]}>Tasks</Text>
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity
-          style={{
-            right: wp('15%'),
-            top: hp('4%'),
-          }}>
-          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            Send
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            top: hp('4%'),
-            left: wp('15%'),
-          }}>
-          <Text style={[Typography.normal, {color: Colors.GRAY_DARK}]}>
-            Claim
-          </Text>
-        </TouchableOpacity>
+        {task == 'send' ? (
+          <View
+            style={{
+              right: wp('15%'),
+              top: hp('4%'),
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              To Send
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setTask('send')}
+            style={{
+              right: wp('15%'),
+              top: hp('4%'),
+            }}>
+            <Text style={[Typography.normal]}>To Send</Text>
+          </TouchableOpacity>
+        )}
+        {task == 'claim' ? (
+          <View
+            style={{
+              left: wp('15%'),
+              top: hp('4%'),
+            }}>
+            <Text
+              style={[
+                Typography.normal,
+                {
+                  color: Colors.GRAY_DARK,
+                  fontFamily: 'Poppins-Bold',
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              To Claim
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={() => setTask('claim')}
+            style={{
+              top: hp('4%'),
+              left: wp('15%'),
+            }}>
+            <Text style={[Typography.normal]}>To Claim</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <View
         style={{
@@ -75,17 +164,15 @@ export const SupplierTasks = props => {
       <View
         style={{
           top: hp('7%'),
-          height: hp('28%'),
+          height: hp('56%'),
         }}>
-        <SendTaskList SendTaskList={[{}, {}]} />
+        {task == 'claim' ? (
+          <ReceivePaymentTaskList data={claimTask} />
+        ) : (
+          <SendTaskList data={sendTask} />
+        )}
       </View>
-      <View
-        style={{
-          top: hp('10%'),
-          height: hp('28%'),
-        }}>
-        <ReceivePaymentTaskList ReceiveTaskList={[{}, {}]} />
-      </View>
+
       <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
         <NavBar navigation={props.navigation} />
       </View>

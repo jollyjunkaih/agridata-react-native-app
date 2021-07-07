@@ -73,12 +73,6 @@ export const ChatList = props => {
   };
   return (
     <FlatList
-      refreshControl={
-        <RefreshControl
-          refreshing={props.refreshing}
-          onRefresh={props.onRefresh}
-        />
-      }
       keyExtractor={item => item.id}
       data={props.data}
       numColumns={1}
@@ -118,7 +112,6 @@ export const ChatList = props => {
         }
         var senderArray = item.mostRecentMessageSender.split(' ');
         var firstName = senderArray[0];
-        console.log(item.chatParticipants.items);
         return (
           <ChatRoom
             chatName={chatName}
@@ -139,11 +132,9 @@ export const ChatList = props => {
 const ChatRoom = props => {
   const lastUpdated = dayjs(props.updatedAt).add(8, 'hour');
   var listOfParticipants = props.chatParticipants;
-  console.log(props.chatParticipants, props.userID);
   var tempList = listOfParticipants.filter(item => {
     return item.userID == props.userID;
   });
-  console.log(tempList.length);
   if (tempList.length == 0) {
     var lastSeen = dayjs().subtract(1, 'month');
   } else {
@@ -216,8 +207,6 @@ const ChatRoom = props => {
         ) : (
           <Text style={[Typography.small, {color: Colors.GRAY_DARK}]}>
             {lastUpdated.subtract(8, 'hour').fromNow()}
-            {lastUpdated.format('DD-HH-mm')}
-            {lastSeen.format('DD-HH-mm')}
           </Text>
         )}
       </View>
