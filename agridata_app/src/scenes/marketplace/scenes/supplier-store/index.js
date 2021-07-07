@@ -11,6 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const SupplierStore = props => {
   const [productList, setProducts] = useState([]);
@@ -45,7 +46,9 @@ export const SupplierStore = props => {
         width: wp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: hp('4%')}]}>My Store</Text>
+      <Text style={[Typography.header, {top: hp('4%')}]}>
+        {Strings.myStore}
+      </Text>
       <View
         style={{
           width: wp('90%'),

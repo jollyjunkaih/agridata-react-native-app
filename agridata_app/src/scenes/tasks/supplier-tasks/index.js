@@ -21,6 +21,7 @@ import {
   goodsTaskForSupplierByDate,
   paymentsTaskForSupplierByDate,
 } from '../../../graphql/queries';
+import Strings from '_utils';
 
 export const SupplierTasks = props => {
   const [sendTask, setSendTask] = useState([]);
@@ -78,7 +79,7 @@ export const SupplierTasks = props => {
         height: hp('100%'),
         alignItems: 'center',
       }}>
-      <Text style={[Typography.header, {top: hp('5%')}]}>Tasks</Text>
+      <Text style={[Typography.header, {top: hp('3%')}]}>{Strings.tasks}</Text>
       <View style={{flexDirection: 'row'}}>
         {task == 'send' ? (
           <View
@@ -95,7 +96,7 @@ export const SupplierTasks = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              To Send
+              {Strings.send}
             </Text>
           </View>
         ) : (
@@ -105,7 +106,7 @@ export const SupplierTasks = props => {
               right: wp('15%'),
               top: hp('4%'),
             }}>
-            <Text style={[Typography.normal]}>To Send</Text>
+            <Text style={[Typography.normal]}>{Strings.send}</Text>
           </TouchableOpacity>
         )}
         {task == 'claim' ? (
@@ -123,7 +124,7 @@ export const SupplierTasks = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              To Claim
+              {Strings.claim}
             </Text>
           </View>
         ) : (
@@ -133,7 +134,7 @@ export const SupplierTasks = props => {
               top: hp('4%'),
               left: wp('15%'),
             }}>
-            <Text style={[Typography.normal]}>To Claim</Text>
+            <Text style={[Typography.normal]}>{Strings.claim}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -149,11 +150,11 @@ export const SupplierTasks = props => {
         style={{
           width: wp('80%'),
           height: hp('5%'),
-          top: hp('6%'),
+          top: hp('7%'),
           flexDirection: 'row',
         }}>
         <Text style={[Typography.normal, {textTransform: 'uppercase'}]}>
-          All Results
+          {Strings.allResults}
         </Text>
         <TouchableOpacity
           onPress={() => setSortModal(true)}

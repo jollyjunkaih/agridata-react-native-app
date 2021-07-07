@@ -17,6 +17,7 @@ import {
 } from 'react-native-responsive-screen';
 import Modal from 'react-native-modal';
 import {Auth} from 'aws-amplify';
+import Strings from '_utils';
 
 export const ConfirmSignUp = props => {
   const [username, setPhone] = useState('');
@@ -99,7 +100,7 @@ export const ConfirmSignUp = props => {
               color: '#444443',
             },
           ]}>
-          VERIFICATION
+          {Strings.verificationWord}
         </Text>
         <Text
           style={[
@@ -107,12 +108,14 @@ export const ConfirmSignUp = props => {
             {
               top: hp('5%'),
               color: '#444443',
+              width: wp('80%'),
+              textAlign: 'center',
             },
           ]}>
-          Send a code to your phone to verify it.
+          {Strings.sendCodeToPhone}
         </Text>
         <View style={{top: hp('10%')}}>
-          <Text style={[Typography.small]}>Phone Number</Text>
+          <Text style={[Typography.small]}>{Strings.contactNumber}</Text>
           <TextInput
             style={{
               width: wp('80%'),
@@ -133,7 +136,7 @@ export const ConfirmSignUp = props => {
             }}></View>
         </View>
         <View style={{top: hp('12%')}}>
-          <Text style={[Typography.small]}>Authentication Code</Text>
+          <Text style={[Typography.small]}>{Strings.authenticationCode}</Text>
           <TextInput
             style={{
               width: wp('80%'),
@@ -180,7 +183,7 @@ export const ConfirmSignUp = props => {
                 resendConfirmationCode();
               }
             }}>
-            <Text style={[Typography.normal]}>RESEND CODE</Text>
+            <Text style={[Typography.normal]}>{Strings.resendCode}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -207,7 +210,7 @@ export const ConfirmSignUp = props => {
                 confirmSignUp();
               }
             }}>
-            <Text style={[Typography.normal]}>VERIFY</Text>
+            <Text style={[Typography.normal]}>{Strings.verify}</Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -22,6 +22,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const EditCompany = props => {
   const [imageSource, setImageSource] = useState(null);
@@ -72,7 +73,9 @@ export const EditCompany = props => {
               <BackButton navigation={props.navigation} />
             </View>
             <View>
-              <Text style={[Typography.header]}>Edit Company Profile</Text>
+              <Text style={[Typography.header]}>
+                Edit {Strings.companyProfile}
+              </Text>
             </View>
           </View>
           <View
@@ -91,7 +94,7 @@ export const EditCompany = props => {
                     selectImage();
                   }}>
                   <Text style={{textAlign: 'center', top: hp('2%')}}>
-                    Change Image
+                    {Strings.changeImage}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -124,7 +127,9 @@ export const EditCompany = props => {
                 width: wp('75%'),
                 height: hp('5%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Company Name</Text>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.companyName}
+              </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -141,7 +146,7 @@ export const EditCompany = props => {
                 height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
-                Company Registration No.
+                {Strings.companyRegistrationNum}
               </Text>
               <TextInput
                 style={{
@@ -159,7 +164,7 @@ export const EditCompany = props => {
                 height: hp('5%'),
               }}>
               <Text style={[Typography.placeholderSmall]}>
-                Company Address{' '}
+                {Strings.companyAddress}
               </Text>
               <TextInput
                 style={{
@@ -176,7 +181,9 @@ export const EditCompany = props => {
                 width: wp('75%'),
                 height: hp('5%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
+              <Text style={[Typography.placeholderSmall]}>
+                {Strings.contactNumber}
+              </Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -192,7 +199,7 @@ export const EditCompany = props => {
                 width: wp('75%'),
                 height: hp('5%'),
               }}>
-              <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+              <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
               <TextInput
                 style={{
                   borderColor: Colors.GRAY_DARK,
@@ -207,7 +214,7 @@ export const EditCompany = props => {
             onPress={() => setSuccesfulChangesModal(true)}
             style={{
               top: hp('15%'),
-              width: wp('40%'),
+              width: wp('50%'),
               height: wp('11%'),
               backgroundColor: Colors.LIGHT_BLUE,
               alignItems: 'center',
@@ -224,7 +231,7 @@ export const EditCompany = props => {
 
               elevation: 4,
             }}>
-            <Text>Save Changes</Text>
+            <Text>{Strings.saveChanges}</Text>
             <Icon
               name="checkmark-circle-outline"
               size={wp('5%')}

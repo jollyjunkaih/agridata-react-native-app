@@ -34,6 +34,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const ProductPopUp = props => {
   const [open2, setOpen2] = useState(false);
@@ -166,7 +167,13 @@ export const ProductPopUp = props => {
                   style={{left: wp('1%'), bottom: hp('1%')}}>
                   <Icon name="add-outline" size={wp('35%')} />
                 </TouchableOpacity>
-                <Text style={[Typography.large]}>Add Photo</Text>
+                <Text
+                  style={[
+                    Typography.large,
+                    {width: wp('40%'), textAlign: 'center'},
+                  ]}>
+                  {Strings.addPhoto}
+                </Text>
               </View>
             ) : (
               <View>
@@ -237,7 +244,7 @@ export const ProductPopUp = props => {
           }}>
           <Text
             style={([Typography.normal], {left: wp('6%'), top: hp('1.5%')})}>
-            Enter product details
+            {Strings.enterProductDetails}
           </Text>
           <View
             style={{
@@ -246,7 +253,7 @@ export const ProductPopUp = props => {
             }}>
             <TextInput
               keyboardType="default"
-              placeholder="Product Name"
+              placeholder={Strings.productName}
               value={productName}
               onChangeText={item => setProductName(item)}
               underlineColorAndroid="transparent"
@@ -276,7 +283,7 @@ export const ProductPopUp = props => {
               </Text>
               <TextInput
                 keyboardType="numeric"
-                placeholder=" Min Price"
+                placeholder={Strings.minPrice}
                 underlineColorAndroid="transparent"
                 value={minPrice}
                 onChangeText={item => setMinPrice(item)}
@@ -302,7 +309,7 @@ export const ProductPopUp = props => {
                 }}></View>
               <TextInput
                 keyboardType="numeric"
-                placeholder=" Max Price"
+                placeholder={Strings.maxPrice}
                 underlineColorAndroid="transparent"
                 value={maxPrice}
                 onChangeText={item => setMaxPrice(item)}
@@ -361,7 +368,7 @@ export const ProductPopUp = props => {
               }}>
               <TextInput
                 keyboardType="numeric"
-                placeholder="Quantity Available"
+                placeholder={Strings.quantityAvailable}
                 underlineColorAndroid="transparent"
                 value={quantityAvailable}
                 onChangeText={item => setQuantityAvailable(item)}
@@ -380,7 +387,7 @@ export const ProductPopUp = props => {
             <View style={{flexDirection: 'row'}}>
               <TextInput
                 keyboardType="numeric"
-                placeholder="Minimum Order"
+                placeholder={Strings.minimumOrder}
                 underlineColorAndroid="transparent"
                 value={moq}
                 onChangeText={item => setMOQ(item)}
@@ -437,7 +444,10 @@ export const ProductPopUp = props => {
             top: hp('15%'),
             flexDirection: 'row',
           }}>
-          <Text style={[Typography.normal]}>Add Product{'\t'}</Text>
+          <Text style={[Typography.normal]}>
+            {Strings.addProduct}
+            {'\t'}
+          </Text>
           <Icon name="add-circle-outline" size={wp('5%')} />
         </TouchableOpacity>
       </View>
@@ -463,7 +473,9 @@ export const AddItemsButton = props => {
         borderRadius: 10,
       }}
       onPress={() => setAddItemsButton(true)}>
-      <Text style={[Typography.large]}>Add Items</Text>
+      <Text style={[Typography.large, {textAlign: 'center'}]}>
+        {Strings.addItems}
+      </Text>
       <Modal isVisible={addItemsButton}>
         <ProductPopUp
           setAddItemsButton={setAddItemsButton}
@@ -958,7 +970,7 @@ export const SupplierplaceList = props => {
         <View
           style={{
             width: wp('80%'),
-            height: hp('15%'),
+            height: hp('25%'),
             alignItems: 'center',
             alignSelf: 'center',
             justifyContent: 'center',
@@ -972,8 +984,7 @@ export const SupplierplaceList = props => {
                 width: wp('70%'),
               },
             ]}>
-            You have 0 item in your store right now, start adding them by
-            clicking on the button
+            {Strings.youHaveZeroItems}
           </Text>
         </View>
       }

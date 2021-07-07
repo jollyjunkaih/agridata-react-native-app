@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const Marketplace = props => {
   const [choice, setChoice] = useState('product');
@@ -84,7 +85,7 @@ export const Marketplace = props => {
         alignItems: 'center',
       }}>
       <Text style={[Typography.header, {top: hp('5%')}]}>
-        Local Marketplace
+        {Strings.localMarketplace}
       </Text>
       <View style={{top: hp('6%')}}>
         <Searchbar
@@ -119,7 +120,7 @@ export const Marketplace = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              Product
+              {Strings.product}
             </Text>
           </View>
         ) : (
@@ -131,7 +132,7 @@ export const Marketplace = props => {
               borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
             }}>
-            <Text style={Typography.normal}>Product</Text>
+            <Text style={Typography.normal}>{Strings.product}</Text>
           </TouchableOpacity>
         )}
 
@@ -152,7 +153,7 @@ export const Marketplace = props => {
                   textDecorationLine: 'underline',
                 },
               ]}>
-              Favourites
+              {Strings.favourites}
             </Text>
           </View>
         ) : (
@@ -164,7 +165,7 @@ export const Marketplace = props => {
               borderColor: Colors.GRAY_LIGHT,
               alignItems: 'center',
             }}>
-            <Text style={Typography.normal}>Favourites</Text>
+            <Text style={Typography.normal}>{Strings.favourites}</Text>
           </TouchableOpacity>
         )}
       </View>

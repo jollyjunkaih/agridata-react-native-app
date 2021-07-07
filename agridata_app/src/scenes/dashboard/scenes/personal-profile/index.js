@@ -13,8 +13,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-  widthPercentageToDP,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const PersonalProfile = props => {
   return (
@@ -31,7 +31,7 @@ export const PersonalProfile = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <View>
-          <Text style={[Typography.header]}>Personal Profile</Text>
+          <Text style={[Typography.header]}>{Strings.personalProfile}</Text>
         </View>
         <TouchableOpacity
           style={{
@@ -78,7 +78,9 @@ export const PersonalProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Company Role</Text>
+          <Text style={[Typography.placeholderSmall]}>
+            {Strings.companyRole}
+          </Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>General Manager</Text>
           </View>
@@ -90,7 +92,7 @@ export const PersonalProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Address </Text>
+          <Text style={[Typography.placeholderSmall]}>{Strings.address}</Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>STREET, CITY, STATE</Text>
           </View>
@@ -102,7 +104,7 @@ export const PersonalProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+          <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>email@gmail.com</Text>
           </View>
@@ -114,7 +116,9 @@ export const PersonalProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
+          <Text style={[Typography.placeholderSmall]}>
+            {Strings.contactNumber}
+          </Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>+60 11 6569 1999 </Text>
           </View>

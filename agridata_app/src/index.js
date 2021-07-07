@@ -5,29 +5,29 @@ import {
   AccountsDashboard, //done
   RetailManagerDashboard, // done
   GeneralManagerDashboard, //done
-  Marketplace,
-  Store,
+  Marketplace, //done
+  Store, //done
   Inbox, //done
-  ChatRoom,
+  ChatRoom, //done but no modal
   EmployeeDashboard, //done
   OwnerDashboard, //done
   Orders, //Done
-  SupplierStore,
-  SupplierTasks,
-  RetailerTasks,
-  CompanyProfile,
-  EditCompany,
-  HumanResource,
-  PersonalProfile,
-  EditPersonal,
+  SupplierStore, // done most
+  SupplierTasks, //done
+  RetailerTasks, //done
+  CompanyProfile, //done
+  EditCompany, //done
+  HumanResource, //done
+  PersonalProfile, //done.
+  EditPersonal, //done.
   //DataAnalytics,
-  Registration,
-  SupplierDashboard,
-  Login, //done except forgot password
+  Registration, //done
+  SupplierDashboard, //done
+  Login, //done
   CreateCompany, //done
-  Landing,
-  Verification,
-  ConfirmSignUp,
+  Landing, //done
+  Verification, //done
+  ConfirmSignUp, //done
 } from './scenes';
 import {SuccessfulModal, UnsuccessfulModal} from '_components';
 import {DataAnalytics} from './scenes/data_analytics/';

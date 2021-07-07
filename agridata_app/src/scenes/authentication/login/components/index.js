@@ -20,6 +20,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const ForgetPassword = props => {
   const [changePassword, setChangePassword] = useState(false);
@@ -52,7 +53,7 @@ export const ForgetPassword = props => {
 
           <View
             style={{
-              height: hp('30%'),
+              height: hp('32%'),
               width: wp('80%'),
               backgroundColor: 'white',
               borderRadius: 20,
@@ -66,9 +67,10 @@ export const ForgetPassword = props => {
                   textAlign: 'center',
                   margin: wp('5%'),
                   top: hp('1%'),
+                  width: wp('60%'),
                 },
               ]}>
-              Enter Phone Number to Reset Password
+              {Strings.enterPhoneResetPass}
             </Text>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <View
@@ -85,7 +87,7 @@ export const ForgetPassword = props => {
                   onChangeText={value => {
                     setSearch(value);
                   }}
-                  placeholder="Phone Number"
+                  placeholder={Strings.phoneNumber}
                   style={{height: hp('5%')}}></TextInput>
               </View>
             </View>
@@ -112,7 +114,7 @@ export const ForgetPassword = props => {
                 shadowRadius: 3.84,
                 elevation: 5,
               }}>
-              <Text>Confirm</Text>
+              <Text>{Strings.confirm}</Text>
             </TouchableOpacity>
           </View>
           <Modal
@@ -180,7 +182,7 @@ export const ChangePassword = props => {
                   top: hp('4%'),
                 },
               ]}>
-              Reset password by entering in your new password and auth code
+              {Strings.resetPasswordByEntering}
             </Text>
             <View style={{alignItems: 'center', justifyContent: 'center'}}>
               <View
@@ -197,7 +199,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setCode(value);
                   }}
-                  placeholder="Auth Code"
+                  placeholder={Strings.authenticationCode}
                   style={{height: hp('5%')}}></TextInput>
               </View>
               <View
@@ -214,7 +216,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword(value);
                   }}
-                  placeholder="New Password"
+                  placeholder={Strings.newPassword}
                   style={{height: hp('5%')}}></TextInput>
               </View>
             </View>
@@ -223,7 +225,7 @@ export const ChangePassword = props => {
               style={{top: hp('9%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
-                Re-send Code
+                {Strings.resendCode}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -238,7 +240,7 @@ export const ChangePassword = props => {
               style={{top: hp('13%')}}>
               <Text
                 style={[Typography.small, {textDecorationLine: 'underline'}]}>
-                Change Password
+                {Strings.changePass}
               </Text>
             </TouchableOpacity>
           </View>
@@ -287,7 +289,7 @@ export const PhoneNumberModal = props => {
             Typography.large,
             {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
-          Please Enter Your Phone Number!
+          {Strings.pleaseEnterPhoneNum}
         </Text>
 
         <View style={{top: hp('8%'), justifyContent: 'center'}}>
@@ -319,7 +321,7 @@ export const PasswordCodeModal = props => {
             Typography.large,
             {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
-          Please Enter Both Authentification Code and New Password!
+          {Strings.pleaseEnterBothAuth}
         </Text>
         <View style={{top: hp('8%'), justifyContent: 'center'}}>
           <Icon name="warning" color={'red'} size={wp('45%')} />
@@ -335,7 +337,7 @@ export const ResendCodeSuccessModal = props => {
       <DismissKeyboardView>
         <View
           style={{
-            height: hp('45%'),
+            height: hp('50%'),
             width: wp('90%'),
             backgroundColor: 'white',
             borderRadius: 20,
@@ -343,8 +345,11 @@ export const ResendCodeSuccessModal = props => {
             alignSelf: 'center',
           }}>
           <Text
-            style={[Typography.header, {top: hp('3%'), textAlign: 'center'}]}>
-            Password Successfuly Changed!
+            style={[
+              Typography.header,
+              {top: hp('3%'), textAlign: 'center', width: wp('80%')},
+            ]}>
+            {Strings.passwordSuccess}
           </Text>
           <View style={{top: hp('4%'), justifyContent: 'center'}}>
             <Icon name="checkmark-done" color={'green'} size={wp('40%')} />
@@ -354,7 +359,7 @@ export const ResendCodeSuccessModal = props => {
             style={{
               top: hp('5%'),
               backgroundColor: Colors.LIGHT_BLUE,
-              width: wp('30%'),
+              width: wp('40%'),
               height: hp('5%'),
               alignItems: 'center',
               justifyContent: 'center',
@@ -368,7 +373,7 @@ export const ResendCodeSuccessModal = props => {
               elevation: 5,
               borderRadius: 10,
             }}>
-            <Text>Login Screen</Text>
+            <Text>{Strings.logInScreen}</Text>
           </TouchableOpacity>
         </View>
       </DismissKeyboardView>
@@ -397,7 +402,7 @@ export const ResendCodeModal = props => {
             Typography.header,
             {top: hp('4%'), width: wp('70%'), textAlign: 'center'},
           ]}>
-          Code Sent!
+          {Strings.codeSent}
         </Text>
         <View style={{top: hp('10%'), justifyContent: 'center'}}>
           <Icon name="checkmark-done" color={'green'} size={wp('40%')} />

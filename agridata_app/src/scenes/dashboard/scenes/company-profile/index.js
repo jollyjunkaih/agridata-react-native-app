@@ -7,6 +7,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Strings from '_utils';
 
 export const CompanyProfile = props => {
   return (
@@ -23,7 +24,7 @@ export const CompanyProfile = props => {
           <BackButton navigation={props.navigation} />
         </View>
         <View>
-          <Text style={[Typography.header]}>Company Profile</Text>
+          <Text style={[Typography.header]}>{Strings.companyProfile}</Text>
         </View>
         <TouchableOpacity
           style={{
@@ -71,7 +72,7 @@ export const CompanyProfile = props => {
             height: hp('5%'),
           }}>
           <Text style={[Typography.placeholderSmall]}>
-            Company Registration No.
+            {Strings.companyRegistrationNum}
           </Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>1010100101010101R</Text>
@@ -84,7 +85,9 @@ export const CompanyProfile = props => {
             width: wp('73%'),
             height: hp('7%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Company Address </Text>
+          <Text style={[Typography.placeholderSmall]}>
+            {Strings.companyAddress}
+          </Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>
               T1 Bundusan, Jalan Bundusan, Penampang, Sabah
@@ -98,7 +101,9 @@ export const CompanyProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Contact Number </Text>
+          <Text style={[Typography.placeholderSmall]}>
+            {Strings.contactNumber}
+          </Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>+60 11 6569 1999 </Text>
           </View>
@@ -110,7 +115,7 @@ export const CompanyProfile = props => {
             width: wp('73%'),
             height: hp('5%'),
           }}>
-          <Text style={[Typography.placeholderSmall]}>Email Address </Text>
+          <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
           <View style={{top: hp('1%')}}>
             <Text style={[Typography.normal]}>citygrocerkk@gmail.com</Text>
           </View>
