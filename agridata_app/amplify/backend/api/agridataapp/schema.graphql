@@ -83,6 +83,7 @@ type ChatGroup @model
   chatParticipants: [ChatGroupUsers] @connection(keyName:"gettingChatParticipantsByChatGroup", fields:["id"])
   messages: [Message]  @connection(keyName: "byChatGroup", fields: ["id"])
   updatedAt: String
+  createdAt: String
   mostRecentMessage: String
   mostRecentMessageSender: String
 } 
@@ -160,7 +161,7 @@ type Items{
 type GoodsTask @model
 @key(name: "goodsTasksByRetailer", fields: ["retailerID","createdAt"],queryField: "goodsTaskForRetailerByDate")
 @key(name: "goodsTasksBySupplier", fields: ["supplierID","createdAt"],queryField: "goodsTaskForSupplierByDate"){
-  id: ID
+  id: ID "sameID as payment task and invoice"
   retailer: RetailerCompany @connection(fields:["retailerID"])
   retailerID: ID
   supplier: SupplierCompany @connection(fields:["supplierID"])
@@ -202,8 +203,10 @@ type Invoice @model
 }
 
 type Goods {
-  name: String
-  quantity: Int
-  price: Float
+  name:String
+  quantity:Int
   siUnit: String
+  variety:String
+  grade: String
+  price: Float
 }

@@ -38,15 +38,20 @@
     Rerender when exiting from chat room (quick fix use navigate instead of go back?)
 7. Chat Room
     send text messages and receive them in real time ✔️
+    send Order Quotation in real time ❌
     inspect PO ✔️
     create a quotation from PO ✔️
     send quotation (yet to update UI) {not sure whether it will work might have to useContext} ✔️
     display team members ❌
     add/remove team members ❌
-    accept quotation => create a GoodsTask
+    accept quotation => create a GoodsTask ✔️
     update last seen on back button onPress ✔️
     update last seen on app background
-    on decline, send an automatic message 
+    on decline, send an automatic message  ✔️
+     View product inquiry
+    View purchaseOrder ✔️
+    View OrderQuotation ✔️
+    approve/reject order quotation ✔️
 8. Tasks 
     displaying goods task and payment tasks on click
     updating goods tasks's deliveryDate
@@ -65,3 +70,5 @@
     Company profile ❌
     User Profile ❌
     .
+
+    Use Context = create quotation, update quotation, CRUD Store

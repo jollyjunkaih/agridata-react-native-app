@@ -1,6 +1,6 @@
 {
     "identityPoolName": "agridataapp1c4f9eeb_identitypool_1c4f9eeb",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "agrida1c4f9eeb",
     "userPoolName": "agridataapp1c4f9eeb_userpool_1c4f9eeb",
     "autoVerifiedAttributes": [
