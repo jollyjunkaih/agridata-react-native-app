@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import codePush from 'react-native-code-push';
 import {
   AccountsDashboard, //done
   RetailManagerDashboard, // done

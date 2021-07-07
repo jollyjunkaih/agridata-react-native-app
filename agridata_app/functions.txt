@@ -53,8 +53,8 @@
     View OrderQuotation ✔️
     approve/reject order quotation ✔️
 8. Tasks 
-    displaying goods task and payment tasks on click
-    updating goods tasks's deliveryDate
+    displaying goods task and payment tasks on click ✔️
+    updating goods tasks's deliveryDate ✔️
     listing goods tasks by deliveryDate/createdAt
     creating an invoice when supplier clicks on delivering (can add a Boolean field to goods Task so can check whether the invoice has been generated)
     linking goodstask id to payment and invoice id

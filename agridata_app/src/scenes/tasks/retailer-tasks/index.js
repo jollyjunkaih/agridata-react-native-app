@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import {Typography, Spacing, Colors, Mixins} from '_styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ReceiveList, UploadReceiptList, SortModal} from '../components';
+import {SortModal} from '../components';
+import {ReceiveList, UploadReceiptList} from './components';
 import {NavBar} from '_components';
 import Modal from 'react-native-modal';
 import {

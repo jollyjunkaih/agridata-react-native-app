@@ -21,32 +21,229 @@ import {
 } from 'react-native-responsive-screen';
 import {DismissKeyboard} from '_components';
 import Strings from '_utils';
-
 const now = () => {
   const now = dayjs().format('DD-MM-YYYY');
   return now;
 };
 
-export const ReceivePaymentTaskList = props => {
+//Retailer upload receipt
+const UploadReceiptModal = props => {
   return (
-    <View>
-      <FlatList
-        keyExtractor={item => item.id}
-        data={props.data}
-        numColumns={1}
-        renderItem={item => {
-          return <ReceivePaymentTask user={item.name} />;
-        }}
-      />
+    <View
+      style={{
+        width: wp('90%'),
+        height: hp('80%'),
+        backgroundColor: Colors.GRAY_WHITE,
+        borderRadius: 10,
+      }}>
+      <View
+        style={{
+          position: 'absolute',
+          right: wp('1%'),
+          top: hp('1%'),
+        }}>
+        <CloseButton setModal={props.setUploadReceiptModal} />
+      </View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('12%'),
+            right: wp('4%'),
+          },
+        ]}>
+        11:00 AM
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            right: wp('4%'),
+            top: hp('15%'),
+            fontStyle: 'italic',
+          },
+        ]}>
+        22 July, 2021
+      </Text>
+      <Text
+        style={[
+          Typography.welcome,
+          {
+            position: 'absolute',
+            fontFamily: 'Poppins-SemiBold',
+            top: hp('6%'),
+            left: wp('5%'),
+          },
+        ]}>
+        {Strings.paymentAlert}
+      </Text>
+      <View
+        style={{
+          borderBottomWidth: wp('1%'),
+          width: wp('80%'),
+          alignSelf: 'center',
+          top: hp('18%'),
+          borderColor: Colors.GRAY_MEDIUM,
+          position: 'absolute',
+        }}></View>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('23%'),
+            left: wp('5%'),
+          },
+        ]}>
+        {Strings.paymentTo}:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: hp('23%'),
+            left: wp('43%'),
+          },
+        ]}>
+        Matthew's Farm
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('28%'),
+            left: wp('5%'),
+          },
+        ]}>
+        {Strings.order} #:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: hp('28%'),
+            left: wp('43%'),
+          },
+        ]}>
+        #12345
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('33%'),
+            left: wp('5%'),
+          },
+        ]}>
+        {Strings.dateOfPayment}:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: hp('33%'),
+            left: wp('43%'),
+          },
+        ]}>
+        22 July, 2021
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('38%'),
+            left: wp('5%'),
+          },
+        ]}>
+        Bank:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: hp('38%'),
+            left: wp('43%'),
+          },
+        ]}>
+        MayBank
+      </Text>
+      <Text
+        style={[
+          Typography.placeholder,
+          {
+            position: 'absolute',
+            top: hp('43%'),
+            left: wp('5%'),
+          },
+        ]}>
+        {Strings.reference} #:
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            position: 'absolute',
+            top: hp('43%'),
+            left: wp('43%'),
+          },
+        ]}>
+        9065 7756 8989
+      </Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.LIGHT_BLUE,
+          width: wp('45%'),
+          height: hp('5%'),
+          alignSelf: 'center',
+          justifyContent: 'center',
+          elevation: 5,
+          position: 'absolute',
+          bottom: hp('10%'),
+          borderRadius: 10,
+          flexDirection: 'row',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+        }}>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            flexDirection: 'row',
+          }}>
+          <Text style={[Typography.normal, {textAlign: 'center'}]}>
+            {Strings.uploadReciept}
+          </Text>
+          <Icon
+            name="receipt-outline"
+            size={wp('5%')}
+            style={{left: wp('3%')}}
+          />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const ReceivePaymentTask = props => {
-  const [receiveTaskModal, setReceiveTaskModal] = useState(false);
+const UploadReceipt = props => {
+  const [uploadReceiptModal, setUploadReceiptModal] = useState(false);
   return (
     <TouchableOpacity
-      onPress={() => setReceiveTaskModal(true)}
+      onPress={() => setUploadReceiptModal(true)}
       style={{
         marginBottom: hp('2%'),
         width: wp('85%'),
@@ -98,7 +295,7 @@ const ReceivePaymentTask = props => {
               position: 'absolute',
             },
           ]}>
-          City Grocer
+          {props.supplierName}
         </Text>
         <Text
           style={[
@@ -110,7 +307,7 @@ const ReceivePaymentTask = props => {
               position: 'absolute',
             },
           ]}>
-          4 {Strings.items}
+          {props.items} {Strings.items}
         </Text>
         <Text
           style={[
@@ -135,213 +332,35 @@ const ReceivePaymentTask = props => {
               fontStyle: 'italic',
             },
           ]}>
-          30 June,2021
+          {props.createdAt}
         </Text>
       </View>
-      <Modal isVisible={receiveTaskModal}>
-        <ReceivePaymentModal
-          setReceiveTaskModal={setReceiveTaskModal}
-          receiveTaskList={props}></ReceivePaymentModal>
+      <Modal isVisible={uploadReceiptModal}>
+        <UploadReceiptModal
+          setUploadReceiptModal={setUploadReceiptModal}
+          uploadReceiptList={props}></UploadReceiptModal>
       </Modal>
     </TouchableOpacity>
   );
 };
 
-const ReceivePaymentModal = props => {
+export const UploadReceiptList = props => {
   return (
-    <View
-      style={{
-        width: wp('90%'),
-        height: hp('80%'),
-        backgroundColor: Colors.GRAY_WHITE,
-        borderRadius: 10,
-      }}>
-      <View
-        style={{
-          position: 'absolute',
-          right: wp('1%'),
-          top: hp('1%'),
-        }}>
-        <CloseButton setModal={props.setReceiveTaskModal} />
-      </View>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('7%'),
-            right: wp('4%'),
-          },
-        ]}>
-        11:00 AM
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            right: wp('4%'),
-            top: hp('10%'),
-            fontStyle: 'italic',
-          },
-        ]}>
-        22 July, 2021
-      </Text>
-      <Text
-        style={[
-          Typography.welcome,
-          {
-            position: 'absolute',
-            fontFamily: 'Poppins-SemiBold',
-            top: hp('6%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.paymentAlert}
-      </Text>
-      <View
-        style={{
-          borderBottomWidth: 2,
-          width: wp('80%'),
-          alignSelf: 'center',
-          top: hp('18%'),
-          borderColor: Colors.GRAY_MEDIUM,
-          position: 'absolute',
-        }}></View>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('23%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.paymentFrom}:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('23%'),
-            left: wp('41%'),
-          },
-        ]}>
-        CITY GROCER
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('28%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.order} #:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('28%'),
-            left: wp('41%'),
-          },
-        ]}>
-        #12345
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('33%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.dateOfPayment}:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('33%'),
-            left: wp('41%'),
-          },
-        ]}>
-        22 July, 2021
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('38%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.bank}:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('38%'),
-            left: wp('41%'),
-          },
-        ]}>
-        MayBank
-      </Text>
-      <Text
-        style={[
-          Typography.placeholder,
-          {
-            position: 'absolute',
-            top: hp('43%'),
-            left: wp('5%'),
-          },
-        ]}>
-        {Strings.reference} #:
-      </Text>
-      <Text
-        style={[
-          Typography.small,
-          {
-            position: 'absolute',
-            top: hp('43%'),
-            left: wp('41%'),
-          },
-        ]}>
-        9065 7756 8989
-      </Text>
-      <TouchableOpacity
-        style={{
-          backgroundColor: Colors.LIGHT_BLUE,
-          width: wp('30%'),
-          height: hp('5%'),
-          alignSelf: 'center',
-          justifyContent: 'center',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-          position: 'absolute',
-          bottom: hp('10%'),
-          borderRadius: 10,
-        }}>
-        <Text style={[Typography.normal, {textAlign: 'center'}]}>
-          Received{'\t\t'}
-          <Icon name="checkmark-circle-outline" size={wp('5%')}></Icon>
-        </Text>
-      </TouchableOpacity>
+    <View>
+      <FlatList
+        keyExtractor={item => item.id}
+        data={props.UploadReceiptList}
+        numColumns={1}
+        renderItem={({item}) => {
+          return (
+            <UploadReceipt
+              createdAt={item.createdAt}
+              items={item.items}
+              supplierName={item.supplierName}
+            />
+          );
+        }}
+      />
     </View>
   );
 };

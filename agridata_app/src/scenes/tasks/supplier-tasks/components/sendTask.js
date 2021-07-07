@@ -20,6 +20,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {DismissKeyboard} from '_components';
+import Strings from '_utils';
 import {API} from 'aws-amplify';
 import {createInvoice, updateGoodsTask} from '../../../../graphql/mutations';
 var customParseFormat = require('dayjs/plugin/customParseFormat');
@@ -126,7 +127,7 @@ const SendTask = props => {
               position: 'absolute',
             },
           ]}>
-          {props.goods.length} items
+          {props.goods.length} {Strings.items}
         </Text>
         <Text
           style={[
@@ -138,7 +139,7 @@ const SendTask = props => {
               position: 'absolute',
             },
           ]}>
-          Order Created:
+          {Strings.dateCreated}:
         </Text>
         <Text
           style={[
@@ -184,10 +185,9 @@ const SendTaskModal = props => {
 
   const Switch = () => {
     props.setInvoiceModal(true);
-    console.log('before 3 sec');
+
     setTimeout(function () {
       props.setSendTaskModal(false);
-      console.log('after 3 sec');
     }, 300);
   };
 
@@ -286,7 +286,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Items:
+          {Strings.items}:
         </Text>
         <View
           style={{
@@ -403,7 +403,7 @@ const SendTaskModal = props => {
               left: wp('8%'),
             },
           ]}>
-          Buyer:
+          {Strings.buyer}:
         </Text>
         <Text
           style={[
@@ -439,7 +439,7 @@ const SendTaskModal = props => {
             Switch();
           }}>
           <Text style={[Typography.normal, {textAlign: 'center'}]}>
-            Create Invoice
+            {Strings.createInvoice}
           </Text>
         </TouchableOpacity>
       </View>
