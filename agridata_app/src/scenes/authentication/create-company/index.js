@@ -116,14 +116,6 @@ export const CreateCompany = props => {
             height: hp('100%'),
             width: wp('100%'),
           }}>
-          <View
-            style={{
-              position: 'absolute',
-              top: Spacing.BackButtonTop,
-              left: Spacing.BackButtonLeft,
-            }}>
-            <BackButton navigation={props.navigation} />
-          </View>
           <Image
             source={require('_assets/images/fruits.png')}
             style={{
@@ -140,7 +132,7 @@ export const CreateCompany = props => {
                 style={[
                   Typography.largestSize,
                   {
-                    width: wp('80%'),
+                    width: wp('50%'),
                     left: wp('8%'),
                     lineHeight: hp('5.5%'),
                   },
@@ -163,11 +155,14 @@ export const CreateCompany = props => {
               onChangeText={item => setCompanyName(item)}
               value={companyName}
               style={{
-                width: wp('50%'),
+                color: 'black',
+                borderBottomColor: 'transparent',
+                width: wp('70%'),
                 height: hp('7%'),
               }}></TextInput>
             <View
               style={{
+                top: hp('-2%'),
                 width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
@@ -189,11 +184,14 @@ export const CreateCompany = props => {
               onChangeText={item => setCompanyRegistrationNum(item)}
               value={companyRegistrationNum}
               style={{
-                width: wp('50%'),
+                color: 'black',
+                borderBottomColor: 'transparent',
+                width: wp('70%'),
                 height: hp('7%'),
               }}></TextInput>
             <View
               style={{
+                top: hp('-2%'),
                 width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
@@ -215,11 +213,14 @@ export const CreateCompany = props => {
               onChangeText={item => setCompanyAddress(item)}
               value={companyAddress}
               style={{
-                width: wp('50%'),
+                width: wp('70%'),
+                color: 'black',
+                borderBottomColor: 'transparent',
                 height: hp('7%'),
               }}></TextInput>
             <View
               style={{
+                top: hp('-2%'),
                 width: wp('80%'),
                 borderBottomWidth: 1,
                 borderColor: Colors.GRAY_DARK,
@@ -241,6 +242,7 @@ export const CreateCompany = props => {
                 zIndex: 1000,
                 top: hp('1%'),
                 left: wp('-1%'),
+                height: hp('20%'),
               }}>
               <DropDownPicker
                 open={open}
@@ -270,7 +272,7 @@ export const CreateCompany = props => {
           <View
             style={{
               alignItems: 'center',
-              top: hp('33%'),
+              top: hp('20%'),
             }}>
             <TouchableOpacity
               style={{
@@ -329,7 +331,7 @@ const CreateAccountPopUp = props => {
           backgroundColor: Colors.GRAY_WHITE,
           width: wp('80%'),
           height: hp('60%'),
-          top: hp('15%'),
+          top: hp('0%'),
           borderRadius: 10,
           alignItems: 'center',
         }}>

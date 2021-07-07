@@ -58,7 +58,7 @@ export const Registration = props => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-20%') : hp('-20%')}>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? hp('-20%') : hp('-35%')}>
       <SafeAreaView
         style={{
           backgroundColor: 'white',
