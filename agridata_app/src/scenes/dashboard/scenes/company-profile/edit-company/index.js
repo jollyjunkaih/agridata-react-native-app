@@ -126,16 +126,20 @@ export const EditCompany = props => {
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
+                borderColor: Colors.GRAY_DARK,
+                borderBottomWidth: 1,
+                justifyContent: 'center',
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 {Strings.companyName}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 1,
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
             </View>
             <View
@@ -144,16 +148,20 @@ export const EditCompany = props => {
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
+                borderColor: Colors.GRAY_DARK,
+                borderBottomWidth: 1,
+                justifyContent: 'center',
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 {Strings.companyRegistrationNum}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 1,
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
             </View>
             <View
@@ -162,16 +170,20 @@ export const EditCompany = props => {
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
+                borderColor: Colors.GRAY_DARK,
+                borderBottomWidth: 1,
+                justifyContent: 'center',
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 {Strings.companyAddress}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 1,
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
             </View>
             <View
@@ -180,16 +192,20 @@ export const EditCompany = props => {
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
+                borderColor: Colors.GRAY_DARK,
+                borderBottomWidth: 1,
+                justifyContent: 'center',
               }}>
               <Text style={[Typography.placeholderSmall]}>
                 {Strings.contactNumber}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 1,
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
             </View>
             <View
@@ -198,14 +214,18 @@ export const EditCompany = props => {
                 left: wp('5%'),
                 width: wp('75%'),
                 height: hp('5%'),
+                borderColor: Colors.GRAY_DARK,
+                borderBottomWidth: 1,
+                justifyContent: 'center',
               }}>
               <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 1,
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
-                  height: hp('3%'),
+                  height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
             </View>
           </View>

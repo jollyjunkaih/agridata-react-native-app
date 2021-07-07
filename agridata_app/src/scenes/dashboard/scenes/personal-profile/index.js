@@ -41,7 +41,7 @@ export const PersonalProfile = props => {
           <Icon
             name="create-outline"
             size={wp('6%')}
-            onPress={() => props.navigation.navigate('editprofile')}
+            onPress={() => props.navigation.navigate('editpersonal')}
           />
         </TouchableOpacity>
       </View>

@@ -140,6 +140,7 @@ export const EditPersonal = props => {
                 placeholder="John Smith"
                 underlineColorAndroid="transparent"
                 style={{
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
                   height: hp('6%'),
                   color: 'black',
@@ -160,6 +161,7 @@ export const EditPersonal = props => {
                 placeholder="email@gmail.com"
                 underlineColorAndroid="transparent"
                 style={{
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
                   height: hp('6%'),
                   color: 'black',
@@ -182,6 +184,7 @@ export const EditPersonal = props => {
                 underlineColorAndroid="transparent"
                 placeholder="+60 11 6569 1999"
                 style={{
+                  borderBottomColor: 'transparent',
                   width: wp('75%'),
                   height: hp('6%'),
                   color: 'black',

@@ -124,7 +124,7 @@ const ReceiveModal = props => {
           {
             position: 'absolute',
             top: hp('40.3%'),
-            left: wp('35%'),
+            left: wp('40%'),
           },
         ]}>
         1:30 PM Fri, 4 July
@@ -146,7 +146,7 @@ const ReceiveModal = props => {
           {
             position: 'absolute',
             top: hp('52%'),
-            left: wp('35%'),
+            left: wp('40%'),
           },
         ]}>
         City Grocer
@@ -305,6 +305,84 @@ export const ReceiveList = props => {
           );
         }}
       />
+    </View>
+  );
+};
+
+const ProductList = props => {
+  const Seperator = () => {
+    return (
+      <View
+        style={{
+          height: 0,
+          alignSelf: 'center',
+          width: wp('70%'),
+        }}></View>
+    );
+  };
+  return (
+    <View>
+      <FlatList
+        numColumns={1}
+        data={props.data}
+        ItemSeparatorComponent={Seperator}
+        renderItem={({item}) => {
+          return (
+            <Product
+              name={item.name}
+              quantity={item.quantity}
+              price={item.price}
+              grade={item.grade}
+              variety={item.variety}
+              siUnit={item.siUnit}
+            />
+          );
+        }}></FlatList>
+    </View>
+  );
+};
+
+const Product = props => {
+  return (
+    <View
+      style={{
+        height: hp('3%'),
+        width: wp('70%'),
+        justifyContent: 'center',
+      }}>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            position: 'absolute',
+          },
+        ]}>
+        {props.name}
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            left: wp('20%'),
+            position: 'absolute',
+          },
+        ]}>
+        | {props.quantity}
+        {props.siUnit}
+      </Text>
+      <Text
+        style={[
+          Typography.small,
+          {
+            textAlign: 'left',
+            left: wp('33%'),
+            position: 'absolute',
+          },
+        ]}>
+        @ RM {props.price}/{props.siUnit}
+      </Text>
     </View>
   );
 };

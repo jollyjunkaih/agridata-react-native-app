@@ -120,12 +120,16 @@ export const AddEmployeeButtonModal = props => {
                 {Strings.fullName}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 0.5,
+                  borderBottomColor: 'transparent',
                   width: wp('70%'),
                   height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
             </View>
             <View
               style={{
@@ -137,12 +141,16 @@ export const AddEmployeeButtonModal = props => {
                 {Strings.companyRole}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 0.5,
+                  borderBottomColor: 'transparent',
                   width: wp('70%'),
                   height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
             </View>
             <View
               style={{
@@ -152,12 +160,16 @@ export const AddEmployeeButtonModal = props => {
               }}>
               <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 0.5,
+                  borderBottomColor: 'transparent',
                   width: wp('70%'),
                   height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
             </View>
             <View
               style={{
@@ -169,12 +181,16 @@ export const AddEmployeeButtonModal = props => {
                 {Strings.contactNumber}
               </Text>
               <TextInput
+                underlineColorAndroid="transparent"
                 style={{
-                  borderColor: Colors.GRAY_DARK,
-                  borderBottomWidth: 0.5,
+                  borderBottomColor: 'transparent',
                   width: wp('70%'),
                   height: hp('5%'),
+                  color: 'black',
                 }}></TextInput>
+              <View
+                style={{borderColor: Colors.GRAY_DARK, borderBottomWidth: 1}}
+              />
             </View>
           </View>
 
