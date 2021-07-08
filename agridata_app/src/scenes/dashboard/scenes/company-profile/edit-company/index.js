@@ -56,7 +56,7 @@ export const EditCompany = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? hp('5%') : -180
+        Platform.OS === 'ios' ? hp('5%') : hp('5%')
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <DismissKeyboardView>
