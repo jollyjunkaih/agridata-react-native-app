@@ -87,6 +87,7 @@ export const ForgetPassword = props => {
                   onChangeText={value => {
                     setSearch(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.phoneNumber}
                   style={{height: hp('5%')}}></TextInput>
               </View>
@@ -199,6 +200,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setCode(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.authenticationCode}
                   style={{height: hp('5%')}}></TextInput>
               </View>
@@ -216,6 +218,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.newPassword}
                   style={{height: hp('5%')}}></TextInput>
               </View>

@@ -211,7 +211,7 @@ export const Marketplace = props => {
         </View>
       )}
 
-      <View style={{position: 'absolute', top: hp('92%')}}>
+      <View style={{position: 'absolute', top: hp('90%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

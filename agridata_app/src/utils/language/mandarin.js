@@ -164,4 +164,6 @@ export default {
   whoWouldYouLikeToAdd: '您希望把谁加进来?',
   download: '下载',
   productInquiry: '商品详情',
+  dataAnalytics: '数据分析',
+  analytics: '分析',
 };

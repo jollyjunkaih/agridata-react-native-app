@@ -149,6 +149,7 @@ export const CreateCompany = props => {
             }}>
             <Text style={[Typography.placeholder]}>{Strings.companyName}</Text>
             <TextInput
+              placeholderTextColor={Colors.GRAY_DARK}
               keyboardType="default"
               placeholder="eg: City Grocer"
               underlineColorAndroid="transparent"
@@ -178,6 +179,7 @@ export const CreateCompany = props => {
               {Strings.companyRegistrationNum}
             </Text>
             <TextInput
+              placeholderTextColor={Colors.GRAY_DARK}
               keyboardType="default"
               placeholder="######"
               underlineColorAndroid="transparent"
@@ -207,6 +209,7 @@ export const CreateCompany = props => {
               {Strings.companyAddress}
             </Text>
             <TextInput
+              placeholderTextColor={Colors.GRAY_DARK}
               keyboardType="default"
               placeholder="eg. Lot3, Jalan Bendera, Penampang"
               underlineColorAndroid="transparent"

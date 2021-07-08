@@ -172,4 +172,6 @@ export default {
   whoWouldYouLikeToAdd: 'Who would you like to add?',
   download: 'Download',
   productInquiry: 'Product Inquiry',
+  dataAnalytics: 'Data Analytics',
+  analytics: 'ANALYTICS',
 };

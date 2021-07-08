@@ -37,6 +37,7 @@ import config from './aws-exports';
 import {View, ActivityIndicator} from 'react-native';
 import {getUser} from './graphql/queries';
 import {createUser} from './graphql/mutations';
+import {StatusBar} from 'react-native';
 
 Amplify.configure(config);
 
@@ -293,9 +294,7 @@ const AppNavigator = props => {
                 <DataAnalytics {...screenProps} user={props.user} />
               )}
             </AppStack.Screen>
-            <AppStack.Screen name="invoice">
-              {screenProps => <Invoice {...screenProps} user={props.user} />}
-            </AppStack.Screen>
+
             <AppStack.Screen name="companyprofile">
               {screenProps => (
                 <CompanyProfile {...screenProps} user={props.user} />
@@ -366,8 +365,29 @@ const AppNavigator = props => {
               <DataAnalytics {...screenProps} user={props.user} />
             )}
           </AppStack.Screen>
-          <AppStack.Screen name="invoice">
-            {screenProps => <Invoice {...screenProps} user={props.user} />}
+          <AppStack.Screen name="orders">
+            {screenProps => <Orders {...screenProps} user={props.user} />}
+          </AppStack.Screen>
+          <AppStack.Screen name="companyprofile">
+            {screenProps => (
+              <CompanyProfile {...screenProps} user={props.user} />
+            )}
+          </AppStack.Screen>
+          <AppStack.Screen name="editcompany">
+            {screenProps => <EditCompany {...screenProps} user={props.user} />}
+          </AppStack.Screen>
+          <AppStack.Screen name="humanresource">
+            {screenProps => (
+              <HumanResource {...screenProps} user={props.user} />
+            )}
+          </AppStack.Screen>
+          <AppStack.Screen name="personalprofile">
+            {screenProps => (
+              <PersonalProfile {...screenProps} user={props.user} />
+            )}
+          </AppStack.Screen>
+          <AppStack.Screen name="editpersonal">
+            {screenProps => <EditPersonal {...screenProps} user={props.user} />}
           </AppStack.Screen>
         </AppStack.Navigator>
       );
@@ -515,6 +535,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
+      <StatusBar barStyle="dark-content" />
       {isUserLoggedIn === 'initializing' && <Initializing />}
       {isUserLoggedIn === 'loggedIn' && (
         <AppNavigator updateAuthState={updateAuthState} user={userDetails} />

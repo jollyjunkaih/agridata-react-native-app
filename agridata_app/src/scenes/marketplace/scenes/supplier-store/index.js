@@ -74,7 +74,7 @@ export const SupplierStore = props => {
         />
       </View>
 
-      <View style={{position: 'absolute', bottom: hp('-3%')}}>
+      <View style={{position: 'absolute', top: hp('90%')}}>
         <NavBar navigation={props.navigation} />
       </View>
     </SafeAreaView>

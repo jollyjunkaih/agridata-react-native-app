@@ -376,6 +376,7 @@ const SendTaskModal = props => {
                 dateText: {fontSize: hp('2%')},
               }}
               format="DD-MM-YYYY"
+              placeholderTextColor={Colors.GRAY_DARK}
               placeholder="Pick a date"
               showIcon={true}
               minDate={now()}

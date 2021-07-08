@@ -24,15 +24,16 @@ export const Searchbar = props => {
       <TextInput
         value={props.searchValue}
         onChangeText={item => props.setSearchValue(item)}
+        placeholderTextColor={Colors.GRAY_DARK}
         placeholder={Strings.search}
         underlineColorAndroid="transparent"
         style={{
-          top: hp('0.2%'),
           position: 'absolute',
           borderBottomColor: 'transparent',
           height: hp('6%'),
           left: wp('13%'),
           color: 'black',
+          width: wp('55%'),
         }}></TextInput>
 
       <View style={{position: 'absolute', left: wp('5%')}}>

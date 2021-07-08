@@ -93,6 +93,7 @@ export const MessageInput = props => {
           justifyContent: 'center',
         }}>
         <TextInput
+          placeholderTextColor={Colors.GRAY_DARK}
           placeholder={Strings.typeMessage}
           underlineColorAndroid={'transparent'}
           multiline={true}

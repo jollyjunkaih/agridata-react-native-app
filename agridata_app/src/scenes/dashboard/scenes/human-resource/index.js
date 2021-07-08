@@ -127,8 +127,11 @@ const Participant = props => {
         onPress={() => setConfirmRemoveModal(true)}
         style={{
           left: wp('75%'),
-          bottom: hp('4%'),
-          width: wp('5%'),
+          bottom: hp('5%'),
+          width: wp('8%'),
+          height: hp('4%'),
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
         <Icon name="trash-outline" size={wp('6%')} />
       </TouchableOpacity>
@@ -182,7 +185,7 @@ const ConfirmRemoveModal = props => {
           style={{
             top: hp('7%'),
             backgroundColor: Colors.LIGHT_BLUE,
-            width: wp('23%'),
+            width: wp('28%'),
             height: hp('5%'),
             justifyContent: 'center',
             borderRadius: 5,
@@ -204,7 +207,7 @@ const ConfirmRemoveModal = props => {
           style={{
             top: hp('7%'),
             backgroundColor: Colors.LIGHT_BLUE,
-            width: wp('23%'),
+            width: wp('28%'),
             height: hp('5%'),
             justifyContent: 'center',
             borderRadius: 5,

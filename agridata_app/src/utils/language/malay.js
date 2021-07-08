@@ -173,4 +173,6 @@ export default {
   whoWouldYouLikeToAdd: 'Sesiapa yang anda ingin tambah?',
   download: 'Muat Turun',
   productInquiry: 'Pertanyaan Produk',
+  dataAnalytics: 'Analisis Data',
+  analytics: 'ANALISIS',
 };

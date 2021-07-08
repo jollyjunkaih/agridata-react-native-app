@@ -151,7 +151,7 @@ export const DataAnalyticsButton = props => (
       }}
       source={require('_assets/images/data-resized.png')}></Image>
     <Text style={[Typography.welcome, {textTransform: 'uppercase'}]}>
-      Data Analytics
+      {Strings.dataAnalytics}
     </Text>
   </TouchableOpacity>
 );

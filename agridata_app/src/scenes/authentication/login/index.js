@@ -56,8 +56,8 @@ export const Login = props => {
         <View
           style={{
             position: 'absolute',
-            top: Spacing.BackButtonTop,
-            left: Spacing.BackButtonLeft,
+            top: hp('5%'),
+            left: wp('7%'),
           }}>
           <BackButton navigation={props.navigation} />
         </View>
@@ -98,6 +98,7 @@ export const Login = props => {
             }}>
             <Text style={[Typography.placeholder]}>{Strings.phoneEmail}</Text>
             <TextInput
+              placeholderTextColor={Colors.GRAY_DARK}
               keyboardType="default"
               placeholder="+60123456 or example@example.com"
               underlineColorAndroid="transparent"
@@ -123,6 +124,7 @@ export const Login = props => {
             }}>
             <Text style={[Typography.placeholder]}>{Strings.password}</Text>
             <TextInput
+              placeholderTextColor={Colors.GRAY_DARK}
               placeholder={Strings.password}
               secureTextEntry={secure}
               keyboardType="default"

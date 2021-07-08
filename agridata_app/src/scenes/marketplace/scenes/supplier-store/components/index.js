@@ -253,6 +253,7 @@ export const ProductPopUp = props => {
             }}>
             <TextInput
               keyboardType="default"
+              placeholderTextColor={Colors.GRAY_DARK}
               placeholder={Strings.productName}
               value={productName}
               onChangeText={item => setProductName(item)}
@@ -283,6 +284,7 @@ export const ProductPopUp = props => {
               </Text>
               <TextInput
                 keyboardType="numeric"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder={Strings.minPrice}
                 underlineColorAndroid="transparent"
                 value={minPrice}
@@ -309,6 +311,7 @@ export const ProductPopUp = props => {
                 }}></View>
               <TextInput
                 keyboardType="numeric"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder={Strings.maxPrice}
                 underlineColorAndroid="transparent"
                 value={maxPrice}
@@ -328,6 +331,7 @@ export const ProductPopUp = props => {
             <View style={{flexDirection: 'row'}}>
               <TextInput
                 keyboardType="default"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder="Grade"
                 underlineColorAndroid="transparent"
                 value={grade}
@@ -345,7 +349,8 @@ export const ProductPopUp = props => {
                 }}></TextInput>
               <TextInput
                 keyboardType="default"
-                placeholder="Variety"
+                placeholderTextColor={Colors.GRAY_DARK}
+                placeholder={Strings.variety}
                 underlineColorAndroid="transparent"
                 value={variety}
                 onChangeText={item => setVariety(item)}
@@ -368,6 +373,7 @@ export const ProductPopUp = props => {
               }}>
               <TextInput
                 keyboardType="numeric"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder={Strings.quantityAvailable}
                 underlineColorAndroid="transparent"
                 value={quantityAvailable}
@@ -387,6 +393,7 @@ export const ProductPopUp = props => {
             <View style={{flexDirection: 'row'}}>
               <TextInput
                 keyboardType="numeric"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder={Strings.minimumOrder}
                 underlineColorAndroid="transparent"
                 value={moq}
@@ -418,6 +425,7 @@ export const ProductPopUp = props => {
                     borderColor: 'white',
                   }}
                   dropDownContainerStyle={{borderWidth: 0}}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder="kg"
                 />
               </View>

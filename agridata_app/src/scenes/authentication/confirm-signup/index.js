@@ -126,6 +126,7 @@ export const ConfirmSignUp = props => {
             underlineColorAndroid="transparent"
             onChangeText={text => setPhone(text)}
             placeholder="##########"
+            placeholderTextColor={Colors.GRAY_DARK}
           />
           <View
             style={{
@@ -148,6 +149,7 @@ export const ConfirmSignUp = props => {
             underlineColorAndroid="transparent"
             onChangeText={text => setAuthCode(text)}
             placeholder="######"
+            placeholderTextColor={Colors.GRAY_DARK}
           />
           <View
             style={{

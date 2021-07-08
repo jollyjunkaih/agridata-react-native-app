@@ -174,7 +174,7 @@ export const SupplierTasks = props => {
         )}
       </View>
 
-      <View style={{position: 'absolute', bottom: Mixins.scaleHeight(-10)}}>
+      <View style={{position: 'absolute', top: hp('90%')}}>
         <NavBar navigation={props.navigation} />
       </View>
       <Modal

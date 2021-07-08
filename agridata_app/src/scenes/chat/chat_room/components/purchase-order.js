@@ -482,6 +482,7 @@ const NewOrderQuotation = props => {
             open={openDelivery}
             value={deliveryValue}
             items={deliveryMethod}
+            placeholderTextColor={Colors.GRAY_DARK}
             placeholder={'Yes'}
             setOpen={setOpenDelivery}
             setValue={setDeliveryValue}
@@ -519,6 +520,7 @@ const NewOrderQuotation = props => {
             open={openPayment}
             value={paymentValue}
             items={paymentMethod}
+            placeholderTextColor={Colors.GRAY_DARK}
             placeholder={'Credit Term'}
             setOpen={setOpenPayment}
             setValue={setPaymentValue}

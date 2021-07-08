@@ -109,6 +109,7 @@ export const Registration = props => {
               }}>
               <Text style={[Typography.placeholder]}>{Strings.name}</Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 keyboardType="default"
                 placeholder="John Doe"
                 underlineColorAndroid="transparent"
@@ -137,6 +138,7 @@ export const Registration = props => {
                 {Strings.contactNumber}
               </Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 keyboardType="default"
                 placeholder="+60109336377"
                 underlineColorAndroid="transparent"
@@ -163,6 +165,7 @@ export const Registration = props => {
               }}>
               <Text style={[Typography.placeholder]}>{Strings.email}</Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 keyboardType="default"
                 placeholder="example@example.com"
                 underlineColorAndroid="transparent"
@@ -189,6 +192,7 @@ export const Registration = props => {
               }}>
               <Text style={[Typography.placeholder]}>{Strings.password}</Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 keyboardType="default"
                 placeholder="password"
                 underlineColorAndroid="transparent"
@@ -221,6 +225,7 @@ export const Registration = props => {
                 open={open}
                 value={value}
                 items={items}
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder={Strings.roleInCompany}
                 setOpen={setOpen}
                 setValue={setValue}

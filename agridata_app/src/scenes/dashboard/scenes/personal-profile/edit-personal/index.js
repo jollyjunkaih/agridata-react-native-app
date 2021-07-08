@@ -61,63 +61,70 @@ export const EditPersonal = props => {
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
       <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            top: hp('2%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: wp('100%'),
-          }}>
-          <View style={{left: wp('3%'), position: 'absolute'}}>
-            <BackButton navigation={props.navigation} />
+        <DismissKeyboardView
+          style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              top: hp('2%'),
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: wp('100%'),
+            }}>
+            <View style={{left: wp('3%'), position: 'absolute'}}>
+              <BackButton navigation={props.navigation} />
+            </View>
+            <View>
+              <Text style={[Typography.header]}>
+                Edit {Strings.personalProfile}
+              </Text>
+            </View>
           </View>
-          <View>
-            <Text style={[Typography.header]}>
-              Edit {Strings.personalProfile}
-            </Text>
-          </View>
-        </View>
 
-        <View
-          style={{
-            top: hp('5%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: wp('50%'),
-            height: hp('20%'),
-          }}>
-          {imageSource === null ? (
-            <View>
-              <Image source={require('_assets/images/company-logo.png')} />
-              <TouchableOpacity
-                onPress={() => {
-                  selectImage();
-                }}>
-                <Text
-                  style={[
-                    Typography.normal,
-                    {textAlign: 'center', top: hp('2%')},
-                  ]}>
-                  {Strings.changeImage}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View>
-              <Image
-                source={{uri: imageSource}}
-                style={{
-                  resizeMode: 'cover',
-                  width: wp('50%'),
-                  height: hp('20%'),
-                  borderRadius: 100,
-                }}
-              />
-            </View>
-          )}
-        </View>
-        <DismissKeyboardView>
+          <View
+            style={{
+              top: hp('5%'),
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: wp('50%'),
+              height: hp('20%'),
+            }}>
+            {imageSource === null ? (
+              <View>
+                <Image source={require('_assets/images/company-logo.png')} />
+                <TouchableOpacity
+                  onPress={() => {
+                    selectImage();
+                  }}
+                  style={{
+                    top: hp('2%'),
+                  }}>
+                  <Text
+                    style={[
+                      Typography.normal,
+                      {
+                        textAlign: 'center',
+                      },
+                    ]}>
+                    {Strings.changeImage}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View>
+                <Image
+                  source={{uri: imageSource}}
+                  style={{
+                    resizeMode: 'cover',
+                    width: wp('50%'),
+                    height: hp('20%'),
+                    borderRadius: 100,
+                  }}
+                />
+              </View>
+            )}
+          </View>
+
           <View
             style={{
               top: hp('10%'),
@@ -137,6 +144,7 @@ export const EditPersonal = props => {
                 {Strings.fullName}
               </Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder="John Smith"
                 underlineColorAndroid="transparent"
                 style={{
@@ -158,6 +166,7 @@ export const EditPersonal = props => {
               }}>
               <Text style={[Typography.placeholderSmall]}>{Strings.email}</Text>
               <TextInput
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder="email@gmail.com"
                 underlineColorAndroid="transparent"
                 style={{
@@ -182,6 +191,7 @@ export const EditPersonal = props => {
               </Text>
               <TextInput
                 underlineColorAndroid="transparent"
+                placeholderTextColor={Colors.GRAY_DARK}
                 placeholder="+60 11 6569 1999"
                 style={{
                   borderBottomColor: 'transparent',
@@ -334,6 +344,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setOld(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.oldPassword}
                   style={{
                     height: hp('5%'),
@@ -357,6 +368,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword2(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.newPassword}
                   style={{
                     height: hp('5%'),
@@ -379,6 +391,7 @@ export const ChangePassword = props => {
                   onChangeText={value => {
                     setPassword(value);
                   }}
+                  placeholderTextColor={Colors.GRAY_DARK}
                   placeholder={Strings.reEnterNewPassword}
                   style={{
                     height: hp('5%'),
