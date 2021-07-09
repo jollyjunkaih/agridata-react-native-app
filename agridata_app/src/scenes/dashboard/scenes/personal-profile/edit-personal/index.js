@@ -57,9 +57,10 @@ export const EditPersonal = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'position' : 'position'}
       keyboardVerticalOffset={
-        Platform.OS === 'ios' ? hp('0%') : Mixins.scaleHeight(50)
+        Platform.OS === 'ios' ? hp('0%') : hp('0%')
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
+<<<<<<< HEAD
       <DismissKeyboardView
         style={{
           alignItems: 'center',
@@ -69,6 +70,20 @@ export const EditPersonal = props => {
           style={{
             alignItems: 'center',
             justifyContent: 'center',
+=======
+      <SafeAreaView
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: hp('100%'),
+        }}>
+        <DismissKeyboardView
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: hp('100%'),
+            top: hp('-15%'),
+>>>>>>> 912192bf7afe1eea44604912c63b7717c1ce9306
           }}>
           <View
             style={{
@@ -87,7 +102,6 @@ export const EditPersonal = props => {
               </Text>
             </View>
           </View>
-
           <View
             style={{
               top: hp('5%'),
@@ -131,7 +145,6 @@ export const EditPersonal = props => {
               </View>
             )}
           </View>
-
           <View
             style={{
               top: hp('10%'),
@@ -211,7 +224,10 @@ export const EditPersonal = props => {
               />
             </View>
           </View>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 912192bf7afe1eea44604912c63b7717c1ce9306
           <TouchableOpacity
             onPress={() => setChangePassword(true)}
             style={{
@@ -265,6 +281,10 @@ export const EditPersonal = props => {
               style={{left: wp('4%')}}
             />
           </TouchableOpacity>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 912192bf7afe1eea44604912c63b7717c1ce9306
           <Modal isVisible={changePassword}>
             <ChangePassword
               setChangePassword={setChangePassword}
@@ -279,8 +299,13 @@ export const EditPersonal = props => {
               navigation={props.navigation}
             />
           </Modal>
+<<<<<<< HEAD
         </SafeAreaView>
       </DismissKeyboardView>
+=======
+        </DismissKeyboardView>
+      </SafeAreaView>
+>>>>>>> 912192bf7afe1eea44604912c63b7717c1ce9306
     </KeyboardAvoidingView>
   );
 };
