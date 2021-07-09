@@ -60,9 +60,16 @@ export const EditPersonal = props => {
         Platform.OS === 'ios' ? hp('0%') : Mixins.scaleHeight(50)
       } /* Keyboard Offset needs to be tested against multiple phones */
     >
-      <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
-        <DismissKeyboardView
-          style={{alignItems: 'center', justifyContent: 'center'}}>
+      <DismissKeyboardView
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <SafeAreaView
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <View
             style={{
               flexDirection: 'row',
@@ -204,75 +211,76 @@ export const EditPersonal = props => {
               />
             </View>
           </View>
-        </DismissKeyboardView>
-        <TouchableOpacity
-          onPress={() => setChangePassword(true)}
-          style={{
-            alignSelf: 'center',
-            top: hp('15%'),
-            width: wp('40%'),
-            height: hp('5%'),
-            backgroundColor: Colors.LIGHT_BLUE,
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            zIndex: 5,
-            elevation: 4,
-          }}>
-          <Text>{Strings.changePass}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setSuccesfulChangesModal(true)}
-          style={{
-            alignSelf: 'center',
-            top: hp('18%'),
-            width: wp('55%'),
-            height: hp('5%'),
-            backgroundColor: Colors.LIGHT_BLUE,
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 10,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            zIndex: 5,
-            elevation: 4,
-          }}>
-          <Text>{Strings.saveChanges}</Text>
-          <Icon
-            name="checkmark-circle-outline"
-            size={wp('5.5%')}
-            style={{left: wp('4%')}}
-          />
-        </TouchableOpacity>
-        <Modal isVisible={changePassword}>
-          <ChangePassword
-            setChangePassword={setChangePassword}
-            setForgetPassword={props.setForgetPassword}
-          />
-        </Modal>
-        <Modal
-          isVisible={succesfulChangesModal}
-          onBackdropPress={() => setSuccesfulChangesModal(false)}>
-          <SuccesfulChangesModal
-            setSuccesfulChangesModal={setSuccesfulChangesModal}
-            navigation={props.navigation}
-          />
-        </Modal>
-      </SafeAreaView>
+
+          <TouchableOpacity
+            onPress={() => setChangePassword(true)}
+            style={{
+              alignSelf: 'center',
+              top: hp('15%'),
+              width: wp('40%'),
+              height: hp('5%'),
+              backgroundColor: Colors.LIGHT_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              zIndex: 5,
+              elevation: 4,
+            }}>
+            <Text>{Strings.changePass}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setSuccesfulChangesModal(true)}
+            style={{
+              alignSelf: 'center',
+              top: hp('18%'),
+              width: wp('55%'),
+              height: hp('5%'),
+              backgroundColor: Colors.LIGHT_BLUE,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              borderRadius: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              zIndex: 5,
+              elevation: 4,
+            }}>
+            <Text>{Strings.saveChanges}</Text>
+            <Icon
+              name="checkmark-circle-outline"
+              size={wp('5.5%')}
+              style={{left: wp('4%')}}
+            />
+          </TouchableOpacity>
+          <Modal isVisible={changePassword}>
+            <ChangePassword
+              setChangePassword={setChangePassword}
+              setForgetPassword={props.setForgetPassword}
+            />
+          </Modal>
+          <Modal
+            isVisible={succesfulChangesModal}
+            onBackdropPress={() => setSuccesfulChangesModal(false)}>
+            <SuccesfulChangesModal
+              setSuccesfulChangesModal={setSuccesfulChangesModal}
+              navigation={props.navigation}
+            />
+          </Modal>
+        </SafeAreaView>
+      </DismissKeyboardView>
     </KeyboardAvoidingView>
   );
 };
